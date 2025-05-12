@@ -15,6 +15,14 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING(50),
       defaultValue: 'pending',
     },
+    return_status: {
+      type: DataTypes.STRING(50),
+      defaultValue: 'pending',
+    },
+    status_updated_at: {
+      type: DataTypes.DATE,
+      defaultValue: DataTypes.NOW,
+    },
     shipping_address: {
       type: DataTypes.TEXT,
     },
@@ -22,16 +30,40 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.DATE,
       defaultValue: DataTypes.NOW,
     },
-  }, {
+    cancelled_reason: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+    },
+    cancelled_atn: {
+      type: DataTypes.DATE,
+      allowNull: true,
+    },
+    return_requested: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+    },
+    return_reason: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+    },
+    return_approved: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+    },
+    return_at: {
+      type: DataTypes.DATE,
+      allowNull: true,
+    },
+  }, 
+  {
     tableName: 'orders',
     timestamps: false,
   });
 
-  // Association with OrderItem
   Order.associate = (models) => {
     Order.hasMany(models.OrderItem, {
       foreignKey: 'order_id',
-      as: 'items',  // Updated alias for consistent use
+      as: 'items', 
     });
   };
 

@@ -17,7 +17,14 @@ module.exports = (sequelize, DataTypes) => {
       tableName: 'product_images',
       timestamps: false,
     });
-  
+
+    ProductImage.associate = (models) => {
+      ProductImage.belongsTo(models.Product, {
+        foreignKey: 'product_id',
+        as: 'product',  // Alias for reverse relation
+      });
+    };
+    
     return ProductImage;
   };
   
