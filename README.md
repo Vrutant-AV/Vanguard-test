@@ -1,5 +1,7 @@
 Hello, my name is Adi and this project is just for learning db and back-end (postgres, node + express). 
+
 I have created a dummy requirement for this project and created this project based on the requirements. 
+
 here is the dummy requirements:
 	Hi, I’m looking to have a website built for my new clothing brand, "Vanguard Apparel."
 We're a premium streetwear label targeting young professionals and creatives aged 20–35. I want the website to reflect the quality and style of the brand—clean, bold, and minimal—with an excellent user experience across all devices.
