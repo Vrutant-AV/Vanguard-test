@@ -60,7 +60,7 @@ exports.getUserOrders = async (req, res) => {
                         {
                             model: Product,
                             as: 'product',
-                            attributes: ['name', 'price'],
+                            attributes: ['title', 'price'],
                         },
                     ],
                 },

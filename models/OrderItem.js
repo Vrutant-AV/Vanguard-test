@@ -30,17 +30,15 @@ module.exports = (sequelize, DataTypes) => {
     timestamps: false,
   });
 
-  // Association with Order
   OrderItem.associate = (models) => {
     OrderItem.belongsTo(models.Order, {
       foreignKey: 'order_id',
-      as: 'order',  // Corrected alias for consistency
+      as: 'order',
     });
 
-    // Association with Product
     OrderItem.belongsTo(models.Product, {
       foreignKey: 'product_id',
-      as: 'product',  // Added association with Product
+      as: 'product',
     });
   };
 
