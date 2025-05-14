@@ -4,8 +4,7 @@ I have created a dummy requirement for this project and created this project bas
 
 here is the dummy requirements:
 
-	Hi, I’m looking to have a website built for my new clothing brand, "Vanguard Apparel."
-We're a premium streetwear label targeting young professionals and creatives aged 20–35. I want the website to reflect the quality and style of the brand—clean, bold, and minimal—with an excellent user experience across all devices.
+Hi, I’m looking to have a website built for my new clothing brand, "Vanguard Apparel." We're a premium streetwear label targeting young professionals and creatives aged 20–35. I want the website to reflect the quality and style of the brand—clean, bold, and minimal—with an excellent user experience across all devices.
 
 🔹 General Requirements:
     • Brand Identity: The site must match our branding (I’ll provide the logo, color palette, fonts, and brand guidelines).
