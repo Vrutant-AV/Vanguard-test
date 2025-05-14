@@ -9,6 +9,7 @@ const adminRoutes = require('./routes/adminRoutes');
 const productRoutes = require('./routes/productRoutes');
 const orderRoutes = require('./routes/orderRoutes');
 const paymentRoutes = require('./routes/paymentRoutes');
+const userRoutes = require ('./routes/userRoutes');
 
 dotenv.config();
 
@@ -23,6 +24,7 @@ app.use('/api/products', productRoutes);
 app.use('/uploads', express.static('public/uploads'));
 app.use('/api/orders', orderRoutes);
 app.use('/api/payments', paymentRoutes);
+app.use('/api/users', userRoutes);
 
 app.get('/', (req, res) => {
   res.send('Vanguard Apparel API is running');

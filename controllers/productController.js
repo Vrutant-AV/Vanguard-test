@@ -1,4 +1,6 @@
-const { Product } = require('../models');
+const { Product, ProductImage } = require('../models');
+const s3 = require('../config/awsConfig');
+const { DeleteObjectCommand } = require('@aws-sdk/client-s3');
 
 exports.createProduct = async (req, res) => {
     try {
@@ -73,5 +75,89 @@ exports.deleteProduct = async (req, res) => {
         res.json({ message: 'Product deleted successfully' });
     }   catch (err) {
         res.status(500).json({ message: 'Failed to delete product', error: err.message });
+    }
+};
+
+exports.uploadProductImage = async (req, res) => {
+    try{
+        const { productId } = req.params;
+        const imageUrl = req.file.location;
+
+        const newImage = await ProductImage.create({
+            product_id: productId,
+            image_url: imageUrl,
+        });
+
+        res.status(201).json({ message: 'Image uploaded successfully', image: newImage });
+    } catch (error) {
+        console.error('Error uploading product image:', error);
+        res.status(500).json({ message: 'Image upload failed', error: error.message });
+    }
+};
+
+exports.getProductImages = async (req, res) => {
+    try { 
+        const { productId } = req.params;
+
+        const images = await ProductImage.findAll({ where: { product_id: productId } });
+
+        if (!images.length) {
+            return res.status(404).json({ message: 'No images found for this product' });
+        }
+
+        res.json({ message: 'Product images retrieved', images });
+    } catch (error) {
+        console.error('Error fetching product images:', error);
+        res.status(500).json({ message: 'Failed to retrieve images', error: error.message });
+    }
+};
+
+exports.updateProductImage = async (req, res) => {
+    try {
+        const { imageId } = req.params;
+        const imageUrl = req.file.location;
+
+        const image = await ProductImage.findByPk(imageId);
+        if (!image) return res.status(404).json({ message: 'Image not found' });
+
+        const oldImageUrl = image.image_url;
+        const key = oldImageUrl.split('.com/')[1];
+
+        await s3.deleteObject({
+            Bucket: process.env.AWS_BUCKET_NAME,
+            key: key,
+        }).promise();
+
+        image.image_url = imageUrl;
+        await image.save();
+
+        res.json({ message: 'Image updated successfully', image});
+    } catch (error) {
+        console.error('Error updating product image:', error);
+        res.status(500).json({ message: 'Image update failed', error: error.message });
+    }
+};
+
+exports.deleteProductImage = async (req, res) => {
+    try {
+        const { imageId } = req.params;
+
+        const image = await ProductImage.findByPk(imageId);
+        if (!image) return res.status(404).json({ message: 'Image not found' });
+
+        const key = image.image_url.split('.com/')[1];
+
+        const command = new DeleteObjectCommand({ 
+            Bucket: process.env.AWS_BUCKET_NAME,
+            Key:key,
+        });
+        
+        await s3.send(command);
+        await image.destroy();
+
+        res.json({ message: 'Image deleted successfully' });
+    } catch (error) {
+        console.error('Error deleting product image:', error);
+        res.status(500).json({ message: 'Image deletion failed', error: error.message });
     }
 };
