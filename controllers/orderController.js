@@ -55,6 +55,7 @@ exports.getAllOrders = async (req, res) => {
     }
 };
 
+/*
 exports.getUserOrders = async (req, res) => {
     try {
         const userId = req.user.id;
@@ -86,6 +87,7 @@ exports.getUserOrders = async (req, res) => {
         res.status(500).json({ message: 'Failed to fetch user orders', error: error.message });
     }
 };
+*/
 
 exports.updateOrderStatus = async (req, res) => {
     try{
