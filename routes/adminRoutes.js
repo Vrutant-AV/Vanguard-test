@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const { User } = require('../models');
+const { getOrderStatistics, getProductInsights, getRecentActivity, updateProductStock } = require('../controllers/adminController');
 const { authenticateToken, authorizeRoles, verifyToken } = require('../middleware/authMiddleware');
 
 router.post('/create-admin', authenticateToken, authorizeRoles('admin'), async (req, res) => {
@@ -33,9 +34,33 @@ router.post('/create-admin', authenticateToken, authorizeRoles('admin'), async (
     }
 });
 
-router.get('/dashboard', verifyToken, authorizeRoles('admin'), (req, res) => {
+router.get(
+    '/dashboard', verifyToken, authorizeRoles('admin'), (req, res) => {
       res.json({ message: 'Welcome to the Admin Dashboard' });
     }
 );
+
+router.get(
+    '/order-stats', 
+    authenticateToken, authorizeRoles('admin'), 
+    getOrderStatistics
+);
+
+router.get(
+    '/product-insights', 
+    authenticateToken, authorizeRoles('admin'), 
+    getProductInsights
+);
+
+router.get(
+    '/recent-activity', 
+    authenticateToken, authorizeRoles('admin'), 
+    getRecentActivity
+);
+
+router.put(
+    '/update-stock', updateProductStock
+);
+
 
 module.exports = router;

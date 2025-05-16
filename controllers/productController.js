@@ -24,10 +24,21 @@ exports.createProduct = async (req, res) => {
 };
 
 exports.getAllProducts = async (req, res) => {
-    try{
-        const products = await Product.findAll();
-        res.json(products);
-    }   catch (err) {
+    try {
+        const products = await Product.findAll({
+            include: [
+                {
+                    model: ProductImage,
+                    as: 'images',
+                    attributes: ['image_url'],
+                },
+            ],
+            order: [['id', 'ASC']], 
+        });
+
+        res.status(200).json(products);
+    } catch (err) {
+        console.error('Error fetching products:', err);
         res.status(500).json({ message: 'Failed to fetch products', error: err.message });
     }
 };

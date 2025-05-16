@@ -10,12 +10,21 @@ exports.createOrder = async(req, res) => {
         const userId = req.user.id;
 
         const newOrder = await Order.create({ 
-            userId,
+            user_id: userId,
             total_price,
             shipping_address,
         });
 
         const orderItems = await Promise.all(products.map(async (product) => {
+            const productRecord = await Product.findByPk(product.product_id);
+            
+            if (!productRecord || productRecord.stock < product.quantity) {
+                throw new Error(`Insufficient stock for product ID: ${product.product_id}`);
+            }
+            
+            productRecord.stock -= product.quantity;
+            await productRecord.save();
+            
             return await OrderItem.create({
                 order_id: newOrder.id,
                 product_id: product.product_id,
@@ -25,7 +34,7 @@ exports.createOrder = async(req, res) => {
         }));
 
         res.status(201).json({ message: 'Order places successfully', newOrder, orderItems });
-    }   catch (error) {
+    } catch (error) {
         console.error('Error creating order:', error);
         res.status(500).json({ message:'Failed to place order', error: error.message });
     }
@@ -198,12 +207,10 @@ exports.cancelOrder = async (req, res) => {
             return res.status(404).json({ message: 'Order not found' });
         }
 
-        // Check if the order can be canceled (not shipped/delivered)
         if (['shipped', 'delivered'].includes(order.status)) {
             return res.status(400).json({ message: 'Cannot cancel a shipped or delivered order' });
         }
 
-        // Update order status to "cancelled"
         order.status = 'cancelled';
         order.cancelled_reason = reason;
         order.cancelled_at = new Date();
@@ -247,17 +254,24 @@ exports.handleReturn = async (req, res) => {
         const orderId = req.params.id;
         const { approve } = req.body;
 
-        const order = await Order.findByPk(orderId);
+        const order = await Order.findByPk(orderId, { include: ['items'] });
         if (!order) {
             return res.status(404).json({ message: 'Order not found' });
         }
 
-        // Check if a return request exists
         if (!order.return_requested) {
             return res.status(400).json({ message: 'No return request found for this order' });
         }
 
         if (approve) {
+            for (const item of order.items) {
+                const product = await Product.findByPk(item.product_id);
+                if (product) {
+                    product.stock += item.quantity;
+                    await product.save();
+                }
+            }
+
             order.return_approved = true;
             order.status = 'returned';
             order.return_at = new Date();
@@ -267,7 +281,6 @@ exports.handleReturn = async (req, res) => {
         }
 
         await order.save();
-
         res.status(200).json({ message: approve ? 'Return approved' : 'Return rejected', order });
     } catch (error) {
         console.error('Error handling return:', error);
