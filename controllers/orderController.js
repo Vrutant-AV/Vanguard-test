@@ -55,6 +55,7 @@ exports.getAllOrders = async (req, res) => {
     }
 };
 
+// This function is commented out as it is not used in the current implementation. (It might be never used again)
 /*
 exports.getUserOrders = async (req, res) => {
     try {
