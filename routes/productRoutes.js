@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const productController = require('../controllers/productController');
 const { verifyToken, authorizeRoles } = require('../middleware/authMiddleware');
-const upload = require('../utils/multer');
+const { singleUpload, multipleUpload } = require('../utils/multer');
 
 router.post(
     '/', verifyToken, authorizeRoles('admin'),
@@ -28,10 +28,19 @@ router.get(
 );
 
 router.post(
-    '/image/:productId', 
-    verifyToken, authorizeRoles('admin'), 
-    upload.single('image'), 
+    '/image/:productId',
+    verifyToken,
+    authorizeRoles('admin'),
+    singleUpload,
     productController.uploadProductImage
+);
+
+router.post(
+    '/images/:productId',
+    verifyToken,
+    authorizeRoles('admin'),
+    multipleUpload,
+    productController.uploadProductImages
 );
 
 router.get(
@@ -42,6 +51,7 @@ router.get(
 router.put(
     '/images/:imageId',
     verifyToken, authorizeRoles('admin'),
+    singleUpload, multipleUpload,
     productController.updateProductImage
 );
 

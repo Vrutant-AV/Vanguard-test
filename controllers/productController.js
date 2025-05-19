@@ -1,6 +1,7 @@
 const { Product, ProductImage } = require('../models');
-const s3 = require('../config/awsConfig');
-const { DeleteObjectCommand } = require('@aws-sdk/client-s3');
+const crypto = require('crypto');
+const fs = require('fs');
+const path = require('path');
 
 exports.createProduct = async (req, res) => {
     try {
@@ -59,7 +60,6 @@ exports.getProductById = async (req, res) => {
     }
 };
 
-  
 exports.updateProduct = async (req, res) => {
     try {
         const { id } = req.params;
@@ -89,10 +89,29 @@ exports.deleteProduct = async (req, res) => {
     }
 };
 
+const generateFileHash = (filePath) => {
+    const fileBuffer = fs.readFileSync(filePath);
+    return crypto.createHash('md5').update(fileBuffer).digest('hex');
+};
+
 exports.uploadProductImage = async (req, res) => {
-    try{
+    try {
         const { productId } = req.params;
-        const imageUrl = req.file.location;
+
+        if (!req.file) {
+            return res.status(400).json({ message: 'No file uploaded' });
+        }
+
+        const filePath = req.file.path;
+        const hash = generateFileHash(filePath);
+        const imageUrl = `/public/uploads/${hash}-${req.file.originalname}`;
+
+        // Check for duplicate image
+        const existingImage = await ProductImage.findOne({ where: { image_url: imageUrl } });
+        if (existingImage) {
+            fs.unlinkSync(filePath);
+            return res.status(400).json({ message: `Duplicate image: ${req.file.originalname}` });
+        }
 
         const newImage = await ProductImage.create({
             product_id: productId,
@@ -106,17 +125,60 @@ exports.uploadProductImage = async (req, res) => {
     }
 };
 
-exports.getProductImages = async (req, res) => {
-    try { 
+exports.uploadProductImages = async (req, res) => {
+    try {
         const { productId } = req.params;
+        const uploadedImages = [];
 
+        if (!req.files || req.files.length === 0) {
+            return res.status(400).json({ message: 'No files uploaded' });
+        }
+
+        for (const file of req.files) {
+            const filePath = file.path;
+            const hash = generateFileHash(filePath);
+            const imageUrl = `/public/uploads/${hash}-${file.originalname}`;
+
+            try {
+                const existingImage = await ProductImage.findOne({ where: { image_url: imageUrl } });
+                if (existingImage) {
+                    fs.unlinkSync(filePath);
+                    console.log(`Duplicate image detected: ${file.originalname}`);
+                    continue;
+                }
+
+                const newImage = await ProductImage.create({
+                    product_id: productId,
+                    image_url: imageUrl,
+                });
+
+                uploadedImages.push(newImage);
+            } catch (err) {
+                console.error(`Error processing image: ${file.originalname}`, err);
+                fs.unlinkSync(filePath);
+            }
+        }
+
+        if (uploadedImages.length === 0) {
+            return res.status(400).json({ message: 'No valid images uploaded' });
+        }
+
+        res.status(201).json({ message: 'Images uploaded successfully', images: uploadedImages });
+    } catch (error) {
+        console.error('Error uploading product images:', error);
+        res.status(500).json({ message: 'Image upload failed', error: error.message });
+    }
+};
+exports.getProductImages = async (req, res) => {
+    try {
+        const { productId } = req.params;
         const images = await ProductImage.findAll({ where: { product_id: productId } });
 
         if (!images.length) {
             return res.status(404).json({ message: 'No images found for this product' });
         }
 
-        res.json({ message: 'Product images retrieved', images });
+        res.status(200).json({ message: 'Product images retrieved successfully', images });
     } catch (error) {
         console.error('Error fetching product images:', error);
         res.status(500).json({ message: 'Failed to retrieve images', error: error.message });
@@ -126,23 +188,36 @@ exports.getProductImages = async (req, res) => {
 exports.updateProductImage = async (req, res) => {
     try {
         const { imageId } = req.params;
-        const imageUrl = req.file.location;
+
+        if (!req.file) {
+            return res.status(400).json({ message: 'No file uploaded' });
+        }
+
+        const filePath = path.join(__dirname, '..', '..', 'public', 'uploads', req.file.filename);
+        const hash = generateFileHash(filePath);
+        const imageUrl = `/public/uploads/${hash}-${req.file.originalname}`;
+
+        const existingImage = await ProductImage.findOne({ where: { image_url: imageUrl } });
+        if (existingImage) {
+            fs.unlinkSync(filePath);
+            return res.status(400).json({ message: `Duplicate image: ${req.file.originalname}` });
+        }
 
         const image = await ProductImage.findByPk(imageId);
-        if (!image) return res.status(404).json({ message: 'Image not found' });
+        if (!image) {
+            fs.unlinkSync(filePath);
+            return res.status(404).json({ message: 'Image not found' });
+        }
 
-        const oldImageUrl = image.image_url;
-        const key = oldImageUrl.split('.com/')[1];
-
-        await s3.deleteObject({
-            Bucket: process.env.AWS_BUCKET_NAME,
-            key: key,
-        }).promise();
+        const oldFilePath = path.join(__dirname, '..', '..', image.image_url);
+        if (fs.existsSync(oldFilePath)) {
+            fs.unlinkSync(oldFilePath);
+        }
 
         image.image_url = imageUrl;
         await image.save();
 
-        res.json({ message: 'Image updated successfully', image});
+        res.status(200).json({ message: 'Image updated successfully', image });
     } catch (error) {
         console.error('Error updating product image:', error);
         res.status(500).json({ message: 'Image update failed', error: error.message });
@@ -152,21 +227,19 @@ exports.updateProductImage = async (req, res) => {
 exports.deleteProductImage = async (req, res) => {
     try {
         const { imageId } = req.params;
-
         const image = await ProductImage.findByPk(imageId);
-        if (!image) return res.status(404).json({ message: 'Image not found' });
+        if (!image) {
+            return res.status(404).json({ message: 'Image not found' });
+        }
 
-        const key = image.image_url.split('.com/')[1];
+        const filePath = path.join(__dirname, '..', '..', image.image_url);
+        if (fs.existsSync(filePath)) {
+            fs.unlinkSync(filePath);
+        }
 
-        const command = new DeleteObjectCommand({ 
-            Bucket: process.env.AWS_BUCKET_NAME,
-            Key:key,
-        });
-        
-        await s3.send(command);
         await image.destroy();
 
-        res.json({ message: 'Image deleted successfully' });
+        res.status(200).json({ message: 'Image deleted successfully' });
     } catch (error) {
         console.error('Error deleting product image:', error);
         res.status(500).json({ message: 'Image deletion failed', error: error.message });
