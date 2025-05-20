@@ -70,7 +70,6 @@ exports.createOrder = async (req, res) => {
             const item_total = unit_price * product.quantity;
             total_price += item_total;
   
-            // Deduct stock
             productRecord.stock -= product.quantity;
             await productRecord.save();
   
@@ -81,14 +80,12 @@ exports.createOrder = async (req, res) => {
             });
         }
   
-        // Create the order with calculated total price
         const newOrder = await Order.create({
             user_id: userId,
             total_price,
             shipping_address,
         });
   
-        // Create all order items
         for (const item of orderItems) {
             await OrderItem.create({
                 order_id: newOrder.id,
