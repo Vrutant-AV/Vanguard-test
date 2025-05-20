@@ -3,7 +3,6 @@ const dotenv = require('dotenv');
 const { User } = require('../models');
 dotenv.config();
 
-// Middleware to authenticate JWT token
 const authenticateToken = (req, res, next) => {
   const authHeader = req.headers['authorization'];
   
@@ -18,7 +17,6 @@ const authenticateToken = (req, res, next) => {
   });
 };
 
-// Middleware to authorize user roles
 const authorizeRoles = (...allowedRoles) => {
     return (req, res, next) => {
         if(!req.user || !allowedRoles.includes(req.user.role)){
@@ -28,7 +26,6 @@ const authorizeRoles = (...allowedRoles) => {
     };
 };
 
-// Middleware to verify token and get user details
 const verifyToken = async (req, res, next) => {
     try {
       const authHeader = req.headers.authorization;
