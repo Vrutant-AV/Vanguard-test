@@ -4,7 +4,8 @@ const sendNotification = (userId, message) => {
     console.log(`Notification send to User ${userId}: ${message}`);
 };
 
-// Create order
+// Create order {old}
+/*
 exports.createOrder = async(req, res) => {
     try{
         const { products, total_price, shipping_address } = req.body;
@@ -34,10 +35,78 @@ exports.createOrder = async(req, res) => {
             });
         }));
 
-        res.status(201).json({ message: 'Order places successfully', newOrder, orderItems });
+        res.status(201).json({ 
+            message: 'Order places successfully', 
+            newOrder, orderItems
+        });
     } catch (error) {
         console.error('Error creating order:', error);
         res.status(500).json({ message:'Failed to place order', error: error.message });
+    }
+};
+*/
+
+// Create order {new 20/May/2025}
+exports.createOrder = async (req, res) => {
+    try {
+        const { products, shipping_address } = req.body;
+        const userId = req.user.id;
+  
+        if (!products || products.length === 0) {
+            return res.status(400).json({ message: 'No products provided' });
+        }
+  
+        let total_price = 0;
+        const orderItems = [];
+  
+        for (const product of products) {
+            const productRecord = await Product.findByPk(product.product_id);
+  
+            if (!productRecord || productRecord.stock < product.quantity) {
+                throw new Error(`Insufficient stock for product ID: ${product.product_id}`);
+            }
+  
+            const unit_price = productRecord.price;
+            const item_total = unit_price * product.quantity;
+            total_price += item_total;
+  
+            // Deduct stock
+            productRecord.stock -= product.quantity;
+            await productRecord.save();
+  
+            orderItems.push({
+                product_id: product.product_id,
+                quantity: product.quantity,
+                unit_price,
+            });
+        }
+  
+        // Create the order with calculated total price
+        const newOrder = await Order.create({
+            user_id: userId,
+            total_price,
+            shipping_address,
+        });
+  
+        // Create all order items
+        for (const item of orderItems) {
+            await OrderItem.create({
+                order_id: newOrder.id,
+                product_id: item.product_id,
+                quantity: item.quantity,
+                unit_price: item.unit_price,
+            });
+        }
+  
+        res.status(201).json({
+            message: 'Order placed successfully',
+            newOrder,
+            orderItems,
+        });
+  
+    } catch (error) {
+        console.error('Error creating order:', error);
+        res.status(500).json({ message: 'Failed to place order', error: error.message });
     }
 };
 
