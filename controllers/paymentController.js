@@ -1,3 +1,5 @@
+//This file is responsible for handling payment-related operations, including creating and capturing PayPal orders. But the main problem is that it is not connected to the database and not working properly.
+
 const { Client } = require('pg');
 const { client } = require('../config/paypalConfig');
 

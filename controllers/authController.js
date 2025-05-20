@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken');
 const { User } = require('../models');
 // const { where } = require('sequelize');
 
+// Generate JWT token
 const generateToken = (user) => {
     return jwt.sign(
         { id: user.id, email: user.email, role: user.role },
@@ -11,6 +12,7 @@ const generateToken = (user) => {
     );
 };
 
+// Register a new user
 exports.register = async (req, res) => {
     const { name, email, password } = req.body;
   
@@ -28,7 +30,7 @@ exports.register = async (req, res) => {
     }
   };
   
-
+// Login user
 exports.login = async (req, res) => {
     const { email, password } = req.body;
 

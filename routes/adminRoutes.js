@@ -5,6 +5,7 @@ const { User } = require('../models');
 const { getOrderStatistics, getProductInsights, getRecentActivity, updateProductStock } = require('../controllers/adminController');
 const { authenticateToken, authorizeRoles, verifyToken } = require('../middleware/authMiddleware');
 
+// Create a new admin
 router.post('/create-admin', authenticateToken, authorizeRoles('admin'), async (req, res) => {
     const { name, email, password } = req.body;
 

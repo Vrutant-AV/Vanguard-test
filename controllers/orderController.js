@@ -4,6 +4,7 @@ const sendNotification = (userId, message) => {
     console.log(`Notification send to User ${userId}: ${message}`);
 };
 
+// Create order
 exports.createOrder = async(req, res) => {
     try{
         const { products, total_price, shipping_address } = req.body;
@@ -40,6 +41,7 @@ exports.createOrder = async(req, res) => {
     }
 };
 
+// Get all orders
 exports.getAllOrders = async (req, res) => {
     try{
         const orders = await Order.findAll({
@@ -55,41 +57,7 @@ exports.getAllOrders = async (req, res) => {
     }
 };
 
-// This function is commented out as it is not used in the current implementation. (It might be never used again)
-/*
-exports.getUserOrders = async (req, res) => {
-    try {
-        const userId = req.user.id;
-
-        const orders = await Order.findAll({
-            where: { user_id: userId },
-            include: [
-                {
-                    model: OrderItem,
-                    as: 'items',
-                    include: [
-                        {
-                            model: Product,
-                            as: 'product',
-                            attributes: ['title', 'price'],
-                        },
-                    ],
-                },
-            ],
-        });
-
-        if (!orders || orders.length === 0) {
-            return res.status(404).json({ message: 'No orders found for this user' });
-        }
-
-        res.status(200).json({ message: 'User orders fetched successfully', orders });
-    } catch (error) {
-        console.error('Error fetching user orders:', error);
-        res.status(500).json({ message: 'Failed to fetch user orders', error: error.message });
-    }
-};
-*/
-
+// Upadate order status
 exports.updateOrderStatus = async (req, res) => {
     try{
         const { status } = req.body;
@@ -111,6 +79,7 @@ exports.updateOrderStatus = async (req, res) => {
     }
 };
 
+// Delete order
 exports.deleteOrder = async (req, res) => {
     try{
         const orderId = req.params.id;
@@ -126,6 +95,7 @@ exports.deleteOrder = async (req, res) => {
     }
 };
 
+// Get user order history
 exports.getUserOrderHistory = async (req, res) => {
     try {
       const userId = req.user.id;
@@ -166,6 +136,7 @@ exports.getUserOrderHistory = async (req, res) => {
     }
 };
 
+// Get order tracking information
 exports.getOrderTracking = async (req, res) => {
     try{
         const orderId = req.params.id;
@@ -200,6 +171,7 @@ exports.getOrderTracking = async (req, res) => {
     }
 };
 
+// Cancel order
 exports.cancelOrder = async (req, res) => {
     try {
         const orderId = req.params.id;
@@ -226,6 +198,7 @@ exports.cancelOrder = async (req, res) => {
     }
 };
 
+// Request return
 exports.requestReturn = async (req, res) => {
     try {
         const orderId = req.params.id;
@@ -252,6 +225,7 @@ exports.requestReturn = async (req, res) => {
     }
 };
 
+// Handle return request
 exports.handleReturn = async (req, res) => {
     try {
         const orderId = req.params.id;
@@ -291,6 +265,7 @@ exports.handleReturn = async (req, res) => {
     }
 };
 
+// Approve or reject return request
 exports.approveReturn = async (req, res) => {
     try {
         const { return_status } = req.body;

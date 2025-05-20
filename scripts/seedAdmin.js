@@ -1,3 +1,4 @@
+// This file is resopnsible for seeding the database with an admin user. It connects to the database, checks if an admin user already exists, and if not, creates one with a hashed password. The script uses bcryptjs for hashing the password and Sequelize for database operations. 
 const bcrypt = require('bcryptjs');
 const { sequelize, User } = require('../models');
 

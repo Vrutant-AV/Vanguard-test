@@ -6,8 +6,6 @@ const orderController = require('../controllers/orderController');
 router.use(verifyToken);
 
 router.post('/', orderController.createOrder);    
-
-// router.get('/my-orders', orderController.getUserOrders);
 router.get('/tracking/:id', orderController.getOrderTracking);
 router.get('/history', orderController.getUserOrderHistory);
 router.put('/cancel/:id', orderController.cancelOrder);

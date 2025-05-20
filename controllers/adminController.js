@@ -1,6 +1,7 @@
 const { Order, User, Product, sequelize } = require('../models');
 const { Op } = require('sequelize');
 
+// check's the order status
 exports.getOrderStatistics = async (req, res) => {
     try {
         const totalOrders = await Order.count();
@@ -17,6 +18,7 @@ exports.getOrderStatistics = async (req, res) => {
     }
 };
 
+// get the product insights for low stock and top selling products
 exports.getProductInsights = async (req, res) => {
     try {
         const lowStockProducts = await Product.findAll({
@@ -38,6 +40,7 @@ exports.getProductInsights = async (req, res) => {
     }
 };
 
+// recent activity (History)
 exports.getRecentActivity = async (req, res) => {
     try {
         const recentOrders = await Order.findAll({
@@ -57,6 +60,7 @@ exports.getRecentActivity = async (req, res) => {
     }
 };
 
+// Update product stock
 exports.updateProductStock = async (req, res) => {
     try {
       const { productId, newStock } = req.body;

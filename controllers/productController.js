@@ -3,6 +3,7 @@ const crypto = require('crypto');
 const fs = require('fs');
 const path = require('path');
 
+// Create Product
 exports.createProduct = async (req, res) => {
     try {
         const { title, slug, description, price, category, stock, is_featured } = req.body;
@@ -24,6 +25,7 @@ exports.createProduct = async (req, res) => {
     }
 };
 
+// Get all products
 exports.getAllProducts = async (req, res) => {
     try {
         const products = await Product.findAll({
@@ -44,6 +46,7 @@ exports.getAllProducts = async (req, res) => {
     }
 };
 
+// Get a product by ID
 exports.getProductById = async (req, res) => {
     try {
       const { id } = req.params;
@@ -60,6 +63,7 @@ exports.getProductById = async (req, res) => {
     }
 };
 
+// Update a product
 exports.updateProduct = async (req, res) => {
     try {
         const { id } = req.params;
@@ -75,6 +79,7 @@ exports.updateProduct = async (req, res) => {
     }
 };
 
+// Delete a product
 exports.deleteProduct = async (req, res) => {
     try {
         const { id } = req.params;
@@ -89,11 +94,13 @@ exports.deleteProduct = async (req, res) => {
     }
 };
 
+// Generate a hash for the uploaded file
 const generateFileHash = (filePath) => {
     const fileBuffer = fs.readFileSync(filePath);
     return crypto.createHash('md5').update(fileBuffer).digest('hex');
 };
 
+// Upload a single image for a specific product
 exports.uploadProductImage = async (req, res) => {
     try {
         const { productId } = req.params;
@@ -125,6 +132,7 @@ exports.uploadProductImage = async (req, res) => {
     }
 };
 
+// Upload multiple images for a specific product
 exports.uploadProductImages = async (req, res) => {
     try {
         const { productId } = req.params;
@@ -169,6 +177,8 @@ exports.uploadProductImages = async (req, res) => {
         res.status(500).json({ message: 'Image upload failed', error: error.message });
     }
 };
+
+// Get all images for a specific product
 exports.getProductImages = async (req, res) => {
     try {
         const { productId } = req.params;
@@ -185,6 +195,7 @@ exports.getProductImages = async (req, res) => {
     }
 };
 
+// Update a specific product's specific image
 exports.updateProductImage = async (req, res) => {
     try {
         const { imageId } = req.params;
@@ -224,6 +235,7 @@ exports.updateProductImage = async (req, res) => {
     }
 };
 
+// Delete a specific product's specific image
 exports.deleteProductImage = async (req, res) => {
     try {
         const { imageId } = req.params;
