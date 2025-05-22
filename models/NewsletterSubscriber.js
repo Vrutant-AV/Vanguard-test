@@ -1,4 +1,4 @@
-// models/NewsletterSubscriber.js
+/*
 module.exports = (sequelize, DataTypes) => {
   const NewsletterSubscriber = sequelize.define('NewsletterSubscriber', {
     email: {
@@ -12,8 +12,9 @@ module.exports = (sequelize, DataTypes) => {
     },
   }, {
     tableName: 'newsletter_subscribers',
-    timestamps: false, // disable automatic createdAt/updatedAt
+    timestamps: false, 
   });
 
   return NewsletterSubscriber;
 };
+*/
