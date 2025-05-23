@@ -34,13 +34,13 @@ router.post('/create-admin', authenticateToken, authorizeRoles('admin'), async (
         res.status(500).json({ message: 'Failed to create admin', error:err.message });
     }
 });
-
+/*
 router.get(
     '/dashboard', verifyToken, authorizeRoles('admin'), (req, res) => {
       res.json({ message: 'Welcome to the Admin Dashboard' });
     }
 );
-
+*/
 router.get(
     '/order-stats', 
     authenticateToken, authorizeRoles('admin'), 

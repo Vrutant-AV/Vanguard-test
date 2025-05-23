@@ -19,7 +19,11 @@ const db = {};
 
 // Read all model files
 fs.readdirSync(__dirname)
-  .filter(file => file !== 'index.js' && file.endsWith('.js'))
+  .filter(
+    file => file !== 'index.js' && 
+    file !== 'NewsletterSubscriber.js' // Excludes the NewsletterSubscriber model
+    && file.endsWith('.js')
+  )
   .forEach(file => {
     const model = require(path.join(__dirname, file))(sequelize, DataTypes);
     db[model.name] = model;

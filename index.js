@@ -11,11 +11,16 @@ const orderRoutes = require('./routes/orderRoutes');
 const paymentRoutes = require('./routes/paymentRoutes');
 const userRoutes = require ('./routes/userRoutes');
 const wishlistRoutes = require('./routes/wishlistRoutes');
+const homeRoutes = require('./routes/homeRoutes');
+const dashboardRoutes = require('./routes/dashboardRoutes');
 
 dotenv.config();
 
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: 'http://localhost:3000',
+  credentials: true,
+}));
 app.use(express.json());
 
 app.use('/api/auth', authRoutes);
@@ -27,6 +32,8 @@ app.use('/api/orders', orderRoutes);
 app.use('/api/payments', paymentRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/wishlist', wishlistRoutes);
+app.use('/api/home', homeRoutes);
+app.use('/api/dashboard', dashboardRoutes);
 
 app.get('/', (req, res) => {
   res.send('Vanguard Apparel API is running');
