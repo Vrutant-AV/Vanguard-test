@@ -111,7 +111,7 @@ exports.uploadProductImage = async (req, res) => {
 
         const filePath = req.file.path;
         const hash = generateFileHash(filePath);
-        const imageUrl = `/public/uploads/${hash}-${req.file.originalname}`;
+        const imageUrl = `uploads/${hash}-${req.file.originalname}`;
 
         // Check for duplicate image
         const existingImage = await ProductImage.findOne({ where: { image_url: imageUrl } });
@@ -145,7 +145,7 @@ exports.uploadProductImages = async (req, res) => {
         for (const file of req.files) {
             const filePath = file.path;
             const hash = generateFileHash(filePath);
-            const imageUrl = `/public/uploads/${hash}-${file.originalname}`;
+            const imageUrl = `/uploads/${hash}-${file.originalname}`;
 
             try {
                 const existingImage = await ProductImage.findOne({ where: { image_url: imageUrl } });
@@ -206,7 +206,7 @@ exports.updateProductImage = async (req, res) => {
 
         const filePath = path.join(__dirname, '..', '..', 'public', 'uploads', req.file.filename);
         const hash = generateFileHash(filePath);
-        const imageUrl = `/public/uploads/${hash}-${req.file.originalname}`;
+        const imageUrl = `/uploads/${hash}-${req.file.originalname}`;
 
         const existingImage = await ProductImage.findOne({ where: { image_url: imageUrl } });
         if (existingImage) {
