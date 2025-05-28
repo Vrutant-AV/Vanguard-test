@@ -96,6 +96,7 @@ exports.deleteProduct = async (req, res) => {
 
 // Generate a hash for the uploaded file
 const generateFileHash = (filePath) => {
+    const crypto = require('crypto');
     const fileBuffer = fs.readFileSync(filePath);
     return crypto.createHash('md5').update(fileBuffer).digest('hex');
 };
@@ -110,10 +111,10 @@ exports.uploadProductImage = async (req, res) => {
         }
 
         const filePath = req.file.path;
-        const hash = generateFileHash(filePath);
-        const imageUrl = `uploads/${hash}-${req.file.originalname}`;
+        const filename = req.file.filename;
+        const imageUrl = `/uploads/${filename}`;
 
-        // Check for duplicate image
+        // Check for duplicate image by URL
         const existingImage = await ProductImage.findOne({ where: { image_url: imageUrl } });
         if (existingImage) {
             fs.unlinkSync(filePath);
@@ -144,8 +145,8 @@ exports.uploadProductImages = async (req, res) => {
 
         for (const file of req.files) {
             const filePath = file.path;
-            const hash = generateFileHash(filePath);
-            const imageUrl = `/uploads/${hash}-${file.originalname}`;
+            const filename = file.filename;
+            const imageUrl = `/uploads/${filename}`;
 
             try {
                 const existingImage = await ProductImage.findOne({ where: { image_url: imageUrl } });
@@ -206,7 +207,7 @@ exports.updateProductImage = async (req, res) => {
 
         const filePath = path.join(__dirname, '..', '..', 'public', 'uploads', req.file.filename);
         const hash = generateFileHash(filePath);
-        const imageUrl = `/uploads/${hash}-${req.file.originalname}`;
+        const imageUrl = `/uploads/${req.savedImageFilename}`;
 
         const existingImage = await ProductImage.findOne({ where: { image_url: imageUrl } });
         if (existingImage) {

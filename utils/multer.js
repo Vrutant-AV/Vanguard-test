@@ -15,8 +15,10 @@ const storage = multer.diskStorage({
     },
     filename: (req, file, cb) => {
         const hash = crypto.randomBytes(16).toString('hex');
-        const ext = path.extname(file.originalname);
-        cb(null, `${hash}-${file.originalname}`);
+        const cleanName = file.originalname.replace(/\s+/g, ''); // remove spaces
+        const finalFilename = `${hash}-${cleanName}`;
+        req.savedImageFilename = finalFilename; // ✅ Save the filename to the request
+        cb(null, finalFilename);
     }
 });
 
