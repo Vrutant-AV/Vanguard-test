@@ -1,6 +1,7 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const crypto = require('crypto');
+const { Op } = require('sequelize');
 // const dotenv = require('dotenv');
 const { User } = require('../models');
 // const { where } = require('sequelize');
@@ -55,31 +56,34 @@ exports.login = async (req, res) => {
 // Forgot password
 exports.forgotPassword = async (req, res) => {
     const { email } = req.body;
-    try{
-      const user = await User.findOne({ where: { email } });
-      if (!user) return res.status(400).json({ message: 'User not found' });
 
-      const token  = crypto.tandomBytes(32).toString('hex');
-      const expiry = new Date(Date.now() + 60 * 60 * 1000 );
-      
-      user.reset_token = token;
-      user.reset_token_expiry = expiry;
-      await user.save();
+    try {
+        const user = await User.findOne({ where: { email } });
+        if (!user) return res.status(400).json({ message: 'User not found' });
 
-      const resetUrl = `${process.env.FRONTEND_URL}/reset-password/${token}`;
+        const token = crypto.randomBytes(32).toString('hex');
+        const expiry = new Date(Date.now() + 60 * 60 * 1000); // 1 hour
 
-      await sendEmail({
-        to: user.email,
-        subject: 'Password Reset',
-        text: `Click the link to reset your password: ${resetUrl}`,
-      });
-      res.status(200).json({ message: 'Password reset link sent to your email' });
+        user.reset_token = token;
+        user.reset_token_expiry = expiry;
+        await user.save();
+
+        const resetUrl = `${process.env.FRONTEND_URL}/reset-password/${token}`;
+
+        await sendEmail(
+            user.email,
+            'Password Reset',
+            `Click the link to reset your password: ${resetUrl}`,
+        );
+
+        res.status(200).json({ message: 'Password reset link sent to your email' });
 
     } catch (error) {
         console.error('Error in forgotPassword:', error);
         return res.status(500).json({ message: 'Internal server error' });
     }
 };
+
 
 // Reset password
 exports.resetPassword = async (req, res) => {
@@ -96,8 +100,17 @@ exports.resetPassword = async (req, res) => {
 
     if (!user) return res.status(400).json({ message: 'Invalid or expired token' });
 
-    const hashed= await bcrypt.hash(newPassword, 10);
-    user.password = hashed;
+    console.log("Password received for reset:", newPassword);
+
+    const hashedPassword= await bcrypt.hash(newPassword, 10);
+
+    if (!newPassword) {
+      return res.status(400).json({ 
+        message: "Password is required" 
+      });
+    }
+
+    user.password = hashedPassword;
     user.reset_token = null; 
     user.reset_token_expiry = null;
     await user.save();
