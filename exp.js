@@ -3,8 +3,6 @@ const { Product, ProductImage } = require('../models');
 exports.getAllProducts = async (req, res) => {
     try {
         const products = await Product.findAll({
-            // this will fetch all products that are set as is_featured: true
-            where: { is_featured: true },
             include: [
                 { 
                     model: ProductImage, 
