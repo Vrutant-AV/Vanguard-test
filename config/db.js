@@ -1,8 +1,8 @@
 const { Sequelize } = require('sequelize');
-const config = require('./config.json'); // Adjust the path as necessary
+const config = require('./config.json');
 require('dotenv').config();
 
-const environment = process.env.NODE_ENV || 'development'; // Default to development
+const environment = process.env.NODE_ENV || 'development';
 const dbConfig = config[environment];
 
 const sequelize = new Sequelize(
