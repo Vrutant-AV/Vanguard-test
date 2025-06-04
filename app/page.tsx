@@ -13,9 +13,16 @@ export default function Home() {
     <main className={styles.main}>
       {/* Hero Section */}
       <section className={styles.hero}>
-        <div className="absolute inset-0 z-0">
-          <Image
+        <div className={styles.heroBackground}>
+        {/*  <Image
             src="https://images.pexels.com/photos/5384423/pexels-photo-5384423.jpeg"
+            alt="Vanguard Apparel hero"
+            fill
+            //priority
+            className={styles.heroImage}
+          />   */}
+          <Image
+            src="/logo-transparent.png"
             alt="Vanguard Apparel hero"
             fill
             priority
@@ -76,7 +83,7 @@ export default function Home() {
           <div className={styles.grid}>
             <div className={styles.brandImage}>
               <Image
-                src="/logo-transparent.png"
+                src="/logo.png"
                 alt="Vanguard brand story"
                 fill
                 className={styles.brandImageFill}
@@ -98,44 +105,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Journal Highlights */}
-      {/*<section className={styles.journal}>
-        <div className={styles.container}>
-          <div className={styles.sectionHeader}>
-            <h2 className={styles.sectionTitle}>Journal</h2>
-            <Button variant="link" asChild className={styles.viewAllButton}>
-              <Link href="/journal" className={styles.link}>
-                <span className={styles.linkLabel}>View All</span>
-                <ArrowRight className={styles.arrow} />
-              </Link>
-            </Button>
-          </div>
-          <div className={styles.journalGrid}>
-            {[1, 2, 3].map((item) => (
-              <Link href="/journal/post-slug\" key={item} className={styles.journalLink}>
-                <div className={styles.journalImage}>
-                  <Image
-                    src={`https://images.pexels.com/photos/833052${item}/pexels-photo-833052${item}.jpeg`}
-                    alt={`Journal post ${item}`}
-                    fill
-                    className={styles.journalImageFill}
-                  />
-                </div>
-                <div className={styles.journalContent}>
-                <h3 className={styles.journalTitle}>
-                  {item === 1 && "The Art of Sustainable Fashion"}
-                  {item === 2 && "Behind the Scenes: Summer Collection"}
-                  {item === 3 && "Style Guide: Minimalist Wardrobe"}
-                </h3>
-                <p className={styles.journalDate}>
-                  {new Date().toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}
-                </p>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>*/}
       <section className={styles.journal}>
         <div className={styles.container}>
           <div className={styles.journalHeader}>
