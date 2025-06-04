@@ -4,6 +4,8 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 
+import styles from "./page.module.css";
+
 // Sample journal posts (in a real app, this would come from a CMS/database)
 const featuredPost = {
   id: 1,
@@ -78,21 +80,21 @@ const categories = [
 
 export default function JournalPage() {
   return (
-    <main className="min-h-screen bg-background pt-24">
-      <div className="container py-8 md:py-12">
-        <h1 className="font-serif text-3xl font-light md:text-4xl">Journal</h1>
-        <p className="mt-2 max-w-2xl text-muted-foreground">
+    <main className={styles.main}>
+      <div className={styles.container}>
+        <h1 className={styles.title}>Journal</h1>
+        <p className={styles.subtitle}>
           Insights, stories, and updates from the world of Vanguard Apparel.
         </p>
 
         {/* Categories */}
-        <div className="my-8 flex flex-wrap gap-2">
+        <div className={styles.categories}>
           {categories.map((category) => (
             <Button
               key={category}
               variant={category === "All" ? "default" : "outline"}
               size="sm"
-              className="rounded-full"
+              className={styles.categoryButton}
             >
               {category}
             </Button>
@@ -100,72 +102,77 @@ export default function JournalPage() {
         </div>
 
         {/* Featured Post */}
-        <div className="relative mb-12 aspect-[21/9] w-full overflow-hidden rounded-lg md:aspect-[3/1]">
+        <div className={styles.featuredPost}>
           <Image
             src={featuredPost.image}
             alt={featuredPost.title}
             fill
-            className="object-cover object-center"
+            className={styles.featuredImage}
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/10" />
-          <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
-            <div className="mb-2">
-              <span className="rounded-full bg-primary px-3 py-1 text-xs font-medium text-primary-foreground">
+          <div className={styles.featuredOverlay}/>
+          <div className={styles.featuredContent}>
+            
+              <span className={styles.categoryTag}>
                 {featuredPost.category}
               </span>
-            </div>
-            <h2 className="mb-2 font-serif text-2xl font-light text-white md:text-3xl lg:text-4xl">
+           
+            <h2 className={styles.featuredTitle}>
               {featuredPost.title}
             </h2>
-            <p className="mb-4 max-w-2xl text-white/80 md:text-lg">
+
+            <p className={styles.featuredExcerpt}>
               {featuredPost.excerpt}
             </p>
-            <div className="flex items-center gap-4">
-              <p className="text-sm text-white/70">{featuredPost.date}</p>
-              <Button asChild size="sm" className="bg-white text-black hover:bg-white/90">
+            
+            <div className={styles.featuredFooter}>
+              <p className={styles.featuredDate}>{featuredPost.date}</p>
+              
+              <Button asChild size="sm" className={styles.featuredButton}>
+                
                 <Link href={`/journal/${featuredPost.id}`}>
                   Read Article
                 </Link>
+              
               </Button>
             </div>
           </div>
         </div>
 
         {/* Journal Posts Grid */}
-        <div className="grid gap-8 sm:grid-cols-2 md:grid-cols-3">
+        <div className={styles.postsGrid}>
           {posts.map((post) => (
             <Link
               key={post.id}
               href={`/journal/${post.id}`}
-              className="group flex flex-col"
+              className={styles.postLink}
             >
-              <div className="relative mb-4 aspect-video w-full overflow-hidden rounded-md">
+              <div className={styles.postImageContainer}>
                 <Image
                   src={post.image}
                   alt={post.title}
                   fill
-                  className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                  className={styles.postImage}
                 />
               </div>
-              <div className="mb-2 flex">
-                <span className="rounded-full bg-muted px-3 py-1 text-xs font-medium">
-                  {post.category}
-                </span>
-              </div>
-              <h3 className="mb-2 font-serif text-xl font-medium transition-colors group-hover:text-primary">
+              
+              <span className={styles.categoryTag}>
+                {post.category}
+              </span>
+             
+              <h3 className={styles.postTitle}>
                 {post.title}
               </h3>
-              <p className="mb-3 text-muted-foreground">{post.excerpt}</p>
-              <p className="mt-auto text-sm text-muted-foreground">{post.date}</p>
+              <p className={styles.postExcerpt}>{post.excerpt}</p>
+              <p className={styles.postDate}>{post.date}</p>
             </Link>
           ))}
         </div>
 
         {/* Pagination */}
-        <div className="mt-12 flex justify-center">
-          <nav className="flex items-center gap-1">
-            <Button variant="outline" size="icon" disabled>
+        <div className={styles.pagination}>
+          <nav className={styles.paginationNav}>
+            <Button variant="outline" size="icon" disabled className={styles.paginationButton}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="16"
@@ -176,7 +183,7 @@ export default function JournalPage() {
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                className="h-4 w-4"
+                className={styles.paginationIcon}
               >
                 <path d="m15 18-6-6 6-6" />
               </svg>
@@ -187,12 +194,12 @@ export default function JournalPage() {
                 key={page}
                 variant={page === 1 ? "default" : "outline"}
                 size="icon"
-                className="h-8 w-8"
+                className={styles.pageButton}
               >
                 {page}
               </Button>
             ))}
-            <Button variant="outline" size="icon">
+            <Button variant="outline" size="icon" className={styles.paginationButton}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="16"
@@ -203,7 +210,7 @@ export default function JournalPage() {
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                className="h-4 w-4"
+                className={styles.paginationIcon}
               >
                 <path d="m9 6 6 6-6 6" />
               </svg>

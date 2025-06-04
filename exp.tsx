@@ -150,12 +150,18 @@ export default function JournalPage() {
           />
           <div className={styles.featuredOverlay} />
           <div className={styles.featuredContent}>
+
             <span className={styles.categoryTag}>{featuredPost.category}</span>
+            
             <h2 className={styles.featuredTitle}>{featuredPost.title}</h2>
+            
             <p className={styles.featuredExcerpt}>{featuredPost.excerpt}</p>
+            
             <div className={styles.featuredFooter}>
               <p className={styles.featuredDate}>{featuredPost.date}</p>
+              
               <Button asChild size="sm" className={styles.featuredButton}>
+                
                 <Link href={`/journal/${featuredPost.id}`}>
                   Read Article
                 </Link>
