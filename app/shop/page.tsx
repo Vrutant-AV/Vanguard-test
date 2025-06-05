@@ -4,53 +4,50 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import ProductsGrid from "@/components/products-grid";
 import ProductFilters from "@/components/product-filters";
+import styles from "./page.module.css";
 
 export default function ShopPage() {
   return (
-    <main className="min-h-screen bg-background pt-24">
-      <div className="container py-8 md:py-12">
-        <div className="flex flex-col">
+    <main className={styles.main}>
+      <div className={styles.container}>
+        <div className={styles.content}>
           <div>
-            <h1 className="font-serif text-3xl font-light md:text-4xl">Shop</h1>
-            <p className="mt-2 max-w-2xl text-muted-foreground">
+            <h1 className={styles.title}>Shop</h1>
+            <p className={styles.subtitle}>
               Explore our latest collections of premium garments and accessories.
             </p>
           </div>
           
-          <div className="my-8 flex flex-col-reverse justify-between gap-4 sm:flex-row sm:items-center">
-            <div className="flex flex-1 flex-col gap-4 sm:flex-row sm:items-center">
-              <Button variant="outline" size="sm" className="sm:w-auto">
-                <Filter className="mr-2 h-4 w-4" />
+          <div className={styles.headerActions}>
+            <div className={styles.mobileHeader}>
+              <Button variant="outline" size="sm" className={styles.filterButton}>
+                <Filter className={styles.filterIcon}/>
                 Filters
               </Button>
-              <div className="flex items-center gap-4">
-                <p className="text-sm text-muted-foreground">48 products</p>
-                <Separator orientation="vertical" className="hidden h-4 sm:block" />
-                <div className="hidden sm:block">
-                  <ShopCategories />
-                </div>
+              <div className={styles.mobileInfo}>
+                <p className={styles.productCount}>48 products</p>
               </div>
             </div>
             
-            <div className="flex items-center gap-2">
-              <span className="text-sm">Sort by:</span>
-              <Button variant="ghost" size="sm" className="gap-1 font-normal">
+            <div className={styles.sortSection}>
+              <span className={styles.sortLabel}>Sort by:</span>
+              <Button variant="ghost" size="sm" className={styles.sortButton}>
                 Newest
-                <ChevronDown className="h-4 w-4" />
+                <ChevronDown className={styles.sortIcon}/>
               </Button>
             </div>
           </div>
           
-          <div className="block sm:hidden">
+          <div className={styles.mobileCategories}>
             <ShopCategories />
-            <Separator className="my-4" />
+            <Separator className={styles.sidebar}/>
           </div>
           
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-4 lg:gap-12">
-            <div className="hidden md:block">
+          <div className={styles.mainContent}>
+            <div className={styles.sidebar}>
               <ProductFilters />
             </div>
-            <div className="md:col-span-3">
+            <div className={styles.ProductsGrid}>
               <ProductsGrid />
             </div>
           </div>

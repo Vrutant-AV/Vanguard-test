@@ -1,0 +1,154 @@
+/* Main Layout */
+.main {
+    min-height: 100vh;
+    background-color: var(--background);
+    padding-top: 6rem;
+}
+
+/* Contaier */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Content */
+.content {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Title */
+.title {
+    font-family: serif;
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: var(--foreground);
+    margin-bottom: 0.5rem;
+}
+
+/* Subtitle */
+.subtitle {
+    color: var(--muted-foreground);
+    margin-bottom: 2rem;
+    max-width: 600px;
+}
+
+/* Header Actions */
+.headerActions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 2rem 0;
+}
+
+/* Mobile Header */
+.mobileHeader {
+    display: flex;
+    gap: 1rem;
+}
+
+/* Filter Button */
+.filterButton {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.filterIcon {
+    width: 1rem;
+    height: 1rem;
+}
+
+/* Mobile Info */
+.mobileInfo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.productCount {
+    font-size: 0.875rem;
+    color: var(--muted-foreground);
+}
+
+/* Sort Section */
+.sortSection {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.sortLabel {
+    font-size: 0.875rem;
+    color: var(--muted-foreground);
+}
+
+.sortButton {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.sortIcon {
+    width: 1rem;
+    height: 1rem;
+}
+
+/* Mobile Categories */
+.mobileCategories {
+    display: none;
+}
+
+.mobileSeparator {
+    margin: 1rem 0;
+}
+
+/* Categories for Desktop */
+.categories{
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+}
+
+.categoryButton {
+    border-radius: 999px;
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+}
+
+/* Main content */
+.mainContent {
+    display: grid;
+    grid-template-columns: 1fr, 3fr;
+    gap: 2rem;
+}
+
+/* Sidebar */
+.sidebar {
+    display: none;
+}
+
+/* Product Grid */
+.productsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .mobileCategories {
+        display: block;
+    }
+
+    .mainContent {
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar {
+        display: block;
+        margin-bottom: 2rem;
+    }
+}

@@ -91,8 +91,10 @@ export default function SiteHeader() {
             <span className="sr-only">Search</span>
           </Button>
           <Button variant="ghost" size="icon">
-            <User className="h-5 w-5" />
-            <span className="sr-only">Account</span>
+            <link href="/auth/login">
+              <User className="h-5 w-5" />
+              <span className="sr-only">Account</span>
+            </link>
           </Button>
           <Button variant="ghost" size="icon">
             <ShoppingBag className="h-5 w-5" />

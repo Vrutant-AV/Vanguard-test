@@ -14,13 +14,6 @@ export default function Home() {
       {/* Hero Section */}
       <section className={styles.hero}>
         <div className={styles.heroBackground}>
-        {/*  <Image
-            src="https://images.pexels.com/photos/5384423/pexels-photo-5384423.jpeg"
-            alt="Vanguard Apparel hero"
-            fill
-            //priority
-            className={styles.heroImage}
-          />   */}
           <Image
             src="/logo-transparent.png"
             alt="Vanguard Apparel hero"
