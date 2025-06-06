@@ -87,8 +87,9 @@ export async function generateStaticParams() {
   }));
 }
 
-export default function ProductPage({ params }: { params: { id: string } }) {
-  const productData = products.find(product => product.id === params.id) || products[0];
+export default async function ProductPage({ params }: { params: { id: string } }) {
+  const awaitedParams = await params;
+  const productData = products.find(product => product.id === awaitedParams.id) || products[0];
 
   return (
     <main className={styles.main}>
@@ -132,35 +133,47 @@ export default function ProductPage({ params }: { params: { id: string } }) {
             <Separator className={styles.separator}/>
             
             {/* Color Selection */}
-            <div className={styles.colorSection}>
-              <div className={styles.colorHeader}>
-                <span className={styles.colorLabel}>Color</span>
-                <span className={styles.colorSelected}>Stone</span>
+            <div className="mb-6">
+              <div className="mb-2 flex items-center justify-between">
+                <span className="text-sm font-medium">Color</span>
+                <span className="text-sm text-muted-foreground">Stone</span>
               </div>
-              <div className={styles.colorOptions}>
+              <div className="flex gap-3">
                 {productData.colors.map((color) => (
                   <button
                     key={color}
-                    className={`${styles.colorButton} ${color === "Stone" ? styles.colorActive : ''}`}
+                    className={`relative h-8 w-8 rounded-full border ${
+                      color === "Stone" 
+                        ? "border-primary bg-stone-200" 
+                        : color === "Navy" 
+                          ? "border-border bg-navy-600" 
+                          : "border-border bg-black"
+                    }`}
                     aria-label={color}
                   >
-                    {color === "Stone" && <span className={styles.colorHighlight}/>}
+                    {color === "Stone" && (
+                      <span className="absolute -inset-1 rounded-full border border-primary" />
+                    )}
                   </button>
                 ))}
               </div>
             </div>
             
             {/* Size Selection */}
-            <div className={styles.sizeSection}>
-              <div className={styles.sizeHeader}>
-                <span className={styles.sizeLabel}>Size</span>
-                <button className={styles.sizeGuide}>Size Guide</button>
+            <div className="mb-6">
+              <div className="mb-2 flex items-center justify-between">
+                <span className="text-sm font-medium">Size</span>
+                <button className="text-sm text-primary">Size Guide</button>
               </div>
-              <div className={styles.sizeOptions}>
+              <div className="grid grid-cols-5 gap-2">
                 {productData.sizes.map((size) => (
                   <button
                     key={size}
-                    className={`${styles.sizeButton} ${size === "M" ? styles.sizeActive: ''}`}
+                    className={`flex h-10 items-center justify-center rounded-md border ${
+                      size === "M" 
+                        ? "border-primary bg-primary text-primary-foreground" 
+                        : "border-border bg-background hover:border-foreground"
+                    }`}
                   >
                     {size}
                   </button>
@@ -169,78 +182,78 @@ export default function ProductPage({ params }: { params: { id: string } }) {
             </div>
             
             {/* Quantity */}
-            <div className={styles.quantitySection}>
-              <span className={styles.quantityLabel}>Quantity</span>
-              <div className={styles.quantitySelector}>
-                <button className={styles.quantityButton}>
-                  <Minus className={styles.quantityIcon}/>
+            <div className="mb-6">
+              <span className="mb-2 block text-sm font-medium">Quantity</span>
+              <div className="flex h-10 w-32">
+                <button className="flex w-10 items-center justify-center rounded-l-md border border-r-0 border-border hover:bg-muted">
+                  <Minus className="h-4 w-4" />
                 </button>
-                <div className={styles.quantityInput}>
+                <div className="flex w-12 items-center justify-center border border-border">
                   1
                 </div>
-                <button className={styles.quantityButton}>
-                  <Plus className={styles.quantityIcon}/>
+                <button className="flex w-10 items-center justify-center rounded-r-md border border-l-0 border-border hover:bg-muted">
+                  <Plus className="h-4 w-4" />
                 </button>
               </div>
             </div>
             
             {/* Add to Cart */}
-            <div className={styles.cartSection}>
-              <Button size="lg" className={styles.addButton}>
-                <ShoppingBag className={styles.cartIcon}/>
+            <div className="mb-6 flex gap-2">
+              <Button size="lg" className="flex-1">
+                <ShoppingBag className="mr-2 h-4 w-4" />
                 Add to Cart
               </Button>
-              <Button size="lg" variant="outline" className={styles.wishlistButton}>
-                <Heart className={styles.wishlistIcon}/>
+              <Button size="lg" variant="outline" className="flex w-12 items-center justify-center">
+                <Heart className="h-4 w-4" />
                 <span className="sr-only">Add to Wishlist</span>
               </Button>
             </div>
             
             {/* Product Description */}
-            <p className={styles.description}>{productData.description}</p>
+            <p className="text-muted-foreground">{productData.description}</p>
             
-            <Separator className={styles.separator}/>
+            <Separator className="my-6" />
             
             {/* Product Information Tabs */}
-            <Tabs defaultValue="details" className={styles.tabs}>
-              <TabsList className={styles.tabsList}>
+            <Tabs defaultValue="details" className="mt-6">
+              <TabsList className="w-full border-b bg-transparent p-0">
                 <TabsTrigger
                   value="details"
-                  className={styles.tabTrigger}
+                  className="rounded-none border-b-2 border-transparent px-4 py-2 data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none"
                 >
                   Details
                 </TabsTrigger>
                 <TabsTrigger
                   value="shipping"
-                  className={styles.tabTrigger}
+                  className="rounded-none border-b-2 border-transparent px-4 py-2 data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none"
                 >
                   Shipping
                 </TabsTrigger>
                 <TabsTrigger
                   value="care"
-                  className={styles.tabTrigger}
+                  className="rounded-none border-b-2 border-transparent px-4 py-2 data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none"
                 >
                   Care
                 </TabsTrigger>
               </TabsList>
-              <TabsContent value="details" className={styles.tabsContent}>
-                <ul className={styles.detailsList}>
+              <TabsContent value="details" className="pt-4">
+                <ul className="space-y-1 text-sm">
                   {productData.details.map((detail, index) => (
-                    <li key={index} className={styles.detailItem}>
-                      <span className={styles.detailBullet}>•</span>
+                    <li key={index} className="flex items-start">
+                      <span className="mr-2">•</span>
                       {detail}
                     </li>
                   ))}
                 </ul>
               </TabsContent>
-              <TabsContent value="shipping" className={styles.tabsContent}>
-                <p className={styles.shippingInfo}>
+              <TabsContent value="shipping" className="pt-4">
+                <p className="text-sm text-muted-foreground">
                   Free standard shipping on all orders over $100. Delivery usually takes 3-5 business days.
                   Express shipping available at checkout. International shipping available to select countries.
                 </p>
               </TabsContent>
-              <TabsContent value="care" className={styles.tabsContent}>
-                <p className={styles.careInfo}>
+              <TabsContent value="care" className="pt-4">
+                <p className="text-sm text-muted-foreground">
                   Machine wash cold with similar colors. Tumble dry low. Do not bleach.
                   Cool iron if necessary. Do not dry clean.
                 </p>
@@ -250,14 +263,14 @@ export default function ProductPage({ params }: { params: { id: string } }) {
         </div>
         
         {/* Reviews Section */}
-        <div className={styles.reviewsSection}>
-          <h2 className={styles.reviewsTitle}>Customer Reviews</h2>
+        <div className="mt-16">
+          <h2 className="mb-8 font-serif text-2xl font-light md:text-3xl">Customer Reviews</h2>
           <ProductReviews />
         </div>
         
         {/* Related Products */}
-        <div className={styles.relatedSection}>
-          <h2 className={styles.relatedTitle}>You May Also Like</h2>
+        <div className="mt-16">
+          <h2 className="mb-8 font-serif text-2xl font-light md:text-3xl">You May Also Like</h2>
           <RelatedProducts />
         </div>
       </div>

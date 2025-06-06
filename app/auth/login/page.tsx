@@ -11,7 +11,7 @@ import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 
 export default function LoginPage() {
-  const [isLoading, setIsLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [formData, setFormData] = useState({ email: '', password: '' });
   const router = useRouter();
@@ -23,7 +23,7 @@ export default function LoginPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsLoading(true);
+    setLoading(true);
     setError('');
 
     try {
@@ -41,7 +41,7 @@ export default function LoginPage() {
     } catch (err: any) {
       setError(err.message);
     } finally {
-      setIsLoading(false);
+      setLoading(false);
     }
   };
 
@@ -65,6 +65,7 @@ export default function LoginPage() {
                   <Input
                     id="email"
                     name="email"
+                    type="email"
                     placeholder="Enter your email"
                     value={formData.email}
                     onChange={handleChange}
@@ -89,6 +90,7 @@ export default function LoginPage() {
                   <Input
                     id="password"
                     name="password"
+                    type="password"
                     placeholder="Enter your password"
                     value={formData.password}
                     onChange={handleChange}
@@ -99,8 +101,8 @@ export default function LoginPage() {
               </div>
             </div>
 
-            <Button type="submit" className="w-full" disabled={isLoading}>
-              {isLoading ? "Signing in..." : "Sign In"}
+            <Button type="submit" className="w-full" disabled={loading}>
+              {loading ? "Signing in..." : "Sign In"}
             </Button>
             {error && (
               <div className="text-red-500 text-sm text-center">{error}</div>
