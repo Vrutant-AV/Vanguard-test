@@ -319,7 +319,7 @@ function ShopCategories() {
   );
 }
 */
-
+/*
 import Image from "next/image";
 import { ChevronRight, Minus, Plus, ShoppingBag, Heart } from "lucide-react";
 
@@ -416,7 +416,7 @@ export default function ProductPage({ params }: { params: { id: string } }) {
     <main className={styles.main}>
       <div className={styles.container}>
         
-        {/* Breadcrumbs */}
+        {/* Breadcrumbs *//*}
         <div className={styles.breadcrumbs}>
           <a href="/shop" className={styles.breadcrumbLink}>Shop</a>
           <ChevronRight className={styles.breadcrumbIcon} />
@@ -425,9 +425,9 @@ export default function ProductPage({ params }: { params: { id: string } }) {
           <span className={styles.breadcrumbCurrent}>{productData.name}</span>
         </div>
         
-        {/* Product Section */}
+        {/* Product Section *//*}
         <div className={styles.productSection}>
-          {/* Product Images */}
+          {/* Product Images *//*}
           <div className={styles.productImages}>
             <div className={styles.imageGrid}>
               {productData.images.slice(0, 4).map((image, index) => (
@@ -446,14 +446,14 @@ export default function ProductPage({ params }: { params: { id: string } }) {
             </div>
           </div>
           
-          {/* Product Details */}
+          {/* Product Details *//*}
           <div className={styles.productDetails}>
             <h1 className={styles.productTitle}>{productData.name}</h1>
             <p className={styles.productPrice}>${productData.price.toFixed(2)}</p>
             
             <Separator className={styles.separator} />
             
-            {/* Color Selection */}
+            {/* Color Selection *//*}
             <div className={styles.colorSection}>
               <div className={styles.colorHeader}>
                 <span className={styles.colorLabel}>Color</span>
@@ -472,7 +472,7 @@ export default function ProductPage({ params }: { params: { id: string } }) {
               </div>
             </div>
             
-            {/* Size Selection */}
+            {/* Size Selection *//*}
             <div className={styles.sizeSection}>
               <div className={styles.sizeHeader}>
                 <span className={styles.sizeLabel}>Size</span>
@@ -490,7 +490,7 @@ export default function ProductPage({ params }: { params: { id: string } }) {
               </div>
             </div>
             
-            {/* Quantity */}
+            {/* Quantity *//*}
             <div className={styles.quantitySection}>
               <span className={styles.quantityLabel}>Quantity</span>
               <div className={styles.quantitySelector}>
@@ -504,7 +504,7 @@ export default function ProductPage({ params }: { params: { id: string } }) {
               </div>
             </div>
             
-            {/* Add to Cart */}
+            {/* Add to Cart *//*}
             <div className={styles.cartSection}>
               <Button size="lg" className={styles.addButton}>
                 <ShoppingBag className={styles.cartIcon} />
@@ -516,12 +516,12 @@ export default function ProductPage({ params }: { params: { id: string } }) {
               </Button>
             </div>
             
-            {/* Product Description */}
+            {/* Product Description *//*}
             <p className={styles.description}>{productData.description}</p>
             
             <Separator className={styles.separator} />
             
-            {/* Product Information Tabs */}
+            {/* Product Information Tabs *//*}
             <Tabs defaultValue="details" className={styles.tabs}>
               <TabsList className={styles.tabsList}>
                 <TabsTrigger
@@ -569,13 +569,13 @@ export default function ProductPage({ params }: { params: { id: string } }) {
           </div>
         </div>
         
-        {/* Reviews Section */}
+        {/* Reviews Section *//*}
         <div className={styles.reviewsSection}>
           <h2 className={styles.reviewsTitle}>Customer Reviews</h2>
           <ProductReviews />
         </div>
         
-        {/* Related Products */}
+        {/* Related Products *//*}
         <div className={styles.relatedSection}>
           <h2 className={styles.relatedTitle}>You May Also Like</h2>
           <RelatedProducts />
@@ -584,8 +584,383 @@ export default function ProductPage({ params }: { params: { id: string } }) {
     </main>
   );
 }
+*/
+/*
+"use client";
 
+import { useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { Package, Heart, Settings, LogOut } from "lucide-react";
 
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Separator } from "@/components/ui/separator";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import styles from "./page.module.css";
 
+export default function ProfilePage() {
+  const [isEditing, setIsEditing] = useState(false);
+
+  return (
+    <main className="min-h-screen bg-background pt-24">
+      <div className="container py-8 md:py-12">
+        <div className="grid gap-8 md:grid-cols-4 lg:gap-12">
+          {/* Sidebar *//*}
+          <div className="md:col-span-1">
+            <div className="space-y-4">
+              <div className="flex items-center gap-4">
+                <div className="relative h-16 w-16 overflow-hidden rounded-full">
+                  <Image
+                    src="https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg"
+                    alt="Profile picture"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <div>
+                  <h2 className={styles.profileName}>Sarah Johnson</h2>
+                  <p className={styles.profileEmail}>sarah@example.com</p>
+                </div>
+              </div>
+              
+              <Separator className={styles.navDivider} />
+              
+              <nav className={styles.nav}>
+                <Button
+                  variant="ghost"
+                  className={styles.navButton}
+                  asChild
+                >
+                  <Link href="/profile/orders">
+                    <Package className={styles.navIcon} />
+                    Orders
+                  </Link>
+                </Button>
+                <Button
+                  variant="ghost"
+                  className={styles.navButton}
+                  asChild
+                >
+                  <Link href="/profile/wishlist">
+                    <Heart className={styles.navIcon} />
+                    Wishlist
+                  </Link>
+                </Button>
+                <Button
+                  variant="ghost"
+                  className={styles.navButton}
+                  asChild
+                >
+                  <Link href="/profile/settings">
+                    <Settings className={styles.navIcon} />
+                    Settings
+                  </Link>
+                </Button>
+                <Button
+                  variant="ghost"
+                  className={`${styles.navButton} ${styles.navButtonRed}`}
+                >
+                  <LogOut className={styles.navIcon} />
+                  Sign Out
+                </Button>
+              </nav>
+            </div>
+          </div>
+
+          {/* Main Content *//*}
+          <div className="md:col-span-3">
+            <Tabs defaultValue="profile" className={styles.tabs}>
+              <TabsList className={styles.tabsList}>
+                <TabsTrigger value="profile" className={styles.tabTrigger}>
+                  Profile
+                </TabsTrigger>
+                <TabsTrigger value="addresses" className={styles.tabTrigger}>
+                  Addresses
+                </TabsTrigger>
+                <TabsTrigger value="payment" className={styles.tabTrigger}>
+                  Payment Methods
+                </TabsTrigger>
+              </TabsList>
+
+              <TabsContent value="profile" className={styles.tabsContent}>
+                <div className={styles.card}>
+                  <div className={styles.formHeader}>
+                    <h3 className={styles.formTitle}>Personal Information</h3>
+                    <Button
+                      variant="outline"
+                      onClick={() => setIsEditing(!isEditing)}
+                      className={styles.editButton}
+                    >
+                      {isEditing ? "Cancel" : "Edit"}
+                    </Button>
+                  </div>
+
+                  <form className={styles.form}>
+                    <div className={styles.formGrid}>
+                      <div className={styles.formGroup}>
+                        <Label htmlFor="firstName" className={styles.formLabel}>
+                          First Name
+                        </Label>
+                        <Input
+                          id="firstName"
+                          defaultValue="Sarah"
+                          disabled={!isEditing}
+                          className={styles.input}
+                        />
+                      </div>
+                      <div className={styles.formGroup}>
+                        <Label htmlFor="lastName" className={styles.formLabel}>
+                          Last Name
+                        </Label>
+                        <Input
+                          id="lastName"
+                          defaultValue="Johnson"
+                          disabled={!isEditing}
+                          className={styles.input}
+                        />
+                      </div>
+                    </div>
+
+                    <div className={styles.formGroup}>
+                      <Label htmlFor="email" className={styles.formLabel}>
+                        Email
+                      </Label>
+                      <Input
+                        id="email"
+                        type="email"
+                        defaultValue="sarah@example.com"
+                        disabled={!isEditing}
+                        className={styles.input}
+                      />
+                    </div>
+
+                    <div className={styles.formGroup}>
+                      <Label htmlFor="phone" className={styles.formLabel}>
+                        Phone
+                      </Label>
+                      <Input
+                        id="phone"
+                        type="tel"
+                        defaultValue="+1 (555) 123-4567"
+                        disabled={!isEditing}
+                        className={styles.input}
+                      />
+                    </div>
+
+                    {isEditing && (
+                      <div className={styles.formActions}>
+                        <Button className={styles.saveButton}>Save Changes</Button>
+                      </div>
+                    )}
+                  </form>
+                </div>
+              </TabsContent>
+
+              <TabsContent value="addresses" className={styles.tabsContent}>
+                <div className={styles.card}>
+                  <div className={styles.formHeader}>
+                    <h3 className={styles.formTitle}>Saved Addresses</h3>
+                    <Button className={styles.addButton}>Add New Address</Button>
+                  </div>
+
+                  <div className={styles.addresses}>
+                    <div className={styles.addressCard}>
+                      <div className={styles.addressHeader}>
+                        <div>
+                          <p className={styles.addressTitle}>Home</p>
+                          <p className={styles.addressDetails}>
+                            123 Main Street, Apt 4B<br />
+                            New York, NY 10001<br />
+                            United States
+                          </p>
+                        </div>
+                        <div className={styles.addressActions}>
+                          <Button variant="outline" size="sm" className={styles.addressButton}>
+                            Edit
+                          </Button>
+                          <Button variant="outline" size="sm" className={styles.addressButton}>
+                            Delete
+                          </Button>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className={styles.addressCard}>
+                      <div className={styles.addressHeader}>
+                        <div>
+                          <p className={styles.addressTitle}>Office</p>
+                          <p className={styles.addressDetails}>
+                            456 Business Ave, Suite 200<br />
+                            New York, NY 10002<br />
+                            United States
+                          </p>
+                        </div>
+                        <div className={styles.addressActions}>
+                          <Button variant="outline" size="sm" className={styles.addressButton}>
+                            Edit
+                          </Button>
+                          <Button variant="outline" size="sm" className={styles.addressButton}>
+                            Delete
+                          </Button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </TabsContent>
+
+              <TabsContent value="payment" className={styles.tabsContent}>
+                <div className={styles.card}>
+                  <div className={styles.formHeader}>
+                    <h3 className={styles.formTitle}>Payment Methods</h3>
+                    <Button className={styles.addButton}>Add New Card</Button>
+                  </div>
+
+                  <div className={styles.paymentMethods}>
+                    <div className={styles.paymentCard}>
+                      <div className={styles.paymentHeader}>
+                        <div className={styles.paymentInfo}>
+                          <div className={styles.paymentMethod} />
+                          <div>
+                            <p className={styles.cardNumber}>•••• •••• •••• 4242</p>
+                            <p className={styles.expiryDate}>Expires 12/25</p>
+                          </div>
+                        </div>
+                        <Button variant="outline" size="sm" className={styles.removeButton}>
+                          Remove
+                        </Button>
+                      </div>
+                    </div>
+
+                    <div className={styles.paymentCard}>
+                      <div className={styles.paymentHeader}>
+                        <div className={styles.paymentInfo}>
+                          <div className={styles.paymentMethod} />
+                          <div>
+                            <p className={styles.cardNumber}>•••• •••• •••• 8888</p>
+                            <p className={styles.expiryDate}>Expires 08/24</p>
+                          </div>
+                        </div>
+                        <Button variant="outline" size="sm" className={styles.removeButton}>
+                          Remove
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </TabsContent>
+            </Tabs>
+          </div>
+        </div>
+      </div>
+    </main>
+  );
+}
+*/
+/*
+"use client";
+
+import Link from "next/link";
+import { useState } from "react";
+import { Mail, Lock } from "lucide-react";
+
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Separator } from "@/components/ui/separator";
+import styles from "./page.module.css";
+
+export default function LoginPage() {
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsLoading(true);
+    
+    // Simulate login
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1500);
+  };
+
+  return (
+    <main className={styles.main}>
+      <div className={styles.container}>
+        <div className={styles.formContainer}>
+          <div className={styles.header}>
+            <h1 className={styles.title}>Welcome Back</h1>
+            <p className={styles.subtitle}>Sign in to your Vanguard account</p>
+          </div>
+
+          <form onSubmit={handleSubmit} className={styles.form}>
+            <div className={styles.formGroup}>
+              <Label htmlFor="email" className={styles.label}>Email</Label>
+              <div className={styles.inputContainer}>
+                <Mail className={styles.icon} />
+                <Input
+                  id="email"
+                  type="email"
+                  placeholder="Enter your email"
+                  className={styles.input}
+                  required
+                />
+              </div>
+            </div>
+            
+            <div className={styles.formGroup}>
+              <div className={styles.passwordHeader}>
+                <Label htmlFor="password" className={styles.label}>Password</Label>
+                <Link
+                  href="/auth/forgot-password"
+                  className={styles.forgotPassword}
+                >
+                  Forgot password?
+                </Link>
+              </div>
+              <div className={styles.inputContainer}>
+                <Lock className={styles.icon} />
+                <Input
+                  id="password"
+                  type="password"
+                  placeholder="Enter your password"
+                  className={styles.input}
+                  required
+                />
+              </div>
+            </div>
+
+            <Button
+              type="submit"
+              className={styles.submitButton}
+              disabled={isLoading}
+            >
+              {isLoading ? "Signing in..." : "Sign In"}
+            </Button>
+          </form>
+
+          <div className={styles.separatorContainer}>
+            <Separator className={styles.separator} />
+            <span className={styles.separatorText}>Or continue with</span>
+          </div>
+
+          <div className={styles.socialButtons}>
+            <Button variant="outline" className={styles.socialButton}>Google</Button>
+            <Button variant="outline" className={styles.socialButton}>Apple</Button>
+          </div>
+
+          <p className={styles.registerLink}>
+            Don`t have an account?{" "}
+            <Link href="/auth/register" className={styles.registerLinkText}>
+              Sign up
+            </Link>
+          </p>
+        </div>
+      </div>
+    </main>
+  );
+} 
+*/
 
 
