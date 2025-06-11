@@ -1548,3 +1548,538 @@
 /*     padding: 1.5rem;
 /*   }
 /* } */
+
+/*.hero {
+/*  position: relative;
+/*  aspect-ratio: 21/9;
+/*  max-height: 600px;
+/*  width: 100%;
+/*  overflow: hidden;
+/*}
+/*
+/*.heroOverlay {
+/*  position: absolute;
+/*  inset: 0;
+/*  background: rgba(0, 0, 0, 0.4);
+/*}
+/*
+/*.heroContent {
+/*  position: absolute;
+/*  inset: 0;
+/*  display: flex;
+/*  align-items: center;
+/*  justify-content: center;
+/*}
+/*
+/*.heroTitle {
+/*  font-family: var(--font-serif);
+/*  font-size: 2.25rem;
+/*  font-weight: 300;
+/*  letter-spacing: -0.025em;
+/*  color: white;
+/*}
+/*
+/*.section {
+/*  padding: 4rem 0;
+/*}
+/*
+/*.sectionMuted {
+/*  background-color: hsl(var(--muted));
+/*  padding: 4rem 0;
+/*}
+/*
+/*.storyHeader {
+/*  margin: 0 auto 2.5rem;
+/*  max-width: 48rem;
+/*  text-align: center;
+/*}
+/*
+/*.storyTitle {
+/*  margin-bottom: 1.5rem;
+/*  font-family: var(--font-serif);
+/*  font-size: 1.875rem;
+/*  font-weight: 300;
+/*}
+/*
+/*.storySubtitle {
+/*  margin-bottom: 2.5rem;
+/*  font-size: 1.125rem;
+/*  color: hsl(var(--muted-foreground));
+/*}
+/*
+/*.contentGrid {
+/*  margin-top: 4rem;
+/*  display: grid;
+/*  gap: 3rem;
+/*  grid-template-columns: 1fr;
+/*}
+/*
+/*.contentImage {
+/*  position: relative;
+/*  aspect-ratio: 1;
+/*  width: 100%;
+/*  overflow: hidden;
+/*  border-radius: 0.375rem;
+/*}
+/*
+/*.contentText {
+/*  display: flex;
+/*  flex-direction: column;
+/*  justify-content: center;
+/*}
+/*
+/*.contentTitle {
+/*  margin-bottom: 1rem;
+/*  font-family: var(--font-serif);
+/*  font-size: 1.5rem;
+/*  font-weight: 300;
+/*}
+/*
+/*.contentParagraph {
+/*  margin-bottom: 1rem;
+/*  color: hsl(var(--muted-foreground));
+/*}
+/*
+/*.teamSection {
+/*  text-align: center;
+/*}
+/*
+/*.teamTitle {
+/*  margin-bottom: 3rem;
+/*  font-family: var(--font-serif);
+/*  font-size: 1.875rem;
+/*  font-weight: 300;
+/*}
+/*
+/*.teamGrid {
+/*  display: grid;
+/*  gap: 2rem;
+/*  grid-template-columns: 1fr;
+/*}
+/*
+/*.teamMember {
+/*  text-align: center;
+/*}
+/*
+/*.memberImage {
+/*  position: relative;
+/*  margin: 0 auto 1rem;
+/*  aspect-ratio: 1;
+/*  width: 10rem;
+/*  overflow: hidden;
+/*  border-radius: 50%;
+/*}
+/*
+/*.memberName {
+/*  margin-bottom: 0.25rem;
+/*  font-size: 1.125rem;
+/*  font-weight: 500;
+/*}
+/*
+/*.memberRole {
+/*  color: hsl(var(--muted-foreground));
+/*}
+/*
+/*@media (min-width: 768px) {
+/*  .heroTitle {
+/*    font-size: 3.75rem;
+/*  }
+/*
+/*  .section {
+/*    padding: 6rem 0;
+/*  }
+/*
+/*  .sectionMuted {
+/*    padding: 6rem 0;
+/*  }
+/*
+/*  .storyTitle {
+/*    font-size: 2.25rem;
+/*  }
+/*
+/*  .contentGrid {
+/*    grid-template-columns: repeat(2, 1fr);
+/*    gap: 4rem;
+/*  }
+/*
+/*  .teamTitle {
+/*    font-size: 2.25rem;
+/*  }
+/*
+/*  .teamGrid {
+/*    grid-template-columns: repeat(2, 1fr);
+/*  }
+/*
+/*  .memberImage {
+/*    width: 12rem;
+/*  }
+/*}
+/*
+/*@media (min-width: 1024px) {
+/*  .contentGrid {
+/*    gap: 6rem;
+/*  }
+/*
+/*  .teamGrid {
+/*    grid-template-columns: repeat(3, 1fr);
+/*  }
+/*} */
+
+/*.hero {
+  position: relative;
+/*  height: 100vh;
+/*  width: 100%;
+/*}
+/*
+/*.heroBackground {
+/*  position: absolute;
+/*  inset: 0;
+/*  z-index: 0;
+/*}
+/*
+/*.heroOverlay {
+/*  position: absolute;
+/*  inset: 0;
+/*  background: rgba(0, 0, 0, 0.3);
+/*}
+/*
+/*.heroContent {
+/*  position: relative;
+/*  z-index: 10;
+/*  display: flex;
+/*  height: 100%;
+/*  flex-direction: column;
+/*  align-items: center;
+/*  justify-content: center;
+/*  text-align: center;
+/*  color: white;
+/*}
+/*
+/*.heroTitle {
+/*  margin-bottom: 1rem;
+/*  font-family: var(--font-serif);
+/*  font-size: 3rem;
+/*  font-weight: 300;
+/*  letter-spacing: -0.025em;
+/*}
+/*
+/*.heroSubtitle {
+/*  margin-bottom: 2rem;
+/*  max-width: 28rem;
+/*  font-size: 1.125rem;
+/*  font-weight: 300;
+/*}
+/*
+/*.heroActions {
+/*  display: flex;
+/*  gap: 1rem;
+/*}
+/*
+/*.section {
+/*  padding: 5rem 0;
+/*}
+/*
+/*.sectionMuted {
+/*  background-color: hsl(var(--muted));
+/*  padding: 5rem 0;
+/*}
+/*
+/*.sectionHeader {
+/*  display: flex;
+/*  align-items: center;
+/*  justify-content: space-between;
+/*  margin-bottom: 3rem;
+/*}
+/*
+/*.sectionTitle {
+/*  font-family: var(--font-serif);
+/*  font-size: 1.875rem;
+/*  font-weight: 300;
+/*}
+/*
+/*.brandStoryGrid {
+/*  display: grid;
+/*  gap: 2rem;
+/*  grid-template-columns: 1fr;
+/*}
+/*
+/*.brandStoryImage {
+/*  position: relative;
+/*  aspect-ratio: 4/5;
+/*  width: 100%;
+/*  overflow: hidden;
+/*}
+/*
+/*.brandStoryContent {
+/*  display: flex;
+/*  flex-direction: column;
+/*  justify-content: center;
+/*}
+/*
+/*.brandStoryTitle {
+/*  margin-bottom: 1.5rem;
+/*  font-family: var(--font-serif);
+/*  font-size: 1.875rem;
+/*  font-weight: 300;
+/*}
+/*
+/*.brandStoryText {
+/*  margin-bottom: 1.5rem;
+/*  color: hsl(var(--muted-foreground));
+/*}
+/*
+/*.journalGrid {
+/*  display: grid;
+/*  gap: 2rem;
+/*  grid-template-columns: 1fr;
+/*}
+/*
+/*.journalCard {
+/*  display: block;
+/*}
+/*
+/*.journalCardImage {
+/*  position: relative;
+/*  margin-bottom: 1rem;
+/*  aspect-ratio: 3/2;
+/*  width: 100%;
+/*  overflow: hidden;
+/*}
+/*
+/*.journalCardTitle {
+/*  margin-bottom: 0.5rem;
+/*  font-family: var(--font-serif);
+/*  font-size: 1.25rem;
+/*  font-weight: 500;
+/*  transition: color 0.2s;
+/*}
+/*
+/*.journalCardTitle:hover {
+/*  color: hsl(var(--primary));
+/*}
+/*
+/*.journalCardDate {
+/*  color: hsl(var(--muted-foreground));
+/*}
+/*
+/*@media (min-width: 768px) {
+/*  .heroTitle {
+/*    font-size: 4.5rem;
+/*  }
+/*
+/*  .heroSubtitle {
+/*    max-width: 36rem;
+/*  }
+/*
+/*  .sectionTitle {
+/*    font-size: 2.25rem;
+/*  }
+/*
+/*  .brandStoryGrid {
+/*    grid-template-columns: repeat(2, 1fr);
+/*    gap: 3rem;
+/*  }
+/*
+/*  .brandStoryTitle {
+/*    font-size: 2.25rem;
+/*  }
+/*
+/*  .journalGrid {
+/*    grid-template-columns: repeat(2, 1fr);
+/*  }
+/*}
+/*
+/*@media (min-width: 1024px) {
+/*  .brandStoryGrid {
+/*    gap: 4rem;
+/*  }
+/*
+/*  .journalGrid {
+/*    grid-template-columns: repeat(3, 1fr);
+/*  }
+/* }
+*/
+
+.container {
+  padding: 2rem 0 3rem;
+}
+
+.mainGrid {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: 1fr;
+}
+
+.sidebar {
+  margin-bottom: 2rem;
+}
+
+.profileHeader {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.profileImage {
+  position: relative;
+  height: 4rem;
+  width: 4rem;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+.profileName {
+  font-weight: 500;
+}
+
+.profileEmail {
+  font-size: 0.875rem;
+  color: hsl(var(--muted-foreground));
+}
+
+.navigation {
+  margin-top: 1rem;
+}
+
+.navList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.content {
+  grid-column: span 1;
+}
+
+.card {
+  border-radius: 0.5rem;
+  border: 1px solid hsl(var(--border));
+  background-color: hsl(var(--card));
+  padding: 1.5rem;
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.cardTitle {
+  font-size: 1.125rem;
+  font-weight: 500;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.formRow {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr;
+}
+
+.fieldGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.submitSection {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.addressCard {
+  border-radius: 0.5rem;
+  border: 1px solid hsl(var(--border));
+  padding: 1rem;
+}
+
+.addressHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.addressName {
+  font-weight: 500;
+}
+
+.addressDetails {
+  font-size: 0.875rem;
+  color: hsl(var(--muted-foreground));
+}
+
+.addressActions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.paymentCard {
+  border-radius: 0.5rem;
+  border: 1px solid hsl(var(--border));
+  padding: 1rem;
+}
+
+.paymentHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.paymentInfo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.cardIcon {
+  height: 2rem;
+  width: 3rem;
+  border-radius: 0.25rem;
+  background-color: hsl(var(--primary));
+}
+
+.cardNumber {
+  font-weight: 500;
+}
+
+.cardExpiry {
+  font-size: 0.875rem;
+  color: hsl(var(--muted-foreground));
+}
+
+@media (min-width: 640px) {
+  .formRow {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 768px) {
+  .mainGrid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 3rem;
+  }
+
+  .sidebar {
+    grid-column: span 1;
+    margin-bottom: 0;
+  }
+
+  .content {
+    grid-column: span 3;
+  }
+}
+
+@media (min-width: 1024px) {
+  .mainGrid {
+    gap: 3rem;
+  }
+}
