@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 {/* Journal Highlights */}
 /*<section className={styles.journal}>
   <div className={styles.container}>
@@ -962,5 +963,526 @@ export default function LoginPage() {
   );
 } 
 */
+/*
+import Image from "next/image";
+import styles from "./page.module.css";
+
+export default function AboutPage() {
+  return (
+    <main className="min-h-screen bg-background pt-24">
+      {/* Hero Section *//*}
+      <section className={styles.hero}>
+        <Image
+          src="https://images.pexels.com/photos/1036856/pexels-photo-1036856.jpeg"
+          alt="Vanguard Apparel team"
+          fill
+          className="object-cover object-center"
+          priority
+        />
+        <div className={styles.heroOverlay} />
+        <div className={styles.heroContent}>
+          <h1 className={styles.heroTitle}>
+            Our Story
+          </h1>
+        </div>
+      </section>
+
+      {/* Brand Story *//*}
+      <section className={`container ${styles.section}`}>
+        <div className={styles.storyHeader}>
+          <h2 className={styles.storyTitle}>
+            Redefining Contemporary Fashion
+          </h2>
+          <p className={styles.storySubtitle}>
+            Founded in 2022, Vanguard Apparel emerged from a shared vision to create clothing that balances timeless elegance with contemporary edge.
+          </p>
+        </div>
+
+        <div className={styles.contentGrid}>
+          <div className={styles.contentImage}>
+            <Image
+              src="https://images.pexels.com/photos/5384430/pexels-photo-5384430.jpeg"
+              alt="Vanguard founders"
+              fill
+              className="object-cover object-center"
+            />
+          </div>
+          <div className={styles.contentText}>
+            <h3 className={styles.contentTitle}>Our Beginning</h3>
+            <p className={styles.contentParagraph}>
+              Vanguard was born from the creative partnership of designers Alex Chen and Maya Rodriguez, who met while studying at Central Saint Martins in London. Their complementary aesthetics—Alex's architectural precision and Maya's fluid draping—created a unique design language that quickly gained attention.
+            </p>
+            <p className={styles.contentParagraph}>
+              The duo launched their first collection in spring 2022, featuring just twelve meticulously crafted pieces. The collection sold out within weeks, establishing Vanguard's reputation for refined minimalism with unexpected details.
+            </p>
+          </div>
+
+          <div className={`${styles.contentText} md:order-3`}>
+            <h3 className={styles.contentTitle}>Our Philosophy</h3>
+            <p className={styles.contentParagraph}>
+              At Vanguard, we believe clothing should empower its wearer through a perfect balance of comfort and confidence. Each garment is designed to be a foundation piece with distinctive character—versatile enough for everyday wear yet unique enough to stand out.
+            </p>
+            <p className={styles.contentParagraph}>
+              We embrace slow fashion principles, creating pieces meant to transcend seasons and trends. Our collections build upon one another rather than replacing what came before, encouraging a more thoughtful approach to personal style.
+            </p>
+          </div>
+          <div className={`${styles.contentImage} md:order-4`}>
+            <Image
+              src="https://images.pexels.com/photos/5384420/pexels-photo-5384420.jpeg"
+              alt="Vanguard workshop"
+              fill
+              className="object-cover object-center"
+            />
+          </div>
+
+          <div className={styles.contentImage}>
+            <Image
+              src="https://images.pexels.com/photos/5704720/pexels-photo-5704720.jpeg"
+              alt="Vanguard materials"
+              fill
+              className="object-cover object-center"
+            />
+          </div>
+          <div className={styles.contentText}>
+            <h3 className={styles.contentTitle}>Our Commitment</h3>
+            <p className={styles.contentParagraph}>
+              Sustainability is fundamental to our ethos. We work with mills and factories that prioritize environmental responsibility, using organic and recycled materials whenever possible. Each supplier is carefully selected based on their ethical practices and quality standards.
+            </p>
+            <p className={styles.contentParagraph}>
+              We're committed to transparency throughout our production process, continuously improving our methods to reduce our environmental impact while creating clothing that's made to last.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Team Section *//*}
+      <section className={styles.sectionMuted}>
+        <div className={`container ${styles.teamSection}`}>
+          <h2 className={styles.teamTitle}>
+            Our Team
+          </h2>
+          <div className={styles.teamGrid}>
+            {[
+              {
+                name: "Alex Chen",
+                role: "Co-Founder & Creative Director",
+                image: "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg",
+              },
+              {
+                name: "Maya Rodriguez",
+                role: "Co-Founder & Design Director",
+                image: "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg",
+              },
+              {
+                name: "David Kim",
+                role: "Head of Production",
+                image: "https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg",
+              },
+            ].map((person) => (
+              <div key={person.name} className={styles.teamMember}>
+                <div className={styles.memberImage}>
+                  <Image
+                    src={person.image}
+                    alt={person.name}
+                    fill
+                    className="object-cover object-center"
+                  />
+                </div>
+                <h3 className={styles.memberName}>{person.name}</h3>
+                <p className={styles.memberRole}>{person.role}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    </main>
+  );
+} */
+/*
+import Link from "next/link";
+import Image from "next/image";
+import { ArrowRight } from "lucide-react";
+
+import { Button } from "@/components/ui/button";
+import FeaturedProducts from "@/components/featured-products";
+import CategoryShowcase from "@/components/category-showcase";
+import NewsletterSignup from "@/components/newsletter-signup";
+import { posts } from "@/lib/posts";
+import styles from "./page.module.css";
+
+export default function Home() {
+  return (
+    <main className="flex min-h-screen flex-col">
+      {/* Hero Section *//*}
+      <section className={styles.hero}>
+        <div className={styles.heroBackground}>
+          <Image
+            src="https://images.pexels.com/photos/5384423/pexels-photo-5384423.jpeg"
+            alt="Vanguard Apparel hero"
+            fill
+            priority
+            className="object-cover object-center"
+          />
+          <div className={styles.heroOverlay} />
+        </div>
+        
+        <div className={styles.heroContent}>
+          <h1 className={styles.heroTitle}>
+            VANGUARD APPAREL
+          </h1>
+          <p className={styles.heroSubtitle}>
+            Redefining contemporary fashion with timeless elegance and bold innovation.
+          </p>
+          <div className={styles.heroActions}>
+            <Button asChild size="lg" className="bg-white text-black hover:bg-white/90">
+              <Link href="/shop">
+                Shop Collection
+              </Link>
+            </Button>
+            <Button asChild variant="outline" size="lg" className="border-white text-white hover:bg-white/10">
+              <Link href="/lookbook">
+                View Lookbook
+              </Link>
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* New Arrivals *//*}
+      <section className={styles.section}>
+        <div className="container">
+          <div className={styles.sectionHeader}>
+            <h2 className={styles.sectionTitle}>New Arrivals</h2>
+            <Button variant="link" asChild>
+              <Link href="/shop" className="flex items-center gap-2">
+                View All <ArrowRight className="h-4 w-4" />
+              </Link>
+            </Button>
+          </div>
+          <FeaturedProducts />
+        </div>
+      </section>
+
+      {/* Categories Showcase *//*}
+      <section className={styles.sectionMuted}>
+        <div className="container">
+          <h2 className="mb-12 text-center font-serif text-3xl font-light md:text-4xl">Shop Categories</h2>
+          <CategoryShowcase />
+        </div>
+      </section>
+
+      {/* Brand Story *//*}
+      <section className={styles.section}>
+        <div className="container">
+          <div className={styles.brandStoryGrid}>
+            <div className={styles.brandStoryImage}>
+              <Image
+                src="https://images.pexels.com/photos/6567737/pexels-photo-6567737.jpeg"
+                alt="Vanguard brand story"
+                fill
+                className="object-cover object-center"
+              />
+            </div>
+            <div className={styles.brandStoryContent}>
+              <h2 className={styles.brandStoryTitle}>Our Story</h2>
+              <p className={styles.brandStoryText}>
+                Founded in 2022, Vanguard Apparel emerged from a desire to create clothing that balances timeless elegance with contemporary edge. Our designs blend high-quality craftsmanship with innovative silhouettes, resulting in pieces that transcend seasons and trends.
+              </p>
+              <p className={styles.brandStoryText}>
+                We believe in sustainable fashion that makes a statement, using responsibly sourced materials and ethical manufacturing processes. Every Vanguard piece tells a story of conscious luxury.
+              </p>
+              <Button asChild variant="outline">
+                <Link href="/about">Learn More About Us</Link>
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Journal Highlights *//*}
+      <section className={styles.sectionMuted}>
+        <div className="container">
+          <div className={styles.sectionHeader}>
+            <h2 className={styles.sectionTitle}>Journal</h2>
+            <Button variant="link" asChild>
+              <Link href="/journal" className="flex items-center gap-2">
+                View All <ArrowRight className="h-4 w-4" />
+              </Link>
+            </Button>
+          </div>
+          <div className={styles.journalGrid}>
+            {posts.slice(0, 3).map((post) => (
+              <Link href={`/journal/${post.slug}`} key={post.id} className={`${styles.journalCard} group`}>
+                <div className={styles.journalCardImage}>
+                  <Image
+                    src={post.image}
+                    alt={post.title}
+                    fill
+                    className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                  />
+                </div>
+                <h3 className={styles.journalCardTitle}>
+                  {post.title}
+                </h3>
+                <p className={styles.journalCardDate}>
+                  {post.date}
+                </p>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Newsletter *//*}
+      <NewsletterSignup />
+    </main>
+  );
+}
+*/
 
 
+"use client";
+
+import { useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { Package, Heart, Settings, LogOut } from "lucide-react";
+
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Separator } from "@/components/ui/separator";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import styles from "./page.module.css";
+
+export default function ProfilePage() {
+  const [isEditing, setIsEditing] = useState(false);
+
+  return (
+    <main className="min-h-screen bg-background pt-24">
+      <div className={`container ${styles.container}`}>
+        <div className={styles.mainGrid}>
+          {/* Sidebar */}
+          <div className={styles.sidebar}>
+            <div className={styles.profileHeader}>
+              <div className={styles.profileImage}>
+                <Image
+                  src="https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg"
+                  alt="Profile picture"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <div>
+                <h2 className={styles.profileName}>Sarah Johnson</h2>
+                <p className={styles.profileEmail}>sarah@example.com</p>
+              </div>
+            </div>
+            
+            <Separator />
+            
+            <nav className={styles.navigation}>
+              <div className={styles.navList}>
+                <Button
+                  variant="ghost"
+                  className="w-full justify-start"
+                  asChild
+                >
+                  <Link href="/profile/orders">
+                    <Package className="mr-2 h-4 w-4" />
+                    Orders
+                  </Link>
+                </Button>
+                <Button
+                  variant="ghost"
+                  className="w-full justify-start"
+                  asChild
+                >
+                  <Link href="/profile/wishlist">
+                    <Heart className="mr-2 h-4 w-4" />
+                    Wishlist
+                  </Link>
+                </Button>
+                <Button
+                  variant="ghost"
+                  className="w-full justify-start"
+                  asChild
+                >
+                  <Link href="/profile/settings">
+                    <Settings className="mr-2 h-4 w-4" />
+                    Settings
+                  </Link>
+                </Button>
+                <Button
+                  variant="ghost"
+                  className="w-full justify-start text-red-500 hover:text-red-600"
+                >
+                  <LogOut className="mr-2 h-4 w-4" />
+                  Sign Out
+                </Button>
+              </div>
+            </nav>
+          </div>
+
+          {/* Main Content */}
+          <div className={styles.content}>
+            <Tabs defaultValue="profile">
+              <TabsList>
+                <TabsTrigger value="profile">Profile</TabsTrigger>
+                <TabsTrigger value="addresses">Addresses</TabsTrigger>
+                <TabsTrigger value="payment">Payment Methods</TabsTrigger>
+              </TabsList>
+
+              <TabsContent value="profile" className="mt-6">
+                <div className={styles.card}>
+                  <div className={styles.cardHeader}>
+                    <h3 className={styles.cardTitle}>Personal Information</h3>
+                    <Button
+                      variant="outline"
+                      onClick={() => setIsEditing(!isEditing)}
+                    >
+                      {isEditing ? "Cancel" : "Edit"}
+                    </Button>
+                  </div>
+
+                  <form className={styles.form}>
+                    <div className={styles.formRow}>
+                      <div className={styles.fieldGroup}>
+                        <Label htmlFor="firstName">First Name</Label>
+                        <Input
+                          id="firstName"
+                          defaultValue="Sarah"
+                          disabled={!isEditing}
+                        />
+                      </div>
+                      <div className={styles.fieldGroup}>
+                        <Label htmlFor="lastName">Last Name</Label>
+                        <Input
+                          id="lastName"
+                          defaultValue="Johnson"
+                          disabled={!isEditing}
+                        />
+                      </div>
+                    </div>
+
+                    <div className={styles.fieldGroup}>
+                      <Label htmlFor="email">Email</Label>
+                      <Input
+                        id="email"
+                        type="email"
+                        defaultValue="sarah@example.com"
+                        disabled={!isEditing}
+                      />
+                    </div>
+
+                    <div className={styles.fieldGroup}>
+                      <Label htmlFor="phone">Phone</Label>
+                      <Input
+                        id="phone"
+                        type="tel"
+                        defaultValue="+1 (555) 123-4567"
+                        disabled={!isEditing}
+                      />
+                    </div>
+
+                    {isEditing && (
+                      <div className={styles.submitSection}>
+                        <Button>Save Changes</Button>
+                      </div>
+                    )}
+                  </form>
+                </div>
+              </TabsContent>
+
+              <TabsContent value="addresses" className="mt-6">
+                <div className={styles.card}>
+                  <div className={styles.cardHeader}>
+                    <h3 className={styles.cardTitle}>Saved Addresses</h3>
+                    <Button>Add New Address</Button>
+                  </div>
+
+                  <div className="space-y-4">
+                    <div className={styles.addressCard}>
+                      <div className={styles.addressHeader}>
+                        <div>
+                          <p className={styles.addressName}>Home</p>
+                          <p className={styles.addressDetails}>
+                            123 Main Street, Apt 4B<br />
+                            New York, NY 10001<br />
+                            United States
+                          </p>
+                        </div>
+                        <div className={styles.addressActions}>
+                          <Button variant="outline" size="sm">Edit</Button>
+                          <Button variant="outline" size="sm">Delete</Button>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className={styles.addressCard}>
+                      <div className={styles.addressHeader}>
+                        <div>
+                          <p className={styles.addressName}>Office</p>
+                          <p className={styles.addressDetails}>
+                            456 Business Ave, Suite 200<br />
+                            New York, NY 10002<br />
+                            United States
+                          </p>
+                        </div>
+                        <div className={styles.addressActions}>
+                          <Button variant="outline" size="sm">Edit</Button>
+                          <Button variant="outline" size="sm">Delete</Button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </TabsContent>
+
+              <TabsContent value="payment" className="mt-6">
+                <div className={styles.card}>
+                  <div className={styles.cardHeader}>
+                    <h3 className={styles.cardTitle}>Payment Methods</h3>
+                    <Button>Add New Card</Button>
+                  </div>
+
+                  <div className="space-y-4">
+                    <div className={styles.paymentCard}>
+                      <div className={styles.paymentHeader}>
+                        <div className={styles.paymentInfo}>
+                          <div className={styles.cardIcon} />
+                          <div>
+                            <p className={styles.cardNumber}>•••• •••• •••• 4242</p>
+                            <p className={styles.cardExpiry}>
+                              Expires 12/25
+                            </p>
+                          </div>
+                        </div>
+                        <Button variant="outline" size="sm">Remove</Button>
+                      </div>
+                    </div>
+
+                    <div className={styles.paymentCard}>
+                      <div className={styles.paymentHeader}>
+                        <div className={styles.paymentInfo}>
+                          <div className={styles.cardIcon} />
+                          <div>
+                            <p className={styles.cardNumber}>•••• •••• •••• 8888</p>
+                            <p className={styles.cardExpiry}>
+                              Expires 08/24
+                            </p>
+                          </div>
+                        </div>
+                        <Button variant="outline" size="sm">Remove</Button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </TabsContent>
+            </Tabs>
+          </div>
+        </div>
+      </div>
+    </main>
+  );
+}
