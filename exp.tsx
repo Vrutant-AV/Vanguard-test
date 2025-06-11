@@ -1240,7 +1240,7 @@ export default function Home() {
 }
 */
 
-
+/*
 "use client";
 
 import { useState } from "react";
@@ -1262,7 +1262,7 @@ export default function ProfilePage() {
     <main className="min-h-screen bg-background pt-24">
       <div className={`container ${styles.container}`}>
         <div className={styles.mainGrid}>
-          {/* Sidebar */}
+          {/* Sidebar *//*}
           <div className={styles.sidebar}>
             <div className={styles.profileHeader}>
               <div className={styles.profileImage}>
@@ -1324,7 +1324,7 @@ export default function ProfilePage() {
             </nav>
           </div>
 
-          {/* Main Content */}
+          {/* Main Content *//*}
           <div className={styles.content}>
             <Tabs defaultValue="profile">
               <TabsList>
@@ -1485,4 +1485,4 @@ export default function ProfilePage() {
       </div>
     </main>
   );
-}
+}*/
