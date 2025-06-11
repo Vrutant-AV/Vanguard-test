@@ -12,176 +12,162 @@ import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import styles from "./page.module.css";
 
-export default function ProfilePage() { 
-    const [isEditing, setIsEditing] = useState(false);
-    
-    return (
+export default function ProfilePage() {
+  const [isEditing, setIsEditing] = useState(false);
+
+  return (
     <main className="min-h-screen bg-background pt-24">
-      <div className="container py-8 md:py-12">
-        <div className="grid gap-8 md:grid-cols-4 lg:gap-12">
-          {/* Sidebar */}
-          <div className="md:col-span-1">
-            <div className="space-y-4">
-              <div className="flex items-center gap-4">
-                <div className="relative h-16 w-16 overflow-hidden rounded-full">
-                  <Image
-                    src="https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg"
-                    alt="Profile picture"
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-                <div>
-                  <h2 className={styles.profileName}>Sarah Johnson</h2>
-                  <p className={styles.profileEmail}>sarah@example.com</p>
-                </div>
+      <div className={`container ${styles.container}`}>
+        <div className={styles.mainGrid}>
+          {/* Sidebar*/}
+          <div className = {styles.sidebar}>
+            <div className={styles.profileHeader}>
+              <div className={styles.profileImage}>
+                <Image
+                  src="https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg"
+                  alt="Profile picture"
+                  fill
+                  className="object-cover"
+                />
               </div>
-              
-              <Separator className={styles.navDivider} />
-              
-              <nav className={styles.nav}>
+              <div>
+                <h2 className={styles.profileName}>Sarah Johnson</h2>
+                <p className={styles.profileEmail}>sarah@gmail.com</p>
+              </div>
+            </div>
+
+            <Separator />
+
+            <nav className={styles.navigation}>
+              <div className={styles.navList}>
                 <Button
                   variant="ghost"
-                  className={styles.navButton}
+                  className="w-full justify-start"
                   asChild
                 >
                   <Link href="/profile/orders">
-                    <Package className={styles.navIcon} />
+                    <Package className="mr-2 h-4 w-4" />
                     Orders
                   </Link>
                 </Button>
+
                 <Button
                   variant="ghost"
-                  className={styles.navButton}
+                  className="w-full justify-start"
                   asChild
                 >
                   <Link href="/profile/wishlist">
-                    <Heart className={styles.navIcon} />
+                    <Heart className="mr-2 h-4 w-4" />
                     Wishlist
                   </Link>
                 </Button>
+
                 <Button
                   variant="ghost"
-                  className={styles.navButton}
+                  className="w-full justify-start"
                   asChild
                 >
                   <Link href="/profile/settings">
-                    <Settings className={styles.navIcon} />
+                    <Settings className="mr-2 h-4 w-4" />
                     Settings
                   </Link>
                 </Button>
+
                 <Button
                   variant="ghost"
-                  className={`${styles.navButton} ${styles.navButtonRed}`}
+                  className="w-full justify-start text-red-500 hover:text-red-600"
                 >
-                  <LogOut className={styles.navIcon} />
+                  <LogOut className="mr-2 h-4 w-4" />
                   Sign Out
                 </Button>
-              </nav>
-            </div>
+              </div>
+            </nav>
           </div>
 
           {/* Main Content */}
-          <div className="md:col-span-3">
-            <Tabs defaultValue="profile" className={styles.tabs}>
-              <TabsList className={styles.tabsList}>
-                <TabsTrigger value="profile" className={styles.tabTrigger}>
-                  Profile
-                </TabsTrigger>
-                <TabsTrigger value="addresses" className={styles.tabTrigger}>
-                  Addresses
-                </TabsTrigger>
-                <TabsTrigger value="payment" className={styles.tabTrigger}>
-                  Payment Methods
-                </TabsTrigger>
+          <div className={styles.content}>
+            <Tabs defaultValue="profile">
+              <TabsList>
+                <TabsTrigger value="profile">Profile</TabsTrigger>
+                <TabsTrigger value="addresses">Addresses</TabsTrigger>
+                <TabsTrigger value="payment">Payment Methods</TabsTrigger>
               </TabsList>
 
-              <TabsContent value="profile" className={styles.tabsContent}>
+              <TabsContent value="profile" className="mt-6">
                 <div className={styles.card}>
-                  <div className={styles.formHeader}>
-                    <h3 className={styles.formTitle}>Personal Information</h3>
+                  <div className={styles.cardHeader}>
+                    <h3 className={styles.cardTitle}>
+                      Personal Information
+                    </h3>
                     <Button
                       variant="outline"
-                      onClick={() => setIsEditing(!isEditing)}
-                      className={styles.editButton}
+                      onClick={() => setIsEditing (!isEditing)}
                     >
                       {isEditing ? "Cancel" : "Edit"}
                     </Button>
                   </div>
 
                   <form className={styles.form}>
-                    <div className={styles.formGrid}>
-                      <div className={styles.formGroup}>
-                        <Label htmlFor="firstName" className={styles.formLabel}>
-                          First Name
-                        </Label>
-                        <Input
+                    <div className={styles.formRow}>
+                      <div className={styles.fieldGroup}>
+                        <Label htmlFor="firstNmae">First Name</Label>
+                        <Input 
                           id="firstName"
                           defaultValue="Sarah"
-                          disabled={!isEditing}
-                          className={styles.input}
-                        />
+                          disabled={!isEditing} />
                       </div>
-                      <div className={styles.formGroup}>
-                        <Label htmlFor="lastName" className={styles.formLabel}>
-                          Last Name
-                        </Label>
+                      <div className={styles.fieldGroup}>
+                        <Label htmlFor="lastName">Last Name</Label>
                         <Input
                           id="lastName"
                           defaultValue="Johnson"
-                          disabled={!isEditing}
-                          className={styles.input}
+                          disabled={!isEditing} 
                         />
                       </div>
                     </div>
 
-                    <div className={styles.formGroup}>
-                      <Label htmlFor="email" className={styles.formLabel}>
-                        Email
-                      </Label>
+                    <div className={styles.fieldGroup}>
+                      <Label htmlFor="email">Email</Label>
                       <Input
                         id="email"
                         type="email"
                         defaultValue="sarah@example.com"
                         disabled={!isEditing}
-                        className={styles.input}
                       />
                     </div>
 
-                    <div className={styles.formGroup}>
-                      <Label htmlFor="phone" className={styles.formLabel}>
-                        Phone
-                      </Label>
+                    <div className={styles.fieldGroup}>
+                      <Label htmlFor="phone">Phone</Label>
                       <Input
                         id="phone"
                         type="tel"
                         defaultValue="+1 (555) 123-4567"
                         disabled={!isEditing}
-                        className={styles.input}
                       />
                     </div>
 
                     {isEditing && (
-                      <div className={styles.formActions}>
-                        <Button className={styles.saveButton}>Save Changes</Button>
+                      <div className={styles.submitSection}>
+                        <Button>Save Changes</Button>
                       </div>
                     )}
                   </form>
+
                 </div>
               </TabsContent>
 
-              <TabsContent value="addresses" className={styles.tabsContent}>
+              <TabsContent value="addresses" className="mt-6">
                 <div className={styles.card}>
-                  <div className={styles.formHeader}>
-                    <h3 className={styles.formTitle}>Saved Addresses</h3>
-                    <Button className={styles.addButton}>Add New Address</Button>
+                  <div className={styles.cardHeader}>
+                    <h3 className={styles.cardTitle}>Saved Addresses</h3>
+                    <Button>Add New Address</Button>
                   </div>
 
-                  <div className={styles.addresses}>
+                  <div className="space-y-4">
                     <div className={styles.addressCard}>
                       <div className={styles.addressHeader}>
                         <div>
-                          <p className={styles.addressTitle}>Home</p>
+                          <p className={styles.addressName}>Home</p>
                           <p className={styles.addressDetails}>
                             123 Main Street, Apt 4B<br />
                             New York, NY 10001<br />
@@ -189,12 +175,8 @@ export default function ProfilePage() {
                           </p>
                         </div>
                         <div className={styles.addressActions}>
-                          <Button variant="outline" size="sm" className={styles.addressButton}>
-                            Edit
-                          </Button>
-                          <Button variant="outline" size="sm" className={styles.addressButton}>
-                            Delete
-                          </Button>
+                          <Button variant="outline" size="sm">Edit</Button>
+                          <Button variant="outline" size="sm">Delete</Button>
                         </div>
                       </div>
                     </div>
@@ -202,7 +184,7 @@ export default function ProfilePage() {
                     <div className={styles.addressCard}>
                       <div className={styles.addressHeader}>
                         <div>
-                          <p className={styles.addressTitle}>Office</p>
+                          <p className={styles.addressName}>Office</p>
                           <p className={styles.addressDetails}>
                             456 Business Ave, Suite 200<br />
                             New York, NY 10002<br />
@@ -210,12 +192,8 @@ export default function ProfilePage() {
                           </p>
                         </div>
                         <div className={styles.addressActions}>
-                          <Button variant="outline" size="sm" className={styles.addressButton}>
-                            Edit
-                          </Button>
-                          <Button variant="outline" size="sm" className={styles.addressButton}>
-                            Delete
-                          </Button>
+                          <Button variant="outline" size="sm">Edit</Button>
+                          <Button variant="outline" size="sm">Delete</Button>
                         </div>
                       </div>
                     </div>
@@ -223,50 +201,53 @@ export default function ProfilePage() {
                 </div>
               </TabsContent>
 
-              <TabsContent value="payment" className={styles.tabsContent}>
+              <TabsContent value="payment" className="mt-6">
                 <div className={styles.card}>
-                  <div className={styles.formHeader}>
-                    <h3 className={styles.formTitle}>Payment Methods</h3>
-                    <Button className={styles.addButton}>Add New Card</Button>
+                  <div className={styles.cardHeader}>
+                    <h3 className={styles.cardTitle}>Payment Methods</h3>
+                    <Button>Add New Card</Button>
                   </div>
 
-                  <div className={styles.paymentMethods}>
+                  <div className="space-y-4">
                     <div className={styles.paymentCard}>
                       <div className={styles.paymentHeader}>
                         <div className={styles.paymentInfo}>
-                          <div className={styles.paymentMethod} />
+                          <div className={styles.cardIcon} />
                           <div>
                             <p className={styles.cardNumber}>•••• •••• •••• 4242</p>
-                            <p className={styles.expiryDate}>Expires 12/25</p>
+                            <p className={styles.cardExpiry}>
+                              Expires 12/25
+                            </p>
                           </div>
                         </div>
-                        <Button variant="outline" size="sm" className={styles.removeButton}>
-                          Remove
-                        </Button>
+                        <Button variant="outline" size="sm">Remove</Button>
                       </div>
                     </div>
 
                     <div className={styles.paymentCard}>
                       <div className={styles.paymentHeader}>
                         <div className={styles.paymentInfo}>
-                          <div className={styles.paymentMethod} />
+                          <div className={styles.cardIcon} />
                           <div>
                             <p className={styles.cardNumber}>•••• •••• •••• 8888</p>
-                            <p className={styles.expiryDate}>Expires 08/24</p>
+                            <p className={styles.cardExpiry}>
+                              Expires 08/24
+                            </p>
                           </div>
                         </div>
-                        <Button variant="outline" size="sm" className={styles.removeButton}>
-                          Remove
-                        </Button>
+                        <Button variant="outline" size="sm">Remove</Button>
                       </div>
                     </div>
                   </div>
                 </div>
               </TabsContent>
+
             </Tabs>
           </div>
+
         </div>
       </div>
     </main>
-  );
+  )
 }
+
