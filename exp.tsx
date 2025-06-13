@@ -1486,7 +1486,7 @@ export default function ProfilePage() {
     </main>
   );
 }*/
-
+/*
 "use client";
 
 import { useState } from "react";
@@ -1669,7 +1669,7 @@ export default function WishlistPage() {
               ))}
             </div>
 
-            {/* Wishlist Summary */}
+            {/* Wishlist Summary *//*}
             <div className={styles.summary}>
               <h2 className={styles.summaryTitle}>Wishlist Summary</h2>
               
@@ -1716,3 +1716,80 @@ export default function WishlistPage() {
     </main>
   );
 }
+*/
+/*
+import { Filter, ChevronDown } from "lucide-react";
+
+import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
+import ProductsGrid from "@/components/products-grid";
+import ProductFilters from "@/components/product-filters";
+import styles from "./page.module.css";
+
+export default function ShopPage() {
+  return (
+    <main className="min-h-screen bg-background pt-24">
+      <div className="container">
+        <div className={styles.container}>
+          <div className={styles.header}>
+            <h1 className={styles.title}>Shop</h1>
+            <p className={styles.subtitle}>
+              Explore our latest collections of premium garments and accessories.
+            </p>
+          </div>
+          
+          <div className={styles.controls}>
+            <div className={styles.filtersSection}>
+              <Button variant="outline" size="sm" className="sm:w-auto">
+                <Filter className="mr-2 h-4 w-4" />
+                Filters
+              </Button>
+              <div className={styles.filtersRow}>
+                <p className={styles.productCount}>48 products</p>
+                <Separator orientation="vertical" className="hidden h-4 sm:block" />
+                <div className={styles.categoriesDesktop}>
+                  <ShopCategories />
+                </div>
+              </div>
+            </div>
+            
+            <div className={styles.sortSection}>
+              <span className={styles.sortLabel}>Sort by:</span>
+              <Button variant="ghost" size="sm" className="gap-1 font-normal">
+                Newest
+                <ChevronDown className="h-4 w-4" />
+              </Button>
+            </div>
+          </div>
+          
+          <div className={styles.categoriesMobile}>
+            <ShopCategories />
+            <Separator className="my-4" />
+          </div>
+          
+          <div className={styles.mainGrid}>
+            <div className={styles.filtersColumn}>
+              <ProductFilters />
+            </div>
+            <div className={styles.productsColumn}>
+              <ProductsGrid />
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  );
+}
+
+function ShopCategories() {
+  return (
+    <div className={styles.categories}>
+      {["All", "New Arrivals", "Men", "Women", "Accessories", "Sale"].map((category) => (
+        <Button key={category} variant="outline" size="sm" className="rounded-full font-normal">
+          {category}
+        </Button>
+      ))}
+    </div>
+  );
+}
+  */
