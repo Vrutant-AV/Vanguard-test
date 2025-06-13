@@ -52,66 +52,60 @@ exports.login = async (req, res) => {
         res.status(500).json({ message: 'Login failed', error: err.message });
     }
 };
-
 // Forgot password
 exports.forgotPassword = async (req, res) => {
-    const { email } = req.body;
+  const { email } = req.body;
 
-    try {
-        const user = await User.findOne({ where: { email } });
-        if (!user) return res.status(400).json({ message: 'User not found' });
+  try {
+    const user = await User.findOne({ where: { email } });
+    if (!user) return res.status(400).json({ message: 'User not found' });
 
-        const token = crypto.randomBytes(32).toString('hex');
-        const expiry = new Date(Date.now() + 60 * 60 * 1000); // 1 hour
+    const token = crypto.randomBytes(32).toString('hex');
+    const expiry = new Date(Date.now() + 60 * 60 * 1000); // 1 hour
 
-        user.reset_token = token;
-        user.reset_token_expiry = expiry;
-        await user.save();
+    user.reset_token = token;
+    user.reset_token_expiry = expiry;
+    await user.save();
 
-        const resetUrl = `${process.env.FRONTEND_URL}/reset-password/${token}`;
+    const resetUrl = `${process.env.FRONTEND_URL}/reset-password/${token}`;
 
-        await sendEmail(
-            user.email,
-            'Password Reset',
-            `Click the link to reset your password: ${resetUrl}`,
-        );
+    await sendEmail(
+      user.email,
+      'Password Reset',
+      `Click the link to reset your password: ${resetUrl}`,
+    );
 
-        res.status(200).json({ message: 'Password reset link sent to your email' });
+    res.status(200).json({ message: 'Password reset link sent to your email' });
 
-    } catch (error) {
-        console.error('Error in forgotPassword:', error);
-        return res.status(500).json({ message: 'Internal server error' });
-    }
+  } catch (error) {
+    console.error('Error in forgotPassword:', error);
+    return res.status(500).json({ message: 'Internal server error' });
+  }
 };
 
-
-// Reset password
+// Reset password (using link for forgot password)
 exports.resetPassword = async (req, res) => {
   const { token } = req.params;
   const { newPassword } = req.body;
 
   try {
-    const user = await User.findOne({ 
-      where: { 
-        reset_token: token, 
-        reset_token_expiry: { [Op.gt]: new Date() } 
-      } 
+    if (!newPassword) {
+      return res.status(400).json({ message: "Password is required" });
+    }
+
+    const user = await User.findOne({
+      where: {
+        reset_token: token,
+        reset_token_expiry: { [Op.gt]: new Date() }
+      }
     });
 
     if (!user) return res.status(400).json({ message: 'Invalid or expired token' });
 
-    console.log("Password received for reset:", newPassword);
-
-    const hashedPassword= await bcrypt.hash(newPassword, 10);
-
-    if (!newPassword) {
-      return res.status(400).json({ 
-        message: "Password is required" 
-      });
-    }
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
 
     user.password = hashedPassword;
-    user.reset_token = null; 
+    user.reset_token = null;
     user.reset_token_expiry = null;
     await user.save();
 
@@ -120,4 +114,10 @@ exports.resetPassword = async (req, res) => {
     console.error('Reset password error:', error);
     res.status(500).json({ message: 'Internal server error' });
   }
+};
+
+// Logout
+exports.logout = (req, res) => {
+  res.clearCookie('token', { httpOnly: true, secure: true, sameSite: 'strict' });
+  res.json({ message: 'Logged out successfully' });
 };

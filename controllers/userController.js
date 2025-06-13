@@ -1,7 +1,7 @@
 const bcrypt = require('bcryptjs');
 const { User } = require('../models');
 
-// Change password (Reset password)
+// Change password (from old to new  password)
 exports.changePassword = async (req, res) => {
     try {
         const { currentPassword, newPassword } = req.body;
