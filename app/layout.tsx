@@ -2,9 +2,11 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
+import { CartProvider } from "@/lib/cart-context";
 
 import SiteHeader from "@/components/site-header";
 import SiteFooter from "@/components/site-footer";
+import CartDrawer from "@/components/cart-drawer";
 
 // Fonts with increased timeout
 const inter = Inter({ 
@@ -38,9 +40,12 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <SiteHeader />
-          {children}
-          <SiteFooter />
+          <CartProvider>
+            <SiteHeader />
+            {children}
+            <SiteFooter />
+            <CartDrawer />
+          </CartProvider>
         </ThemeProvider>
       </body>
     </html>
