@@ -1793,7 +1793,7 @@ function ShopCategories() {
   );
 }
   */
-
+/*
 "use client";
 
 import { useState } from "react";
@@ -1867,7 +1867,7 @@ export default function CartPage() {
       setPromoCode("");
     }
   };
-*/
+
   const handleCheckout = () => {
     setIsCheckingOut(true);
     // Simulate checkout process
@@ -1914,7 +1914,7 @@ export default function CartPage() {
           </div>
         ) : (
           <div className={styles.cartContent}>
-            {/* Cart Items */}
+            {/* Cart Items *//*}
             <div className={styles.cartItems}>
               {cartItems.map((item) => (
                 <div key={`${item.id}-${item.size}-${item.color}`} className={styles.cartItem}>
@@ -1980,7 +1980,7 @@ export default function CartPage() {
               </Link>
             </div>
 
-            {/* Cart Summary */}
+            {/* Cart Summary *//*}
             <div className={styles.cartSummary}>
               <div className={styles.summaryCard}>
                 <h2 className={styles.summaryTitle}>Order Summary</h2>
@@ -2039,7 +2039,7 @@ export default function CartPage() {
                   </div>
                 )}
                 
-                {/* Promo Code Section */}
+                {/* Promo Code Section *//*}
                 <div className={styles.promoSection}>
                   <h3 className={styles.promoTitle}>Promo Code</h3>
                   <div className={styles.promoForm}>
@@ -2066,5 +2066,347 @@ export default function CartPage() {
         )}
       </div>
     </main>
+  );
+}*/
+/*
+"use client";
+
+import React, { createContext, useContext, useReducer, useEffect } from 'react';
+
+export interface CartItem {
+  id: number;
+  name: string;
+  price: number;
+  image: string;
+  category: string;
+  size?: string;
+  color?: string;
+  quantity: number;
+}
+
+interface CartState {
+  items: CartItem[];
+  isOpen: boolean;
+}
+
+type CartAction =
+  | { type: 'ADD_ITEM'; payload: Omit<CartItem, 'quantity'> & { quantity?: number } }
+  | { type: 'REMOVE_ITEM'; payload: { id: number; size?: string; color?: string } }
+  | { type: 'UPDATE_QUANTITY'; payload: { id: number; size?: string; color?: string; quantity: number } }
+  | { type: 'CLEAR_CART' }
+  | { type: 'TOGGLE_CART' }
+  | { type: 'OPEN_CART' }
+  | { type: 'CLOSE_CART' };
+
+const cartReducer = (state: CartState, action: CartAction): CartState => {
+  switch (action.type) {
+    case 'ADD_ITEM': {
+      const { quantity = 1, ...item } = action.payload;
+      const existingItemIndex = state.items.findIndex(
+        cartItem => 
+          cartItem.id === item.id && 
+          cartItem.size === item.size && 
+          cartItem.color === item.color
+      );
+
+      if (existingItemIndex > -1) {
+        const updatedItems = [...state.items];
+        updatedItems[existingItemIndex].quantity += quantity;
+        return { ...state, items: updatedItems };
+      }
+
+      return {
+        ...state,
+        items: [...state.items, { ...item, quantity }],
+      };
+    }
+
+    case 'REMOVE_ITEM': {
+      const filteredItems = state.items.filter(
+        item => !(
+          item.id === action.payload.id &&
+          item.size === action.payload.size &&
+          item.color === action.payload.color
+        )
+      );
+      return { ...state, items: filteredItems };
+    }
+
+    case 'UPDATE_QUANTITY': {
+      const updatedItems = state.items.map(item => {
+        if (
+          item.id === action.payload.id &&
+          item.size === action.payload.size &&
+          item.color === action.payload.color
+        ) {
+          return { ...item, quantity: Math.max(0, action.payload.quantity) };
+        }
+        return item;
+      }).filter(item => item.quantity > 0);
+
+      return { ...state, items: updatedItems };
+    }
+
+    case 'CLEAR_CART':
+      return { ...state, items: [] };
+
+    case 'TOGGLE_CART':
+      return { ...state, isOpen: !state.isOpen };
+
+    case 'OPEN_CART':
+      return { ...state, isOpen: true };
+
+    case 'CLOSE_CART':
+      return { ...state, isOpen: false };
+
+    default:
+      return state;
+  }
+};
+
+interface CartContextType {
+  state: CartState;
+  addItem: (item: Omit<CartItem, 'quantity'> & { quantity?: number }) => void;
+  removeItem: (id: number, size?: string, color?: string) => void;
+  updateQuantity: (id: number, quantity: number, size?: string, color?: string) => void;
+  clearCart: () => void;
+  toggleCart: () => void;
+  openCart: () => void;
+  closeCart: () => void;
+  getTotalItems: () => number;
+  getTotalPrice: () => number;
+}
+
+const CartContext = createContext<CartContextType | undefined>(undefined);
+
+export const useCart = () => {
+  const context = useContext(CartContext);
+  if (!context) {
+    throw new Error('useCart must be used within a CartProvider');
+  }
+  return context;
+};
+
+export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const [state, dispatch] = useReducer(cartReducer, {
+    items: [],
+    isOpen: false,
+  });
+
+  // Load cart from localStorage on mount
+  useEffect(() => {
+    const savedCart = localStorage.getItem('vanguard-cart');
+    if (savedCart) {
+      try {
+        const parsedCart = JSON.parse(savedCart);
+        parsedCart.forEach((item: CartItem) => {
+          dispatch({ type: 'ADD_ITEM', payload: item });
+        });
+      } catch (error) {
+        console.error('Error loading cart from localStorage:', error);
+      }
+    }
+  }, []);
+
+  // Save cart to localStorage whenever it changes
+  useEffect(() => {
+    localStorage.setItem('vanguard-cart', JSON.stringify(state.items));
+  }, [state.items]);
+
+  const addItem = (item: Omit<CartItem, 'quantity'> & { quantity?: number }) => {
+    dispatch({ type: 'ADD_ITEM', payload: item });
+  };
+
+  const removeItem = (id: number, size?: string, color?: string) => {
+    dispatch({ type: 'REMOVE_ITEM', payload: { id, size, color } });
+  };
+
+  const updateQuantity = (id: number, quantity: number, size?: string, color?: string) => {
+    dispatch({ type: 'UPDATE_QUANTITY', payload: { id, quantity, size, color } });
+  };
+
+  const clearCart = () => {
+    dispatch({ type: 'CLEAR_CART' });
+  };
+
+  const toggleCart = () => {
+    dispatch({ type: 'TOGGLE_CART' });
+  };
+
+  const openCart = () => {
+    dispatch({ type: 'OPEN_CART' });
+  };
+
+  const closeCart = () => {
+    dispatch({ type: 'CLOSE_CART' });
+  };
+
+  const getTotalItems = () => {
+    return state.items.reduce((total, item) => total + item.quantity, 0);
+  };
+
+  const getTotalPrice = () => {
+    return state.items.reduce((total, item) => total + (item.price * item.quantity), 0);
+  };
+
+  const value: CartContextType = {
+    state,
+    addItem,
+    removeItem,
+    updateQuantity,
+    clearCart,
+    toggleCart,
+    openCart,
+    closeCart,
+    getTotalItems,
+    getTotalPrice,
+  };
+
+  return (
+    <CartContext.Provider value={value}>
+      {children}
+    </CartContext.Provider>
+  );
+};  */
+
+"use client";
+
+import { X, Plus, Minus, ShoppingBag } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+
+import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
+import { useCart } from "@/lib/cart-context";
+
+export default function CartDrawer() {
+  const { state, removeItem, updateQuantity, closeCart, getTotalItems, getTotalPrice } = useCart();
+
+  if (!state.isOpen) return null;
+
+  const totalItems = getTotalItems();
+  const totalPrice = getTotalPrice();
+
+  return (
+    <>
+      {/* Backdrop */}
+      <div 
+        className="fixed inset-0 z-50 bg-black/50" 
+        onClick={closeCart}
+      />
+      
+      {/* Drawer */}
+      <div className="fixed right-0 top-0 z-50 h-full w-full max-w-md bg-background shadow-xl">
+        <div className="flex h-full flex-col">
+          {/* Header */}
+          <div className="flex items-center justify-between border-b p-4">
+            <h2 className="text-lg font-semibold">
+              Shopping Cart ({totalItems})
+            </h2>
+            <Button variant="ghost" size="icon" onClick={closeCart}>
+              <X className="h-5 w-5" />
+            </Button>
+          </div>
+
+          {/* Cart Items */}
+          <div className="flex-1 overflow-y-auto p-4">
+            {state.items.length === 0 ? (
+              <div className="flex h-full flex-col items-center justify-center text-center">
+                <ShoppingBag className="mb-4 h-12 w-12 text-muted-foreground" />
+                <h3 className="mb-2 text-lg font-medium">Your cart is empty</h3>
+                <p className="mb-4 text-sm text-muted-foreground">
+                  Add some items to get started
+                </p>
+                <Button asChild onClick={closeCart}>
+                  <Link href="/shop">Start Shopping</Link>
+                </Button>
+              </div>
+            ) : (
+              <div className="space-y-4">
+                {state.items.map((item) => (
+                  <div key={`${item.id}-${item.size}-${item.color}`} className="flex gap-3">
+                    <div className="relative h-20 w-16 flex-shrink-0 overflow-hidden rounded-md bg-muted">
+                      <Image
+                        src={item.image}
+                        alt={item.name}
+                        fill
+                        className="object-cover object-center"
+                      />
+                    </div>
+                    
+                    <div className="flex flex-1 flex-col">
+                      <div className="flex justify-between">
+                        <div className="flex-1">
+                          <h4 className="text-sm font-medium line-clamp-2">
+                            {item.name}
+                          </h4>
+                          <div className="mt-1 text-xs text-muted-foreground">
+                            {item.size && <span>Size: {item.size}</span>}
+                            {item.size && item.color && <span> • </span>}
+                            {item.color && <span>Color: {item.color}</span>}
+                          </div>
+                        </div>
+                        <Button
+                          variant="ghost"
+                          size="icon"
+                          className="h-6 w-6"
+                          onClick={() => removeItem(item.id, item.size, item.color)}
+                        >
+                          <X className="h-3 w-3" />
+                        </Button>
+                      </div>
+                      
+                      <div className="mt-2 flex items-center justify-between">
+                        <div className="flex items-center border rounded">
+                          <Button
+                            variant="ghost"
+                            size="icon"
+                            className="h-6 w-6"
+                            onClick={() => updateQuantity(item.id, item.quantity - 1, item.size, item.color)}
+                            disabled={item.quantity <= 1}
+                          >
+                            <Minus className="h-3 w-3" />
+                          </Button>
+                          <span className="w-8 text-center text-sm">{item.quantity}</span>
+                          <Button
+                            variant="ghost"
+                            size="icon"
+                            className="h-6 w-6"
+                            onClick={() => updateQuantity(item.id, item.quantity + 1, item.size, item.color)}
+                          >
+                            <Plus className="h-3 w-3" />
+                          </Button>
+                        </div>
+                        <span className="text-sm font-medium">
+                          ${(item.price * item.quantity).toFixed(2)}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+
+          {/* Footer */}
+          {state.items.length > 0 && (
+            <div className="border-t p-4">
+              <div className="mb-4 flex justify-between text-lg font-semibold">
+                <span>Total</span>
+                <span>${totalPrice.toFixed(2)}</span>
+              </div>
+              <div className="space-y-2">
+                <Button asChild className="w-full" onClick={closeCart}>
+                  <Link href="/cart">View Cart</Link>
+                </Button>
+                <Button variant="outline" className="w-full" onClick={closeCart}>
+                  Continue Shopping
+                </Button>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    </>
   );
 }
