@@ -8,6 +8,7 @@ import { ShoppingBag, Menu, X, Search, User } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { useCart } from "@/lib/cart-context";
 
 const mainNavItems = [
   { label: "Home", href: "/" },
@@ -22,6 +23,9 @@ export default function SiteHeader() {
   const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { toggleCart, getTotalItems } = useCart();
+
+  const totalItems = getTotalItems();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -96,9 +100,14 @@ export default function SiteHeader() {
               <span className="sr-only">Account</span>
             </Link>
           </Button>
-          <Button variant="ghost" size="icon">
+          <Button variant="ghost" size="icon" className="relative" onClick={toggleCart}>
             <ShoppingBag className="h-5 w-5" />
-            <span className="sr-only">Cart</span>
+            {totalItems > 0 && (
+              <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-primary text-xs font-medium text-primary-foreground">
+                {totalItems > 9 ? '9+' : totalItems}
+              </span>
+            )}
+            <span className="sr-only">Cart ({totalItems})</span>
           </Button>
           <ThemeToggle />
         </div>
