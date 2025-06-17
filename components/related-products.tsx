@@ -1,8 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ShoppingCart } from "lucide-react";
 
-import { Button } from "@/components/ui/button";
+import AddToCartButton from "@/components/add-to-cart-button";
 
 // Sample related products
 const relatedProducts = [
@@ -52,10 +51,17 @@ export default function RelatedProducts() {
             </Link>
             <div className="absolute inset-0 bg-black/0 opacity-0 transition-all duration-300 group-hover:bg-black/5 group-hover:opacity-100" />
             <div className="absolute bottom-4 left-0 right-0 flex justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-              <Button className="rounded-full" size="sm">
-                <ShoppingCart className="mr-2 h-4 w-4" />
-                Add to Cart
-              </Button>
+              <AddToCartButton
+                product={{
+                  id: product.id,
+                  name: product.name,
+                  price: product.price,
+                  image: product.image,
+                  category: product.category,
+                }}
+                className="rounded-full"
+                size="sm"
+              />
             </div>
           </div>
           <div className="flex flex-1 flex-col">

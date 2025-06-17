@@ -66,16 +66,79 @@ export default function CartDrawer() {
 
                                         <div className="flex flex-1 flex-col">
                                             <div className="flex justify-between">
-                                                <div className=""></div>
+                                                <div className="flex-1">
+                                                    <h4 className="text-sm font-medium line-clamp-2">
+                                                        {item.name}
+                                                    </h4>
+                                                    <div className="mt-1 text-xs text-muted-foreground">
+                                                        {item.size && <span>Size: {item.size}</span>}
+                                                        {item.size && item.color && <span> • </span>}
+                                                        {item.color && <span>Color: {item.color}</span>}
+                                                    </div>
+                                                </div>
+                                                
+                                                <Button
+                                                    variant="ghost"
+                                                    size="icon"
+                                                    className="h-6 w-6"
+                                                    onClick={() => removeItem(item.id, item.size, item.color)}
+                                                >
+                                                    <X className="h-3 w-3"/>
+                                                </Button>
                                             </div> 
+
+                                            <div className="mt-2 flex items-center justify-between">
+                                                <div className="mt-2 flex items-center justify-between">
+                                                    <div className="flex items-center border rounded">
+                                                        <Button
+                                                            variant="ghost"
+                                                            size="icon"
+                                                            className="h-6 w-6"
+                                                            onClick={() => updateQuantity(item.id, item.quantity - 1, item.size, item.color)}
+                                                            disabled={item.quantity <= 1}
+                                                        >
+                                                            <Minus className="h-3 w-3"/>
+                                                        </Button>
+                                                        <span className="w-8 text-center text-sm">{item.quantity}</span>
+                                                        <Button
+                                                            variant="ghost"
+                                                            size="icon"
+                                                            className="h-6 w-6"
+                                                            onClick={() => updateQuantity(item.id, item.quantity + 1, item.size, item.color)}
+                                                        >
+                                                            <Plus className="h-3 w-3" />
+                                                        </Button>
+                                                    </div>
+                                                    <span className="text-sm font-medium">
+                                                        ${(item.price * item.quantity).toFixed(2)}
+                                                    </span>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 ))}
                             </div>
                         )}
                     </div>
-                </div>
 
+                    {/* Footer */}
+                    {state.items.length > 0 && (
+                        <div className="border-t p-4">
+                            <div className="mb-4 flex justify-between text-lg font-semibold">
+                                <span>Total</span>
+                                <span>${totalPrice.toFixed(2)}</span>
+                            </div>
+                            <div className="space-y-2">
+                                <Button asChild className="w-full" onClick={closeCart}>
+                                    <Link href="/cart">View Cart</Link>
+                                </Button>
+                                <Button variant="outline" className="w-full" onClick={closeCart}>
+                                    Continue Shopping
+                                </Button>
+                            </div>
+                        </div>
+                      )}
+                </div>
             </div>
         </>
     )
