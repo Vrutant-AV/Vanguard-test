@@ -9,15 +9,17 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
+import styles from "./page.module.css";
 
 export default function RegisterPage() {
-  const [loading, setLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
-  const [formData, setFormData] = useState({
+  const [formDate, setFormData] = useState({
     name: "",
     email: "",
     password: "",
   });
+
   const router = useRouter();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -31,7 +33,7 @@ export default function RegisterPage() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setErrorMsg("");
-    setLoading(true);
+    setIsLoading(true);
 
     try {
       const res = await fetch('http://localhost:5000/api/auth/register', {
@@ -39,7 +41,7 @@ export default function RegisterPage() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(setFormData),
       });
 
       const rawText = await res.text();
@@ -58,84 +60,71 @@ export default function RegisterPage() {
     } catch (err: any) {
       setErrorMsg(err.message || "Something went wrong.");
     } finally {
-      setLoading(false);
+      setIsLoading(false);
     }
   };
 
-  // Helper for social login (placeholder)
+    // Helper for social login (placeholder)
   const handleSocialLogin = (provider: string) => {
     setErrorMsg("");
-    setLoading(true);
+    setIsLoading(true);
     // Implement actual social login here
     setTimeout(() => {
-      setLoading(false);
+      setIsLoading(false);
       setErrorMsg("Social login is not implemented yet.");
     }, 1000);
   };
 
   return (
     <main className="min-h-screen bg-background pt-24">
-      <div className="container flex flex-col items-center py-8 md:py-12">
-        <div className="mx-auto w-full max-w-md">
-          <div className="mb-8 text-center">
-            <h1 className="mb-2 font-serif text-3xl font-light">Create Account</h1>
-            <p className="text-muted-foreground">
+      <div className={`container ${styles.container}`}>
+        <div className={styles.formWrapper}>
+          <div className={styles.header}>
+            <h1 className={styles.title}>Create Account</h1>
+            <p className={styles.subtitle}>
               Join Vanguard to start shopping
             </p>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-6" autoComplete="off">
-            <div className="space-y-4">
-              <div className="space-y-2">
+          <form onSubmit={handleSubmit} className={styles.form}>
+            <div className={styles.formFields}>
+              <div className={styles.fieldGroup}>
                 <Label htmlFor="name">Full Name</Label>
-                <div className="relative">
-                  <User className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+                <div className={styles.inputWrapper}>
+                  <User className={styles.inputIcon} />
                   <Input
                     id="name"
-                    name="name"
                     placeholder="Enter your name"
-                    value={formData.name}
-                    onChange={handleChange}
                     className="pl-9"
                     required
-                    autoComplete="name"
                   />
                 </div>
               </div>
 
-              <div className="space-y-2">
+              <div className={styles.fieldGroup}>
                 <Label htmlFor="email">Email</Label>
-                <div className="relative">
-                  <Mail className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+                <div className={styles.inputWrapper}>
+                  <Mail className={styles.inputIcon} />
                   <Input
                     id="email"
-                    name="email"
                     type="email"
                     placeholder="Enter your email"
-                    value={formData.email}
-                    onChange={handleChange}
                     className="pl-9"
                     required
-                    autoComplete="email"
                   />
                 </div>
               </div>
-
-              <div className="space-y-2">
+              
+              <div className={styles.fieldGroup}>
                 <Label htmlFor="password">Password</Label>
-                <div className="relative">
-                  <Lock className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+                <div className={styles.inputWrapper}>
+                  <Lock className={styles.inputIcon} />
                   <Input
                     id="password"
-                    name="password"
                     type="password"
                     placeholder="Create a password"
-                    value={formData.password}
-                    onChange={handleChange}
                     className="pl-9"
                     required
-                    minLength={6}
-                    autoComplete="new-password"
                   />
                 </div>
               </div>
@@ -145,48 +134,32 @@ export default function RegisterPage() {
               <div className="text-red-500 text-sm text-center">{errorMsg}</div>
             )}
 
-            <Button type="submit" className="w-full" disabled={loading}>
-              {loading ? "Creating account..." : "Create Account"}
+            <Button type="submit" className="w-full" disabled={isLoading}>
+              {isLoading ? "Creating account..." : "Create Account"}
             </Button>
           </form>
 
-          <div className="mt-6">
-            <div className="relative">
-              <div className="absolute inset-0 flex items-center">
+          <div className={styles.socialSection}>
+            <div className={styles.divider}>
+              <div className={styles.dividerLine}>
                 <Separator />
               </div>
-              <div className="relative flex justify-center text-xs uppercase">
-                <span className="bg-background px-2 text-muted-foreground">
+              <div className={styles.dividerText}>
+                <span className={styles.dividerTextSpan}>
                   Or continue with
                 </span>
               </div>
             </div>
 
-            <div className="mt-4 grid grid-cols-2 gap-3">
-              <Button
-                variant="outline"
-                className="w-full"
-                type="button"
-                onClick={() => handleSocialLogin("google")}
-                disabled={loading}
-              >
-                Google
-              </Button>
-              <Button
-                variant="outline"
-                className="w-full"
-                type="button"
-                onClick={() => handleSocialLogin("apple")}
-                disabled={loading}
-              >
-                Apple
-              </Button>
+            <div className={styles.socialButtons}>
+              <Button variant="outline" className="w-full">Google</Button>
+              <Button variant="outline" className="w-full">Apple</Button>
             </div>
           </div>
 
-          <p className="mt-6 text-center text-sm text-muted-foreground">
+          <p className={styles.footer}>
             Already have an account?{" "}
-            <Link href="/auth/login" className="text-primary hover:underline">
+            <Link href="/auth/login" className={styles.footerLink}>
               Sign in
             </Link>
           </p>

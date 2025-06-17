@@ -2771,3 +2771,368 @@
 }
 */
 
+/* Base Variables */
+/* .light-mode {
+/*   --light-bg: #ffffff;
+/*   --light-text: #171717;
+/*   --light-card: #f7fafc;
+/*   --light-border: #d1d5db;
+/*   --light-primary: #4f46e5;
+/*   --light-muted: #9ca3af;
+/*   --light-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+/* }
+/* 
+/* .dark-mode {
+/*   --dark-bg: #0a0a0a;
+/*   --dark-text: #ededed;
+/*   --dark-card: #1a202c;
+/*   --dark-border: #4a5568;
+/*   --dark-primary: #a0aec0;
+/*   --dark-muted: #a0aec0;
+/*   --dark-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+/* }
+/* 
+/* /* Main Layout */
+/* .main {
+/*   min-height: 100vh;
+/*   background-color: var(--light-bg);
+/*   color: var(--light-text);
+/*   padding-top: 6rem;
+/* }
+/* 
+/* @media (prefers-color-scheme: dark) {
+/*   .main {
+/*     background-color: var(--dark-bg);
+/*     color: var(--dark-text);
+/*   }
+/* }
+/* 
+/* /* Container */
+/* .container {
+/*   display: flex;
+/*   flex-direction: column;
+/*   align-items: center;
+/*   padding: 0 20px;
+/* }
+/* 
+/* /* Form Container */
+/* .formContainer {
+/*   width: 100%;
+/*   max-width: 400px;
+/*   padding: 2rem;
+/*   background-color: var(--light-card);
+/*   border-radius: 0.75rem;
+/*   box-shadow: var(--light-shadow);
+/* }
+/* 
+/* @media (prefers-color-scheme: dark) {
+/*   .formContainer {
+/*     background-color: var(--dark-card);
+/*     box-shadow: var(--dark-shadow);
+/*   }
+/* }
+/* 
+/* /* Header */
+/* .header {
+/*   text-align: center;
+/*   margin-bottom: 2rem;
+/* }
+/* 
+/* .title {
+/*   font-family: serif;
+/*   font-size: 2rem;
+/*   font-weight: 400;
+/*   margin-bottom: 0.5rem;
+/* }
+/* 
+/* .subtitle {
+/*   font-size: 0.9rem;
+/* }
+/* 
+/* /* Form */
+/* .form {
+/*   display: flex;
+/*   flex-direction: column;
+/*   gap: 1.5rem;
+/* }
+/* 
+/* /* Form Group */
+/* .formGroup {
+/*   margin-bottom: 1rem;
+/* }
+/* 
+/* /* Label */
+/* .label {
+/*   display: block;
+/*   margin-bottom: 0.5rem;
+/*   font-size: 0.875rem;
+/*   font-weight: 500;
+/* }
+/* 
+/* /* Input Container */
+/* .inputContainer {
+/*   position: relative;
+/* }
+/* 
+/* /* Icon */
+/* .icon {
+/*   position: absolute;
+/*   left: 0.75rem;
+/*   top: 50%;
+/*   transform: translateY(-50%);
+/* }
+/* 
+/* /* Input */
+/* .input {
+/*   width: 100%;
+/*   padding: 0.75rem 0.75rem 0.75rem 2.5rem;
+/*   border: 1px solid var(--light-border);
+/*   border-radius: 0.25rem;
+/*   background-color: var(--light-card);
+/*   color: var(--light-text);
+/* }
+/* 
+/* @media (prefers-color-scheme: dark) {
+/*   .input {
+/*     border-color: var(--dark-border);
+/*     background-color: var(--dark-card);
+/*     color: var(--dark-text);
+/*   }
+/* }
+/* 
+/* /* Password Header */
+/* .passwordHeader {
+/*   display: flex;
+/*   justify-content: space-between;
+/*   align-items: center;
+/* }
+/* 
+/* /* Forgot Password Link */
+/* .forgotPassword {
+/*   font-size: 0.875rem;
+/*   color: var(--light-primary);
+/*   text-decoration: none;
+/* }
+/* 
+/* @media (prefers-color-scheme: dark) {
+/*   .forgotPassword {
+/*     color: var(--dark-primary);
+/*   }
+/* }
+/* 
+/* .forgotPassword:hover {
+/*   text-decoration: underline;
+/* }
+/* 
+/* /* Submit Button */
+/* .submitButton {
+/*   width: 100%;
+/*   padding: 0.75rem;
+/*   background-color: var(--light-primary);
+/*   color: white;
+/*   border: none;
+/*   border-radius: 0.25rem;
+/*   cursor: pointer;
+/* }
+/* 
+/* @media (prefers-color-scheme: dark) {
+/*   .submitButton {
+/*     background-color: var(--dark-primary);
+/*   }
+/* }
+/* 
+/* /* Separator Container */
+/* .separatorContainer {
+/*   position: relative;
+/*   margin: 2rem 0;
+/* }
+/* 
+/* /* Separator */
+/* .separator {
+/*   position: absolute;
+/*   top: 50%;
+/*   left: 0;
+/*   right: 0;
+/*   transform: translateY(-50%);
+/* }
+/* 
+/* /* Separator Text */
+/* .separatorText {
+/*   position: relative;
+/*   background-color: var(--light-card);
+/*   padding: 0 1rem;
+/*   font-size: 0.75rem;
+/*   color: var(--light-muted);
+/* }
+/* 
+/* @media (prefers-color-scheme: dark) {
+/*   .separatorText {
+/*     background-color: var(--dark-card);
+/*     color: var(--dark-muted);
+/*   }
+/* }
+/* 
+/* /* Social Buttons */
+/* .socialButtons {
+/*   display: grid;
+/*   grid-template-columns: 1fr 1fr;
+/*   gap: 1rem;
+/*   margin-top: 1rem;
+/* }
+/* 
+/* .socialButton {
+/*   width: 100%;
+/*   padding: 0.75rem;
+/*   background-color: var(--light-border);
+/*   color: var(--light-text);
+/*   border: none;
+/*   border-radius: 0.25rem;
+/*   cursor: pointer;
+/* }
+/* 
+/* @media (prefers-color-scheme: dark) {
+/*   .socialButton {
+/*     background-color: var(--dark-border);
+/*     color: var(--dark-text);
+/*   }
+/* }
+/* 
+/* /* Register Link */
+/* .registerLink {
+/*   text-align: center;
+/*   margin-top: 2rem;
+/*   font-size: 0.875rem;
+/*   color: var(--light-muted);
+/* }
+/* 
+/* @media (prefers-color-scheme: dark) {
+/*   .registerLink {
+/*     color: var(--dark-muted);
+/*   }
+/* }
+/* 
+/* .registerLinkText {
+/*   color: var(--light-primary);
+/*   text-decoration: none;
+/* }
+/* 
+/* @media (prefers-color-scheme: dark) {
+/*   .registerLinkText {
+/*     color: var(--dark-primary);
+/*   }
+/* }
+/* 
+/* .registerLinkText:hover {
+/*   text-decoration: underline;
+/* }
+/* 
+/* /* Responsive Adjustments */
+/* @media (max-width: 768px) {
+/*   .formContainer {
+/*     padding: 1.5rem;
+/*  }
+}*/
+
+.container {
+  padding: 2rem 0 3rem;
+}
+
+.formWrapper {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 28rem;
+}
+
+.header {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.title {
+  margin-bottom: 0.5rem;
+  font-family: var(--font-serif);
+  font-size: 1.875rem;
+  font-weight: 300;
+}
+
+.subtitle {
+  color: hsl(var(--muted-foreground));
+}
+
+.form {
+  margin-bottom: 1.5rem;
+}
+
+.formFields {
+  margin-bottom: 1.5rem;
+}
+
+.fieldGroup {
+  margin-bottom: 1rem;
+}
+
+.inputWrapper {
+  position: relative;
+}
+
+.inputIcon {
+  position: absolute;
+  left: 0.75rem;
+  top: 0.75rem;
+  height: 1rem;
+  width: 1rem;
+  color: hsl(var(--muted-foreground));
+}
+
+.socialSection {
+  margin-top: 1.5rem;
+}
+
+.divider {
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.dividerLine {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+}
+
+.dividerText {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+}
+
+.dividerTextSpan {
+  background-color: hsl(var(--background));
+  padding: 0 0.5rem;
+  color: hsl(var(--muted-foreground));
+}
+
+.socialButtons {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+}
+
+.footer {
+  margin-top: 1.5rem;
+  text-align: center;
+  font-size: 0.875rem;
+  color: hsl(var(--muted-foreground));
+}
+
+.footerLink {
+  color: hsl(var(--primary));
+  text-decoration: none;
+}
+
+.footerLink:hover {
+  text-decoration: underline;
+}
