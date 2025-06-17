@@ -1,12 +1,13 @@
+
 import Image from "next/image";
-import { ChevronRight, Minus, Plus, ShoppingBag, Heart } from "lucide-react";
+import { ChevronRight, Minus, Plus, Heart } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import ProductReviews from "@/components/product-reviews";
 import RelatedProducts from "@/components/related-products";
-import styles from './page.module.css';
+import AddToCartButton from "@/components/add-to-cart-button";
 
 // This would come from a database/API in a real application
 const products = [
@@ -87,38 +88,38 @@ export async function generateStaticParams() {
   }));
 }
 
-export default async function ProductPage({ params }: { params: { id: string } }) {
-  const awaitedParams = await params;
-  const productData = products.find(product => product.id === awaitedParams.id) || products[0];
+export default function ProductPage({ params }: { params: { id: string } }) {
+  const productData = products.find(product => product.id === params.id) || products[0];
 
   return (
-    <main className={styles.main}>
-      <div className={styles.container}>
-
+    <main className="min-h-screen bg-background pt-24">
+      <div className="container py-8 md:py-12">
         {/* Breadcrumbs */}
-        <div className={styles.breadcrumbs}>
-          <a href="/shop" className={styles.breadcrumbLink}>Shop</a>
-          <ChevronRight className={styles.breadcrumbIcon}/>
-          <a href={`/shop?category=${productData.category.toLowerCase()}`} className={styles.breadcrumbLink}>{productData.category}</a>
-          <ChevronRight className={styles.breadcrumbIcon}/>
-          <span className={styles.breadcrumbCurrent}>{productData.name}</span>
+        <div className="mb-6 flex items-center text-sm text-muted-foreground">
+          <a href="/shop" className="hover:text-foreground">Shop</a>
+          <ChevronRight className="mx-1 h-4 w-4" />
+          <a href={`/shop?category=${productData.category.toLowerCase()}`} className="hover:text-foreground">{productData.category}</a>
+          <ChevronRight className="mx-1 h-4 w-4" />
+          <span className="text-foreground">{productData.name}</span>
         </div>
         
         {/* Product Section */}
-        <div className={styles.productSection}>
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:gap-12 xl:grid-cols-5">
           {/* Product Images */}
-          <div className={styles.productImages}>
-            <div className={styles.imageGrid}>
+          <div className="xl:col-span-3">
+            <div className="grid gap-4 md:grid-cols-2">
               {productData.images.slice(0, 4).map((image, index) => (
                 <div 
                   key={index}
-                  className={`${styles.imageItem} ${ index === 0 ? styles.mainImage : ''}`}
+                  className={`relative aspect-[3/4] w-full overflow-hidden bg-muted ${
+                    index === 0 ? "md:col-span-2 md:row-span-2" : ""
+                  }`}
                 >
                   <Image
                     src={image}
                     alt={`${productData.name} - Image ${index + 1}`}
                     fill
-                    className={styles.image}
+                    className="object-cover object-center"
                   />
                 </div>
               ))}
@@ -126,11 +127,11 @@ export default async function ProductPage({ params }: { params: { id: string } }
           </div>
           
           {/* Product Details */}
-          <div className={styles.productDetails}>
-            <h1 className={styles.productTitle}>{productData.name}</h1>
-            <p className={styles.productPrice}>${productData.price.toFixed(2)}</p>
+          <div className="sticky top-24 xl:col-span-2">
+            <h1 className="font-serif text-3xl font-light md:text-4xl">{productData.name}</h1>
+            <p className="mt-2 text-xl font-medium">${productData.price.toFixed(2)}</p>
             
-            <Separator className={styles.separator}/>
+            <Separator className="my-6" />
             
             {/* Color Selection */}
             <div className="mb-6">
@@ -181,28 +182,20 @@ export default async function ProductPage({ params }: { params: { id: string } }
               </div>
             </div>
             
-            {/* Quantity */}
-            <div className="mb-6">
-              <span className="mb-2 block text-sm font-medium">Quantity</span>
-              <div className="flex h-10 w-32">
-                <button className="flex w-10 items-center justify-center rounded-l-md border border-r-0 border-border hover:bg-muted">
-                  <Minus className="h-4 w-4" />
-                </button>
-                <div className="flex w-12 items-center justify-center border border-border">
-                  1
-                </div>
-                <button className="flex w-10 items-center justify-center rounded-r-md border border-l-0 border-border hover:bg-muted">
-                  <Plus className="h-4 w-4" />
-                </button>
-              </div>
-            </div>
-            
             {/* Add to Cart */}
             <div className="mb-6 flex gap-2">
-              <Button size="lg" className="flex-1">
-                <ShoppingBag className="mr-2 h-4 w-4" />
-                Add to Cart
-              </Button>
+              <AddToCartButton
+                product={{
+                  id: parseInt(productData.id),
+                  name: productData.name,
+                  price: productData.price,
+                  image: productData.images[0],
+                  category: productData.category,
+                }}
+                size="lg"
+                color="Stone"
+                className="flex-1"
+              />
               <Button size="lg" variant="outline" className="flex w-12 items-center justify-center">
                 <Heart className="h-4 w-4" />
                 <span className="sr-only">Add to Wishlist</span>
