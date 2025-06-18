@@ -1,4 +1,3 @@
-
 import Image from "next/image";
 import { ChevronRight, Minus, Plus, Heart } from "lucide-react";
 
@@ -192,9 +191,10 @@ export default function ProductPage({ params }: { params: { id: string } }) {
                   image: productData.images[0],
                   category: productData.category,
                 }}
-                size="lg"
+               // size="M"
                 color="Stone"
                 className="flex-1"
+                size="lg"
               />
               <Button size="lg" variant="outline" className="flex w-12 items-center justify-center">
                 <Heart className="h-4 w-4" />
