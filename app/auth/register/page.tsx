@@ -14,7 +14,7 @@ import styles from "./page.module.css";
 export default function RegisterPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
-  const [formDate, setFormData] = useState({
+  const [formData, setFormData] = useState({
     name: "",
     email: "",
     password: "",
@@ -41,7 +41,7 @@ export default function RegisterPage() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(setFormData),
+        body: JSON.stringify(formData),
       });
 
       const rawText = await res.text();
@@ -64,17 +64,6 @@ export default function RegisterPage() {
     }
   };
 
-    // Helper for social login (placeholder)
-  const handleSocialLogin = (provider: string) => {
-    setErrorMsg("");
-    setIsLoading(true);
-    // Implement actual social login here
-    setTimeout(() => {
-      setIsLoading(false);
-      setErrorMsg("Social login is not implemented yet.");
-    }, 1000);
-  };
-
   return (
     <main className="min-h-screen bg-background pt-24">
       <div className={`container ${styles.container}`}>
@@ -94,9 +83,13 @@ export default function RegisterPage() {
                   <User className={styles.inputIcon} />
                   <Input
                     id="name"
+                    name="name"
                     placeholder="Enter your name"
+                    value={formData.name}
+                    onChange={handleChange}
                     className="pl-9"
                     required
+                    autoComplete="name"
                   />
                 </div>
               </div>
@@ -107,10 +100,14 @@ export default function RegisterPage() {
                   <Mail className={styles.inputIcon} />
                   <Input
                     id="email"
+                    name="email"
                     type="email"
                     placeholder="Enter your email"
+                    value={formData.email}
+                    onChange={handleChange}
                     className="pl-9"
                     required
+                    autoComplete="email"
                   />
                 </div>
               </div>
@@ -121,10 +118,15 @@ export default function RegisterPage() {
                   <Lock className={styles.inputIcon} />
                   <Input
                     id="password"
+                    name="password"
                     type="password"
                     placeholder="Create a password"
+                    value={formData.password}
+                    onChange={handleChange}
                     className="pl-9"
                     required
+                    minLength={6}
+                    autoComplete="new-password"
                   />
                 </div>
               </div>
