@@ -3032,7 +3032,7 @@
 /*     padding: 1.5rem;
 /*  }
 }*/
-
+/*
 .container {
   padding: 2rem 0 3rem;
 }
@@ -3135,4 +3135,274 @@
 
 .footerLink:hover {
   text-decoration: underline;
+}*/
+
+/*
+.main {
+  min-height: 100vh;
+  background: var(--background);
+  padding-top: 6rem;
 }
+
+.container {
+  padding-top: 2rem;
+  padding-bottom: 3rem;
+}
+
+.breadcrumbs {
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
+}
+
+.link {
+  text-decoration: none;
+}
+
+.link:hover {
+  color: var(--foreground);
+}
+
+.icon {
+  margin: 0 0.25rem;
+  width: 1rem;
+  height: 1rem;
+}
+
+.current {
+  color: var(--foreground);
+}
+
+.productGrid {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .productGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1280px) {
+  .productGrid {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+.imagesSection {
+  grid-column: span 3;
+}
+
+.imageGrid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.imageWrapper {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  width: 100%;
+  overflow: hidden;
+  background: var(--muted);
+}
+
+.primaryImage {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+.image {
+  object-fit: cover;
+  object-position: center;
+}
+
+.detailsSection {
+  position: sticky;
+  top: 6rem;
+  grid-column: span 2;
+}
+
+.title {
+  font-family: serif;
+  font-size: 1.875rem;
+  font-weight: 300;
+}
+
+.price {
+  margin-top: 0.5rem;
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+.separator {
+  margin: 1.5rem 0;
+}
+
+.optionGroup {
+  margin-bottom: 1.5rem;
+}
+
+.optionHeader {
+  margin-bottom: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.label {
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.muted {
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
+}
+
+.colorOptions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.colorSwatch {
+  position: relative;
+  height: 2rem;
+  width: 2rem;
+  border-radius: 9999px;
+  border: 1px solid var(--border);
+}
+
+.selectedStone {
+  background-color: #e7e5e4;
+  border-color: var(--primary);
+}
+
+.navy {
+  background-color: #1e3a8a;
+}
+
+.black {
+  background-color: black;
+}
+
+.selectedIndicator {
+  position: absolute;
+  inset: -0.25rem;
+  border-radius: 9999px;
+  border: 1px solid var(--primary);
+}
+
+.sizeGrid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.5rem;
+}
+
+.sizeButton {
+  height: 2.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+}
+
+.selectedSize {
+  border: 1px solid var(--primary);
+  background: var(--primary);
+  color: var(--primary-foreground);
+}
+
+.defaultSize {
+  border: 1px solid var(--border);
+  background: var(--background);
+}
+
+.defaultSize:hover {
+  border-color: var(--foreground);
+}
+
+.cartActions {
+  margin-bottom: 1.5rem;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.addToCart {
+  flex: 1;
+}
+
+.wishlist {
+  display: flex;
+  width: 3rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.description {
+  color: var(--muted-foreground);
+}
+
+.tabs {
+  margin-top: 1.5rem;
+}
+
+.tabList {
+  width: 100%;
+  border-bottom: 1px solid var(--border);
+  background: transparent;
+  padding: 0;
+}
+
+.tabTrigger {
+  border-bottom: 2px solid transparent;
+  padding: 0.5rem 1rem;
+}
+
+.tabTrigger[data-state="active"] {
+  border-color: var(--primary);
+  background: transparent;
+  box-shadow: none;
+}
+
+.tabContent {
+  padding-top: 1rem;
+}
+
+.detailList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 0.875rem;
+}
+
+.detailItem {
+  display: flex;
+  align-items: start;
+}
+
+.bullet {
+  margin-right: 0.5rem;
+}
+
+.subtext {
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
+}
+
+.section {
+  margin-top: 4rem;
+}
+
+.sectionHeading {
+  margin-bottom: 2rem;
+  font-family: serif;
+  font-size: 1.5rem;
+  font-weight: 300;
+}
+*/
