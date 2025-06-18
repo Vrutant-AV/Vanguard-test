@@ -218,8 +218,8 @@ export default function ContactPage() {
             </div>
           </div>
         </div>
-
         {/* Map */}
+        {/*
         <div className="mt-12">
           <div className="aspect-[21/9] w-full overflow-hidden rounded-lg bg-muted">
             <div className="relative h-full w-full">
@@ -235,6 +235,7 @@ export default function ContactPage() {
             </div>
           </div>
         </div>
+        */}
       </div>
     </main>
   );
