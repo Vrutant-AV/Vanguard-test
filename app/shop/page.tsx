@@ -1,12 +1,18 @@
+"use client";
+
 import { Filter, ChevronDown } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
+import { useSearchParams } from "next/navigation";
 import ProductsGrid from "@/components/products-grid";
 import ProductFilters from "@/components/product-filters";
 import styles from "./page.module.css";
 
 export default function ShopPage() {
+  const searchParams = useSearchParams();
+  const searchTerm = searchParams.get("search");
+
   return (
     <main className={styles.main}>
       <div className={styles.container}>
@@ -69,31 +75,3 @@ function ShopCategories() {
   );
 }
 
-
-
-
-/*
- const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setLoading(true);
-    setError('');
-
-    try {
-      const res = await fetch('http://localhost:5000/api/auth/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      });
-
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.message || 'Login failed');
-
-      localStorage.setItem('token', data.token);
-      router.push('/');
-    } catch (err: any) {
-      setError(err.message);
-    } finally {
-      setLoading(false);
-    }
-  };
-*/
