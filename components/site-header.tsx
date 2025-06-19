@@ -2,11 +2,12 @@
 
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import { usePathname } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { ShoppingBag, Menu, X, Search, User } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { useCart } from "@/lib/cart-context";
 
@@ -23,9 +24,12 @@ export default function SiteHeader() {
   const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
   const { toggleCart, getTotalItems } = useCart();
-
   const totalItems = getTotalItems();
+
+  const router = useRouter();
+  const [query, setQuery] = useState("");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -38,6 +42,23 @@ export default function SiteHeader() {
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  const handleAccountClick = () => {
+    const token = localStorage.getItem("token");
+
+    if (token) {
+      router.push("/profile");
+    } else {
+      router.push("/auth/login");
+    }
+  };
+
+  const handleSearch = () => {
+    if (query.trim() === "") return;
+    router.push(`/shop?search=${encodeURIComponent(query)}`);
+    setIsSearchOpen(false);
+    setQuery("");
   };
 
   return (
@@ -90,28 +111,59 @@ export default function SiteHeader() {
 
         {/* Actions */}
         <div className="flex items-center gap-2">
-          <Button variant="ghost" size="icon">
+          {/* Search Icon */}
+          <Button variant="ghost" size="icon" onClick={() => setIsSearchOpen(!isSearchOpen)}>
             <Search className="h-5 w-5" />
             <span className="sr-only">Search</span>
           </Button>
-          <Button variant="ghost" size="icon" asChild>
-            <Link href="/auth/login">
-              <User className="h-5 w-5" />
-              <span className="sr-only">Account</span>
-            </Link>
+
+          {/* Account */}
+          <Button variant="ghost" size="icon" onClick={handleAccountClick}>
+            <User className="h-5 w-5" />
+            <span className="sr-only">Account</span>
           </Button>
-          <Button variant="ghost" size="icon" className="relative" onClick={toggleCart}>
+
+          {/* Cart */}
+          <Button
+            variant="ghost"
+            size="icon"
+            className="relative"
+            onClick={toggleCart}
+          >
             <ShoppingBag className="h-5 w-5" />
             {totalItems > 0 && (
               <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-primary text-xs font-medium text-primary-foreground">
-                {totalItems > 9 ? '9+' : totalItems}
+                {totalItems > 9 ? "9+" : totalItems}
               </span>
             )}
             <span className="sr-only">Cart ({totalItems})</span>
           </Button>
+
           <ThemeToggle />
         </div>
       </div>
+
+      {/* Search input overlay */}
+      {isSearchOpen && (
+        <div className="absolute left-0 right-0 top-full bg-background border-t border-border p-4 shadow-md z-50 flex gap-2 items-center">
+          <Input
+            type="text"
+            placeholder="Search products..."
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            className="flex-1"
+            onKeyDown={(e) => {
+              if (e.key === "Enter") handleSearch();
+            }}
+          />
+          <Button onClick={handleSearch}>
+            <Search className="h-5 w-5" />
+          </Button>
+          <Button variant="ghost" onClick={() => setIsSearchOpen(false)}>
+            <X className="h-5 w-5" />
+          </Button>
+        </div>
+      )}
 
       {/* Mobile menu */}
       <div
