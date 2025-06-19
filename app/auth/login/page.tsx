@@ -34,18 +34,24 @@ export default function LoginPage() {
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(formData),
         });
-  
+
         const data = await res.json();
-        if (!res.ok) throw new Error(data.message || 'Login failed');
-  
+
+        if (!res.ok) {
+          console.log('Login failed:', data.message || 'Login failed');
+          throw new Error(data.message || 'Login failed');
+        }
+
         localStorage.setItem('token', data.token);
+        console.log('Login successful:', data);
         router.push('/');
       } catch (err: any) {
-        setError(err.message);
+          console.log('Error during login:', 'mail or password is wrong');
+          setError('e-mail or password is wrong');
       } finally {
-        setLoading(false);
+          setLoading(false);
       }
-  };
+    };
 
   return (
     <main className="min-h-screen bg-background pt-24">
