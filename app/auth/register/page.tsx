@@ -56,8 +56,10 @@ export default function RegisterPage() {
         throw new Error(data?.message || "Registration failed");
       }
 
+      console.log('Register successful:', data);
       router.push("/auth/login");
     } catch (err: any) {
+      console.log('Error during register:', 'something went wrong');
       setErrorMsg(err.message || "Something went wrong.");
     } finally {
       setIsLoading(false);
