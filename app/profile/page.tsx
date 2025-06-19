@@ -11,9 +11,37 @@ import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import styles from "./page.module.css";
+import { useRouter } from "next/navigation";
 
 export default function ProfilePage() {
   const [isEditing, setIsEditing] = useState(false);
+  const router = useRouter();
+
+  const handleLogout = async () => {
+    const token = localStorage.getItem("token");
+
+    try {
+      const res = await fetch("http://localhost:5000/api/auth/logout", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (!res.ok) {
+        const errorData = await res.json();
+        console.error("Logout failed:", errorData.message || "Unknown error");
+        return;
+      }
+
+      console.log("Logout successful");
+      localStorage.removeItem("token");
+      router.push("/auth/login");
+    } catch (err) {
+      console.error("Error logging out:", err);
+    }
+  };
 
   return (
     <main className="min-h-screen bg-background pt-24">
@@ -56,7 +84,7 @@ export default function ProfilePage() {
                   className="w-full justify-start"
                   asChild
                 >
-                  <Link href="/profile/wishlist">
+                  <Link href="/wishlist">
                     <Heart className="mr-2 h-4 w-4" />
                     Wishlist
                   </Link>
@@ -76,6 +104,7 @@ export default function ProfilePage() {
                 <Button
                   variant="ghost"
                   className="w-full justify-start text-red-500 hover:text-red-600"
+                  onClick={handleLogout}
                 >
                   <LogOut className="mr-2 h-4 w-4" />
                   Sign Out
