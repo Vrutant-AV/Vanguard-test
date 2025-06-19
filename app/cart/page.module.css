@@ -8,13 +8,14 @@
 
 .title {
   font-family: var(--font-serif);
-  font-size: 1.875rem;
+  font-size: 2.275rem;
   font-weight: 300;
+  padding: 2px 7px 2px 7px;
 }
 
 .subtitle {
   /*margin-top: 0.5rem;*/
-  padding: 5px 4px 5px 9px;
+  padding: 2px 7px 2px 7px;
   color: hsl(var(--muted-foreground));
 }
 
