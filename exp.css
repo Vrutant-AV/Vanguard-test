@@ -3451,3 +3451,310 @@ export default function ShopPage() {
   );
 }
 */
+/* .container {
+  padding: 2rem 0 3rem;
+}
+
+.formWrapper {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 28rem;
+}
+
+.header {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.title {
+  margin-bottom: 0.5rem;
+  font-family: var(--font-serif);
+  font-size: 1.875rem;
+  font-weight: 300;
+}
+
+.subtitle {
+  color: hsl(var(--muted-foreground));
+}
+
+.form {
+  margin-bottom: 1.5rem;
+}
+
+.formFields {
+  margin-bottom: 1.5rem;
+}
+
+.fieldGroup {
+  margin-bottom: 1rem;
+}
+
+.fieldHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.forgotLink {
+  font-size: 0.875rem;
+  color: hsl(var(--primary));
+  text-decoration: none;
+}
+
+.forgotLink:hover {
+  text-decoration: underline;
+}
+
+.inputWrapper {
+  position: relative;
+}
+
+.inputIcon {
+  position: absolute;
+  left: 0.75rem;
+  top: 0.75rem;
+  height: 1rem;
+  width: 1rem;
+  color: hsl(var(--muted-foreground));
+}
+
+.socialSection {
+  margin-top: 1.5rem;
+}
+
+.divider {
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.dividerLine {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+}
+
+.dividerText {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+}
+
+.dividerTextSpan {
+  background-color: hsl(var(--background));
+  padding: 0 0.5rem;
+  color: hsl(var(--muted-foreground));
+}
+
+.socialButtons {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+}
+
+.footer {
+  margin-top: 1.5rem;
+  text-align: center;
+  font-size: 0.875rem;
+  color: hsl(var(--muted-foreground));
+}
+
+.footerLink {
+  color: hsl(var(--primary));
+  text-decoration: none;
+}
+
+.footerLink:hover {
+  text-decoration: underline;
+} */
+.main {
+  min-height: 100vh;
+  background: var(--background);
+  padding-top: 6rem;
+}
+
+.heroSection {
+  position: relative;
+  aspect-ratio: 21/9;
+  max-height: 600px;
+  width: 100%;
+  overflow: hidden;
+}
+
+.heroImage {
+  object-fit: cover;
+  object-position: center;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.heroTextContainer {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.heroTitle {
+  font-family: var(--font-serif);
+  font-size: 2.25rem;
+  font-weight: 300;
+  letter-spacing: -0.01em;
+  color: white;
+}
+
+@media (min-width: 768px) {
+  .heroTitle {
+    font-size: 3.75rem;
+  }
+}
+
+.tabsSection {
+  padding-top: 4rem;
+  padding-bottom: 6rem;
+}
+
+.tabsHeader {
+  margin-bottom: 3rem;
+}
+
+.tabsList {
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  width: 100%;
+  max-width: 32rem;
+  justify-content: center;
+  gap: 1rem;
+  border-bottom: 1px solid var(--border);
+  background: transparent;
+  padding: 0;
+}
+
+.tabsTrigger {
+  border-bottom: 2px solid transparent;
+  padding-bottom: 0.5rem;
+  padding-top: 0.25rem;
+}
+
+.tabsTrigger[data-state="active"] {
+  border-color: var(--primary);
+  background: transparent;
+  box-shadow: none;
+}
+
+.collectionIntro {
+  margin-bottom: 2.5rem;
+  max-width: 48rem;
+}
+
+.collectionTitle {
+  margin-bottom: 1rem;
+  font-family: var(--font-serif);
+  font-size: 1.875rem;
+  font-weight: 300;
+}
+
+.gridWrapper {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .gridWrapper {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .gridWrapper {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.gridColumn {
+  display: grid;
+  gap: 1rem;
+}
+
+.imageCard {
+  position: relative;
+  aspect-ratio: 3/4;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 0.375rem;
+}
+
+.gridImage {
+  object-fit: cover;
+  object-position: center;
+}
+
+.emptyCollection {
+  display: flex;
+  height: 10rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.btsSection {
+  background: var(--muted);
+  padding-top: 4rem;
+  padding-bottom: 6rem;
+}
+
+.btsTitle {
+  margin-bottom: 3rem;
+  text-align: center;
+  font-family: var(--font-serif);
+  font-size: 1.875rem;
+  font-weight: 300;
+}
+
+@media (min-width: 768px) {
+  .btsTitle {
+    font-size: 2.25rem;
+  }
+}
+
+.btsGrid {
+  display: grid;
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .btsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.btsImageWrapper {
+  position: relative;
+  aspect-ratio: 16/9;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 0.375rem;
+}
+
+.btsText {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.btsSubheading {
+  margin-bottom: 1rem;
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  font-weight: 300;
+}
