@@ -1,0 +1,75 @@
+.main {
+    min-height: 100vh;
+    background: var(--background);
+    padding: 6rem;
+}
+
+.heroSection {
+    position: relative;
+    aspect-ratio: 21/9;
+    max-height: 600px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.heroImage {
+    object-fit: cover;
+    object-position: center;
+}
+
+.overlay {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.4);;
+}
+
+.heroTextContainer {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.heroTitle {
+    font-family: var(--font-serif);
+    font-size: 2.25rem;
+    font-weight: 300;
+    letter-spacing: -0.01rem;
+    color: white;
+}
+
+@media (min-width: 768px) {
+    .heroTitle {
+        font-size: 3.75rem;
+    }
+}
+
+.tabsSection {
+    padding-top: 4rem;
+    padding-bottom: 6rem;
+}
+
+.tabsHeader {
+    margin-bottom: 3rem;
+}
+
+.tabsList {
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    width: 100;
+    max-width: 32rem;
+    justify-content: center;
+    gap: 1rem;
+    border-bottom: 1px solid var(--border);
+    background:transparent;
+    padding: 0;
+}
+
+.tabsTrigger {
+    border-bottom: 2px solid transparent;
+    padding-bottom: 0.5rem;
+    padding-top: 0.25rem;
+}
+
