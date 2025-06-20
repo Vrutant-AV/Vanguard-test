@@ -26,16 +26,16 @@ const products = [
     sizes: ["XS", "S", "M", "L", "XL"],
     colors: ["Stone", "Navy", "Black"],
     images: [
-      "https://images.pexels.com/photos/5384428/pexels-photo-5384428.jpeg",
-      "https://images.pexels.com/photos/5384423/pexels-photo-5384423.jpeg",
-      "https://images.pexels.com/photos/5384427/pexels-photo-5384427.jpeg",
-      "https://images.pexels.com/photos/5384426/pexels-photo-5384426.jpeg"
+      "https://images.pexels.com/photos/6311394/pexels-photo-6311394.jpeg",
+      "https://images.pexels.com/photos/6311403/pexels-photo-6311403.jpeg",
+      "https://images.pexels.com/photos/6311401/pexels-photo-6311401.jpeg",
+      "https://images.pexels.com/photos/6311400/pexels-photo-6311400.jpeg"
     ],
     category: "Men",
   },
   {
     id: "2",
-    name: "Classic Denim Jacket",
+    name: "Structured Wool Blazer",
     price: 159.00,
     description: "A timeless denim jacket crafted from premium cotton denim. Features a classic fit with traditional detailing.",
     details: [
@@ -49,17 +49,63 @@ const products = [
     sizes: ["XS", "S", "M", "L", "XL"],
     colors: ["Light Blue", "Dark Blue", "Black"],
     images: [
-      "https://images.pexels.com/photos/7679720/pexels-photo-7679720.jpeg",
-      "https://images.pexels.com/photos/7679721/pexels-photo-7679721.jpeg",
-      "https://images.pexels.com/photos/7679722/pexels-photo-7679722.jpeg",
-      "https://images.pexels.com/photos/7679723/pexels-photo-7679723.jpeg"
+      "https://images.pexels.com/photos/937520/pexels-photo-937520.jpeg",
+      "https://images.pexels.com/photos/975657/pexels-photo-975657.jpeg",
+      "https://images.pexels.com/photos/844297/pexels-photo-844297.jpeg",
+      "https://images.pexels.com/photos/1176896/pexels-photo-1176896.jpeg"
+    ],
+    category: "Men",
+  },
+  {
+    id: "3",
+    name: "Relaxed Linen Shirt",
+    price: 219.00,
+    description: "A lightweight yet warm puffer jacket with a quilted shell and down-alternative fill. Ideal for cold-weather layering.",
+    details: [
+      "Nylon shell with polyester fill",
+      "Quilted design",
+      "Zip-up front",
+      "Side zip pockets",
+      "Packable into included pouch",
+      "Machine washable"
+    ],
+    sizes: ["S", "M", "L", "XL", "XXL"],
+    colors: ["Olive", "Black", "Grey"],
+    images: [
+      "https://images.pexels.com/photos/1125133/pexels-photo-1125133.jpeg",
+      "https://images.pexels.com/photos/428340/pexels-photo-428340.jpeg",
+      "https://images.pexels.com/photos/428338/pexels-photo-428338.jpeg",
+      "https://images.pexels.com/photos/1846548/pexels-photo-1846548.jpeg"
+    ],
+    category: "Men",
+  },
+  {
+    id: "4",
+    name: "High-Waist Tapered Pants",
+    price: 175.00,
+    description: "A breathable, lightweight shirt made from a linen-cotton blend, perfect for warmer climates and casual styling.",
+    details: [
+      "55% linen, 45% cotton",
+      "Button-down collar",
+      "Regular fit",
+      "Breathable fabric",
+      "Chest pocket",
+      "Machine washable"
+    ],
+    sizes: ["XS", "S", "M", "L", "XL"],
+    colors: ["White", "Sky Blue", "Beige"],
+    images: [
+      "https://images.pexels.com/photos/1812972/pexels-photo-1812972.jpeg",
+      "https://images.pexels.com/photos/7940629/pexels-photo-7940629.jpeg",
+      "https://images.pexels.com/photos/1812965/pexels-photo-1812965.jpeg",
+      "https://images.pexels.com/photos/7940623/pexels-photo-7940623.jpeg"
     ],
     category: "Men",
   },
   {
     id: "5",
-    name: "Wool Blend Peacoat",
-    price: 299.00,
+    name: "Oversized Merino Sweater",
+    price: 210.00,
     description: "A sophisticated peacoat crafted from a premium wool blend. Features a classic double-breasted design with modern tailoring for a refined silhouette.",
     details: [
       "80% wool, 20% polyester blend",
@@ -87,8 +133,9 @@ export async function generateStaticParams() {
   }));
 }
 
-export default function ProductPage({ params }: { params: { id: string } }) {
-  const productData = products.find(product => product.id === params.id) || products[0];
+export default async function ProductPage({ params }: { params: { id: string } }) {
+  const resolvedParams = await params;
+  const productData = products.find(product => product.id === String(resolvedParams.id)) || products[0];
 
   return (
     <main className="min-h-screen bg-background pt-24">

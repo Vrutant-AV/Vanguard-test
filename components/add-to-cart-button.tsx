@@ -29,7 +29,7 @@ interface AddToCartButtonProps {
 export default function AddToCartButton({
   product,
   size: selectedSize,
-  color: selectedColor,
+  color: selectedColor = "Default",
   quantity = 1,
   className,
   size = "default",
@@ -37,7 +37,7 @@ export default function AddToCartButton({
   showIcon = true,
   children,
 }: AddToCartButtonProps) {
-  const { addItem, openCart } = useCart();
+  const { addItem } = useCart();
   const [isAdding, setIsAdding] = useState(false);
   const [isAdded, setIsAdded] = useState(false);
 
@@ -60,11 +60,6 @@ export default function AddToCartButton({
 
     setIsAdding(false);
     setIsAdded(true);
-    
-    // Open cart drawer
-    setTimeout(() => {
-      openCart();
-    }, 300);
 
     // Reset added state after animation
     setTimeout(() => {
