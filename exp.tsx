@@ -1847,159 +1847,1296 @@ export default function ProfilePage() {
 //   );
 // }
 
-import Image from "next/image";
-import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+// import Image from "next/image";
+// import Link from "next/link";
+// import { ArrowRight } from "lucide-react";
 
-import styles from "./page.module.css";
-import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+// import styles from "./page.module.css";
+// import { Button } from "@/components/ui/button";
+// import { Separator } from "@/components/ui/separator";
+// import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-export default function LookbookPage() {
+// export default function LookbookPage() {
+//   return (
+//     <main className={styles.main}>
+//       {/* Hero Section */}
+//       <section className={styles.heroSection}>
+//         <Image
+//           src="https://images.pexels.com/photos/2566025/pexels-photo-2566025.jpeg"
+//           alt="Vanguard Lookbook"
+//           fill
+//           className={styles.heroImage}
+//           priority
+//         />
+//         <div className={styles.overlay} />
+//         <div className={styles.heroTextContainer}>
+//           <h1 className={styles.heroTitle}>Lookbook</h1>
+//         </div>
+//       </section>
+
+//       {/* Collections Tabs */}
+//       <section className={styles.tabsSection}>
+//         <Tabs defaultValue="summer2025" className="w-full">
+//           <div className={styles.tabsHeader}>
+//             <TabsList className={styles.tabsList}>
+//               {["Summer 2025", "Spring 2025", "Winter 2024", "Fall 2024"].map((season) => (
+//                 <TabsTrigger
+//                   key={season}
+//                   value={season.toLowerCase().replace(" ", "")}
+//                   className={styles.tabsTrigger}
+//                 >
+//                   {season}
+//                 </TabsTrigger>
+//               ))}
+//             </TabsList>
+//           </div>
+
+//           {/* Summer 2025 Collection */}
+//           <TabsContent value="summer2025" className="mt-0">
+//             <div className={styles.collectionIntro}>
+//               <h2 className={styles.collectionTitle}>Coastal Modernism</h2>
+//               <p className="text-muted-foreground">
+//                 Our Summer 2025 collection draws inspiration from the meeting point of architecture and coastline. Clean lines and structured silhouettes are softened by lightweight fabrics and a palette of sand, sea foam, and terracotta that evokes Mediterranean summers.
+//               </p>
+//               <div className="mt-6">
+//                 <Button asChild variant="outline">
+//                   <Link href="/shop?collection=summer2025" className="flex items-center">
+//                     Shop the Collection
+//                     <ArrowRight className="ml-2 h-4 w-4" />
+//                   </Link>
+//                 </Button>
+//               </div>
+//             </div>
+
+//             <div className={styles.gridWrapper}>
+//               <div className={styles.gridColumn}>
+//                 {[
+//                   "https://images.pexels.com/photos/1926769/pexels-photo-1926769.jpeg",
+//                   "https://images.pexels.com/photos/2853909/pexels-photo-2853909.jpeg",
+//                 ].map((src, index) => (
+//                   <div key={index} className={styles.imageCard}>
+//                     <Image
+//                       src={src}
+//                       alt={`Summer 2025 lookbook image ${index + 1}`}
+//                       fill
+//                       className={styles.gridImage}
+//                     />
+//                   </div>
+//                 ))}
+//               </div>
+//               <div className={styles.gridColumn}>
+//                 {[
+//                   "https://images.pexels.com/photos/2778144/pexels-photo-2778144.jpeg",
+//                   "https://images.pexels.com/photos/2681751/pexels-photo-2681751.jpeg",
+//                 ].map((src, index) => (
+//                   <div key={index} className={styles.imageCard}>
+//                     <Image
+//                       src={src}
+//                       alt={`Summer 2025 lookbook image ${index + 3}`}
+//                       fill
+//                       className={styles.gridImage}
+//                     />
+//                   </div>
+//                 ))}
+//               </div>
+//               <div className={`${styles.gridColumn} hidden lg:grid`}>
+//                 {[
+//                   "https://images.pexels.com/photos/1462637/pexels-photo-1462637.jpeg",
+//                   "https://images.pexels.com/photos/1726496/pexels-photo-1726496.jpeg",
+//                 ].map((src, index) => (
+//                   <div key={index} className={styles.imageCard}>
+//                     <Image
+//                       src={src}
+//                       alt={`Summer 2025 lookbook image ${index + 5}`}
+//                       fill
+//                       className={styles.gridImage}
+//                     />
+//                   </div>
+//                 ))}
+//               </div>
+//             </div>
+//           </TabsContent>
+
+//           <TabsContent value="spring2025">
+//             <div className={styles.emptyCollection}>
+//               <p className="text-muted-foreground">Spring 2025 collection coming soon.</p>
+//             </div>
+//           </TabsContent>
+//           <TabsContent value="winter2024">
+//             <div className={styles.emptyCollection}>
+//               <p className="text-muted-foreground">Winter 2024 collection coming soon.</p>
+//             </div>
+//           </TabsContent>
+//           <TabsContent value="fall2024">
+//             <div className={styles.emptyCollection}>
+//               <p className="text-muted-foreground">Fall 2024 collection coming soon.</p>
+//             </div>
+//           </TabsContent>
+//         </Tabs>
+//       </section>
+
+//       {/* Behind the Scenes */}
+//       <section className={styles.btsSection}>
+//         <div className="container">
+//           <h2 className={styles.btsTitle}>Behind the Scenes</h2>
+//           <div className={styles.btsGrid}>
+//             <div className={styles.btsImageWrapper}>
+//               <Image
+//                 src="https://images.pexels.com/photos/2451259/pexels-photo-2451259.jpeg"
+//                 alt="Behind the scenes - photoshoot"
+//                 fill
+//                 className={styles.gridImage}
+//               />
+//             </div>
+//             <div className={styles.btsText}>
+//               <h3 className={styles.btsSubheading}>Summer 2025 Campaign</h3>
+//               <p className="mb-4 text-muted-foreground">
+//                 Shot on location in Santorini, Greece, our Summer 2025 campaign captures the essence of Mediterranean architecture against the iconic blue and white landscape. We collaborated with renowned photographer Elena Mayer to bring our vision to life.
+//               </p>
+//               <p className="text-muted-foreground">
+//                 The campaign features models from diverse backgrounds, each bringing their unique energy to showcase the versatility and inclusivity of our designs.
+//               </p>
+//             </div>
+//           </div>
+//         </div>
+//       </section>
+//     </main>
+//   );
+// }
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/*
+//lib/wishlist-context.tsx
+"use client";
+
+import React, { createContext, useContext, useReducer, useEffect } from "react";
+
+export interface WishlistItem {
+    id: number;
+    name: string;
+    price: number;
+    image: string;
+    category: string;
+    dateAdded: string;
+}
+
+interface WishlistState {
+    items: WishlistItem[];
+}
+
+type WishlistAction = 
+    | { type: 'ADD_ITEM'; payload: Omit<WishlistItem, 'dateAdded'> }
+    | { type: 'REMOVE_ITEM'; payload: { id: number } }
+    | { type: 'CLEAR_WISHLIST' };
+
+const wishlistReducer = (state: WishlistState, action: WishlistAction): WishlistState => {
+    switch (action.type) {
+        case 'ADD_ITEM': {
+            const existingItemIndex = state.items.findIndex(
+                item => item.id === action.payload.id
+            );
+
+            if (existingItemIndex > -1) {
+                // Item already exists, don't add duplicate
+                return state;
+            }
+
+            const newItem: WishlistItem = {
+                ...action.payload,
+                dateAdded: new Date().toISOString().split('T')[0]
+            };
+
+            return {
+                ...state,
+                items: [...state.items, newItem],
+            };
+        }
+
+        case 'REMOVE_ITEM': {
+            const filteredItems = state.items.filter(
+                item => item.id !== action.payload.id
+            );
+            return { ...state, items: filteredItems };
+        }
+
+        case 'CLEAR_WISHLIST':
+            return { ...state, items: [] };
+
+        default:
+            return state;
+    }
+};
+
+interface WishlistContextType {
+    state: WishlistState;
+    addItem: (item: Omit<WishlistItem, 'dateAdded'>) => void;
+    removeItem: (id: number) => void;
+    clearWishlist: () => void;
+    isInWishlist: (id: number) => boolean;
+    getTotalItems: () => number;
+}
+
+const WishlistContext = createContext<WishlistContextType | undefined>(undefined);
+
+export const useWishlist = () => {
+    const context = useContext(WishlistContext);
+    if (!context) {
+        throw new Error('useWishlist must be used within a WishlistProvider');
+    }
+    return context;
+};
+
+export const WishlistProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+    const [state, dispatch] = useReducer(wishlistReducer, {
+        items: [],
+    });
+
+    // Load wishlist from localStorage on mount
+    useEffect(() => {
+        const savedWishlist = localStorage.getItem('vanguard-wishlist');
+        if (savedWishlist) {
+            try {
+                const parsedWishlist = JSON.parse(savedWishlist);
+                parsedWishlist.forEach((item: WishlistItem) => {
+                    dispatch({ type: 'ADD_ITEM', payload: item });
+                });
+            } catch (error) {
+                console.error('Error loading wishlist from localStorage:', error);
+            }
+        }
+    }, []);
+
+    // Save wishlist to localStorage whenever it changes
+    useEffect(() => {
+        localStorage.setItem('vanguard-wishlist', JSON.stringify(state.items));
+    }, [state.items]);
+
+    const addItem = (item: Omit<WishlistItem, 'dateAdded'>) => {
+        dispatch({ type: 'ADD_ITEM', payload: item });
+    };
+
+    const removeItem = (id: number) => {
+        dispatch({ type: 'REMOVE_ITEM', payload: { id } });
+    };
+
+    const clearWishlist = () => {
+        dispatch({ type: 'CLEAR_WISHLIST' });
+    };
+
+    const isInWishlist = (id: number) => {
+        return state.items.some(item => item.id === id);
+    };
+
+    const getTotalItems = () => {
+        return state.items.length;
+    };
+
+    const value: WishlistContextType = {
+        state,
+        addItem,
+        removeItem,
+        clearWishlist,
+        isInWishlist,
+        getTotalItems,
+    };
+
+    return (
+        <WishlistContext.Provider value={value}>
+            {children}
+        </WishlistContext.Provider>
+    );
+};
+*/
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/*
+//app/layout.tsx
+
+import "./globals.css";
+import type { Metadata } from "next";
+import { Inter, Playfair_Display } from "next/font/google";
+import { ThemeProvider } from "@/components/theme-provider";
+import { CartProvider } from "@/lib/cart-context";
+import { WishlistProvider } from "@/lib/wishlist-context";
+
+import SiteHeader from "@/components/site-header";
+import SiteFooter from "@/components/site-footer";
+import CartDrawer from "@/components/cart-drawer";
+
+// Fonts with increased timeout
+const inter = Inter({ 
+  subsets: ["latin"],
+  variable: "--font-sans",
+  display: 'swap', // Fallback handling
+});
+
+const playfair = Playfair_Display({ 
+  subsets: ["latin"],
+  variable: "--font-serif",
+  display: 'swap', // Fallback handling
+});
+
+export const metadata: Metadata = {
+  title: "Vanguard Apparel | Premium Contemporary Fashion",
+  description: "Redefining contemporary fashion with timeless elegance and bold innovation.",
+};
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
-    <main className={styles.main}>
-      {/* Hero Section */}
-      <section className={styles.heroSection}>
-        <Image
-          src="https://images.pexels.com/photos/2566025/pexels-photo-2566025.jpeg"
-          alt="Vanguard Lookbook"
-          fill
-          className={styles.heroImage}
-          priority
-        />
-        <div className={styles.overlay} />
-        <div className={styles.heroTextContainer}>
-          <h1 className={styles.heroTitle}>Lookbook</h1>
-        </div>
-      </section>
-
-      {/* Collections Tabs */}
-      <section className={styles.tabsSection}>
-        <Tabs defaultValue="summer2025" className="w-full">
-          <div className={styles.tabsHeader}>
-            <TabsList className={styles.tabsList}>
-              {["Summer 2025", "Spring 2025", "Winter 2024", "Fall 2024"].map((season) => (
-                <TabsTrigger
-                  key={season}
-                  value={season.toLowerCase().replace(" ", "")}
-                  className={styles.tabsTrigger}
-                >
-                  {season}
-                </TabsTrigger>
-              ))}
-            </TabsList>
-          </div>
-
-          {/* Summer 2025 Collection */}
-          <TabsContent value="summer2025" className="mt-0">
-            <div className={styles.collectionIntro}>
-              <h2 className={styles.collectionTitle}>Coastal Modernism</h2>
-              <p className="text-muted-foreground">
-                Our Summer 2025 collection draws inspiration from the meeting point of architecture and coastline. Clean lines and structured silhouettes are softened by lightweight fabrics and a palette of sand, sea foam, and terracotta that evokes Mediterranean summers.
-              </p>
-              <div className="mt-6">
-                <Button asChild variant="outline">
-                  <Link href="/shop?collection=summer2025" className="flex items-center">
-                    Shop the Collection
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Link>
-                </Button>
-              </div>
-            </div>
-
-            <div className={styles.gridWrapper}>
-              <div className={styles.gridColumn}>
-                {[
-                  "https://images.pexels.com/photos/1926769/pexels-photo-1926769.jpeg",
-                  "https://images.pexels.com/photos/2853909/pexels-photo-2853909.jpeg",
-                ].map((src, index) => (
-                  <div key={index} className={styles.imageCard}>
-                    <Image
-                      src={src}
-                      alt={`Summer 2025 lookbook image ${index + 1}`}
-                      fill
-                      className={styles.gridImage}
-                    />
-                  </div>
-                ))}
-              </div>
-              <div className={styles.gridColumn}>
-                {[
-                  "https://images.pexels.com/photos/2778144/pexels-photo-2778144.jpeg",
-                  "https://images.pexels.com/photos/2681751/pexels-photo-2681751.jpeg",
-                ].map((src, index) => (
-                  <div key={index} className={styles.imageCard}>
-                    <Image
-                      src={src}
-                      alt={`Summer 2025 lookbook image ${index + 3}`}
-                      fill
-                      className={styles.gridImage}
-                    />
-                  </div>
-                ))}
-              </div>
-              <div className={`${styles.gridColumn} hidden lg:grid`}>
-                {[
-                  "https://images.pexels.com/photos/1462637/pexels-photo-1462637.jpeg",
-                  "https://images.pexels.com/photos/1726496/pexels-photo-1726496.jpeg",
-                ].map((src, index) => (
-                  <div key={index} className={styles.imageCard}>
-                    <Image
-                      src={src}
-                      alt={`Summer 2025 lookbook image ${index + 5}`}
-                      fill
-                      className={styles.gridImage}
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
-          </TabsContent>
-
-          <TabsContent value="spring2025">
-            <div className={styles.emptyCollection}>
-              <p className="text-muted-foreground">Spring 2025 collection coming soon.</p>
-            </div>
-          </TabsContent>
-          <TabsContent value="winter2024">
-            <div className={styles.emptyCollection}>
-              <p className="text-muted-foreground">Winter 2024 collection coming soon.</p>
-            </div>
-          </TabsContent>
-          <TabsContent value="fall2024">
-            <div className={styles.emptyCollection}>
-              <p className="text-muted-foreground">Fall 2024 collection coming soon.</p>
-            </div>
-          </TabsContent>
-        </Tabs>
-      </section>
-
-      {/* Behind the Scenes */}
-      <section className={styles.btsSection}>
-        <div className="container">
-          <h2 className={styles.btsTitle}>Behind the Scenes</h2>
-          <div className={styles.btsGrid}>
-            <div className={styles.btsImageWrapper}>
-              <Image
-                src="https://images.pexels.com/photos/2451259/pexels-photo-2451259.jpeg"
-                alt="Behind the scenes - photoshoot"
-                fill
-                className={styles.gridImage}
-              />
-            </div>
-            <div className={styles.btsText}>
-              <h3 className={styles.btsSubheading}>Summer 2025 Campaign</h3>
-              <p className="mb-4 text-muted-foreground">
-                Shot on location in Santorini, Greece, our Summer 2025 campaign captures the essence of Mediterranean architecture against the iconic blue and white landscape. We collaborated with renowned photographer Elena Mayer to bring our vision to life.
-              </p>
-              <p className="text-muted-foreground">
-                The campaign features models from diverse backgrounds, each bringing their unique energy to showcase the versatility and inclusivity of our designs.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
+    <html lang="en" suppressHydrationWarning>
+      <body className={`${inter.variable} ${playfair.variable} font-sans`}>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="light"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <WishlistProvider>
+            <CartProvider>
+              <SiteHeader />
+              {children}
+              <SiteFooter />
+              <CartDrawer />
+            </CartProvider>
+          </WishlistProvider>
+        </ThemeProvider>
+      </body>
+    </html>
   );
 }
+*/
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/*
+
+//components/wishlist-button.tsx
+
+"use client";
+
+import { useState } from "react";
+import { Heart } from "lucide-react";
+
+import { Button } from "@/components/ui/button";
+import { useWishlist } from "@/lib/wishlist-context";
+import { cn } from "@/lib/utils";
+
+interface Product {
+  id: number;
+  name: string;
+  price: number;
+  image: string;
+  category: string;
+}
+
+interface WishlistButtonProps {
+  product: Product;
+  className?: string;
+  size?: "sm" | "default" | "lg" | "icon";
+  variant?: "default" | "outline" | "ghost";
+  showIcon?: boolean;
+}
+
+export default function WishlistButton({
+  product,
+  className,
+  size = "icon",
+  variant = "ghost",
+  showIcon = true,
+}: WishlistButtonProps) {
+  const { addItem, removeItem, isInWishlist } = useWishlist();
+  const [isAnimating, setIsAnimating] = useState(false);
+
+  const inWishlist = isInWishlist(product.id);
+
+  const handleToggleWishlist = async () => {
+    setIsAnimating(true);
+    
+    // Simulate animation delay
+    await new Promise(resolve => setTimeout(resolve, 200));
+    
+    if (inWishlist) {
+      removeItem(product.id);
+    } else {
+      addItem({
+        id: product.id,
+        name: product.name,
+        price: product.price,
+        image: product.image,
+        category: product.category,
+      });
+    }
+
+    setIsAnimating(false);
+  };
+
+  return (
+    <Button
+      onClick={handleToggleWishlist}
+      className={cn(className)}
+      size={size}
+      variant={variant}
+      disabled={isAnimating}
+    >
+      {showIcon && (
+        <Heart 
+          className={cn(
+            "h-4 w-4 transition-all duration-200",
+            inWishlist ? "fill-current text-red-500" : "text-current",
+            isAnimating && "scale-125"
+          )} 
+        />
+      )}
+      <span className="sr-only">
+        {inWishlist ? "Remove from wishlist" : "Add to wishlist"}
+      </span>
+    </Button>
+  );
+}
+*/
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/*
+//components/products-grid.tsx
+
+import Link from "next/link";
+import Image from "next/image";
+
+import AddToCartButton from "@/components/add-to-cart-button";
+import WishlistButton from "@/components/wishlist-button";
+
+// Sample product data (in a real app, this would come from a database/API)
+const products = [
+  {
+    id: 1,
+    name: "Tailored Cotton Overshirt",
+    price: 189.00,
+    image: "https://images.pexels.com/photos/5384428/pexels-photo-5384428.jpeg",
+    category: "Men",
+    isNew: true,
+  },
+  {
+    id: 2,
+    name: "Structured Wool Blazer",
+    price: 290.00,
+    image: "https://images.pexels.com/photos/5384425/pexels-photo-5384425.jpeg",
+    category: "Women",
+    isNew: true,
+  },
+  {
+    id: 3,
+    name: "Relaxed Linen Shirt",
+    price: 120.00,
+    image: "https://images.pexels.com/photos/5384429/pexels-photo-5384429.jpeg",
+    category: "Men",
+    isNew: true,
+  },
+  {
+    id: 4,
+    name: "High-Waist Tapered Pants",
+    price: 175.00,
+    image: "https://images.pexels.com/photos/5384424/pexels-photo-5384424.jpeg",
+    category: "Women",
+    isNew: true,
+  },
+  {
+    id: 5,
+    name: "Oversized Merino Sweater",
+    price: 210.00,
+    image: "https://images.pexels.com/photos/5709656/pexels-photo-5709656.jpeg",
+    category: "Women",
+  },
+  {
+    id: 6,
+    name: "Slim Fit Selvedge Jeans",
+    price: 165.00,
+    image: "https://images.pexels.com/photos/1346187/pexels-photo-1346187.jpeg",
+    category: "Men",
+  },
+  {
+    id: 7,
+    name: "Cropped Cotton Jacket",
+    price: 245.00,
+    image: "https://images.pexels.com/photos/7691168/pexels-photo-7691168.jpeg",
+    category: "Women",
+  },
+  {
+    id: 8,
+    name: "Textured Knit Cardigan",
+    price: 195.00,
+    image: "https://images.pexels.com/photos/6311392/pexels-photo-6311392.jpeg",
+    category: "Men",
+  },
+  {
+    id: 9,
+    name: "Wide-Leg Wool Trousers",
+    price: 195.00,
+    image: "https://images.pexels.com/photos/9558598/pexels-photo-9558598.jpeg",
+    category: "Women",
+  },
+];
+
+export default function ProductsGrid() {
+  return (
+    <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+      {products.map((product) => (
+        <ProductCard key={product.id} product={product} />
+      ))}
+    </div>
+  );
+}
+
+function ProductCard({ product }: { product: typeof products[0] }) {
+  return (
+    <div className="group relative flex flex-col">
+      <div className="relative mb-4 aspect-[3/4] w-full overflow-hidden rounded-md bg-muted">
+        <Link href={`/shop/${product.id}`}>
+          <Image
+            src={product.image}
+            alt={product.name}
+            fill
+            className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
+          />
+        </Link>
+        <div className="absolute inset-0 bg-black/0 opacity-0 transition-all duration-300 group-hover:bg-black/5 group-hover:opacity-100" />
+        <div className="absolute bottom-4 left-0 right-0 flex justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+          <AddToCartButton
+            product={{
+              id: product.id,
+              name: product.name,
+              price: product.price,
+              image: product.image,
+              category: product.category,
+            }}
+            className="rounded-full"
+            size="sm"
+          />
+        </div>
+        <WishlistButton
+          product={{
+            id: product.id,
+            name: product.name,
+            price: product.price,
+            image: product.image,
+            category: product.category,
+          }}
+          className="absolute right-3 top-3 h-8 w-8 rounded-full bg-background opacity-0 shadow-sm transition-opacity duration-300 group-hover:opacity-100"
+        />
+        {product.isNew && (
+          <div className="absolute left-4 top-4 rounded-full bg-background px-3 py-1 text-xs font-medium shadow-sm">
+            New
+          </div>
+        )}
+      </div>
+      <div className="flex flex-1 flex-col">
+        <div className="mb-1 text-xs text-muted-foreground">{product.category}</div>
+        <h3 className="mb-2 font-medium">
+          <Link
+            href={`/shop/${product.id}`}
+            className="line-clamp-2 transition-colors hover:text-primary"
+          >
+            {product.name}
+          </Link>
+        </h3>
+        <div className="mt-auto text-sm font-medium">${product.price.toFixed(2)}</div>
+      </div>
+    </div>
+  );
+}
+*/
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/*
+//components/featured-products.tsx
+
+import Link from "next/link";
+import Image from "next/image";
+
+import AddToCartButton from "@/components/add-to-cart-button";
+import WishlistButton from "@/components/wishlist-button";
+
+// Sample product data (in a real app, this would come from a database/API)
+const products = [
+  {
+    id: 1,
+    name: "Tailored Cotton Overshirt",
+    price: 189.00,
+    image: "https://images.pexels.com/photos/5384428/pexels-photo-5384428.jpeg",
+    category: "Men",
+    isNew: true,
+  },
+  {
+    id: 2,
+    name: "Structured Wool Blazer",
+    price: 290.00,
+    image: "https://images.pexels.com/photos/5384425/pexels-photo-5384425.jpeg",
+    category: "Women",
+    isNew: true,
+  },
+  {
+    id: 3,
+    name: "Relaxed Linen Shirt",
+    price: 120.00,
+    image: "https://images.pexels.com/photos/5384429/pexels-photo-5384429.jpeg",
+    category: "Men",
+    isNew: true,
+  },
+  {
+    id: 4,
+    name: "High-Waist Tapered Pants",
+    price: 175.00,
+    image: "https://images.pexels.com/photos/5384424/pexels-photo-5384424.jpeg",
+    category: "Women",
+    isNew: true,
+  },
+];
+
+export default function FeaturedProducts() {
+  return (
+    <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+      {products.map((product) => (
+        <ProductCard key={product.id} product={product} />
+      ))}
+    </div>
+  );
+}
+
+function ProductCard({ product }: { product: typeof products[0] }) {
+  return (
+    <div className="group relative flex flex-col">
+      <div className="relative mb-4 aspect-[3/4] w-full overflow-hidden bg-muted">
+        <Link href={`/shop/${product.id}`}>
+          <Image
+            src={product.image}
+            alt={product.name}
+            fill
+            className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
+          />
+        </Link>
+        <div className="absolute inset-0 bg-black/0 opacity-0 transition-all duration-300 group-hover:bg-black/5 group-hover:opacity-100" />
+        <div className="absolute bottom-4 left-0 right-0 flex justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+          <AddToCartButton
+            product={{
+              id: product.id,
+              name: product.name,
+              price: product.price,
+              image: product.image,
+              category: product.category,
+            }}
+            className="rounded-full"
+            size="sm"
+          />
+        </div>
+        <WishlistButton
+          product={{
+            id: product.id,
+            name: product.name,
+            price: product.price,
+            image: product.image,
+            category: product.category,
+          }}
+          className="absolute right-3 top-3 h-8 w-8 rounded-full bg-background opacity-0 shadow-sm transition-opacity duration-300 group-hover:opacity-100"
+        />
+        {product.isNew && (
+          <div className="absolute left-4 top-4 rounded-full bg-background px-3 py-1 text-xs font-medium">
+            New
+          </div>
+        )}
+      </div>
+      <div className="flex flex-1 flex-col">
+        <div className="mb-1 text-xs text-muted-foreground">{product.category}</div>
+        <h3 className="mb-2 font-medium">
+          <Link
+            href={`/shop/${product.id}`}
+            className="line-clamp-2 transition-colors hover:text-primary"
+          >
+            {product.name}
+          </Link>
+        </h3>
+        <div className="mt-auto text-sm font-medium">${product.price.toFixed(2)}</div>
+      </div>
+    </div>
+  );
+}
+*/
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// // app/shop/[id]/page.tsx
+
+// import Image from "next/image";
+// import { ChevronRight, Minus, Plus } from "lucide-react";
+
+// import { Button } from "@/components/ui/button";
+// import { Separator } from "@/components/ui/separator";
+// import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+// import ProductReviews from "@/components/product-reviews";
+// import RelatedProducts from "@/components/related-products";
+// import AddToCartButton from "@/components/add-to-cart-button";
+// import WishlistButton from "@/components/wishlist-button";
+
+// // This would come from a database/API in a real application
+// const products = [
+//   {
+//     id: "1",
+//     name: "Tailored Cotton Overshirt",
+//     price: 189.00,
+//     description: "Crafted from premium cotton with a brushed finish for exceptional comfort and durability. This versatile overshirt features a relaxed fit with clean lines and minimal detailing for a contemporary silhouette.",
+//     details: [
+//       "100% organic cotton",
+//       "Relaxed fit",
+//       "Button closure",
+//       "Two chest patch pockets",
+//       "Split hem",
+//       "Machine washable"
+//     ],
+//     sizes: ["XS", "S", "M", "L", "XL"],
+//     colors: ["Stone", "Navy", "Black"],
+//     images: [
+//       "https://images.pexels.com/photos/6311394/pexels-photo-6311394.jpeg",
+//       "https://images.pexels.com/photos/6311403/pexels-photo-6311403.jpeg",
+//       "https://images.pexels.com/photos/6311401/pexels-photo-6311401.jpeg",
+//       "https://images.pexels.com/photos/6311400/pexels-photo-6311400.jpeg"
+//     ],
+//     category: "Men",
+//   },
+//   {
+//     id: "2",
+//     name: "Structured Wool Blazer",
+//     price: 159.00,
+//     description: "A timeless denim jacket crafted from premium cotton denim. Features a classic fit with traditional detailing.",
+//     details: [
+//       "100% cotton denim",
+//       "Classic fit",
+//       "Button closure",
+//       "Four pockets",
+//       "Adjustable waist tabs",
+//       "Machine washable"
+//     ],
+//     sizes: ["XS", "S", "M", "L", "XL"],
+//     colors: ["Light Blue", "Dark Blue", "Black"],
+//     images: [
+//       "https://images.pexels.com/photos/937520/pexels-photo-937520.jpeg",
+//       "https://images.pexels.com/photos/975657/pexels-photo-975657.jpeg",
+//       "https://images.pexels.com/photos/844297/pexels-photo-844297.jpeg",
+//       "https://images.pexels.com/photos/1176896/pexels-photo-1176896.jpeg"
+//     ],
+//     category: "Men",
+//   },
+//   {
+//     id: "3",
+//     name: "Relaxed Linen Shirt",
+//     price: 219.00,
+//     description: "A lightweight yet warm puffer jacket with a quilted shell and down-alternative fill. Ideal for cold-weather layering.",
+//     details: [
+//       "Nylon shell with polyester fill",
+//       "Quilted design",
+//       "Zip-up front",
+//       "Side zip pockets",
+//       "Packable into included pouch",
+//       "Machine washable"
+//     ],
+//     sizes: ["S", "M", "L", "XL", "XXL"],
+//     colors: ["Olive", "Black", "Grey"],
+//     images: [
+//       "https://images.pexels.com/photos/1125133/pexels-photo-1125133.jpeg",
+//       "https://images.pexels.com/photos/428340/pexels-photo-428340.jpeg",
+//       "https://images.pexels.com/photos/428338/pexels-photo-428338.jpeg",
+//       "https://images.pexels.com/photos/1846548/pexels-photo-1846548.jpeg"
+//     ],
+//     category: "Men",
+//   },
+//   {
+//     id: "4",
+//     name: "High-Waist Tapered Pants",
+//     price: 175.00,
+//     description: "A breathable, lightweight shirt made from a linen-cotton blend, perfect for warmer climates and casual styling.",
+//     details: [
+//       "55% linen, 45% cotton",
+//       "Button-down collar",
+//       "Regular fit",
+//       "Breathable fabric",
+//       "Chest pocket",
+//       "Machine washable"
+//     ],
+//     sizes: ["XS", "S", "M", "L", "XL"],
+//     colors: ["White", "Sky Blue", "Beige"],
+//     images: [
+//       "https://images.pexels.com/photos/1812972/pexels-photo-1812972.jpeg",
+//       "https://images.pexels.com/photos/7940629/pexels-photo-7940629.jpeg",
+//       "https://images.pexels.com/photos/1812965/pexels-photo-1812965.jpeg",
+//       "https://images.pexels.com/photos/7940623/pexels-photo-7940623.jpeg"
+//     ],
+//     category: "Men",
+//   },
+//   {
+//     id: "5",
+//     name: "Oversized Merino Sweater",
+//     price: 210.00,
+//     description: "A sophisticated peacoat crafted from a premium wool blend. Features a classic double-breasted design with modern tailoring for a refined silhouette.",
+//     details: [
+//       "80% wool, 20% polyester blend",
+//       "Double-breasted design",
+//       "Side pockets",
+//       "Interior pocket",
+//       "Fully lined",
+//       "Dry clean only"
+//     ],
+//     sizes: ["XS", "S", "M", "L", "XL"],
+//     colors: ["Navy", "Charcoal", "Black"],
+//     images: [
+//       "https://images.pexels.com/photos/1124468/pexels-photo-1124468.jpeg",
+//       "https://images.pexels.com/photos/1183266/pexels-photo-1183266.jpeg",
+//       "https://images.pexels.com/photos/1183267/pexels-photo-1183267.jpeg",
+//       "https://images.pexels.com/photos/1183268/pexels-photo-1183268.jpeg"
+//     ],
+//     category: "Men",
+//   }
+// ];
+
+// export async function generateStaticParams() {
+//   return products.map((product) => ({
+//     id: product.id,
+//   }));
+// }
+
+// export default async function ProductPage({ params }: { params: { id: string } }) {
+//   const resolvedParams = await params;
+//   const productData = products.find(product => product.id === String(resolvedParams.id)) || products[0];
+
+//   return (
+//     <main className="min-h-screen bg-background pt-24">
+//       <div className="container py-8 md:py-12">
+//         {/* Breadcrumbs */}
+//         <div className="mb-6 flex items-center text-sm text-muted-foreground">
+//           <a href="/shop" className="hover:text-foreground">Shop</a>
+//           <ChevronRight className="mx-1 h-4 w-4" />
+//           <a href={`/shop?category=${productData.category.toLowerCase()}`} className="hover:text-foreground">{productData.category}</a>
+//           <ChevronRight className="mx-1 h-4 w-4" />
+//           <span className="text-foreground">{productData.name}</span>
+//         </div>
+        
+//         {/* Product Section */}
+//         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:gap-12 xl:grid-cols-5">
+//           {/* Product Images */}
+//           <div className="xl:col-span-3">
+//             <div className="grid gap-4 md:grid-cols-2">
+//               {productData.images.slice(0, 4).map((image, index) => (
+//                 <div 
+//                   key={index}
+//                   className={`relative aspect-[3/4] w-full overflow-hidden bg-muted ${
+//                     index === 0 ? "md:col-span-2 md:row-span-2" : ""
+//                   }`}
+//                 >
+//                   <Image
+//                     src={image}
+//                     alt={`${productData.name} - Image ${index + 1}`}
+//                     fill
+//                     className="object-cover object-center"
+//                   />
+//                 </div>
+//               ))}
+//             </div>
+//           </div>
+          
+//           {/* Product Details */}
+//           <div className="sticky top-24 xl:col-span-2">
+//             <h1 className="font-serif text-3xl font-light md:text-4xl">{productData.name}</h1>
+//             <p className="mt-2 text-xl font-medium">${productData.price.toFixed(2)}</p>
+            
+//             <Separator className="my-6" />
+            
+//             {/* Color Selection */}
+//             <div className="mb-6">
+//               <div className="mb-2 flex items-center justify-between">
+//                 <span className="text-sm font-medium">Color</span>
+//                 <span className="text-sm text-muted-foreground">Stone</span>
+//               </div>
+//               <div className="flex gap-3">
+//                 {productData.colors.map((color) => (
+//                   <button
+//                     key={color}
+//                     className={`relative h-8 w-8 rounded-full border ${
+//                       color === "Stone" 
+//                         ? "border-primary bg-stone-200" 
+//                         : color === "Navy" 
+//                           ? "border-border bg-navy-600" 
+//                           : "border-border bg-black"
+//                     }`}
+//                     aria-label={color}
+//                   >
+//                     {color === "Stone" && (
+//                       <span className="absolute -inset-1 rounded-full border border-primary" />
+//                     )}
+//                   </button>
+//                 ))}
+//               </div>
+//             </div>
+            
+//             {/* Size Selection */}
+//             <div className="mb-6">
+//               <div className="mb-2 flex items-center justify-between">
+//                 <span className="text-sm font-medium">Size</span>
+//                 <button className="text-sm text-primary">Size Guide</button>
+//               </div>
+//               <div className="grid grid-cols-5 gap-2">
+//                 {productData.sizes.map((size) => (
+//                   <button
+//                     key={size}
+//                     className={`flex h-10 items-center justify-center rounded-md border ${
+//                       size === "M" 
+//                         ? "border-primary bg-primary text-primary-foreground" 
+//                         : "border-border bg-background hover:border-foreground"
+//                     }`}
+//                   >
+//                     {size}
+//                   </button>
+//                 ))}
+//               </div>
+//             </div>
+            
+//             {/* Add to Cart */}
+//             <div className="mb-6 flex gap-2">
+//               <AddToCartButton
+//                 product={{
+//                   id: parseInt(productData.id),
+//                   name: productData.name,
+//                   price: productData.price,
+//                   image: productData.images[0],
+//                   category: productData.category,
+//                 }}
+//                 color="Stone"
+//                 className="flex-1"
+//                 size="lg"
+//               />
+//               <WishlistButton
+//                 product={{
+//                   id: parseInt(productData.id),
+//                   name: productData.name,
+//                   price: productData.price,
+//                   image: productData.images[0],
+//                   category: productData.category,
+//                 }}
+//                 size="lg"
+//                 variant="outline"
+//                 className="flex w-12 items-center justify-center"
+//               />
+//             </div>
+            
+//             {/* Product Description */}
+//             <p className="text-muted-foreground">{productData.description}</p>
+            
+//             <Separator className="my-6" />
+            
+//             {/* Product Information Tabs */}
+//             <Tabs defaultValue="details" className="mt-6">
+//               <TabsList className="w-full border-b bg-transparent p-0">
+//                 <TabsTrigger
+//                   value="details"
+//                   className="rounded-none border-b-2 border-transparent px-4 py-2 data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none"
+//                 >
+//                   Details
+//                 </TabsTrigger>
+//                 <TabsTrigger
+//                   value="shipping"
+//                   className="rounded-none border-b-2 border-transparent px-4 py-2 data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none"
+//                 >
+//                   Shipping
+//                 </TabsTrigger>
+//                 <TabsTrigger
+//                   value="care"
+//                   className="rounded-none border-b-2 border-transparent px-4 py-2 data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none"
+//                 >
+//                   Care
+//                 </TabsTrigger>
+//               </TabsList>
+//               <TabsContent value="details" className="pt-4">
+//                 <ul className="space-y-1 text-sm">
+//                   {productData.details.map((detail, index) => (
+//                     <li key={index} className="flex items-start">
+//                       <span className="mr-2">•</span>
+//                       {detail}
+//                     </li>
+//                   ))}
+//                 </ul>
+//               </TabsContent>
+//               <TabsContent value="shipping" className="pt-4">
+//                 <p className="text-sm text-muted-foreground">
+//                   Free standard shipping on all orders over $100. Delivery usually takes 3-5 business days.
+//                   Express shipping available at checkout. International shipping available to select countries.
+//                 </p>
+//               </TabsContent>
+//               <TabsContent value="care" className="pt-4">
+//                 <p className="text-sm text-muted-foreground">
+//                   Machine wash cold with similar colors. Tumble dry low. Do not bleach.
+//                   Cool iron if necessary. Do not dry clean.
+//                 </p>
+//               </TabsContent>
+//             </Tabs>
+//           </div>
+//         </div>
+        
+//         {/* Reviews Section */}
+//         <div className="mt-16">
+//           <h2 className="mb-8 font-serif text-2xl font-light md:text-3xl">Customer Reviews</h2>
+//           <ProductReviews />
+//         </div>
+        
+//         {/* Related Products */}
+//         <div className="mt-16">
+//           <h2 className="mb-8 font-serif text-2xl font-light md:text-3xl">You May Also Like</h2>
+//           <RelatedProducts />
+//         </div>
+//       </div>
+//     </main>
+//   );
+// }
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// // app/wishlist/page.tsx
+
+// "use client";
+
+// import Link from "next/link";
+// import Image from "next/image";
+// import { Heart, X, Eye } from "lucide-react";
+
+// import { Button } from "@/components/ui/button";
+// import { Separator } from "@/components/ui/separator";
+// import AddToCartButton from "@/components/add-to-cart-button";
+// import { useWishlist } from "@/lib/wishlist-context";
+// import styles from "./page.module.css";
+
+// export default function WishlistPage() {
+//   const { state, removeItem, clearWishlist, getTotalItems } = useWishlist();
+//   const { items } = state;
+
+//   const totalValue = items.reduce((sum, item) => sum + item.price, 0);
+//   const totalItems = getTotalItems();
+
+//   const handleAddAllToCart = () => {
+//     // This would typically add all items to cart
+//     console.log("Adding all items to cart...");
+//   };
+
+//   return (
+//     <main className="min-h-screen bg-background pt-24">
+//       <div className={`container ${styles.container}`}>
+//         <div className={styles.header}>
+//           <h1 className={styles.title}>My Wishlist</h1>
+//           <p className={styles.subtitle}>
+//             {items.length > 0 
+//               ? `${items.length} item${items.length !== 1 ? 's' : ''} saved for later`
+//               : "No items in your wishlist yet"
+//             }
+//           </p>
+//         </div>
+
+//         {items.length === 0 ? (
+//           <div className={styles.emptyState}>
+//             <Heart className={styles.emptyIcon} />
+//             <h2 className={styles.emptyTitle}>Your wishlist is empty</h2>
+//             <p className={styles.emptyDescription}>
+//               Start browsing our collections and save your favorite items to your wishlist.
+//               You can add items by clicking the heart icon on any product.
+//             </p>
+//             <Button asChild size="lg">
+//               <Link href="/shop">
+//                 Start Shopping
+//               </Link>
+//             </Button>
+//           </div>
+//         ) : (
+//           <>
+//             <div className={styles.productsGrid}>
+//               {items.map((item) => (
+//                 <div key={item.id} className={styles.productCard}>
+//                   <div className={styles.productImageContainer}>
+//                     <Image
+//                       src={item.image}
+//                       alt={item.name}
+//                       fill
+//                       className={`object-cover object-center ${styles.productImage}`}
+//                     />
+//                     <button
+//                       onClick={() => removeItem(item.id)}
+//                       className={styles.removeButton}
+//                       aria-label="Remove from wishlist"
+//                     >
+//                       <X className="h-4 w-4" />
+//                     </button>
+//                   </div>
+                  
+//                   <div className={styles.productContent}>
+//                     <div className={styles.productCategory}>{item.category}</div>
+//                     <h3 className={styles.productName}>{item.name}</h3>
+//                     <div className={styles.productPrice}>${item.price.toFixed(2)}</div>
+                    
+//                     <div className={styles.productActions}>
+//                       <AddToCartButton
+//                         product={{
+//                           id: item.id,
+//                           name: item.name,
+//                           price: item.price,
+//                           image: item.image,
+//                           category: item.category,
+//                         }}
+//                         className={styles.addToCartButton}
+//                       />
+//                       <Button
+//                         variant="outline"
+//                         size="icon"
+//                         asChild
+//                         className={styles.viewButton}
+//                       >
+//                         <Link href={`/shop/${item.id}`}>
+//                           <Eye className="h-4 w-4" />
+//                           <span className="sr-only">View product</span>
+//                         </Link>
+//                       </Button>
+//                     </div>
+//                   </div>
+//                 </div>
+//               ))}
+//             </div>
+
+//             {/* Wishlist Summary */}
+//             <div className={styles.summary}>
+//               <h2 className={styles.summaryTitle}>Wishlist Summary</h2>
+              
+//               <div className={styles.summaryStats}>
+//                 <span className={styles.summaryLabel}>Total Items:</span>
+//                 <span className={styles.summaryValue}>{items.length}</span>
+//               </div>
+              
+//               <div className={styles.summaryStats}>
+//                 <span className={styles.summaryLabel}>Total Value:</span>
+//                 <span className={styles.summaryValue}>${totalValue.toFixed(2)}</span>
+//               </div>
+              
+//               <Separator className="my-4" />
+              
+//               <div className={styles.summaryActions}>
+//                 <Button
+//                   onClick={handleAddAllToCart}
+//                   size="lg"
+//                   className="flex-1"
+//                 >
+//                   Add All to Cart
+//                 </Button>
+//                 <Button
+//                   variant="outline"
+//                   onClick={clearWishlist}
+//                   className={styles.clearAllButton}
+//                 >
+//                   Clear All
+//                 </Button>
+//               </div>
+//             </div>
+//           </>
+//         )}
+//       </div>
+//     </main>
+//   );
+// }
+// */
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/*
+// components/related-products.tsx
+
+import Link from "next/link";
+import Image from "next/image";
+
+import AddToCartButton from "@/components/add-to-cart-button";
+import WishlistButton from "@/components/wishlist-button";
+
+// Sample related products
+const relatedProducts = [
+  {
+    id: 3,
+    name: "Relaxed Linen Shirt",
+    price: 120.00,
+    image: "https://images.pexels.com/photos/5384429/pexels-photo-5384429.jpeg",
+    category: "Men",
+  },
+  {
+    id: 5,
+    name: "Oversized Merino Sweater",
+    price: 210.00,
+    image: "https://images.pexels.com/photos/5709656/pexels-photo-5709656.jpeg",
+    category: "Women",
+  },
+  {
+    id: 8,
+    name: "Textured Knit Cardigan",
+    price: 195.00,
+    image: "https://images.pexels.com/photos/6311392/pexels-photo-6311392.jpeg",
+    category: "Men",
+  },
+  {
+    id: 9,
+    name: "Wide-Leg Wool Trousers",
+    price: 195.00,
+    image: "https://images.pexels.com/photos/9558598/pexels-photo-9558598.jpeg",
+    category: "Women",
+  },
+];
+
+export default function RelatedProducts() {
+  return (
+    <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-4">
+      {relatedProducts.map((product) => (
+        <div key={product.id} className="group relative flex flex-col">
+          <div className="relative mb-4 aspect-[3/4] w-full overflow-hidden rounded-md bg-muted">
+            <Link href={`/shop/${product.id}`}>
+              <Image
+                src={product.image}
+                alt={product.name}
+                fill
+                className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
+              />
+            </Link>
+            <div className="absolute inset-0 bg-black/0 opacity-0 transition-all duration-300 group-hover:bg-black/5 group-hover:opacity-100" />
+            <div className="absolute bottom-4 left-0 right-0 flex justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+              <AddToCartButton
+                product={{
+                  id: product.id,
+                  name: product.name,
+                  price: product.price,
+                  image: product.image,
+                  category: product.category,
+                }}
+                className="rounded-full"
+                size="sm"
+              />
+            </div>
+            <WishlistButton
+              product={{
+                id: product.id,
+                name: product.name,
+                price: product.price,
+                image: product.image,
+                category: product.category,
+              }}
+              className="absolute right-3 top-3 h-8 w-8 rounded-full bg-background opacity-0 shadow-sm transition-opacity duration-300 group-hover:opacity-100"
+            />
+          </div>
+          <div className="flex flex-1 flex-col">
+            <div className="mb-1 text-xs text-muted-foreground">{product.category}</div>
+            <h3 className="mb-2 font-medium">
+              <Link
+                href={`/shop/${product.id}`}
+                className="line-clamp-2 transition-colors hover:text-primary"
+              >
+                {product.name}
+              </Link>
+            </h3>
+            <div className="mt-auto text-sm font-medium">${product.price.toFixed(2)}</div>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/*
+*/
