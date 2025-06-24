@@ -3,13 +3,14 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { useRouter, usePathname } from "next/navigation";
-import { ShoppingBag, Menu, X, Search, User } from "lucide-react";
+import { ShoppingBag, Menu, X, Search, User, Heart } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { useCart } from "@/lib/cart-context";
+import { useWishlist } from "@/lib/wishlist-context";
 
 const mainNavItems = [
   { label: "Home", href: "/" },
@@ -26,7 +27,9 @@ export default function SiteHeader() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const { toggleCart, getTotalItems } = useCart();
+  const { getTotalItems: getWishlistItems } = useWishlist();
   const totalItems = getTotalItems();
+  const wishlistItems = getWishlistItems();
 
   const router = useRouter();
   const [query, setQuery] = useState("");
@@ -52,6 +55,10 @@ export default function SiteHeader() {
     } else {
       router.push("/auth/login");
     }
+  };
+
+  const handleWishlistClick = () => {
+    router.push("/wishlist");
   };
 
   const handleSearch = () => {
@@ -115,6 +122,22 @@ export default function SiteHeader() {
           <Button variant="ghost" size="icon" onClick={() => setIsSearchOpen(!isSearchOpen)}>
             <Search className="h-5 w-5" />
             <span className="sr-only">Search</span>
+          </Button>
+
+          {/* Wishlist */}
+          <Button
+            variant="ghost"
+            size="icon"
+            className="relative"
+            onClick={handleWishlistClick}
+          >
+            <Heart className="h-5 w-5" />
+            {wishlistItems > 0 && (
+              <span className="absolute -right-1 -top-1 flex h-s w-5 items-center justify-center rounded-full bg-primary text-xs font-medium text-primary-foreground">
+                {wishlistItems > 9 ? "9+" : wishlistItems}
+              </span>
+            )}
+            <span className="sr-only">Wishlist({wishlistItems})</span>
           </Button>
 
           {/* Account */}
@@ -207,6 +230,26 @@ export default function SiteHeader() {
                 </Link>
               </li>
             ))}
+
+            {/* Mobile Wishlist Link */}
+            <li>
+              <Link 
+                href="/wishlist"
+                className={cn(
+                  "flex items-center gap-2 py-2 test-lg font-medium transition-colors hover:text-primary",
+                  pathname === "/wishlist" ? "text-primary" : ""
+                )}
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                <Heart className="h-5 w-5" />
+                Wishlist
+                {wishlistItems > 0 && (
+                  <span className="ml-auto flex h-5 w-5 items-center justify-center rounded-full bg-primary text-xs font-medium text-primary-foreground">
+                    {wishlistItems}
+                  </span>
+                )}
+              </Link>
+            </li>
           </ul>
         </nav>
 

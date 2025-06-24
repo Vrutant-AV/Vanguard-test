@@ -135,7 +135,6 @@ export default function WishlistPage() {
                   className="flex-1"
                 >
                   Add All to Cart
-                  Add All to Cart
                 </Button>
                 <Button
                   variant ="outline"
