@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import { CartProvider } from "@/lib/cart-context";
+import { WishlistProvider } from "@/lib/wishlist-context";
 
 import SiteHeader from "@/components/site-header";
 import SiteFooter from "@/components/site-footer";
@@ -40,12 +41,14 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <CartProvider>
-            <SiteHeader />
-            {children}
-            <SiteFooter />
-            <CartDrawer />
-          </CartProvider>
+          <WishlistProvider>
+            <CartProvider>
+              <SiteHeader />
+              {children}
+              <SiteFooter />
+              <CartDrawer />
+            </CartProvider>
+          </WishlistProvider>
         </ThemeProvider>
       </body>
     </html>

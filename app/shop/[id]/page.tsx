@@ -7,6 +7,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import ProductReviews from "@/components/product-reviews";
 import RelatedProducts from "@/components/related-products";
 import AddToCartButton from "@/components/add-to-cart-button";
+import WishlistButton from "@/components/wishlist-button";
 
 // This would come from a database/API in a real application
 const products = [
@@ -238,15 +239,27 @@ export default async function ProductPage({ params }: { params: { id: string } }
                   image: productData.images[0],
                   category: productData.category,
                 }}
-               // size="M"
                 color="Stone"
                 className="flex-1"
                 size="lg"
               />
+              <WishlistButton
+                product={{
+                  id: parseInt(productData.id),
+                  name: productData.name,
+                  price: productData.price,
+                  image: productData.images[0],
+                  category: productData.category,
+                }}
+                size="lg"
+                variant="outline"
+                className="flex w-12 items-center justidy-center"
+              />
+              {/*
               <Button size="lg" variant="outline" className="flex w-12 items-center justify-center">
                 <Heart className="h-4 w-4" />
                 <span className="sr-only">Add to Wishlist</span>
-              </Button>
+              </Button>*/}
             </div>
             
             {/* Product Description */}

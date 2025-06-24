@@ -1,9 +1,10 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Heart } from "lucide-react";
+//import { Heart } from "lucide-react";
 
-import { Button } from "@/components/ui/button";
+//import { Button } from "@/components/ui/button";
 import AddToCartButton from "@/components/add-to-cart-button";
+import WishlistButton from "@/components/wishlist-button";
 
 // Sample product data (in a real app, this would come from a database/API)
 const products = [
@@ -99,6 +100,7 @@ function ProductCard({ product }: { product: typeof products[0] }) {
           />
         </Link>
         <div className="absolute inset-0 bg-black/0 opacity-0 transition-all duration-300 group-hover:bg-black/5 group-hover:opacity-100" />
+        
         <div className="absolute bottom-4 left-0 right-0 flex justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
           <AddToCartButton
             product={{
@@ -112,14 +114,26 @@ function ProductCard({ product }: { product: typeof products[0] }) {
             size="sm"
           />
         </div>
-        <Button
+        
+        <WishlistButton
+          product={{
+            id: product.id,
+            name: product.name,
+            price: product.price,
+            image: product.image,
+            category: product.category,
+          }}
+          className="absolute right-3 top-3 h-8 w-8 rounded-full bg-background opacity-0 shadow-sm transition-opacity duration-300 group-hover:opacity-100"
+        />
+
+{/*        <Button
           variant="ghost"
           size="icon"
           className="absolute right-3 top-3 h-8 w-8 rounded-full bg-background opacity-0 shadow-sm transition-opacity duration-300 group-hover:opacity-100"
         >
           <Heart className="h-4 w-4" />
           <span className="sr-only">Add to wishlist</span>
-        </Button>
+        </Button>          */}
         {product.isNew && (
           <div className="absolute left-4 top-4 rounded-full bg-background px-3 py-1 text-xs font-medium shadow-sm">
             New
