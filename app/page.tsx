@@ -102,7 +102,7 @@ export default function Home() {
         <div className={styles.container}>
           <div className={styles.journalHeader}>
           <h2 className={styles.journalTitle}>Journal</h2>
-            <Link href="/journal" className={styles.journalLink}>
+            <Link href="/journal" className={styles.viewAllButton}>
               View All →
             </Link>
           </div>

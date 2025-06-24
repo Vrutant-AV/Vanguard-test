@@ -46,7 +46,7 @@
     color: aliceblue;
     max-width: 800px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 10px;
 }
 
 .heroTitle {
@@ -99,12 +99,12 @@
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 10px;
 }
 
 /* Section Styles */
 .newArrivals, .categories, .brandStory, .journal {
-    padding: 5rem 0;
+    padding: 30px 0;
 }
 /*
 .categories {
@@ -124,18 +124,20 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 2rem;
+    margin-bottom: 0.5rem;
 }
 
 .sectionTitle {
     font-family: serif;
-    font-size: 2rem;
-    font-weight: 300;
+    font-size: 2.5rem;
+    font-weight: 500;
 }
 
 .sectionTitleCenter {
-    text-align: center;
-    margin-bottom: 2rem;
+    font-family: serif;
+    font-size: 2.5rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
 }
 
 .viewAllButton {
@@ -205,7 +207,7 @@
 /* Journal Highlights */
 .journal {
   /*background-color: #f9f9f9;*/
-  padding: 5rem 0;
+  padding: 30px 0;
 }
 
 .journal .container {
@@ -220,14 +222,14 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 3rem;
+  /*margin-bottom: 1rem;*/
 }
 
 .journalTitle {
   font-family: serif;
   font-size: 2.5rem;
   font-weight: 500;
-  color: #333;
+  color: revert;
   margin-bottom: 0.5rem;
 }
 
@@ -303,7 +305,7 @@
   font-size: 0.9rem;
   margin-bottom: 1rem;
 }
-
+/*
 .journalLink {
     flex-direction: column;
     padding: 1px 2px 0px 7px;
@@ -322,7 +324,7 @@
 .journalLink:hover {
   text-decoration: underline;
 }
-
+*/
 /* Responsive Adjustments */
 @media (max-width: 768px) {
   .journalTitle {
