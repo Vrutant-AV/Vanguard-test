@@ -89,6 +89,16 @@ function ProductCard({ product }: { product: typeof products[0] }) {
           }}
           className="absolute right-3 top-3 h-8 w-8 rounded-full bg-background opacity-0 shadow-sm transition-opacity duration-300 group-hover:opacity-100"
         />
+        <WishlistButton
+          product={{
+            id: product.id,
+            name: product.name,
+            price: product.price,
+            image: product.image,
+            category: product.category,
+          }}
+          className="absolute right-3 top-3 h-8 w-8 rounded-full bg-background opacity-0 shadow-sm transition-opacity duration-300 group-hover:opacity-100"
+        />
         {product.isNew && (
           <div className="absolute left-4 top-4 rounded-full bg-background px-3 py-1 text-xs font-medium">
             New
