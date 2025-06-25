@@ -223,7 +223,7 @@ export default function AdminDashboard() {
                     </Card>
 
                     <Card>
-                        <CardHeader className="flex fex-row items-center justify-between space-y-0 pb-2">
+                        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                             <CardTitle className="text-sm font-medium">
                                 Total Orders
                             </CardTitle>
@@ -242,7 +242,7 @@ export default function AdminDashboard() {
                     </Card>
                     
                     <Card>
-                        <CardHeader className="flex flex-row">
+                        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                             <CardTitle className="text-sm font-medium">
                                 Total Customers
                             </CardTitle>
@@ -272,7 +272,7 @@ export default function AdminDashboard() {
                                 {dashboardStats.totalProducts}
                             </div>
                             <div className="flex items-center text-xs text-muted-foreground">
-                                <TrendingUp className="mr-1 h-3 w-3" />
+                                <TrendingUp className="mr-1 h-3 w-3 text-green-500" />
                                 +{dashboardStats.productsChange}% from last month
                             </div>
                         </CardContent>
