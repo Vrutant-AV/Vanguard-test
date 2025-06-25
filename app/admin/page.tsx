@@ -21,7 +21,8 @@ import {
   Settings,
   Calendar,
   ArrowUpRight,
-  ArrowDownRight
+  ArrowDownRight,
+  Car
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -240,6 +241,324 @@ export default function AdminDashboard() {
                         </CardContent>
                     </Card>
                     
+                    <Card>
+                        <CardHeader className="flex flex-row">
+                            <CardTitle className="text-sm font-medium">
+                                Total Customers
+                            </CardTitle>
+                            <Users className="h-4 w-4 text-muted-foreground" />
+                        </CardHeader>
+
+                        <CardContent>
+                            <div className="text-2xl font-hold">
+                                {dashboardStats.totalCustomers.toLocaleString()}</div>
+                            <div className="flex items-center text-xs text-muted-foreground">
+                                <TrendingUp className="mr-1 h-3 w-3 text-green-500" />
+                                +{dashboardStats.customersChange}% from last month
+                            </div>
+                        </CardContent>
+                    </Card>
+
+                    <Card>
+                        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                            <CardTitle className="text-sm font-medium">
+                                Total Products
+                            </CardTitle>
+                            <Package className="h-4 w-4 text-muted-foreground"/>
+                        </CardHeader>
+
+                        <CardContent>
+                            <div className="text-2xl font-bold">
+                                {dashboardStats.totalProducts}
+                            </div>
+                            <div className="flex items-center text-xs text-muted-foreground">
+                                <TrendingUp className="mr-1 h-3 w-3" />
+                                +{dashboardStats.productsChange}% from last month
+                            </div>
+                        </CardContent>
+                    </Card>
+                </div>
+
+                {/* Main Content **/}                
+                <div className={styles.mainGrid}>
+                    {/* Recent Orders */}
+                    <Card className={styles.ordersCard}>
+                        <CardHeader>
+                            <div className="flex items-center justify-between">
+                                <div>
+                                    <CardTitle>
+                                        Recent Orders
+                                    </CardTitle>
+                                    <CardDescription>
+                                        Latest customer orders and their status
+                                    </CardDescription>
+                                </div>
+                                <Button variant="outline" size="sm" asChild>
+                                    <Link href="/admin/orders">
+                                        View All
+                                        <ArrowUpRight className="ml-2 h-4 w-4"/>
+                                    </Link>
+                                </Button>
+                            </div>
+                        </CardHeader>
+
+                        <CardContent>
+                            <div className={styles.ordersTable}>
+                                <div className={styles.tableHeader}>
+                                    <div>Order Id</div>
+                                    <div>Customer</div>
+                                    <div>Amount</div>
+                                    <div>Status</div>
+                                    <div>Date</div>
+                                </div>
+                                {recentOrders.map((order) => (
+                                    <div key={order.id} className={styles.tableRow}>
+                                        <div className="font-medium">{order.id}</div>
+                                        
+                                        <div>
+                                            <div className="font-medium">
+                                                {order.customer}
+                                            </div>
+                                            <div className="text-sm text-muted-foreground">
+                                                {order.email}
+                                            </div>
+                                        </div>
+                                        
+                                        <div className="font-medium">${order.amount.toFixed(2)}</div>
+                                        
+                                        <div>
+                                            <Badge className="text-sm text-muted-foreground">
+                                                {order.status}
+                                            </Badge>
+                                        </div>
+
+                                        <div className="text-sm text-muted-foreground">
+                                            {order.date}
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </CardContent>
+                    </Card>
+
+                    {/* Analytics Chart Placeholder */}
+                    <Card className={styles.chartCard}>
+                        <CardHeader>
+                            <CardTitle>Revenue Analytics</CardTitle>
+                            <CardDescription>Revenue trends over the selected period</CardDescription>
+                        </CardHeader>
+
+                        <CardContent>
+                            <div className={styles.chartPlaceholder}>
+                                <BarChart3 className="h-12 w-12 text-muted-foreground" />
+                                <p className="text-muted-foreground">
+                                    Chart visualization would go here
+                                </p>
+                                <p className="text-sm text-muted-foreground">
+                                    Integration with charting library like Recharts
+                                </p>
+                            </div>
+                        </CardContent>
+                    </Card>
+                </div>
+
+                {/* Secondary Grid */}
+                <div className={styles.secondaryGrid}>
+                    {/* Top Products */}
+                    <Card>
+                        <CardHeader>
+                            <CardTitle>
+                                Top Products  
+                            </CardTitle>
+                            <CardDescription>
+                                Best perfoming products this month
+                            </CardDescription>
+                        </CardHeader>
+
+                        <CardContent>
+                            <div className="space-y-4">
+                                {topProducts.map((product) => (
+                                    <div key={product.id} className="flex items-center gap-4">
+                                        <div className="relative h-12 w-12 overflow-hidden rounded-md bg-muted">
+                                            <img 
+                                                src={product.image}
+                                                alt={product.name}
+                                                className="h-full w-full object-cover"
+                                            />
+                                        </div>
+
+                                        <div className="flex-1 min-w-0">
+                                            <p className="font-medium truncate">
+                                                {product.name}
+                                            </p>
+                                            <p className="text-sm text-muted-foreground">
+                                                {product.sales} sales • ${product.revenue.toLocaleString()} revenue
+                                            </p>
+                                        </div>
+
+                                        <div className="text-right">
+                                            <p className="text-sm font-medium">
+                                                {product.stock} in stock
+                                            </p>
+                                            <p className={`text-xs ${product.stock < 15 ? 'text-red-500' : 'text-green-500'}`}>
+                                                {product.stock < 15 ? 'Low stock' : 'In stock'}
+                                            </p>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </CardContent>
+                    </Card>
+
+                    {/* Recent customers */}
+                    <Card>
+                        <CardHeader>
+                            <CardTitle>Recent Cusomers</CardTitle>
+                            <CardDescription>Latest customer registrations and activity</CardDescription>
+                        </CardHeader>
+
+                        <CardContent>
+                            <div className="space-y-4">
+                                {recentCustomers.map((customer) => (
+                                    <div key={customer.id} className="flex items-center gap-4">
+                                        <Avatar>
+                                            <AvatarImage src={customer.avatar} alt={customer.name} />
+                                            <AvatarFallback>
+                                                {customer.name.split(' ').map(n => n[0]).join('')}
+                                            </AvatarFallback>
+                                        </Avatar>
+                                        <div className="flex-1 min-w-0">
+                                            <p className="font-medium">{customer.name}</p>
+                                            <p className="text-sm text-muted-foreground">{customer.email}</p>
+                                        </div>
+                                        <div className="text-right">
+                                            <p className="text-sm font-medium">
+                                                ${customer.totalSpent.toFixed(2)}
+                                            </p>
+                                            <p>
+                                                {customer.orders} orders
+                                            </p>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </CardContent>
+                    </Card>
+
+                    {/* quick actions */}
+                    <Card>
+                        <CardHeader>
+                            <CardTitle>Quick Actions</CardTitle>
+                            <CardDescription>Common administrative tasks</CardDescription>
+                        </CardHeader>
+
+                        <CardContent>
+                            <div className="grid grid-cols-2 gap-3">
+                                <Button variant="outline" className="h-auto flex-col gap-2 p-4" asChild>
+                                    <Link href="/admin/products/new">
+                                        <Plus className="h-5 w-5" />
+                                        Add Product
+                                    </Link>
+                                </Button>
+
+                                <Button variant="outline" className="h-auto flex-col gap-2 p-4" asChild>
+                                    <Link href="/admin/orders">
+                                        <ShoppingBag className="h-5 w-5" />
+                                        View Orders
+                                    </Link>
+                                </Button>
+
+                                <Button variant="outline" className="h-auto flex-col gap-2 p-4" asChild>
+                                    <Link href="/admin/customers">
+                                        <Users className="h-5 w-5" />
+                                        Manage Users
+                                    </Link>
+                                </Button>
+
+                                <Button variant="outline" className="h-auto flex-col gap-2 p-4" asChild>
+                                    <Link href="/admin/analytics">
+                                        <BarChart3 className="h-5 w-5" />
+                                        Analytics
+                                    </Link>
+                                </Button>
+                            </div>
+                        </CardContent>
+                    </Card>
+
+                    {/* activity feed */}
+                    <Card className="mt-8">
+                        <CardHeader>
+                            <CardTitle>
+                                Recent Activity
+                            </CardTitle>
+                            <CardDescription>
+                                Latest actions and system events
+                            </CardDescription>
+                        </CardHeader>
+
+                        <CardContent>
+                            <div className="space-y-4">
+                                {[
+                                    { 
+                                        action: "New order received", 
+                                        details: "Order #ORD-001 from Sarah Johnson", 
+                                        time: "2 minutes ago", 
+                                        type: "order" 
+                                    },
+                                    
+                                    { 
+                                        action: "Product updated", 
+                                        details: "Tailored Cotton Overshirt stock updated", 
+                                        time: "15 minutes ago", 
+                                        type: "product" 
+                                    },
+                                    
+                                    { 
+                                        action: "Customer registered", 
+                                        details: "New customer: Michael Chen", 
+                                        time: "1 hour ago", 
+                                        type: "customer" 
+                                    },
+                                    
+                                    { 
+                                        action: "Payment processed", 
+                                        details: "Payment of $345.50 confirmed", 
+                                        time: "2 hours ago",type: "payment" 
+                                    },
+                                    
+                                    { 
+                                        action: "Inventory alert", 
+                                        details: "Low stock warning for High-Waist Tapered Pants", 
+                                        time: "3 hours ago", 
+                                        type: "alert" 
+                                    },
+                                ].map((activity, index) => (
+                                    <div key={index} className="flex items-start gap-3 pb-3 border-b border-border last:border-0">
+                                        <div className={`mt-1 h-2 w-2 rounded-full ${
+                                            activity.type === 'order' ? 'bg-green-500' :
+                                            activity.type === 'product' ? 'bg-blue-500' :
+                                            activity.type === 'customer' ? 'bg-purple-500' :
+                                            activity.type === 'payment' ? 'bg-yellow-500' :
+                                            'bg-red-500'
+                                        }`} />
+                                        
+                                        <div className="flex-1 min-w-0">
+                                            <p className="font-medium">
+                                                {activity.action}
+                                            </p>
+                                            <p className="text-sm text-muted-foreground">
+                                                {activity.details}
+                                            </p>
+                                        </div>
+                                        
+                                        <p className="text-xs text-muted-foreground">
+                                            {activity.time}
+                                        </p> 
+                                    </div>
+                                ))}
+                            </div>
+                        </CardContent>
+                    </Card>
                 </div>
             </div>
         </main>
