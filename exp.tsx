@@ -1,3 +1,5 @@
+/* eslint-disable @next/next/no-img-element */
+/* eslint-disable react/no-unescaped-entities */
 /*  },
 ];
 
@@ -3405,3 +3407,867 @@ export default function RelatedProducts() {
 //   );
 // }
 
+//app/admin/page.tsx
+/* eslint-disable @next/next/no-img-element */
+/* eslint-disable react/no-unescaped-entities */
+"use client";
+
+import { useState } from "react";
+import Link from "next/link";
+import { 
+  BarChart3, 
+  Users, 
+  ShoppingBag, 
+  Package, 
+  TrendingUp, 
+  TrendingDown,
+  DollarSign,
+  Eye,
+  Plus,
+  Search,
+  Filter,
+  Download,
+  Bell,
+  Settings,
+  Calendar,
+  ArrowUpRight,
+  ArrowDownRight
+} from "lucide-react";
+
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Badge } from "@/components/ui/badge";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import styles from "./page.module.css";
+
+// Sample data (in a real app, this would come from APIs)
+const dashboardStats = {
+  totalRevenue: 124500,
+  revenueChange: 12.5,
+  totalOrders: 1247,
+  ordersChange: 8.2,
+  totalCustomers: 3456,
+  customersChange: 15.3,
+  totalProducts: 89,
+  productsChange: 5.1,
+};
+
+const recentOrders = [
+  {
+    id: "ORD-001",
+    customer: "Sarah Johnson",
+    email: "sarah@example.com",
+    amount: 189.00,
+    status: "completed",
+    date: "2025-01-15",
+    items: 2,
+  },
+  {
+    id: "ORD-002",
+    customer: "Michael Chen",
+    email: "michael@example.com",
+    amount: 345.50,
+    status: "processing",
+    date: "2025-01-15",
+    items: 3,
+  },
+  {
+    id: "ORD-003",
+    customer: "Emma Wilson",
+    email: "emma@example.com",
+    amount: 120.00,
+    status: "shipped",
+    date: "2025-01-14",
+    items: 1,
+  },
+  {
+    id: "ORD-004",
+    customer: "David Rodriguez",
+    email: "david@example.com",
+    amount: 275.25,
+    status: "pending",
+    date: "2025-01-14",
+    items: 2,
+  },
+  {
+    id: "ORD-005",
+    customer: "Lisa Thompson",
+    email: "lisa@example.com",
+    amount: 450.00,
+    status: "completed",
+    date: "2025-01-13",
+    items: 4,
+  },
+];
+
+const topProducts = [
+  {
+    id: 1,
+    name: "Tailored Cotton Overshirt",
+    sales: 156,
+    revenue: 29484,
+    stock: 23,
+    image: "https://images.pexels.com/photos/5384428/pexels-photo-5384428.jpeg",
+  },
+  {
+    id: 2,
+    name: "Structured Wool Blazer",
+    sales: 89,
+    revenue: 25810,
+    stock: 12,
+    image: "https://images.pexels.com/photos/5384425/pexels-photo-5384425.jpeg",
+  },
+  {
+    id: 3,
+    name: "Relaxed Linen Shirt",
+    sales: 134,
+    revenue: 16080,
+    stock: 45,
+    image: "https://images.pexels.com/photos/5384429/pexels-photo-5384429.jpeg",
+  },
+  {
+    id: 4,
+    name: "High-Waist Tapered Pants",
+    sales: 78,
+    revenue: 13650,
+    stock: 8,
+    image: "https://images.pexels.com/photos/5384424/pexels-photo-5384424.jpeg",
+  },
+];
+
+const recentCustomers = [
+  {
+    id: 1,
+    name: "Sarah Johnson",
+    email: "sarah@example.com",
+    orders: 5,
+    totalSpent: 1245.50,
+    lastOrder: "2025-01-15",
+    avatar: "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg",
+  },
+  {
+    id: 2,
+    name: "Michael Chen",
+    email: "michael@example.com",
+    orders: 3,
+    totalSpent: 890.25,
+    lastOrder: "2025-01-14",
+    avatar: "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg",
+  },
+  {
+    id: 3,
+    name: "Emma Wilson",
+    email: "emma@example.com",
+    orders: 7,
+    totalSpent: 2156.75,
+    lastOrder: "2025-01-13",
+    avatar: "https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg",
+  },
+];
+
+export default function AdminDashboard() {
+  const [selectedPeriod, setSelectedPeriod] = useState("7d");
+
+  const getStatusColor = (status: string) => {
+    switch (status) {
+      case "completed":
+        return "bg-green-100 text-green-800";
+      case "processing":
+        return "bg-blue-100 text-blue-800";
+      case "shipped":
+        return "bg-purple-100 text-purple-800";
+      case "pending":
+        return "bg-yellow-100 text-yellow-800";
+      default:
+        return "bg-gray-100 text-gray-800";
+    }
+  };
+
+  return (
+    <main className="min-h-screen bg-background pt-24">
+      <div className={`container ${styles.container}`}>
+        {/* Header */}
+        <div className={styles.header}>
+          <div>
+            <h1 className={styles.title}>Admin Dashboard</h1>
+            <p className={styles.subtitle}>
+              Welcome back! Here's what's happening with your store today.
+            </p>
+          </div>
+          <div className={styles.headerActions}>
+            <Button variant="outline" size="sm">
+              <Download className="mr-2 h-4 w-4" />
+              Export
+            </Button>
+            <Button size="sm">
+              <Plus className="mr-2 h-4 w-4" />
+              Add Product
+            </Button>
+          </div>
+        </div>
+
+        {/* Stats Cards */}
+        <div className={styles.statsGrid}>
+          <Card>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium">Total Revenue</CardTitle>
+              <DollarSign className="h-4 w-4 text-muted-foreground" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold">${dashboardStats.totalRevenue.toLocaleString()}</div>
+              <div className="flex items-center text-xs text-muted-foreground">
+                <TrendingUp className="mr-1 h-3 w-3 text-green-500" />
+                +{dashboardStats.revenueChange}% from last month
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium">Total Orders</CardTitle>
+              <ShoppingBag className="h-4 w-4 text-muted-foreground" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold">{dashboardStats.totalOrders.toLocaleString()}</div>
+              <div className="flex items-center text-xs text-muted-foreground">
+                <TrendingUp className="mr-1 h-3 w-3 text-green-500" />
+                +{dashboardStats.ordersChange}% from last month
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium">Total Customers</CardTitle>
+              <Users className="h-4 w-4 text-muted-foreground" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold">{dashboardStats.totalCustomers.toLocaleString()}</div>
+              <div className="flex items-center text-xs text-muted-foreground">
+                <TrendingUp className="mr-1 h-3 w-3 text-green-500" />
+                +{dashboardStats.customersChange}% from last month
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium">Total Products</CardTitle>
+              <Package className="h-4 w-4 text-muted-foreground" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold">{dashboardStats.totalProducts}</div>
+              <div className="flex items-center text-xs text-muted-foreground">
+                <TrendingUp className="mr-1 h-3 w-3 text-green-500" />
+                +{dashboardStats.productsChange}% from last month
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Main Content */}
+        <div className={styles.mainGrid}>
+          {/* Recent Orders */}
+          <Card className={styles.ordersCard}>
+            <CardHeader>
+              <div className="flex items-center justify-between">
+                <div>
+                  <CardTitle>Recent Orders</CardTitle>
+                  <CardDescription>Latest customer orders and their status</CardDescription>
+                </div>
+                <Button variant="outline" size="sm" asChild>
+                  <Link href="/admin/orders">
+                    View All
+                    <ArrowUpRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
+              </div>
+            </CardHeader>
+            <CardContent>
+              <div className={styles.ordersTable}>
+                <div className={styles.tableHeader}>
+                  <div>Order ID</div>
+                  <div>Customer</div>
+                  <div>Amount</div>
+                  <div>Status</div>
+                  <div>Date</div>
+                </div>
+                {recentOrders.map((order) => (
+                  <div key={order.id} className={styles.tableRow}>
+                    <div className="font-medium">{order.id}</div>
+                    <div>
+                      <div className="font-medium">{order.customer}</div>
+                      <div className="text-sm text-muted-foreground">{order.email}</div>
+                    </div>
+                    <div className="font-medium">${order.amount.toFixed(2)}</div>
+                    <div>
+                      <Badge className={getStatusColor(order.status)}>
+                        {order.status}
+                      </Badge>
+                    </div>
+                    <div className="text-sm text-muted-foreground">{order.date}</div>
+                  </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Analytics Chart Placeholder */}
+          <Card className={styles.chartCard}>
+            <CardHeader>
+              <CardTitle>Revenue Analytics</CardTitle>
+              <CardDescription>Revenue trends over the selected period</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className={styles.chartPlaceholder}>
+                <BarChart3 className="h-12 w-12 text-muted-foreground" />
+                <p className="text-muted-foreground">Chart visualization would go here</p>
+                <p className="text-sm text-muted-foreground">
+                  Integration with charting library like Recharts
+                </p>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Secondary Grid */}
+        <div className={styles.secondaryGrid}>
+          {/* Top Products */}
+          <Card>
+            <CardHeader>
+              <CardTitle>Top Products</CardTitle>
+              <CardDescription>Best performing products this month</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-4">
+                {topProducts.map((product) => (
+                  <div key={product.id} className="flex items-center gap-4">
+                    <div className="relative h-12 w-12 overflow-hidden rounded-md bg-muted">
+                      <img
+                        src={product.image}
+                        alt={product.name}
+                        className="h-full w-full object-cover"
+                      />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="font-medium truncate">{product.name}</p>
+                      <p className="text-sm text-muted-foreground">
+                        {product.sales} sales • ${product.revenue.toLocaleString()} revenue
+                      </p>
+                    </div>
+                    <div className="text-right">
+                      <p className="text-sm font-medium">{product.stock} in stock</p>
+                      <p className={`text-xs ${product.stock < 15 ? 'text-red-500' : 'text-green-500'}`}>
+                        {product.stock < 15 ? 'Low stock' : 'In stock'}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Recent Customers */}
+          <Card>
+            <CardHeader>
+              <CardTitle>Recent Customers</CardTitle>
+              <CardDescription>Latest customer registrations and activity</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-4">
+                {recentCustomers.map((customer) => (
+                  <div key={customer.id} className="flex items-center gap-4">
+                    <Avatar>
+                      <AvatarImage src={customer.avatar} alt={customer.name} />
+                      <AvatarFallback>{customer.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
+                    </Avatar>
+                    <div className="flex-1 min-w-0">
+                      <p className="font-medium">{customer.name}</p>
+                      <p className="text-sm text-muted-foreground">{customer.email}</p>
+                    </div>
+                    <div className="text-right">
+                      <p className="text-sm font-medium">${customer.totalSpent.toFixed(2)}</p>
+                      <p className="text-xs text-muted-foreground">{customer.orders} orders</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Quick Actions */}
+          <Card>
+            <CardHeader>
+              <CardTitle>Quick Actions</CardTitle>
+              <CardDescription>Common administrative tasks</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="grid grid-cols-2 gap-3">
+                <Button variant="outline" className="h-auto flex-col gap-2 p-4" asChild>
+                  <Link href="/admin/products/new">
+                    <Plus className="h-5 w-5" />
+                    Add Product
+                  </Link>
+                </Button>
+                <Button variant="outline" className="h-auto flex-col gap-2 p-4" asChild>
+                  <Link href="/admin/orders">
+                    <ShoppingBag className="h-5 w-5" />
+                    View Orders
+                  </Link>
+                </Button>
+                <Button variant="outline" className="h-auto flex-col gap-2 p-4" asChild>
+                  <Link href="/admin/customers">
+                    <Users className="h-5 w-5" />
+                    Manage Users
+                  </Link>
+                </Button>
+                <Button variant="outline" className="h-auto flex-col gap-2 p-4" asChild>
+                  <Link href="/admin/analytics">
+                    <BarChart3 className="h-5 w-5" />
+                    Analytics
+                  </Link>
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Activity Feed */}
+        <Card className="mt-8">
+          <CardHeader>
+            <CardTitle>Recent Activity</CardTitle>
+            <CardDescription>Latest actions and system events</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-4">
+              {[
+                { action: "New order received", details: "Order #ORD-001 from Sarah Johnson", time: "2 minutes ago", type: "order" },
+                { action: "Product updated", details: "Tailored Cotton Overshirt stock updated", time: "15 minutes ago", type: "product" },
+                { action: "Customer registered", details: "New customer: Michael Chen", time: "1 hour ago", type: "customer" },
+                { action: "Payment processed", details: "Payment of $345.50 confirmed", time: "2 hours ago", type: "payment" },
+                { action: "Inventory alert", details: "Low stock warning for High-Waist Tapered Pants", time: "3 hours ago", type: "alert" },
+              ].map((activity, index) => (
+                <div key={index} className="flex items-start gap-3 pb-3 border-b border-border last:border-0">
+                  <div className={`mt-1 h-2 w-2 rounded-full ${
+                    activity.type === 'order' ? 'bg-green-500' :
+                    activity.type === 'product' ? 'bg-blue-500' :
+                    activity.type === 'customer' ? 'bg-purple-500' :
+                    activity.type === 'payment' ? 'bg-yellow-500' :
+                    'bg-red-500'
+                  }`} />
+                  <div className="flex-1 min-w-0">
+                    <p className="font-medium">{activity.action}</p>
+                    <p className="text-sm text-muted-foreground">{activity.details}</p>
+                  </div>
+                  <p className="text-xs text-muted-foreground">{activity.time}</p>
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    </main>
+  );
+}
+/*
+//components/site-header.tsx
+"use client";
+
+import Link from "next/link";
+import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
+import { ShoppingBag, Menu, X, Search, User, Settings } from "lucide-react";
+
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { ThemeToggle } from "@/components/theme-toggle";
+import { useCart } from "@/lib/cart-context";
+
+const mainNavItems = [
+  { label: "Home", href: "/" },
+  { label: "Shop", href: "/shop" },
+  { label: "Lookbook", href: "/lookbook" },
+  { label: "Journal", href: "/journal" },
+  { label: "About", href: "/about" },
+  { label: "Contact", href: "/contact" },
+];
+
+export default function SiteHeader() {
+  const pathname = usePathname();
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { toggleCart, getTotalItems } = useCart();
+
+  const totalItems = getTotalItems();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  // Check if current path is admin
+  const isAdminPath = pathname.startsWith('/admin');
+
+  return (
+    <header
+      className={cn(
+        "fixed left-0 top-0 z-50 w-full",
+        isScrolled
+          ? "bg-background/90 backdrop-blur-md shadow-sm"
+          : "bg-transparent",
+        pathname === "/" && !isScrolled ? "text-white" : "text-foreground"
+      )}
+    >
+      <div className="container flex h-16 items-center justify-between md:h-20">
+        {/* Mobile menu toggle *//*}
+        <Button
+          variant="ghost"
+          size="icon"
+          className="md:hidden"
+          onClick={toggleMobileMenu}
+        >
+          <Menu className="h-6 w-6" />
+          <span className="sr-only">Toggle menu</span>
+        </Button>
+
+        {/* Logo *//*}
+        <div className="flex-1 md:flex-none">
+          <Link href="/" className="font-serif text-xl font-light tracking-wide">
+            VANGUARD
+          </Link>
+        </div>
+
+        {/* Desktop navigation *//*}
+        <nav className="hidden md:flex md:flex-1 md:items-center md:justify-center">
+          <ul className="flex items-center gap-6">
+            {mainNavItems.map((item) => (
+              <li key={item.href}>
+                <Link
+                  href={item.href}
+                  className={cn(
+                    "text-sm font-medium transition-colors hover:text-primary",
+                    pathname === item.href ? "text-primary" : ""
+                  )}
+                >
+                  {item.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
+
+        {/* Actions *//*}
+        <div className="flex items-center gap-2">
+          <Button variant="ghost" size="icon">
+            <Search className="h-5 w-5" />
+            <span className="sr-only">Search</span>
+          </Button>
+          <Button variant="ghost" size="icon" asChild>
+            <Link href="/auth/login">
+              <User className="h-5 w-5" />
+              <span className="sr-only">Account</span>
+            </Link>
+          </Button>
+          {!isAdminPath && (
+            <Button variant="ghost" size="icon" className="relative" onClick={toggleCart}>
+              <ShoppingBag className="h-5 w-5" />
+              {totalItems > 0 && (
+                <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-primary text-xs font-medium text-primary-foreground">
+                  {totalItems > 9 ? '9+' : totalItems}
+                </span>
+              )}
+              <span className="sr-only">Cart ({totalItems})</span>
+            </Button>
+          )}
+          {isAdminPath && (
+            <Button variant="ghost" size="icon" asChild>
+              <Link href="/admin/settings">
+                <Settings className="h-5 w-5" />
+                <span className="sr-only">Admin Settings</span>
+              </Link>
+            </Button>
+          )}
+          <ThemeToggle />
+        </div>
+      </div>
+
+      {/* Mobile menu *//*}
+      <div
+        className={cn(
+          "fixed bottom-0 left-0 right-0 top-0 z-50 flex flex-col bg-background p-6 transition-transform duration-300 md:hidden",
+          isMobileMenuOpen ? "translate-x-0" : "translate-x-[-100%]"
+        )}
+      >
+        <div className="flex items-center justify-between">
+          <Link
+            href="/"
+            className="font-serif text-xl font-light tracking-wide"
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
+            VANGUARD
+          </Link>
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={toggleMobileMenu}
+            className="rounded-full"
+          >
+            <X className="h-6 w-6" />
+            <span className="sr-only">Close menu</span>
+          </Button>
+        </div>
+
+        <nav className="mt-8 flex-1">
+          <ul className="flex flex-col gap-4">
+            {mainNavItems.map((item) => (
+              <li key={item.href}>
+                <Link
+                  href={item.href}
+                  className={cn(
+                    "block py-2 text-lg font-medium transition-colors hover:text-primary",
+                    pathname === item.href ? "text-primary" : ""
+                  )}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  {item.label}
+                </Link>
+              </li>
+            ))}
+            {isAdminPath && (
+              <li>
+                <Link
+                  href="/admin"
+                  className={cn(
+                    "block py-2 text-lg font-medium transition-colors hover:text-primary",
+                    pathname === "/admin" ? "text-primary" : ""
+                  )}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Admin Dashboard
+                </Link>
+              </li>
+            )}
+          </ul>
+        </nav>
+
+        <div className="mt-auto flex flex-col gap-4">
+          <div className="flex items-center justify-between border-t border-border pt-4">
+            <span className="text-sm font-medium">Switch Theme</span>
+            <ThemeToggle />
+          </div>
+        </div>
+      </div>
+    </header>
+  );
+}
+
+//app/admin/layout.tsx
+"use client";
+
+import { useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { 
+  LayoutDashboard, 
+  ShoppingBag, 
+  Package, 
+  Users, 
+  BarChart3, 
+  Settings, 
+  FileText,
+  Tag,
+  Truck,
+  MessageSquare,
+  ChevronLeft,
+  ChevronRight,
+  Menu
+} from "lucide-react";
+
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { ScrollArea } from "@/components/ui/scroll-area";
+
+const sidebarItems = [
+  {
+    title: "Dashboard",
+    href: "/admin",
+    icon: LayoutDashboard,
+  },
+  {
+    title: "Orders",
+    href: "/admin/orders",
+    icon: ShoppingBag,
+  },
+  {
+    title: "Products",
+    href: "/admin/products",
+    icon: Package,
+  },
+  {
+    title: "Customers",
+    href: "/admin/customers",
+    icon: Users,
+  },
+  {
+    title: "Analytics",
+    href: "/admin/analytics",
+    icon: BarChart3,
+  },
+  {
+    title: "Categories",
+    href: "/admin/categories",
+    icon: Tag,
+  },
+  {
+    title: "Shipping",
+    href: "/admin/shipping",
+    icon: Truck,
+  },
+  {
+    title: "Reviews",
+    href: "/admin/reviews",
+    icon: MessageSquare,
+  },
+  {
+    title: "Content",
+    href: "/admin/content",
+    icon: FileText,
+  },
+  {
+    title: "Settings",
+    href: "/admin/settings",
+    icon: Settings,
+  },
+];
+
+export default function AdminLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  const pathname = usePathname();
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  return (
+    <div className="flex h-screen bg-background">
+      {/* Mobile menu overlay *//*}
+      {mobileMenuOpen && (
+        <div 
+          className="fixed inset-0 z-40 bg-black/50 lg:hidden" 
+          onClick={() => setMobileMenuOpen(false)}
+        />
+      )}
+
+      {/* Sidebar *//*}
+      <aside
+        className={cn(
+          "fixed left-0 top-0 z-50 h-full bg-card border-r border-border transition-all duration-300 lg:relative lg:translate-x-0",
+          sidebarCollapsed ? "w-16" : "w-64",
+          mobileMenuOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
+        )}
+      >
+        <div className="flex h-16 items-center justify-between px-4 border-b border-border">
+          {!sidebarCollapsed && (
+            <Link href="/admin" className="font-serif text-lg font-light tracking-wide">
+              ADMIN
+            </Link>
+          )}
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
+            className="hidden lg:flex"
+          >
+            {sidebarCollapsed ? (
+              <ChevronRight className="h-4 w-4" />
+            ) : (
+              <ChevronLeft className="h-4 w-4" />
+            )}
+          </Button>
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => setMobileMenuOpen(false)}
+            className="lg:hidden"
+          >
+            <ChevronLeft className="h-4 w-4" />
+          </Button>
+        </div>
+
+        <ScrollArea className="flex-1 px-3 py-4">
+          <nav className="space-y-2">
+            {sidebarItems.map((item) => {
+              const Icon = item.icon;
+              const isActive = pathname === item.href;
+
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className={cn(
+                    "flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground",
+                    isActive ? "bg-accent text-accent-foreground" : "text-muted-foreground",
+                    sidebarCollapsed && "justify-center px-2"
+                  )}
+                >
+                  <Icon className="h-4 w-4 flex-shrink-0" />
+                  {!sidebarCollapsed && <span>{item.title}</span>}
+                </Link>
+              );
+            })}
+          </nav>
+        </ScrollArea>
+
+        {/* Back to Store *//*}
+        <div className="border-t border-border p-4">
+          <Link
+            href="/"
+            className={cn(
+              "flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground",
+              sidebarCollapsed && "justify-center px-2"
+            )}
+          >
+            <ChevronLeft className="h-4 w-4 flex-shrink-0" />
+            {!sidebarCollapsed && <span>Back to Store</span>}
+          </Link>
+        </div>
+      </aside>
+
+      {/* Main content *//*}
+      <div className="flex-1 flex flex-col overflow-hidden">
+        {/* Mobile header *//*}
+        <div className="flex h-16 items-center justify-between border-b border-border px-4 lg:hidden">
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => setMobileMenuOpen(true)}
+          >
+            <Menu className="h-6 w-6" />
+          </Button>
+          <Link href="/admin" className="font-serif text-lg font-light tracking-wide">
+            ADMIN
+          </Link>
+          <div className="w-10" /> {/* Spacer *//*}
+        </div>
+
+        {/* Page content *//*}
+        <main className="flex-1 overflow-auto">
+          {children}
+        </main>
+      </div>
+    </div>
+  );
+}
+*/
