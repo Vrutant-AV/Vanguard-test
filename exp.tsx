@@ -3410,7 +3410,7 @@ export default function RelatedProducts() {
 //app/admin/page.tsx
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable react/no-unescaped-entities */
-"use client";
+/*"use client";
 
 import { useState } from "react";
 import Link from "next/link";
@@ -3588,7 +3588,7 @@ export default function AdminDashboard() {
   return (
     <main className="min-h-screen bg-background pt-24">
       <div className={`container ${styles.container}`}>
-        {/* Header */}
+        {/* Header *//*}
         <div className={styles.header}>
           <div>
             <h1 className={styles.title}>Admin Dashboard</h1>
@@ -3608,7 +3608,7 @@ export default function AdminDashboard() {
           </div>
         </div>
 
-        {/* Stats Cards */}
+        {/* Stats Cards *//*}
         <div className={styles.statsGrid}>
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -3667,9 +3667,9 @@ export default function AdminDashboard() {
           </Card>
         </div>
 
-        {/* Main Content */}
+        {/* Main Content *//*}
         <div className={styles.mainGrid}>
-          {/* Recent Orders */}
+          {/* Recent Orders *//*}
           <Card className={styles.ordersCard}>
             <CardHeader>
               <div className="flex items-center justify-between">
@@ -3714,7 +3714,7 @@ export default function AdminDashboard() {
             </CardContent>
           </Card>
 
-          {/* Analytics Chart Placeholder */}
+          {/* Analytics Chart Placeholder *//*}
           <Card className={styles.chartCard}>
             <CardHeader>
               <CardTitle>Revenue Analytics</CardTitle>
@@ -3732,9 +3732,9 @@ export default function AdminDashboard() {
           </Card>
         </div>
 
-        {/* Secondary Grid */}
+        {/* Secondary Grid *//*}
         <div className={styles.secondaryGrid}>
-          {/* Top Products */}
+          {/* Top Products *//*}
           <Card>
             <CardHeader>
               <CardTitle>Top Products</CardTitle>
@@ -3769,7 +3769,7 @@ export default function AdminDashboard() {
             </CardContent>
           </Card>
 
-          {/* Recent Customers */}
+          {/* Recent Customers *//*}
           <Card>
             <CardHeader>
               <CardTitle>Recent Customers</CardTitle>
@@ -3797,7 +3797,7 @@ export default function AdminDashboard() {
             </CardContent>
           </Card>
 
-          {/* Quick Actions */}
+          {/* Quick Actions *//*}
           <Card>
             <CardHeader>
               <CardTitle>Quick Actions</CardTitle>
@@ -3834,7 +3834,7 @@ export default function AdminDashboard() {
           </Card>
         </div>
 
-        {/* Activity Feed */}
+        {/* Activity Feed *//*}
         <Card className="mt-8">
           <CardHeader>
             <CardTitle>Recent Activity</CardTitle>
@@ -3871,7 +3871,7 @@ export default function AdminDashboard() {
     </main>
   );
 }
-/*
+*/
 //components/site-header.tsx
 "use client";
 
@@ -3929,7 +3929,7 @@ export default function SiteHeader() {
       )}
     >
       <div className="container flex h-16 items-center justify-between md:h-20">
-        {/* Mobile menu toggle *//*}
+        {/* Mobile menu toggle */}
         <Button
           variant="ghost"
           size="icon"
@@ -3940,14 +3940,14 @@ export default function SiteHeader() {
           <span className="sr-only">Toggle menu</span>
         </Button>
 
-        {/* Logo *//*}
+        {/* Logo */}
         <div className="flex-1 md:flex-none">
           <Link href="/" className="font-serif text-xl font-light tracking-wide">
             VANGUARD
           </Link>
         </div>
 
-        {/* Desktop navigation *//*}
+        {/* Desktop navigation */}
         <nav className="hidden md:flex md:flex-1 md:items-center md:justify-center">
           <ul className="flex items-center gap-6">
             {mainNavItems.map((item) => (
@@ -3966,7 +3966,7 @@ export default function SiteHeader() {
           </ul>
         </nav>
 
-        {/* Actions *//*}
+        {/* Actions */}
         <div className="flex items-center gap-2">
           <Button variant="ghost" size="icon">
             <Search className="h-5 w-5" />
@@ -4001,7 +4001,7 @@ export default function SiteHeader() {
         </div>
       </div>
 
-      {/* Mobile menu *//*}
+      {/* Mobile menu */}
       <div
         className={cn(
           "fixed bottom-0 left-0 right-0 top-0 z-50 flex flex-col bg-background p-6 transition-transform duration-300 md:hidden",
@@ -4070,7 +4070,7 @@ export default function SiteHeader() {
     </header>
   );
 }
-
+/*
 //app/admin/layout.tsx
 "use client";
 
