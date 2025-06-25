@@ -49,7 +49,7 @@ const recentOrders = [
     {
         id: "ORD-001",
         customer: "Sarah Johnson",
-        email: "sarah@example.com",
+        email: "sarah@gmail.com",
         amount: 189.00,
         status: "completed",
         date: "2025-01-15",
@@ -58,7 +58,7 @@ const recentOrders = [
     {
         id: "ORD-002",
         customer: "Michael Chen",
-        email: "michael@example.com",
+        email: "michael@gmail.com",
         amount: 345.50,
         status: "processing",
         date: "2025-01-15",
@@ -67,7 +67,7 @@ const recentOrders = [
     {
         id: "ORD-003",
         customer: "Emma Wilson",
-        email: "emma@example.com",
+        email: "emma@gmail.com",
         amount: 120.00,
         status: "shipped",
         date: "2025-01-14",
@@ -76,7 +76,7 @@ const recentOrders = [
     {
         id: "ORD-004",
         customer: "David Rodriguez",
-        email: "david@example.com",
+        email: "david@gmail.com",
         amount: 275.25,
         status: "pending",
         date: "2025-01-14",
@@ -85,7 +85,7 @@ const recentOrders = [
     {
         id: "ORD-005",
         customer: "Lisa Thompson",
-        email: "lisa@example.com",
+        email: "lisa@gmail.com",
         amount: 450.00,
         status: "completed",
         date: "2025-01-13",
@@ -132,7 +132,7 @@ const recentCustomers = [
     {
         id: 1,
         name: "Sarah Johnson",
-        email: "sarah@example.com",
+        email: "sarah@gmail.com",
         orders: 5,
         totalSpent: 1245.50,
         lastOrder: "2025-01-15",
@@ -141,7 +141,7 @@ const recentCustomers = [
     {
         id: 2,
         name: "Michael Chen",
-        email: "michael@example.com",
+        email: "michael@gmail.com",
         orders: 3,
         totalSpent: 890.25,
         lastOrder: "2025-01-14",
@@ -150,7 +150,7 @@ const recentCustomers = [
     {
         id: 3,
         name: "Emma Wilson",
-        email: "emma@example.com",
+        email: "emma@gmail.com",
         orders: 7,
         totalSpent: 2156.75,
         lastOrder: "2025-01-13",
