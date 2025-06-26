@@ -1,20 +1,20 @@
 .container {
-  padding: 2rem 0 3rem;
+  padding: 32px 0 48px;
 }
 
 .header {
-  margin-bottom: 2rem;
+  margin-bottom: 32px;
 }
 
 .title {
   font-family: var(--font-serif);
-  font-size: 2.275rem;
+  font-size: 36px;
   font-weight: 300;
   padding: 2px 7px 2px 7px;
 }
 
 .subtitle {
-  /*margin-top: 0.5rem;*/
+  /*margin-top: 8px;*/
   padding: 2px 7px 2px 7px;
   color: hsl(var(--muted-foreground));
 }
@@ -24,32 +24,32 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 4rem 2rem;
+  padding: 64px 32px;
   text-align: center;
 }
 
 .emptyIcon {
-  margin-bottom: 1rem;
-  height: 4rem;
-  width: 4rem;
+  margin-bottom: 16px;
+  height: 64px;
+  width: 64px;
   color: hsl(var(--muted-foreground));
 }
 
 .emptyTitle {
-  margin-bottom: 0.5rem;
-  font-size: 1.125rem;
+  margin-bottom: 8px;
+  font-size: 18px;
   font-weight: 500;
 }
 
 .emptyDescription {
-  margin-bottom: 2rem;
-  max-width: 28rem;
+  margin-bottom: 32px;
+  max-width: 448px;
   color: hsl(var(--muted-foreground));
 }
 
 .cartContent {
   display: grid;
-  gap: 2rem;
+  gap: 32px;
   grid-template-columns: 1fr;
 }
 
@@ -63,7 +63,7 @@
 
 .cartItem {
   display: flex;
-  /* gap: 1rem; */
+  /* gap: 16px; */
   padding: 17px 5px 17px 10px;
   border-bottom: 1px solid hsl(var(--border));
 }
@@ -75,10 +75,10 @@
 .itemImage {
   position: relative;
   aspect-ratio: 3/4;
-  width: 6rem;
+  width: 96px;
   flex-shrink: 0;
   overflow: hidden;
-  border-radius: 0.375rem;
+  border-radius: 6px;
   background-color: hsl(var(--muted));
 }
 
@@ -86,7 +86,7 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 8px;
 }
 
 .itemHeader {
@@ -94,7 +94,7 @@
   justify-content: space-between;
   align-items: flex-start;
   padding: 3px 6px 3px 6px;
-  gap: 1rem;
+  gap: 16px;
 }
 
 .itemInfo {
@@ -104,19 +104,19 @@
 .itemName {
   font-weight: 500;
   line-height: 1.25;
-  margin-bottom: 0.25rem;
+  margin-bottom: 4px;
 }
 
 .itemCategory {
-  font-size: 0.875rem;
+  font-size: 14px;
   color: hsl(var(--muted-foreground));
-  margin-bottom: 0.5rem;
+  margin-bottom: 8px;
 }
 
 .itemVariants {
   display: flex;
-  gap: 1rem;
-  font-size: 0.875rem;
+  gap: 16px;
+  font-size: 14px;
   color: hsl(var(--muted-foreground));
 }
 
@@ -137,7 +137,7 @@
   display: flex;
   align-items: center;
   border: 1px solid hsl(var(--border));
-  border-radius: 0.375rem;
+  border-radius: 6px;
   overflow: hidden;
 }
 
@@ -145,8 +145,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 2rem;
-  height: 2rem;
+  width: 32px;
+  height: 32px;
   background: transparent;
   border: none;
   cursor: pointer;
@@ -166,9 +166,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 3rem;
-  height: 2rem;
-  font-size: 0.875rem;
+  width: 48px;
+  height: 32px;
+  font-size: 14px;
   font-weight: 500;
   border-left: 1px solid hsl(var(--border));
   border-right: 1px solid hsl(var(--border));
@@ -179,8 +179,8 @@
   background: transparent;
   border: none;
   cursor: pointer;
-  padding: 0.25rem;
-  border-radius: 0.25rem;
+  padding: 4px;
+  border-radius: 4px;
   transition: color 0.2s;
 }
 
@@ -190,24 +190,24 @@
 
 .summaryCard {
   position: sticky;
-  top: 6rem;
-  padding: 1.5rem;
-  border-radius: 0.5rem;
+  top: 96px;
+  padding: 24px;
+  border-radius: 8px;
   border: 1px solid hsl(var(--border));
   background-color: hsl(var(--card));
   height: fit-content;
 }
 
 .summaryTitle {
-  margin-bottom: 1rem;
-  font-size: 1.125rem;
+  margin-bottom: 16px;
+  font-size: 18px;
   font-weight: 500;
 }
 
 .summaryRow {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 0.75rem;
+  margin-bottom: 12px;
 }
 
 .summaryLabel {
@@ -219,9 +219,9 @@
 }
 
 .summaryTotal {
-  padding-top: 0.75rem;
+  padding-top: 12px;
   border-top: 1px solid hsl(var(--border));
-  margin-bottom: 1.5rem;
+  margin-bottom: 24px;
 }
 
 .summaryTotalLabel {
@@ -230,38 +230,38 @@
 
 .summaryTotalValue {
   font-weight: 600;
-  font-size: 1.125rem;
+  font-size: 18px;
 }
 
 .checkoutActions {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 12px;
 }
 
 .promoSection {
-  margin-top: 1.5rem;
-  padding-top: 1.5rem;
+  margin-top: 24px;
+  padding-top: 24px;
   border-top: 1px solid hsl(var(--border));
 }
 
 .promoTitle {
-  margin-bottom: 0.75rem;
-  font-size: 0.875rem;
+  margin-bottom: 12px;
+  font-size: 14px;
   font-weight: 500;
 }
 
 .promoForm {
   display: flex;
-  gap: 0.5rem;
+  gap: 8px;
 }
 
 .promoInput {
   flex: 1;
-  padding: 0.5rem 0.75rem;
+  padding: 8px 12px;
   border: 1px solid hsl(var(--border));
-  border-radius: 0.375rem;
-  font-size: 0.875rem;
+  border-radius: 6px;
+  font-size: 14px;
   background-color: hsl(var(--background));
 }
 
@@ -272,29 +272,29 @@
 }
 
 .promoButton {
-  padding: 0.5rem 1rem;
-  font-size: 0.875rem;
+  padding: 8px 16px;
+  font-size: 14px;
   white-space: nowrap;
 }
 
 .shippingInfo {
-  margin-top: 1rem;
-  padding: 0.75rem;
+  margin-top: 16px;
+  padding: 12px;
   background-color: hsl(var(--muted));
-  border-radius: 0.375rem;
-  font-size: 0.875rem;
+  border-radius: 6px;
+  font-size: 14px;
   color: hsl(var(--muted-foreground));
 }
 
 .continueShoppingLink {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 8px;
   padding: 2px 2px 2px 9px;
   color: hsl(var(--primary));
   text-decoration: none;
-  font-size: 0.875rem;
-  margin-top: 1rem;
+  font-size: 14px;
+  margin-top: 16px;
 }
 
 .continueShoppingLink:hover {
@@ -303,36 +303,36 @@
 
 @media (min-width: 768px) {
   .title {
-    font-size: 2.25rem;
+    font-size: 36px;
     padding: 3px 1px 3px 9px;
   }
 
   .cartContent {
     grid-template-columns: 2fr 1fr;
-    gap: 3rem;
+    gap: 48px;
   }
 
   .cartItem {
-    gap: 1.5rem;
+    gap: 24px;
   }
 
   .itemImage {
-    width: 8rem;
+    width: 128px;
   }
 
   .itemActions {
     flex-direction: row;
     align-items: center;
-    gap: 1rem;
+    gap: 16px;
   }
 }
 
 @media (min-width: 1024px) {
   .cartContent {
-    gap: 4rem;
+    gap: 64px;
   }
 
   .itemImage {
-    width: 10rem;
+    width: 160px;
   }
 }
