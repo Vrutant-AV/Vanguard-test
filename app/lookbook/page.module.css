@@ -1,7 +1,7 @@
 .main {
     min-height: 100vh;
     background: var(--background);
-    padding: 6rem;
+    padding: 96px;
 }
 
 .heroSection {
@@ -35,7 +35,7 @@
     font-family: var(--font-serif);
     font-size: 2.25rem;
     font-weight: 300;
-    letter-spacing: -0.01rem;
+    letter-spacing: -0.016px;
     color: white;
 }
 
@@ -46,12 +46,12 @@
 }
 
 .tabsSection {
-    padding-top: 4rem;
-    padding-bottom: 6rem;
+    padding-top: 64px;
+    padding-bottom: 96px;
 }
 
 .tabsHeader {
-    margin-bottom: 3rem;
+    margin-bottom: 48px;
 }
 
 .tabsList {
@@ -59,9 +59,9 @@
     margin-right: auto;
     display: flex;
     width: 100;
-    max-width: 32rem;
+    max-width: 332px;
     justify-content: center;
-    gap: 1rem;
+    gap: 16px;
     border-bottom: 1px solid var(--border);
     background:transparent;
     padding: 0;
@@ -69,8 +69,8 @@
 
 .tabsTrigger {
     border-bottom: 2px solid transparent;
-    padding-bottom: 0.5rem;
-    padding-top: 0.25rem;
+    padding-bottom: 8px;
+    padding-top: 4px;
 }
 
 .tabsTrigger[data-state="active"] {
@@ -85,7 +85,7 @@
 }
 
 .collectionTitle {
-    margin-bottom: 1rem;
+    margin-bottom: 16px;
     font-family: var(--font-serif);
     font-size: 1.875rem;
     font-weight: 300;
@@ -94,7 +94,7 @@
 .gripWrapper {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 1rem;
+    gap: 16px;
 }
 
 @media (min-width: 768px) {
@@ -111,7 +111,7 @@
 
 .gridColumn {
     display: grid;
-    gap: 1rem;
+    gap: 16px;
 }
 
 .imageCard {
@@ -136,12 +136,12 @@
 
 .btsSection {
     background: var(--muted);
-    padding-top: 4rem;
-    padding-bottom: 6rem;
+    padding-top: 64px;
+    padding-bottom: 96px;
 }
 
 .btsTitle {
-    margin-bottom: 3rem;
+    margin-bottom: 48px;
     text-align: center;
     font-family: var(--font-serif);
     font-size: 1.875rem;
@@ -156,7 +156,7 @@
 
 .btsGrid {
     display: grid;
-    gap: 2rem;
+    gap: 32px;
 }
 
 @media (min-width: 768px) {
@@ -180,8 +180,8 @@
 }
 
 .btsSubheading {
-    margin-bottom: 1rem;
+    margin-bottom: 16px;
     font-family: var(--font-serif);
-    font-size: 1.5rem;
+    font-size: 24px;
     font-weight: 300;
 }
