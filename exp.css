@@ -3763,7 +3763,7 @@ export default function ShopPage() {
 }
 */
 
-
+/*
 
 app/admin/page.module.css
 
@@ -3867,7 +3867,7 @@ app/admin/page.module.css
   gap: 0.5rem;
 }
 
-/* Mobile Responsive */
+/* Mobile Responsive *//*
 @media (max-width: 768px) {
   .header {
     flex-direction: column;
@@ -3901,7 +3901,7 @@ app/admin/page.module.css
   }
 }
 
-/* Tablet and Desktop */
+/* Tablet and Desktop *//*
 @media (min-width: 640px) {
   .statsGrid {
     grid-template-columns: repeat(2, 1fr);
@@ -3932,7 +3932,7 @@ app/admin/page.module.css
   }
 }
 
-/* Custom scrollbar for tables */
+/* Custom scrollbar for tables *//*
 .ordersTable {
   max-height: 400px;
   overflow-y: auto;
@@ -3956,7 +3956,7 @@ app/admin/page.module.css
   background: hsl(var(--foreground));
 }
 
-/* Status badge animations */
+/* Status badge animations *//*
 .statusBadge {
   transition: all 0.2s ease-in-out;
 }
@@ -3965,7 +3965,7 @@ app/admin/page.module.css
   transform: scale(1.05);
 }
 
-/* Card hover effects */
+/* Card hover effects *//*
 .statsGrid > * {
   transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 }
@@ -3975,7 +3975,7 @@ app/admin/page.module.css
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-/* Activity feed styling */
+/* Activity feed styling *//*
 .activityItem {
   position: relative;
   padding-left: 1.5rem;
@@ -3992,7 +3992,7 @@ app/admin/page.module.css
   background-color: hsl(var(--primary));
 }
 
-/* Loading states */
+/* Loading states *//*
 .loadingCard {
   opacity: 0.7;
   pointer-events: none;
@@ -4017,3 +4017,4 @@ app/admin/page.module.css
     transform: translateX(100%);
   }
 }
+*/
