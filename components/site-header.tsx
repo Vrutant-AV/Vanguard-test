@@ -150,7 +150,7 @@ export default function SiteHeader() {
             <span className="sr-only">Account</span>
           </Button>
           
-          {/* cart */}
+          {/* Cart */}
           {!isAdminPath && (
             <Button
               variant="ghost"
