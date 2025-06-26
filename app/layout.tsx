@@ -4,22 +4,19 @@ import { Inter, Playfair_Display } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import { CartProvider } from "@/lib/cart-context";
 import { WishlistProvider } from "@/lib/wishlist-context";
-
-import SiteHeader from "@/components/site-header";
-import SiteFooter from "@/components/site-footer";
-import CartDrawer from "@/components/cart-drawer";
+import LayoutClientWrapper from "@/components/LayoutClientWrapper";
 
 // Fonts with increased timeout
 const inter = Inter({ 
   subsets: ["latin"],
   variable: "--font-sans",
-  display: 'swap', // Fallback handling
+  display: 'swap', 
 });
 
 const playfair = Playfair_Display({ 
   subsets: ["latin"],
   variable: "--font-serif",
-  display: 'swap', // Fallback handling
+  display: 'swap', 
 });
 
 export const metadata: Metadata = {
@@ -43,10 +40,9 @@ export default function RootLayout({
         >
           <WishlistProvider>
             <CartProvider>
-              <SiteHeader />
+              <LayoutClientWrapper>
               {children}
-              <SiteFooter />
-              <CartDrawer />
+              </LayoutClientWrapper>
             </CartProvider>
           </WishlistProvider>
         </ThemeProvider>

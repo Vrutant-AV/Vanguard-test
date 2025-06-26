@@ -177,7 +177,7 @@ export default function AdminDashboard() {
     };
 
     return (
-        <main className="min-h-screen bg-background pt-24">
+        <main className="min-h-screen bg-background">
             <div className={`container ${styles.container}`}>
                 {/* Header */}
                 <div className={styles.header}>
