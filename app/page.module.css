@@ -51,28 +51,28 @@
 
 .heroTitle {
     font-family: 'Times New Roman', Times, serif;
-    font-size: 3rem;
+    font-size: 48px;
     font-weight: 300;
-    margin-bottom: 1rem;
+    margin-bottom: 16px;
     letter-spacing: 1px;
 }
 
 @media (min-width: 768px){
     .heroTitle {
-        font-size: 4rem;
+        font-size: 64px;
     }
 }
 
 .heroSubtitle {
-    font-size: 1.2rem;
+    font-size: 1.32px;
     font-weight: 300;
-    margin-bottom: 2rem;
+    margin-bottom: 32px;
     max-width: 600px;
 }
 
 .heroButtons {
     display: flex;
-    gap: 1rem;
+    gap: 16px;
 }
 
 .shopButton {
@@ -124,26 +124,26 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 0.5rem;
+    margin-bottom: 8px;
 }
 
 .sectionTitle {
     font-family: serif;
-    font-size: 2.5rem;
+    font-size: 40px;
     font-weight: 500;
 }
 
 .sectionTitleCenter {
     font-family: serif;
-    font-size: 2.5rem;
+    font-size: 40px;
     font-weight: 500;
-    margin-bottom: 0.5rem;
+    margin-bottom: 8px;
 }
 
 .viewAllButton {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 8px;
 }
 
 .linkLabel {
@@ -152,15 +152,15 @@
 }
 
 .arrow {
-    width: 1rem;
-    height: 1rem;
+    width: 16px;
+    height: 16px;
 }
 
 /* Grid Layout */
 .grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 2rem;
+    gap: 32px;
 }
 
 @media (max-width: 768px) {
@@ -190,18 +190,18 @@
 
 .brandTitle {
     font-family: serif;
-    font-size: 2rem;
+    font-size: 32px;
     font-weight: 300;
-    margin-bottom: 1.5rem;
+    margin-bottom: 24px;
 }
 
 .brandParagraph {
-    margin-bottom: 1.5rem;
+    margin-bottom: 24px;
     line-height: 1.6;
 }
 
 .learnButton {
-    margin-top: 1rem;
+    margin-top: 16px;
 }
 
 /* Journal Highlights */
@@ -212,7 +212,7 @@
 
 .journal .container {
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 2rem;
+    gap: 32px;
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 20px;
@@ -222,21 +222,21 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  /*margin-bottom: 1rem;*/
+  /*margin-bottom: 16px;*/
 }
 
 .journalTitle {
   font-family: serif;
-  font-size: 2.5rem;
+  font-size: 40px;
   font-weight: 500;
   color: revert;
-  margin-bottom: 0.5rem;
+  margin-bottom: 8px;
 }
 
 .journalGrid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 2rem;
+  gap: 32px;
 }
 
 .journalCard {
@@ -283,27 +283,27 @@
 }
 
 .journalContent {
-  padding: 1.5rem;
+  padding: 24px;
 }
 
 .journalText {
     color: #333;
-    margin-bottom: 1rem;
+    margin-bottom: 16px;
     line-height: 1.5;
 }
 
 .journalArticleTitle {
   font-family: serif;
-  font-size: 1.2rem;
+  font-size: 1.32px;
   font-weight: 500;
-  margin-bottom: 0.5rem;
+  margin-bottom: 8px;
   color: #333;
 }
 
 .journalDate {
   color: #666;
-  font-size: 0.9rem;
-  margin-bottom: 1rem;
+  font-size: 14px;
+  margin-bottom: 16px;
 }
 /*
 .journalLink {
@@ -318,7 +318,7 @@
     text-decoration: none;
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 8px;
 }
 
 .journalLink:hover {
@@ -331,7 +331,7 @@
     color: transition;
     /*
     transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;*/
-    font-size: 2rem;
+    font-size: 32px;
   }
   
   .journalGrid {
@@ -341,5 +341,5 @@
 
 /* Newsletter */
 .newsletter {
-    margin-top: 3rem;
+    margin-top: 48px;
 }
