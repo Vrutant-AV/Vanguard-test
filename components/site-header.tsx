@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { useRouter, usePathname } from "next/navigation";
-import { ShoppingBag, Menu, X, Search, User, Heart } from "lucide-react";
+import { ShoppingBag, Menu, X, Search, User, Heart, Settings } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -67,6 +67,10 @@ export default function SiteHeader() {
     setIsSearchOpen(false);
     setQuery("");
   };
+
+  // for admin dashboard 
+  // checks if current path is admin
+  const isAdminPath = pathname.startsWith('/admin');
 
   return (
     <header
@@ -145,6 +149,29 @@ export default function SiteHeader() {
             <User className="h-5 w-5" />
             <span className="sr-only">Account</span>
           </Button>
+          {!isAdminPath && (
+            <Button variant="ghost" size="icon" className="relative" onClick={toggleCart}>
+              <ShoppingBag className="h-5 w-5" />
+              {totalItems > 0 && (
+                <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-primary text-xs font-medium text-primary-foreground">
+                  {totalItems > 0 ? '9+' : totalItems}
+                </span>
+              )}
+              <span className="sr-only">
+                Cart ({totalItems})
+              </span>
+            </Button>
+          )}
+          {isAdminPath && (
+            <Button variant="ghost" size="icon" asChild>
+              <Link href="/admin/settings">
+                <Settings className="h-5 w-5" />
+                <span className="sr-only">
+                  Admin Settings
+                </span>
+              </Link>
+            </Button>
+          )}
 
           {/* Cart */}
           <Button
