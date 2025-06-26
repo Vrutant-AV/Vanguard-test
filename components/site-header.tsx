@@ -149,19 +149,26 @@ export default function SiteHeader() {
             <User className="h-5 w-5" />
             <span className="sr-only">Account</span>
           </Button>
+          
+          {/* cart */}
           {!isAdminPath && (
-            <Button variant="ghost" size="icon" className="relative" onClick={toggleCart}>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="relative"
+              onClick={toggleCart}
+            >
               <ShoppingBag className="h-5 w-5" />
               {totalItems > 0 && (
                 <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-primary text-xs font-medium text-primary-foreground">
-                  {totalItems > 0 ? '9+' : totalItems}
+                  {totalItems > 9 ? "9+" : totalItems}
                 </span>
               )}
-              <span className="sr-only">
-                Cart ({totalItems})
-              </span>
-            </Button>
-          )}
+              <span className="sr-only">Cart ({totalItems})</span>
+          </Button>
+          )} 
+          
+          {/* Admin Settings */}
           {isAdminPath && (
             <Button variant="ghost" size="icon" asChild>
               <Link href="/admin/settings">
@@ -174,7 +181,7 @@ export default function SiteHeader() {
           )}
 
           {/* Cart */}
-          <Button
+{/*          <Button
             variant="ghost"
             size="icon"
             className="relative"
@@ -188,7 +195,7 @@ export default function SiteHeader() {
             )}
             <span className="sr-only">Cart ({totalItems})</span>
           </Button>
-
+*/}
           <ThemeToggle />
         </div>
       </div>
