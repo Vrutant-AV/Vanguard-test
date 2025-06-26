@@ -4071,7 +4071,7 @@ export default function SiteHeader() {
     </header>
   );
 }
-*/
+*//*
 //app/admin/layout.tsx
 "use client";
 
@@ -4162,7 +4162,7 @@ export default function AdminLayout({
 
   return (
     <div className="flex h-screen bg-background">
-      {/* Mobile menu overlay */}
+      {/* Mobile menu overlay *//*}
       {mobileMenuOpen && (
         <div 
           className="fixed inset-0 z-40 bg-black/50 lg:hidden" 
@@ -4170,7 +4170,7 @@ export default function AdminLayout({
         />
       )}
 
-      {/* Sidebar */}
+      {/* Sidebar *//*}
       <aside
         className={cn(
           "fixed left-0 top-0 z-50 h-full bg-card border-r border-border transition-all duration-300 lg:relative lg:translate-x-0",
@@ -4231,7 +4231,7 @@ export default function AdminLayout({
           </nav>
         </ScrollArea>
 
-        {/* Back to Store */}
+        {/* Back to Store *//*}
         <div className="border-t border-border p-4">
           <Link
             href="/"
@@ -4246,9 +4246,9 @@ export default function AdminLayout({
         </div>
       </aside>
 
-      {/* Main content */}
+      {/* Main content *//*}
       <div className="flex-1 flex flex-col overflow-hidden">
-        {/* Mobile header */}
+        {/* Mobile header *//*}
         <div className="flex h-16 items-center justify-between border-b border-border px-4 lg:hidden">
           <Button
             variant="ghost"
@@ -4260,14 +4260,14 @@ export default function AdminLayout({
           <Link href="/admin" className="font-serif text-lg font-light tracking-wide">
             ADMIN
           </Link>
-          <div className="w-10" /> {/* Spacer */}
+          <div className="w-10" /> {/* Spacer *//*}
         </div>
 
-        {/* Page content */}
+        {/* Page content *//*}
         <main className="flex-1 overflow-auto">
           {children}
         </main>
       </div>
     </div>
   );
-}
+}*/
