@@ -178,7 +178,7 @@ export default function AdminLayout({
             <div className="flex-1 flex flex-col overflow-hidden">
 
                 {/* Mobile header */}
-                <div className="flex h-16 items-center justofy-between border-b border-border px-4 lg:hidden">
+                <div className="flex h-16 items-center justofy-between border-b border-border px-2 lg:hidden">
                     <Button
                         variant="ghost"
                         size="icon"
