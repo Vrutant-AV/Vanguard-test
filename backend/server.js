@@ -3,6 +3,8 @@ const cors = require('cors');
 const helmet = require('helmet');
 const compression = require('compression');
 const rateLimit = require('express-rate-limit');
+const session = require('express-session');
+const passport = require('./config/passport');
 require('dotenv').config();
 
 // Import routes
@@ -36,6 +38,21 @@ app.use(cors({
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
+
+// Session configuration
+app.use(session({
+  secret: process.env.SESSION_SECRET || 'fallback-secret',
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    secure: process.env.NODE_ENV === 'production',
+    maxAge: 24 * 60 * 60 * 1000 // 24 hours
+  }
+}));
+
+// Passport middleware
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Body parsing middleware
 app.use(express.json({ limit: '10mb' }));

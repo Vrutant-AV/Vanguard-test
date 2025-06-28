@@ -10,7 +10,9 @@ const createTables = async () => {
         id SERIAL PRIMARY KEY,
         name VARCHAR(255) NOT NULL,
         email VARCHAR(255) UNIQUE NOT NULL,
-        password VARCHAR(255) NOT NULL,
+        password VARCHAR(255),
+        google_id VARCHAR(255) UNIQUE,
+        email_verified BOOLEAN DEFAULT false,
         role VARCHAR(50) DEFAULT 'customer' CHECK (role IN ('customer', 'admin')),
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
@@ -94,6 +96,8 @@ const createTables = async () => {
     `);
 
     // Create indexes for better performance
+    await pool.query('CREATE INDEX IF NOT EXISTS idx_users_email ON users(email)');
+    await pool.query('CREATE INDEX IF NOT EXISTS idx_users_google_id ON users(google_id)');
     await pool.query('CREATE INDEX IF NOT EXISTS idx_products_category ON products(category_id)');
     await pool.query('CREATE INDEX IF NOT EXISTS idx_products_status ON products(status)');
     await pool.query('CREATE INDEX IF NOT EXISTS idx_orders_user ON orders(user_id)');
