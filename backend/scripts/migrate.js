@@ -58,6 +58,7 @@ const createTables = async () => {
         status VARCHAR(50) DEFAULT 'pending' CHECK (status IN ('pending', 'processing', 'shipped', 'delivered', 'cancelled')),
         shipping_address JSONB NOT NULL,
         billing_address JSONB NOT NULL,
+        payment_transaction_id VARCHAR(255),
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
       )

@@ -126,10 +126,10 @@ export default function CartDrawer() {
               </div>
               <div className="space-y-2">
                 <Button asChild className="w-full" onClick={closeCart}>
-                  <Link href="/cart">View Cart</Link>
+                  <Link href="/checkout">Checkout</Link>
                 </Button>
-                <Button variant="outline" className="w-full" onClick={closeCart}>
-                  Continue Shopping
+                <Button variant="outline" asChild className="w-full" onClick={closeCart}>
+                  <Link href="/cart">View Cart</Link>
                 </Button>
               </div>
             </div>
