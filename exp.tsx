@@ -4298,54 +4298,3024 @@ export default function AdminLayout({
 //   );
 // }
 
-import "./globals.css";
-import type { Metadata } from "next";
-import { Inter, Playfair_Display } from "next/font/google";
-import { ThemeProvider } from "@/components/theme-provider";
-import { CartProvider } from "@/lib/cart-context";
-import { WishlistProvider } from "@/lib/wishlist-context";
-import LayoutClientWrapper from "@/components/LayoutClientWrapper";
+// import "./globals.css";
+// import type { Metadata } from "next";
+// import { Inter, Playfair_Display } from "next/font/google";
+// import { ThemeProvider } from "@/components/theme-provider";
+// import { CartProvider } from "@/lib/cart-context";
+// import { WishlistProvider } from "@/lib/wishlist-context";
+// import LayoutClientWrapper from "@/components/LayoutClientWrapper";
 
-const inter = Inter({ 
-  subsets: ["latin"],
-  variable: "--font-sans",
-  display: 'swap',
-});
+// const inter = Inter({ 
+//   subsets: ["latin"],
+//   variable: "--font-sans",
+//   display: 'swap',
+// });
 
-const playfair = Playfair_Display({ 
-  subsets: ["latin"],
-  variable: "--font-serif",
-  display: 'swap',
-});
+// const playfair = Playfair_Display({ 
+//   subsets: ["latin"],
+//   variable: "--font-serif",
+//   display: 'swap',
+// });
 
-export const metadata: Metadata = {
-  title: "Vanguard Apparel | Premium Contemporary Fashion",
-  description: "Redefining contemporary fashion with timeless elegance and bold innovation.",
+// export const metadata: Metadata = {
+//   title: "Vanguard Apparel | Premium Contemporary Fashion",
+//   description: "Redefining contemporary fashion with timeless elegance and bold innovation.",
+// };
+
+// export default function RootLayout({
+//   children,
+// }: {
+//   children: React.ReactNode;
+// }) {
+//   return (
+//     <html lang="en" suppressHydrationWarning>
+//       <body className={`${inter.variable} ${playfair.variable} font-sans`}>
+//         <ThemeProvider
+//           attribute="class"
+//           defaultTheme="light"
+//           enableSystem
+//           disableTransitionOnChange
+//         >
+//           <WishlistProvider>
+//             <CartProvider>
+//               <LayoutClientWrapper>
+//                 {children}
+//               </LayoutClientWrapper>
+//             </CartProvider>
+//           </WishlistProvider>
+//         </ThemeProvider>
+//       </body>
+//     </html>
+//   );
+// }
+
+
+///////////////////////////////////////////////////////////
+//analytics
+//  "use client";
+//  import { TrendingUp, TrendingDown, DollarSign, ShoppingBag, Users, Package } from "lucide-react";
+//  import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+//  import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+//  // Sample analytics data
+//  const analyticsData = {
+//    revenue: {
+//      current: 124500,
+//      previous: 98200,
+//      change: 26.8
+//    },
+//    orders: {
+//      current: 1247,
+//      previous: 1089,
+//      change: 14.5
+//    },
+//    customers: {
+//      current: 3456,
+//      previous: 2987,
+//      change: 15.7
+//    },
+//    products: {
+//      current: 89,
+//      previous: 85,
+//      change: 4.7
+//    }
+//  };
+//  const topProducts = [
+//    { name: "Tailored Cotton Overshirt", sales: 156, revenue: 29484 },
+//    { name: "Structured Wool Blazer", sales: 89, revenue: 25810 },
+//    { name: "Relaxed Linen Shirt", sales: 134, revenue: 16080 },
+//    { name: "High-Waist Tapered Pants", sales: 78, revenue: 13650 },
+//    { name: "Oversized Merino Sweater", sales: 65, revenue: 13650 },
+//  ];
+//  const recentActivity = [
+//    { action: "New order received", details: "Order #ORD-001 from Sarah Johnson", time: "2 minutes ago" },
+//    { action: "Product updated", details: "Tailored Cotton Overshirt stock updated", time: "15 minutes ago" },
+//    { action: "Customer registered", details: "New customer: Michael Chen", time: "1 hour ago" },
+//    { action: "Payment processed", details: "Payment of $345.50 confirmed", time: "2 hours ago" },
+//    { action: "Inventory alert", details: "Low stock warning for High-Waist Tapered Pants", time: "3 hours ago" },
+//  ];
+//  export default function AnalyticsPage() {
+//    return (
+//      <div className="p-6">
+//        <div className="mb-6">
+//          <h1 className="font-serif text-3xl font-light mb-2">Analytics</h1>
+//          <p className="text-muted-foreground">
+//            Track your business performance and key metrics
+//          </p>
+//        </div>
+//        {/* Key Metrics */}
+//        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+//          <Card>
+//            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+//              <CardTitle className="text-sm font-medium">Total Revenue</CardTitle>
+//              <DollarSign className="h-4 w-4 text-muted-foreground" />
+//            </CardHeader>
+//            <CardContent>
+//              <div className="text-2xl font-bold">${analyticsData.revenue.current.toLocaleString()}</div>
+//              <div className="flex items-center text-xs text-muted-foreground">
+//                <TrendingUp className="mr-1 h-3 w-3 text-green-500" />
+//                +{analyticsData.revenue.change}% from last month
+//              </div>
+//            </CardContent>
+//          </Card>
+
+//          <Card>
+//            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+//              <CardTitle className="text-sm font-medium">Total Orders</CardTitle>
+//              <ShoppingBag className="h-4 w-4 text-muted-foreground" />
+//            </CardHeader>
+//            <CardContent>
+//              <div className="text-2xl font-bold">{analyticsData.orders.current.toLocaleString()}</div>
+//              <div className="flex items-center text-xs text-muted-foreground">
+//                <TrendingUp className="mr-1 h-3 w-3 text-green-500" />
+//                +{analyticsData.orders.change}% from last month
+//              </div>
+//            </CardContent>
+//          </Card>
+         
+//          <Card>
+//            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+//              <CardTitle className="text-sm font-medium">Total Customers</CardTitle>
+//              <Users className="h-4 w-4 text-muted-foreground" />
+//            </CardHeader>
+//            <CardContent>
+//              <div className="text-2xl font-bold">{analyticsData.customers.current.toLocaleString()}</div>
+//              <div className="flex items-center text-xs text-muted-foreground">
+//                <TrendingUp className="mr-1 h-3 w-3 text-green-500" />
+//                +{analyticsData.customers.change}% from last month
+//              </div>
+//            </CardContent>
+//          </Card>
+         
+//          <Card>
+//            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+//              <CardTitle className="text-sm font-medium">Total Products</CardTitle>
+//              <Package className="h-4 w-4 text-muted-foreground" />
+//            </CardHeader>
+//            <CardContent>
+//              <div className="text-2xl font-bold">{analyticsData.products.current}</div>
+//              <div className="flex items-center text-xs text-muted-foreground">
+//                <TrendingUp className="mr-1 h-3 w-3 text-green-500" />
+//                +{analyticsData.products.change}% from last month
+//              </div>
+//            </CardContent>
+//          </Card>
+         
+//        </div>
+//        {/* Analytics Tabs */}
+//        <Tabs defaultValue="overview" className="space-y-4">
+//          <TabsList>
+//            <TabsTrigger value="overview">Overview</TabsTrigger>
+//            <TabsTrigger value="sales">Sales</TabsTrigger>
+//            <TabsTrigger value="customers">Customers</TabsTrigger>
+//            <TabsTrigger value="products">Products</TabsTrigger>
+//          </TabsList>
+//          <TabsContent value="overview" className="space-y-4">
+//            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+//              {/* Revenue Chart Placeholder */}
+//              <Card>
+//                <CardHeader>
+//                  <CardTitle>Revenue Trends</CardTitle>
+//                  <CardDescription>Monthly revenue over the past year</CardDescription>
+//                </CardHeader>
+//                <CardContent>
+//                  <div className="flex items-center justify-center h-64 border-2 border-dashed border-muted rounded-lg">
+//                    <div className="text-center">
+//                      <TrendingUp className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
+//                      <p className="text-muted-foreground">Revenue chart would go here</p>
+//                      <p className="text-sm text-muted-foreground">Integration with charting library</p>
+//                    </div>
+//                  </div>
+//                </CardContent>
+//              </Card>
+//              {/* Top Products */}
+//              <Card>
+//                <CardHeader>
+//                  <CardTitle>Top Products</CardTitle>
+//                  <CardDescription>Best performing products this month</CardDescription>
+//                </CardHeader>
+//                <CardContent>
+//                  <div className="space-y-4">
+//                    {topProducts.map((product, index) => (
+//                      <div key={index} className="flex items-center justify-between">
+//                        <div>
+//                          <p className="font-medium">{product.name}</p>
+//                          <p className="text-sm text-muted-foreground">{product.sales} sales</p>
+//                        </div>
+//                        <div className="text-right">
+//                          <p className="font-medium">${product.revenue.toLocaleString()}</p>
+//                        </div>
+//                      </div>
+//                    ))}
+//                  </div>
+//                </CardContent>
+//              </Card>
+//            </div>
+//            {/* Recent Activity */}
+//            <Card>
+//              <CardHeader>
+//                <CardTitle>Recent Activity</CardTitle>
+//                <CardDescription>Latest actions and system events</CardDescription>
+//              </CardHeader>
+//              <CardContent>
+//                <div className="space-y-4">
+//                  {recentActivity.map((activity, index) => (
+//                    <div key={index} className="flex items-start gap-3 pb-3 border-b border-border last:border-0">
+//                      <div className="mt-1 h-2 w-2 rounded-full bg-primary" />
+//                      <div className="flex-1 min-w-0">
+//                        <p className="font-medium">{activity.action}</p>
+//                        <p className="text-sm text-muted-foreground">{activity.details}</p>
+//                      </div>
+//                      <p className="text-xs text-muted-foreground">{activity.time}</p>
+//                    </div>
+//                  ))}
+//                </div>
+//              </CardContent>
+//            </Card>
+//          </TabsContent>
+//          <TabsContent value="sales">
+//            <Card>
+//              <CardHeader>
+//                <CardTitle>Sales Analytics</CardTitle>
+//                <CardDescription>Detailed sales performance metrics</CardDescription>
+//              </CardHeader>
+//              <CardContent>
+//                <div className="flex items-center justify-center h-64 border-2 border-dashed border-muted rounded-lg">
+//                  <div className="text-center">
+//                    <ShoppingBag className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
+//                    <p className="text-muted-foreground">Sales analytics would go here</p>
+//                  </div>
+//                </div>
+//              </CardContent>
+//            </Card>
+//          </TabsContent>
+//          <TabsContent value="customers">
+//            <Card>
+//              <CardHeader>
+//                <CardTitle>Customer Analytics</CardTitle>
+//                <CardDescription>Customer behavior and demographics</CardDescription>
+//              </CardHeader>
+//              <CardContent>
+//                <div className="flex items-center justify-center h-64 border-2 border-dashed border-muted rounded-lg">
+//                  <div className="text-center">
+//                    <Users className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
+//                    <p className="text-muted-foreground">Customer analytics would go here</p>
+//                  </div>
+//                </div>
+//              </CardContent>
+//            </Card>
+//          </TabsContent>
+//          <TabsContent value="products">
+//            <Card>
+//              <CardHeader>
+//                <CardTitle>Product Analytics</CardTitle>
+//                <CardDescription>Product performance and inventory insights</CardDescription>
+//              </CardHeader>
+//              <CardContent>
+//                <div className="flex items-center justify-center h-64 border-2 border-dashed border-muted rounded-lg">
+//                  <div className="text-center">
+//                    <Package className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
+//                    <p className="text-muted-foreground">Product analytics would go here</p>
+//                  </div>
+//                </div>
+//              </CardContent>
+//            </Card>
+//          </TabsContent>
+//        </Tabs>
+//      </div>
+//    );
+//  }
+
+
+///////////////////////////////////////////////////////////
+// //categories
+// "use client";
+// import { useState } from "react";
+// import { Search, Plus, Edit, Trash2, MoreHorizontal, Tag } from "lucide-react";
+// import { Button } from "@/components/ui/button";
+// import { Input } from "@/components/ui/input";
+// import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+// import { Badge } from "@/components/ui/badge";
+// import {
+//   DropdownMenu,
+//   DropdownMenuContent,
+//   DropdownMenuItem,
+//   DropdownMenuTrigger,
+// } from "@/components/ui/dropdown-menu";
+// // Sample categories data
+// const categories = [
+//   {
+//     id: 1,
+//     name: "Men",
+//     description: "Men's clothing and accessories",
+//     productCount: 25,
+//     status: "active",
+//     createdDate: "2024-01-15"
+//   },
+//   {
+//     id: 2,
+//     name: "Women",
+//     description: "Women's clothing and accessories",
+//     productCount: 32,
+//     status: "active",
+//     createdDate: "2024-01-15"
+//   },
+//   {
+//     id: 3,
+//     name: "Accessories",
+//     description: "Fashion accessories for all",
+//     productCount: 18,
+//     status: "active",
+//     createdDate: "2024-01-20"
+//   },
+//   {
+//     id: 4,
+//     name: "Outerwear",
+//     description: "Jackets, coats, and outerwear",
+//     productCount: 12,
+//     status: "active",
+//     createdDate: "2024-02-01"
+//   },
+//   {
+//     id: 5,
+//     name: "Footwear",
+//     description: "Shoes and footwear collection",
+//     productCount: 0,
+//     status: "draft",
+//     createdDate: "2024-02-10"
+//   },
+// ];
+// const getStatusColor = (status: string) => {
+//   switch (status) {
+//     case "active":
+//       return "bg-green-100 text-green-800";
+//     case "draft":
+//       return "bg-gray-100 text-gray-800";
+//     case "inactive":
+//       return "bg-red-100 text-red-800";
+//     default:
+//       return "bg-gray-100 text-gray-800";
+//   }
+// };
+// export default function CategoriesPage() {
+//   const [searchTerm, setSearchTerm] = useState("");
+//   const filteredCategories = categories.filter(category =>
+//     category.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+//     category.description.toLowerCase().includes(searchTerm.toLowerCase())
+//   );
+//   const categoryStats = {
+//     total: categories.length,
+//     active: categories.filter(c => c.status === "active").length,
+//     draft: categories.filter(c => c.status === "draft").length,
+//     totalProducts: categories.reduce((sum, c) => sum + c.productCount, 0),
+//   };
+//   return (
+//     <div className="p-6">
+//       <div className="flex justify-between items-start mb-6">
+//         <div>
+//           <h1 className="font-serif text-3xl font-light mb-2">Categories</h1>
+//           <p className="text-muted-foreground">
+//             Organize your products into categories
+//           </p>
+//         </div>
+//         <Button>
+//           <Plus className="mr-2 h-4 w-4" />
+//           Add Category
+//         </Button>
+//       </div>
+//       {/* Stats Cards */}
+//       <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+//         <Card>
+//           <CardHeader className="pb-2">
+//             <CardTitle className="text-sm font-medium">Total Categories</CardTitle>
+//           </CardHeader>
+//           <CardContent>
+//             <div className="text-2xl font-bold">{categoryStats.total}</div>
+//           </CardContent>
+//         </Card>
+//         <Card>
+//           <CardHeader className="pb-2">
+//             <CardTitle className="text-sm font-medium">Active</CardTitle>
+//           </CardHeader>
+//           <CardContent>
+//             <div className="text-2xl font-bold text-green-600">{categoryStats.active}</div>
+//           </CardContent>
+//         </Card>
+//         <Card>
+//           <CardHeader className="pb-2">
+//             <CardTitle className="text-sm font-medium">Draft</CardTitle>
+//           </CardHeader>
+//           <CardContent>
+//             <div className="text-2xl font-bold text-gray-600">{categoryStats.draft}</div>
+//           </CardContent>
+//         </Card>
+//         <Card>
+//           <CardHeader className="pb-2">
+//             <CardTitle className="text-sm font-medium">Total Products</CardTitle>
+//           </CardHeader>
+//           <CardContent>
+//             <div className="text-2xl font-bold">{categoryStats.totalProducts}</div>
+//           </CardContent>
+//         </Card>
+//       </div>
+//       {/* Search */}
+//       <div className="flex gap-4 mb-6">
+//         <div className="relative flex-1">
+//           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+//           <Input
+//             placeholder="Search categories..."
+//             value={searchTerm}
+//             onChange={(e) => setSearchTerm(e.target.value)}
+//             className="pl-10"
+//           />
+//         </div>
+//       </div>
+//       {/* Categories List */}
+//       <Card>
+//         <CardHeader>
+//           <CardTitle>Categories ({filteredCategories.length})</CardTitle>
+//           <CardDescription>
+//             Manage product categories and their organization
+//           </CardDescription>
+//         </CardHeader>
+//         <CardContent>
+//           <div className="space-y-4">
+//             {filteredCategories.map((category) => (
+//               <div key={category.id} className="flex items-center justify-between p-4 border rounded-lg">
+//                 <div className="flex items-center space-x-4">
+//                   <div className="flex items-center justify-center w-12 h-12 bg-muted rounded-lg">
+//                     <Tag className="h-6 w-6 text-muted-foreground" />
+//                   </div>
+               
+//                   <div>
+//                     <div className="flex items-center space-x-2">
+//                       <h3 className="font-medium">{category.name}</h3>
+//                       <Badge className={getStatusColor(category.status)}>
+//                         {category.status}
+//                       </Badge>
+//                     </div>
+//                     <p className="text-sm text-muted-foreground">{category.description}</p>
+//                     <p className="text-xs text-muted-foreground">Created: {category.createdDate}</p>
+//                   </div>
+//                 </div>
+             
+//                 <div className="flex items-center space-x-4">
+//                   <div className="text-right">
+//                     <div className="font-medium">{category.productCount}</div>
+//                     <div className="text-sm text-muted-foreground">products</div>
+//                   </div>
+               
+//                   <DropdownMenu>
+//                     <DropdownMenuTrigger asChild>
+//                       <Button variant="ghost" size="icon">
+//                         <MoreHorizontal className="h-4 w-4" />
+//                       </Button>
+//                     </DropdownMenuTrigger>
+//                     <DropdownMenuContent align="end">
+//                       <DropdownMenuItem>
+//                         <Edit className="mr-2 h-4 w-4" />
+//                         Edit Category
+//                       </DropdownMenuItem>
+//                       <DropdownMenuItem>
+//                         View Products
+//                       </DropdownMenuItem>
+//                       <DropdownMenuItem className="text-red-600">
+//                         <Trash2 className="mr-2 h-4 w-4" />
+//                         Delete Category
+//                       </DropdownMenuItem>
+//                     </DropdownMenuContent>
+//                   </DropdownMenu>
+//                 </div>
+//               </div>
+//             ))}
+//           </div>
+//         </CardContent>
+//       </Card>
+//     </div>
+//   );
+// }
+
+
+///////////////////////////////////////////////////////////
+//content
+//  "use client";
+//  import { useState } from "react";
+//  import { Search, Plus, Edit, Trash2, MoreHorizontal, FileText, Image, Video } from "lucide-react";
+//  import { Button } from "@/components/ui/button";
+//  import { Input } from "@/components/ui/input";
+//  import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+//  import { Badge } from "@/components/ui/badge";
+//  import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+//  import {
+//    DropdownMenu,
+//    DropdownMenuContent,
+//    DropdownMenuItem,
+//    DropdownMenuTrigger,
+//  } from "@/components/ui/dropdown-menu";
+//  import {
+//    Select,
+//    SelectContent,
+//    SelectItem,
+//    SelectTrigger,
+//    SelectValue,
+//  } from "@/components/ui/select";
+//  // Sample content data
+//  const pages = [
+//    {
+//      id: 1,
+//      title: "About Us",
+//      slug: "about",
+//      type: "page",
+//      status: "published",
+//      lastModified: "2025-01-15",
+//      author: "Admin"
+//    },
+//    {
+//      id: 2,
+//      title: "Privacy Policy",
+//      slug: "privacy-policy",
+//      type: "page",
+//      status: "published",
+//      lastModified: "2025-01-10",
+//      author: "Admin"
+//    },
+//    {
+//      id: 3,
+//      title: "Terms of Service",
+//      slug: "terms-of-service",
+//      type: "page",
+//      status: "published",
+//      lastModified: "2025-01-08",
+//      author: "Admin"
+//    },
+//    {
+//      id: 4,
+//      title: "Shipping & Returns",
+//      slug: "shipping-returns",
+//      type: "page",
+//      status: "draft",
+//      lastModified: "2025-01-05",
+//      author: "Admin"
+//    },
+//  ];
+//  const blogPosts = [
+//    {
+//      id: 1,
+//      title: "The Art of Sustainable Fashion",
+//      slug: "art-of-sustainable-fashion",
+//      type: "blog",
+//      status: "published",
+//      lastModified: "2025-01-15",
+//      author: "Sarah Editor",
+//      category: "Sustainability"
+//    },
+//    {
+//      id: 2,
+//      title: "Behind the Scenes: Summer Collection",
+//      slug: "behind-scenes-summer-collection",
+//      type: "blog",
+//      status: "published",
+//      lastModified: "2025-01-12",
+//      author: "Michael Writer",
+//      category: "Collections"
+//    },
+//    {
+//      id: 3,
+//      title: "Style Guide: Minimalist Wardrobe",
+//      slug: "style-guide-minimalist-wardrobe",
+//      type: "blog",
+//      status: "draft",
+//      lastModified: "2025-01-10",
+//      author: "Emma Stylist",
+//      category: "Style"
+//    },
+//  ];
+//  const media = [
+//    {
+//      id: 1,
+//      name: "hero-image.jpg",
+//      type: "image",
+//      size: "2.4 MB",
+//      dimensions: "1920x1080",
+//      uploadDate: "2025-01-15",
+//      url: "https://images.pexels.com/photos/1036856/pexels-photo-1036856.jpeg"
+//    },
+//    {
+//      id: 2,
+//      name: "product-showcase.mp4",
+//      type: "video",
+//      size: "15.2 MB",
+//      dimensions: "1920x1080",
+//      uploadDate: "2025-01-14",
+//      url: "#"
+//    },
+//    {
+//      id: 3,
+//      name: "brand-logo.svg",
+//      type: "image",
+//      size: "45 KB",
+//      dimensions: "500x200",
+//      uploadDate: "2025-01-13",
+//      url: "#"
+//    },
+//  ];
+//  const getStatusColor = (status: string) => {
+//    switch (status) {
+//      case "published":
+//        return "bg-green-100 text-green-800";
+//      case "draft":
+//        return "bg-yellow-100 text-yellow-800";
+//      case "archived":
+//        return "bg-gray-100 text-gray-800";
+//      default:
+//        return "bg-gray-100 text-gray-800";
+//    }
+//  };
+//  const getTypeIcon = (type: string) => {
+//    switch (type) {
+//      case "image":
+//        return <Image className="h-5 w-5" />;
+//      case "video":
+//        return <Video className="h-5 w-5" />;
+//      default:
+//        return <FileText className="h-5 w-5" />;
+//    }
+//  };
+//  export default function ContentPage() {
+//    const [searchTerm, setSearchTerm] = useState("");
+//    const [statusFilter, setStatusFilter] = useState("all");
+//    const filteredPages = pages.filter(page => {
+//      const matchesSearch = page.title.toLowerCase().includes(searchTerm.toLowerCase()) || page.slug.toLowerCase().includes(searchTerm.toLowerCase());
+//      const matchesStatus = statusFilter === "all" || page.status === statusFilter;
+//      return matchesSearch && matchesStatus;
+//    });
+//    const filteredPosts = blogPosts.filter(post => {
+//      const matchesSearch = post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+//                           post.slug.toLowerCase().includes(searchTerm.toLowerCase());
+//      const matchesStatus = statusFilter === "all" || post.status === statusFilter;
+//      return matchesSearch && matchesStatus;
+//    });
+//    const filteredMedia = media.filter(item =>
+//      item.name.toLowerCase().includes(searchTerm.toLowerCase())
+//    );
+//    const contentStats = {
+//      totalPages: pages.length,
+//      totalPosts: blogPosts.length,
+//      totalMedia: media.length,
+//      published: [...pages, ...blogPosts].filter(item => item.status === "published").length,
+//    };
+//    return (
+//      <div className="p-6">
+//        <div className="flex justify-between items-start mb-6">
+//          <div>
+//            <h1 className="font-serif text-3xl font-light mb-2">Content</h1>
+//            <p className="text-muted-foreground">
+//              Manage pages, blog posts, and media content
+//            </p>
+//          </div>
+//          <Button>
+//            <Plus className="mr-2 h-4 w-4" />
+//            Create Content
+//          </Button>
+//        </div>
+//        {/* Stats Cards */}
+//        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+//          <Card>
+//            <CardHeader className="pb-2">
+//              <CardTitle className="text-sm font-medium">Pages</CardTitle>
+//            </CardHeader>
+//            <CardContent>
+//              <div className="text-2xl font-bold">{contentStats.totalPages}</div>
+//            </CardContent>
+//          </Card>
+//          <Card>
+//            <CardHeader className="pb-2">
+//              <CardTitle className="text-sm font-medium">Blog Posts</CardTitle>
+//            </CardHeader>
+//            <CardContent>
+//              <div className="text-2xl font-bold">{contentStats.totalPosts}</div>
+//            </CardContent>
+//          </Card>
+//          <Card>
+//            <CardHeader className="pb-2">
+//              <CardTitle className="text-sm font-medium">Media Files</CardTitle>
+//            </CardHeader>
+//            <CardContent>
+//              <div className="text-2xl font-bold">{contentStats.totalMedia}</div>
+//            </CardContent>
+//          </Card>
+//          <Card>
+//            <CardHeader className="pb-2">
+//              <CardTitle className="text-sm font-medium">Published</CardTitle>
+//            </CardHeader>
+//            <CardContent>
+//              <div className="text-2xl font-bold text-green-600">{contentStats.published}</div>
+//            </CardContent>
+//          </Card>
+//        </div>
+//        {/* Filters and Search */}
+//        <div className="flex flex-col sm:flex-row gap-4 mb-6">
+//          <div className="relative flex-1">
+//            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+//            <Input
+//              placeholder="Search content..."
+//              value={searchTerm}
+//              onChange={(e) => setSearchTerm(e.target.value)}
+//              className="pl-10"
+//            />
+//          </div>
+//          <Select value={statusFilter} onValueChange={setStatusFilter}>
+//            <SelectTrigger className="w-full sm:w-48">
+//              <SelectValue placeholder="Filter by status" />
+//            </SelectTrigger>
+//            <SelectContent>
+//              <SelectItem value="all">All Status</SelectItem>
+//              <SelectItem value="published">Published</SelectItem>
+//              <SelectItem value="draft">Draft</SelectItem>
+//              <SelectItem value="archived">Archived</SelectItem>
+//            </SelectContent>
+//          </Select>
+//        </div>
+//        {/* Content Tabs */}
+//        <Tabs defaultValue="pages" className="space-y-4">
+//          <TabsList>
+//            <TabsTrigger value="pages">Pages</TabsTrigger>
+//            <TabsTrigger value="blog">Blog Posts</TabsTrigger>
+//            <TabsTrigger value="media">Media</TabsTrigger>
+//          </TabsList>
+//          <TabsContent value="pages">
+//            <Card>
+//              <CardHeader>
+//                <CardTitle>Pages ({filteredPages.length})</CardTitle>
+//                <CardDescription>
+//                  Manage static pages and content
+//                </CardDescription>
+//              </CardHeader>
+//              <CardContent>
+//                <div className="space-y-4">
+//                  {filteredPages.map((page) => (
+//                    <div key={page.id} className="flex items-center justify-between p-4 border rounded-lg">
+//                      <div className="flex items-center space-x-4">
+//                        <div className="flex items-center justify-center w-12 h-12 bg-muted rounded-lg">
+//                          <FileText className="h-6 w-6 text-muted-foreground" />
+//                        </div>
+                    
+//                        <div>
+//                          <div className="flex items-center space-x-2">
+//                            <h3 className="font-medium">{page.title}</h3>
+//                            <Badge className={getStatusColor(page.status)}>
+//                              {page.status}
+//                            </Badge>
+//                          </div>
+//                          <p className="text-sm text-muted-foreground">/{page.slug}</p>
+//                          <p className="text-xs text-muted-foreground">
+//                            Last modified: {page.lastModified} by {page.author}
+//                          </p>
+//                        </div>
+//                      </div>
+                  
+//                      <DropdownMenu>
+//                        <DropdownMenuTrigger asChild>
+//                          <Button variant="ghost" size="icon">
+//                            <MoreHorizontal className="h-4 w-4" />
+//                          </Button>
+//                        </DropdownMenuTrigger>
+//                        <DropdownMenuContent align="end">
+//                          <DropdownMenuItem>
+//                            <Edit className="mr-2 h-4 w-4" />
+//                            Edit Page
+//                          </DropdownMenuItem>
+//                          <DropdownMenuItem>
+//                            View Page
+//                          </DropdownMenuItem>
+//                          <DropdownMenuItem>
+//                            Duplicate
+//                          </DropdownMenuItem>
+//                          <DropdownMenuItem className="text-red-600">
+//                            <Trash2 className="mr-2 h-4 w-4" />
+//                            Delete Page
+//                          </DropdownMenuItem>
+//                        </DropdownMenuContent>
+//                      </DropdownMenu>
+//                    </div>
+//                  ))}
+//                </div>
+//              </CardContent>
+//            </Card>
+//          </TabsContent>
+//          <TabsContent value="blog">
+//            <Card>
+//              <CardHeader>
+//                <CardTitle>Blog Posts ({filteredPosts.length})</CardTitle>
+//                <CardDescription>
+//                  Manage blog content and articles
+//                </CardDescription>
+//              </CardHeader>
+//              <CardContent>
+//                <div className="space-y-4">
+//                  {filteredPosts.map((post) => (
+//                    <div key={post.id} className="flex items-center justify-between p-4 border rounded-lg">
+//                      <div className="flex items-center space-x-4">
+//                        <div className="flex items-center justify-center w-12 h-12 bg-muted rounded-lg">
+//                          <FileText className="h-6 w-6 text-muted-foreground" />
+//                        </div>
+                    
+//                        <div>
+//                          <div className="flex items-center space-x-2">
+//                            <h3 className="font-medium">{post.title}</h3>
+//                            <Badge className={getStatusColor(post.status)}>
+//                              {post.status}
+//                            </Badge>
+//                          </div>
+//                          <p className="text-sm text-muted-foreground">
+//                            Category: {post.category} • /{post.slug}
+//                          </p>
+//                          <p className="text-xs text-muted-foreground">
+//                            Last modified: {post.lastModified} by {post.author}
+//                          </p>
+//                        </div>
+//                      </div>
+                  
+//                      <DropdownMenu>
+//                        <DropdownMenuTrigger asChild>
+//                          <Button variant="ghost" size="icon">
+//                            <MoreHorizontal className="h-4 w-4" />
+//                          </Button>
+//                        </DropdownMenuTrigger>
+//                        <DropdownMenuContent align="end">
+//                          <DropdownMenuItem>
+//                            <Edit className="mr-2 h-4 w-4" />
+//                            Edit Post
+//                          </DropdownMenuItem>
+//                          <DropdownMenuItem>
+//                            View Post
+//                          </DropdownMenuItem>
+//                          <DropdownMenuItem>
+//                            Duplicate
+//                          </DropdownMenuItem>
+//                          <DropdownMenuItem className="text-red-600">
+//                            <Trash2 className="mr-2 h-4 w-4" />
+//                            Delete Post
+//                          </DropdownMenuItem>
+//                        </DropdownMenuContent>
+//                      </DropdownMenu>
+//                    </div>
+//                  ))}
+//                </div>
+//              </CardContent>
+//            </Card>
+//          </TabsContent>
+//          <TabsContent value="media">
+//            <Card>
+//              <CardHeader>
+//                <CardTitle>Media Library ({filteredMedia.length})</CardTitle>
+//                <CardDescription>
+//                  Manage images, videos, and other media files
+//                </CardDescription>
+//              </CardHeader>
+//              <CardContent>
+//                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+//                  {filteredMedia.map((item) => (
+//                    <div key={item.id} className="border rounded-lg p-4">
+//                      <div className="flex items-center space-x-3 mb-3">
+//                        {getTypeIcon(item.type)}
+//                        <div className="flex-1 min-w-0">
+//                          <h3 className="font-medium truncate">{item.name}</h3>
+//                          <p className="text-sm text-muted-foreground">
+//                            {item.size} • {item.dimensions}
+//                          </p>
+//                        </div>
+//                        <DropdownMenu>
+//                          <DropdownMenuTrigger asChild>
+//                            <Button variant="ghost" size="icon">
+//                              <MoreHorizontal className="h-4 w-4" />
+//                            </Button>
+//                          </DropdownMenuTrigger>
+//                          <DropdownMenuContent align="end">
+//                            <DropdownMenuItem>
+//                              View
+//                            </DropdownMenuItem>
+//                            <DropdownMenuItem>
+//                              Download
+//                            </DropdownMenuItem>
+//                            <DropdownMenuItem>
+//                              Copy URL
+//                            </DropdownMenuItem>
+//                            <DropdownMenuItem className="text-red-600">
+//                              <Trash2 className="mr-2 h-4 w-4" />
+//                              Delete
+//                            </DropdownMenuItem>
+//                          </DropdownMenuContent>
+//                        </DropdownMenu>
+//                      </div>
+                  
+//                      {item.type === "image" && (
+//                        <div className="aspect-video bg-muted rounded-md mb-3 overflow-hidden">
+//                          <img
+//                            src={item.url}
+//                            alt={item.name}
+//                            className="w-full h-full object-cover"
+//                          />
+//                        </div>
+//                      )}
+                  
+//                      <p className="text-xs text-muted-foreground">
+//                        Uploaded: {item.uploadDate}
+//                      </p>
+//                    </div>
+//                  ))}
+//                </div>
+//              </CardContent>
+//            </Card>
+//          </TabsContent>
+//        </Tabs>
+//      </div>
+//    );
+//  }
+/////////////////////////////////////////////////////////
+// customers
+//   "use client";
+//   import { useState } from "react";
+//   import Image from "next/image";
+//   import { Search, Filter, Download, Eye, MoreHorizontal, Mail, Phone, MapPin } from "lucide-react";
+//  import { Button } from "@/components/ui/button";
+//  import { Input } from "@/components/ui/input";
+//  import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+//  import { Badge } from "@/components/ui/badge";
+//  import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+//  import {
+//    DropdownMenu,
+//    DropdownMenuContent,
+//    DropdownMenuItem,
+//    DropdownMenuTrigger,
+//  } from "@/components/ui/dropdown-menu";
+//  import {
+//    Select,
+//    SelectContent,
+//    SelectItem,
+//    SelectTrigger,
+//    SelectValue,
+//  } from "@/components/ui/select";
+//  // Sample customers data
+//  const customers = [
+//    {
+//      id: 1,
+//      name: "Sarah Johnson",
+//      email: "sarah@gmail.com",
+//      phone: "+1 (555) 123-4567",
+//      avatar: "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg",
+//      orders: 5,
+//      totalSpent: 1245.50,
+//      lastOrder: "2025-01-15",
+//      status: "active",
+//      location: "New York, NY",
+//      joinDate: "2024-03-15"
+//    },
+//    {
+//      id: 2,
+//      name: "Michael Chen",
+//      email: "michael@gmail.com",
+//      phone: "+1 (555) 234-5678",
+//      avatar: "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg",
+//      orders: 3,
+//      totalSpent: 890.25,
+//      lastOrder: "2025-01-14",
+//      status: "active",
+//      location: "Los Angeles, CA",
+//      joinDate: "2024-05-22"
+//    },
+//    {
+//      id: 3,
+//      name: "Emma Wilson",
+//      email: "emma@gmail.com",
+//      phone: "+1 (555) 345-6789",
+//      avatar: "https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg",
+//      orders: 7,
+//      totalSpent: 2156.75,
+//      lastOrder: "2025-01-13",
+//      status: "vip",
+//      location: "Chicago, IL",
+//      joinDate: "2024-01-10"
+//    },
+//    {
+//      id: 4,
+//      name: "David Rodriguez",
+//      email: "david@gmail.com",
+//      phone: "+1 (555) 456-7890",
+//      avatar: "https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg",
+//      orders: 2,
+//      totalSpent: 345.00,
+//      lastOrder: "2025-01-10",
+//      status: "active",
+//      location: "Miami, FL",
+//      joinDate: "2024-08-05"
+//    },
+//    {
+//      id: 5,
+//      name: "Lisa Thompson",
+//      email: "lisa@gmail.com",
+//      phone: "+1 (555) 567-8901",
+//      avatar: "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg",
+//      orders: 1,
+//      totalSpent: 189.00,
+//      lastOrder: "2024-12-20",
+//      status: "inactive",
+//      location: "Seattle, WA",
+//      joinDate: "2024-11-12"
+//    },
+//  ];
+//  const getStatusColor = (status: string) => {
+//    switch (status) {
+//      case "vip":
+//        return "bg-purple-100 text-purple-800";
+//      case "active":
+//        return "bg-green-100 text-green-800";
+//      case "inactive":
+//        return "bg-gray-100 text-gray-800";
+//      default:
+//        return "bg-gray-100 text-gray-800";
+//    }
+//  };
+//  export default function CustomersPage() {
+//    const [searchTerm, setSearchTerm] = useState("");
+//    const [statusFilter, setStatusFilter] = useState("all");
+//    const filteredCustomers = customers.filter(customer => {
+//      const matchesSearch = customer.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+//                           customer.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+//                           customer.phone.includes(searchTerm);
+  
+//      const matchesStatus = statusFilter === "all" || customer.status === statusFilter;
+  
+//      return matchesSearch && matchesStatus;
+//    });
+//    const customerStats = {
+//      total: customers.length,
+//      active: customers.filter(c => c.status === "active").length,
+//      vip: customers.filter(c => c.status === "vip").length,
+//      inactive: customers.filter(c => c.status === "inactive").length,
+//      totalRevenue: customers.reduce((sum, c) => sum + c.totalSpent, 0),
+//    };
+//    return (
+//      <div className="p-6">
+//        <div className="mb-6">
+//          <h1 className="font-serif text-3xl font-light mb-2">Customers</h1>
+//          <p className="text-muted-foreground">
+//            Manage customer relationships and track their activity
+//          </p>
+//        </div>
+//        {/* Stats Cards */}
+//        <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-6">
+//          <Card>
+//            <CardHeader className="pb-2">
+//              <CardTitle className="text-sm font-medium">Total Customers</CardTitle>
+//            </CardHeader>
+//            <CardContent>
+//              <div className="text-2xl font-bold">{customerStats.total}</div>
+//            </CardContent>
+//          </Card>
+//          <Card>
+//            <CardHeader className="pb-2">
+//              <CardTitle className="text-sm font-medium">Active</CardTitle>
+//            </CardHeader>
+//            <CardContent>
+//              <div className="text-2xl font-bold text-green-600">{customerStats.active}</div>
+//            </CardContent>
+//          </Card>
+//          <Card>
+//            <CardHeader className="pb-2">
+//              <CardTitle className="text-sm font-medium">VIP</CardTitle>
+//            </CardHeader>
+//            <CardContent>
+//              <div className="text-2xl font-bold text-purple-600">{customerStats.vip}</div>
+//            </CardContent>
+//          </Card>
+//          <Card>
+//            <CardHeader className="pb-2">
+//              <CardTitle className="text-sm font-medium">Inactive</CardTitle>
+//            </CardHeader>
+//            <CardContent>
+//              <div className="text-2xl font-bold text-gray-600">{customerStats.inactive}</div>
+//            </CardContent>
+//          </Card>
+//          <Card>
+//            <CardHeader className="pb-2">
+//              <CardTitle className="text-sm font-medium">Total Revenue</CardTitle>
+//            </CardHeader>
+//            <CardContent>
+//              <div className="text-2xl font-bold">${customerStats.totalRevenue.toFixed(0)}</div>
+//            </CardContent>
+//          </Card>
+//        </div>
+//        {/* Filters and Search */}
+//        <div className="flex flex-col sm:flex-row gap-4 mb-6">
+//          <div className="relative flex-1">
+//            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+//            <Input
+//              placeholder="Search customers..."
+//              value={searchTerm}
+//              onChange={(e) => setSearchTerm(e.target.value)}
+//              className="pl-10"
+//            />
+//          </div>
+//          <Select value={statusFilter} onValueChange={setStatusFilter}>
+//            <SelectTrigger className="w-full sm:w-48">
+//              <SelectValue placeholder="Filter by status" />
+//            </SelectTrigger>
+//            <SelectContent>
+//              <SelectItem value="all">All Status</SelectItem>
+//              <SelectItem value="active">Active</SelectItem>
+//              <SelectItem value="vip">VIP</SelectItem>
+//              <SelectItem value="inactive">Inactive</SelectItem>
+//            </SelectContent>
+//          </Select>
+//          <Button variant="outline">
+//            <Filter className="mr-2 h-4 w-4" />
+//            More Filters
+//          </Button>
+//          <Button variant="outline">
+//            <Download className="mr-2 h-4 w-4" />
+//            Export
+//          </Button>
+//        </div>
+//        {/* Customers List */}
+//        <Card>
+//          <CardHeader>
+//            <CardTitle>Customers ({filteredCustomers.length})</CardTitle>
+//            <CardDescription>
+//              Manage customer information and track their activity
+//            </CardDescription>
+//          </CardHeader>
+//          <CardContent>
+//            <div className="space-y-4">
+//              {filteredCustomers.map((customer) => (
+//                <div key={customer.id} className="flex items-center justify-between p-4 border rounded-lg">
+//                  <div className="flex items-center space-x-4">
+//                    <Avatar className="h-12 w-12">
+//                      <AvatarImage src={customer.avatar} alt={customer.name} />
+//                      <AvatarFallback>
+//                        {customer.name.split(' ').map(n => n[0]).join('')}
+//                      </AvatarFallback>
+//                    </Avatar>
+                
+//                    <div>
+//                      <div className="flex items-center space-x-2">
+//                        <h3 className="font-medium">{customer.name}</h3>
+//                        <Badge className={getStatusColor(customer.status)}>
+//                          {customer.status.toUpperCase()}
+//                        </Badge>
+//                      </div>
+//                      <div className="flex items-center space-x-4 text-sm text-muted-foreground">
+//                        <div className="flex items-center">
+//                          <Mail className="mr-1 h-3 w-3" />
+//                          {customer.email}
+//                        </div>
+//                        <div className="flex items-center">
+//                          <Phone className="mr-1 h-3 w-3" />
+//                          {customer.phone}
+//                        </div>
+//                        <div className="flex items-center">
+//                          <MapPin className="mr-1 h-3 w-3" />
+//                          {customer.location}
+//                        </div>
+//                      </div>
+//                    </div>
+//                  </div>
+              
+//                  <div className="flex items-center space-x-6">
+//                    <div className="text-right">
+//                      <div className="font-medium">${customer.totalSpent.toFixed(2)}</div>
+//                      <div className="text-sm text-muted-foreground">{customer.orders} orders</div>
+//                    </div>
+//                    <div className="text-right">
+//                      <div className="text-sm font-medium">Last Order</div>
+//                      <div className="text-sm text-muted-foreground">{customer.lastOrder}</div>
+//                    </div>
+//                    <DropdownMenu>
+//                      <DropdownMenuTrigger asChild>
+//                        <Button variant="ghost" size="icon">
+//                          <MoreHorizontal className="h-4 w-4" />
+//                        </Button>
+//                      </DropdownMenuTrigger>
+//                      <DropdownMenuContent align="end">
+//                        <DropdownMenuItem>
+//                          <Eye className="mr-2 h-4 w-4" />
+//                          View Profile
+//                        </DropdownMenuItem>
+//                        <DropdownMenuItem>
+//                          <Mail className="mr-2 h-4 w-4" />
+//                          Send Email
+//                        </DropdownMenuItem>
+//                        <DropdownMenuItem>
+//                          View Orders
+//                        </DropdownMenuItem>
+//                      </DropdownMenuContent>
+//                    </DropdownMenu>
+//                  </div>
+//                </div>
+//              ))}
+//            </div>
+//          </CardContent>
+//        </Card>
+//      </div>
+//    );
+//  }
+/////////////////////////////////////////////////////////
+// orders
+// "use client";
+//  import { useState } from "react";
+//  import { Search, Filter, Download, Eye, MoreHorizontal, Package, Truck, CheckCircle, Clock } from "lucide-react";
+//  import { Button } from "@/components/ui/button";
+//  import { Input } from "@/components/ui/input";
+//  import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+//  import { Badge } from "@/components/ui/badge";
+//  import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+//  import {
+//    DropdownMenu,
+//    DropdownMenuContent,
+//    DropdownMenuItem,
+//    DropdownMenuTrigger,
+//  } from "@/components/ui/dropdown-menu";
+//  import {
+//    Select,
+//    SelectContent,
+//    SelectItem,
+//    SelectTrigger,
+//    SelectValue,
+//  } from "@/components/ui/select";
+// Sample orders data
+// const orders = [
+//   {
+//     id: "ORD-001",
+//     customer: "Sarah Johnson",
+//     email: "sarah@gmail.com",
+//     amount: 189.00,
+//     status: "completed",
+//     date: "2025-01-15",
+//     items: 2,
+//     shippingAddress: "123 Main St, New York, NY 10001",
+//     products: ["Tailored Cotton Overshirt", "Relaxed Linen Shirt"]
+//   },
+//   {
+//     id: "ORD-002",
+//     customer: "Michael Chen",
+//     email: "michael@gmail.com",
+//     amount: 345.50,
+//     status: "processing",
+//     date: "2025-01-15",
+//     items: 3,
+//     shippingAddress: "456 Oak Ave, Los Angeles, CA 90210",
+//     products: ["Structured Wool Blazer", "High-Waist Tapered Pants", "Oversized Merino Sweater"]
+//   },
+//   {
+//     id: "ORD-003",
+//     customer: "Emma Wilson",
+//     email: "emma@gmail.com",
+//     amount: 120.00,
+//     status: "shipped",
+//     date: "2025-01-14",
+//     items: 1,
+//     shippingAddress: "789 Pine St, Chicago, IL 60601",
+//     products: ["Relaxed Linen Shirt"]
+//   },
+//   {
+//     id: "ORD-004",
+//     customer: "David Rodriguez",
+//     email: "david@gmail.com",
+//     amount: 275.25,
+//     status: "pending",
+//     date: "2025-01-14",
+//     items: 2,
+//     shippingAddress: "321 Elm St, Miami, FL 33101",
+//     products: ["Textured Knit Cardigan", "Slim Fit Selvedge Jeans"]
+//   },
+//   {
+//     id: "ORD-005",
+//     customer: "Lisa Thompson",
+//     email: "lisa@gmail.com",
+//     amount: 450.00,
+//     status: "completed",
+//     date: "2025-01-13",
+//     items: 4,
+//     shippingAddress: "654 Maple Dr, Seattle, WA 98101",
+//     products: ["Structured Wool Blazer", "High-Waist Tapered Pants", "Oversized Merino Sweater", "Cropped Cotton Jacket"]
+//   },
+// ];
+// const getStatusColor = (status: string) => {
+//   switch (status) {
+//     case "completed":
+//       return "bg-green-100 text-green-800";
+//     case "processing":
+//       return "bg-blue-100 text-blue-800";
+//     case "shipped":
+//       return "bg-purple-100 text-purple-800";
+//     case "pending":
+//       return "bg-yellow-100 text-yellow-800";
+//     default:
+//       return "bg-gray-100 text-gray-800";
+//   }
+// };
+// const getStatusIcon = (status: string) => {
+//   switch (status) {
+//     case "completed":
+//       return <CheckCircle className="h-4 w-4" />;
+//     case "processing":
+//       return <Package className="h-4 w-4" />;
+//     case "shipped":
+//       return <Truck className="h-4 w-4" />;
+//     case "pending":
+//       return <Clock className="h-4 w-4" />;
+//     default:
+//       return <Clock className="h-4 w-4" />;
+//   }
+// };
+// export default function OrdersPage() {
+//   const [searchTerm, setSearchTerm] = useState("");
+//   const [statusFilter, setStatusFilter] = useState("all");
+//   const [selectedTab, setSelectedTab] = useState("all");
+//   const filteredOrders = orders.filter(order => {
+//     const matchesSearch = order.customer.toLowerCase().includes(searchTerm.toLowerCase()) ||
+//                          order.id.toLowerCase().includes(searchTerm.toLowerCase()) ||
+//                          order.email.toLowerCase().includes(searchTerm.toLowerCase());
+ 
+//     const matchesStatus = statusFilter === "all" || order.status === statusFilter;
+//     const matchesTab = selectedTab === "all" || order.status === selectedTab;
+ 
+//     return matchesSearch && matchesStatus && matchesTab;
+//   });
+//   const orderStats = {
+//     total: orders.length,
+//     pending: orders.filter(o => o.status === "pending").length,
+//     processing: orders.filter(o => o.status === "processing").length,
+//     shipped: orders.filter(o => o.status === "shipped").length,
+//     completed: orders.filter(o => o.status === "completed").length,
+//   };
+//   return (
+//     <div className="p-6">
+//       <div className="mb-6">
+//         <h1 className="font-serif text-3xl font-light mb-2">Orders</h1>
+//         <p className="text-muted-foreground">
+//           Manage and track customer orders
+//         </p>
+//       </div>
+//       {/* Stats Cards */}
+//       <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-6">
+//         <Card>
+//           <CardHeader className="pb-2">
+//             <CardTitle className="text-sm font-medium">Total Orders</CardTitle>
+//           </CardHeader>
+//           <CardContent>
+//             <div className="text-2xl font-bold">{orderStats.total}</div>
+//           </CardContent>
+//         </Card>
+//         <Card>
+//           <CardHeader className="pb-2">
+//             <CardTitle className="text-sm font-medium">Pending</CardTitle>
+//           </CardHeader>
+//           <CardContent>
+//             <div className="text-2xl font-bold text-yellow-600">{orderStats.pending}</div>
+//           </CardContent>
+//         </Card>
+//         <Card>
+//           <CardHeader className="pb-2">
+//             <CardTitle className="text-sm font-medium">Processing</CardTitle>
+//           </CardHeader>
+//           <CardContent>
+//             <div className="text-2xl font-bold text-blue-600">{orderStats.processing}</div>
+//           </CardContent>
+//         </Card>
+//         <Card>
+//           <CardHeader className="pb-2">
+//             <CardTitle className="text-sm font-medium">Shipped</CardTitle>
+//           </CardHeader>
+//           <CardContent>
+//             <div className="text-2xl font-bold text-purple-600">{orderStats.shipped}</div>
+//           </CardContent>
+//         </Card>
+//         <Card>
+//           <CardHeader className="pb-2">
+//             <CardTitle className="text-sm font-medium">Completed</CardTitle>
+//           </CardHeader>
+//           <CardContent>
+//             <div className="text-2xl font-bold text-green-600">{orderStats.completed}</div>
+//           </CardContent>
+//         </Card>
+//       </div>
+//       {/* Filters and Search */}
+//       <div className="flex flex-col sm:flex-row gap-4 mb-6">
+//         <div className="relative flex-1">
+//           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+//           <Input
+//             placeholder="Search orders..."
+//             value={searchTerm}
+//             onChange={(e) => setSearchTerm(e.target.value)}
+//             className="pl-10"
+//           />
+//         </div>
+//         <Select value={statusFilter} onValueChange={setStatusFilter}>
+//           <SelectTrigger className="w-full sm:w-48">
+//             <SelectValue placeholder="Filter by status" />
+//           </SelectTrigger>
+//           <SelectContent>
+//             <SelectItem value="all">All Status</SelectItem>
+//             <SelectItem value="pending">Pending</SelectItem>
+//             <SelectItem value="processing">Processing</SelectItem>
+//             <SelectItem value="shipped">Shipped</SelectItem>
+//             <SelectItem value="completed">Completed</SelectItem>
+//           </SelectContent>
+//         </Select>
+//         <Button variant="outline">
+//           <Filter className="mr-2 h-4 w-4" />
+//           More Filters
+//         </Button>
+//         <Button variant="outline">
+//           <Download className="mr-2 h-4 w-4" />
+//           Export
+//         </Button>
+//       </div>
+//       {/* Orders Tabs */}
+//       <Tabs value={selectedTab} onValueChange={setSelectedTab}>
+//         <TabsList>
+//           <TabsTrigger value="all">All Orders</TabsTrigger>
+//           <TabsTrigger value="pending">Pending</TabsTrigger>
+//           <TabsTrigger value="processing">Processing</TabsTrigger>
+//           <TabsTrigger value="shipped">Shipped</TabsTrigger>
+//           <TabsTrigger value="completed">Completed</TabsTrigger>
+//         </TabsList>
+//         <TabsContent value={selectedTab} className="mt-6">
+//           <Card>
+//             <CardHeader>
+//               <CardTitle>Orders ({filteredOrders.length})</CardTitle>
+//               <CardDescription>
+//                 Recent customer orders and their current status
+//               </CardDescription>
+//             </CardHeader>
+//             <CardContent>
+//               <div className="space-y-4">
+//                 {filteredOrders.map((order) => (
+//                   <div key={order.id} className="flex items-center justify-between p-4 border rounded-lg">
+//                     <div className="flex items-center space-x-4">
+//                       <div className="flex items-center space-x-2">
+//                         {getStatusIcon(order.status)}
+//                         <div>
+//                           <div className="font-medium">{order.id}</div>
+//                           <div className="text-sm text-muted-foreground">{order.date}</div>
+//                         </div>
+//                       </div>
+//                       <div>
+//                         <div className="font-medium">{order.customer}</div>
+//                         <div className="text-sm text-muted-foreground">{order.email}</div>
+//                       </div>
+//                     </div>
+                 
+//                     <div className="flex items-center space-x-4">
+//                       <div className="text-right">
+//                         <div className="font-medium">${order.amount.toFixed(2)}</div>
+//                         <div className="text-sm text-muted-foreground">{order.items} items</div>
+//                       </div>
+//                       <Badge className={getStatusColor(order.status)}>
+//                         {order.status}
+//                       </Badge>
+//                       <DropdownMenu>
+//                         <DropdownMenuTrigger asChild>
+//                           <Button variant="ghost" size="icon">
+//                             <MoreHorizontal className="h-4 w-4" />
+//                           </Button>
+//                         </DropdownMenuTrigger>
+//                         <DropdownMenuContent align="end">
+//                           <DropdownMenuItem>
+//                             <Eye className="mr-2 h-4 w-4" />
+//                             View Details
+//                           </DropdownMenuItem>
+//                           <DropdownMenuItem>
+//                             <Package className="mr-2 h-4 w-4" />
+//                             Update Status
+//                           </DropdownMenuItem>
+//                           <DropdownMenuItem>
+//                             <Download className="mr-2 h-4 w-4" />
+//                             Download Invoice
+//                           </DropdownMenuItem>
+//                         </DropdownMenuContent>
+//                       </DropdownMenu>
+//                     </div>
+//                   </div>
+//                 ))}
+//               </div>
+//             </CardContent>
+//           </Card>
+//         </TabsContent>
+//       </Tabs>
+//     </div>
+//   );
+// }
+////////////////////////////////////////////////////////
+//products
+//  "use client";
+// import { useState } from "react";
+// import Image from "next/image";
+// import { Search, Filter, Download, Plus, Eye, Edit, Trash2, MoreHorizontal } from "lucide-react";
+// import { Button } from "@/components/ui/button";
+// import { Input } from "@/components/ui/input";
+// import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+// import { Badge } from "@/components/ui/badge";
+// import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+// import {
+//   DropdownMenu,
+//   DropdownMenuContent,
+//   DropdownMenuItem,
+//   DropdownMenuTrigger,
+// } from "@/components/ui/dropdown-menu";
+// import {
+//   Select,
+//   SelectContent,
+//   SelectItem,
+//   SelectTrigger,
+//   SelectValue,
+// } from "@/components/ui/select";
+//  // Sample products data
+//  const products = [
+//    {
+//      id: 1,
+//      name: "Tailored Cotton Overshirt",
+//      price: 189.00,
+//      image: "https://images.pexels.com/photos/5384428/pexels-photo-5384428.jpeg",
+//      category: "Men",
+//      stock: 23,
+//      status: "active",
+//      sales: 156,
+//      sku: "TCO-001",
+//      dateAdded: "2025-01-10"
+//   },
+//   {
+//     id: 2,
+//     name: "Structured Wool Blazer",
+//     price: 290.00,
+//     image: "https://images.pexels.com/photos/5384425/pexels-photo-5384425.jpeg",
+//     category: "Women",
+//     stock: 12,
+//     status: "active",
+//     sales: 89,
+//     sku: "SWB-002",
+//     dateAdded: "2025-01-08"
+//   },
+//   {
+//     id: 3,
+//     name: "Relaxed Linen Shirt",
+//     price: 120.00,
+//     image: "https://images.pexels.com/photos/5384429/pexels-photo-5384429.jpeg",
+//     category: "Men",
+//     stock: 45,
+//     status: "active",
+//     sales: 134,
+//     sku: "RLS-003",
+//     dateAdded: "2025-01-05"
+//   },
+//   {
+//     id: 4,
+//     name: "High-Waist Tapered Pants",
+//     price: 175.00,
+//     image: "https://images.pexels.com/photos/5384424/pexels-photo-5384424.jpeg",
+//     category: "Women",
+//     stock: 8,
+//     status: "low_stock",
+//     sales: 78,
+//     sku: "HTP-004",
+//     dateAdded: "2025-01-03"
+//   },
+//   {
+//     id: 5,
+//     name: "Oversized Merino Sweater",
+//     price: 210.00,
+//     image: "https://images.pexels.com/photos/5709656/pexels-photo-5709656.jpeg",
+//     category: "Women",
+//     stock: 0,
+//     status: "out_of_stock",
+//     sales: 45,
+//     sku: "OMS-005",
+//     dateAdded: "2025-01-01"
+//   },
+// ];
+// const getStatusColor = (status: string) => {
+//   switch (status) {
+//     case "active":
+//       return "bg-green-100 text-green-800";
+//     case "low_stock":
+//       return "bg-yellow-100 text-yellow-800";
+//     case "out_of_stock":
+//       return "bg-red-100 text-red-800";
+//     case "draft":
+//       return "bg-gray-100 text-gray-800";
+//     default:
+//       return "bg-gray-100 text-gray-800";
+//   }
+// };
+// const getStockStatus = (stock: number) => {
+//   if (stock === 0) return "out_of_stock";
+//   if (stock < 15) return "low_stock";
+//   return "active";
+// };
+// export default function ProductsPage() {
+//   const [searchTerm, setSearchTerm] = useState("");
+//   const [categoryFilter, setCategoryFilter] = useState("all");
+//   const [statusFilter, setStatusFilter] = useState("all");
+//   const filteredProducts = products.filter(product => {
+//     const matchesSearch = product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+//                          product.sku.toLowerCase().includes(searchTerm.toLowerCase());
+ 
+//     const matchesCategory = categoryFilter === "all" || product.category.toLowerCase() === categoryFilter;
+//     const matchesStatus = statusFilter === "all" || getStockStatus(product.stock) === statusFilter;
+ 
+//     return matchesSearch && matchesCategory && matchesStatus;
+//   });
+//   const productStats = {
+//     total: products.length,
+//     active: products.filter(p => getStockStatus(p.stock) === "active").length,
+//     lowStock: products.filter(p => getStockStatus(p.stock) === "low_stock").length,
+//     outOfStock: products.filter(p => getStockStatus(p.stock) === "out_of_stock").length,
+//   };
+//   return (
+//     <div className="p-6">
+//       <div className="flex justify-between items-start mb-6">
+//         <div>
+//           <h1 className="font-serif text-3xl font-light mb-2">Products</h1>
+//           <p className="text-muted-foreground">
+//             Manage your product catalog and inventory
+//           </p>
+//         </div>
+//         <Button>
+//           <Plus className="mr-2 h-4 w-4" />
+//           Add Product
+//         </Button>
+//       </div>
+//       {/* Stats Cards */}
+//       <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+//         <Card>
+//           <CardHeader className="pb-2">
+//             <CardTitle className="text-sm font-medium">Total Products</CardTitle>
+//           </CardHeader>
+//           <CardContent>
+//             <div className="text-2xl font-bold">{productStats.total}</div>
+//           </CardContent>
+//         </Card>
+//         <Card>
+//           <CardHeader className="pb-2">
+//             <CardTitle className="text-sm font-medium">Active</CardTitle>
+//           </CardHeader>
+//           <CardContent>
+//             <div className="text-2xl font-bold text-green-600">{productStats.active}</div>
+//           </CardContent>
+//         </Card>
+//         <Card>
+//           <CardHeader className="pb-2">
+//             <CardTitle className="text-sm font-medium">Low Stock</CardTitle>
+//           </CardHeader>
+//           <CardContent>
+//             <div className="text-2xl font-bold text-yellow-600">{productStats.lowStock}</div>
+//           </CardContent>
+//         </Card>
+//         <Card>
+//           <CardHeader className="pb-2">
+//             <CardTitle className="text-sm font-medium">Out of Stock</CardTitle>
+//           </CardHeader>
+//           <CardContent>
+//             <div className="text-2xl font-bold text-red-600">{productStats.outOfStock}</div>
+//           </CardContent>
+//         </Card>
+//       </div>
+//       {/* Filters and Search */}
+//       <div className="flex flex-col sm:flex-row gap-4 mb-6">
+//         <div className="relative flex-1">
+//           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+//           <Input
+//             placeholder="Search products..."
+//             value={searchTerm}
+//             onChange={(e) => setSearchTerm(e.target.value)}
+//             className="pl-10"
+//           />
+//         </div>
+//         <Select value={categoryFilter} onValueChange={setCategoryFilter}>
+//           <SelectTrigger className="w-full sm:w-48">
+//             <SelectValue placeholder="Filter by category" />
+//           </SelectTrigger>
+//           <SelectContent>
+//             <SelectItem value="all">All Categories</SelectItem>
+//             <SelectItem value="men">Men</SelectItem>
+//             <SelectItem value="women">Women</SelectItem>
+//             <SelectItem value="accessories">Accessories</SelectItem>
+//           </SelectContent>
+//         </Select>
+//         <Select value={statusFilter} onValueChange={setStatusFilter}>
+//           <SelectTrigger className="w-full sm:w-48">
+//             <SelectValue placeholder="Filter by status" />
+//           </SelectTrigger>
+//           <SelectContent>
+//             <SelectItem value="all">All Status</SelectItem>
+//             <SelectItem value="active">Active</SelectItem>
+//             <SelectItem value="low_stock">Low Stock</SelectItem>
+//             <SelectItem value="out_of_stock">Out of Stock</SelectItem>
+//           </SelectContent>
+//         </Select>
+//         <Button variant="outline">
+//           <Download className="mr-2 h-4 w-4" />
+//           Export
+//         </Button>
+//       </div>
+//       {/* Products Grid */}
+//       <Card>
+//         <CardHeader>
+//           <CardTitle>Products ({filteredProducts.length})</CardTitle>
+//           <CardDescription>
+//             Manage your product inventory and details
+//           </CardDescription>
+//         </CardHeader>
+//         <CardContent>
+//           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+//             {filteredProducts.map((product) => (
+//               <div key={product.id} className="border rounded-lg p-4 space-y-4">
+//                 <div className="relative aspect-[3/4] w-full overflow-hidden rounded-md bg-muted">
+//                   <Image
+//                     src={product.image}
+//                     alt={product.name}
+//                     fill
+//                     className="object-cover object-center"
+//                   />
+//                 </div>
+             
+//                 <div className="space-y-2">
+//                   <div className="flex justify-between items-start">
+//                     <div>
+//                       <h3 className="font-medium line-clamp-2">{product.name}</h3>
+//                       <p className="text-sm text-muted-foreground">{product.sku}</p>
+//                     </div>
+//                     <DropdownMenu>
+//                       <DropdownMenuTrigger asChild>
+//                         <Button variant="ghost" size="icon">
+//                           <MoreHorizontal className="h-4 w-4" />
+//                         </Button>
+//                       </DropdownMenuTrigger>
+//                       <DropdownMenuContent align="end">
+//                         <DropdownMenuItem>
+//                           <Eye className="mr-2 h-4 w-4" />
+//                           View
+//                         </DropdownMenuItem>
+//                         <DropdownMenuItem>
+//                           <Edit className="mr-2 h-4 w-4" />
+//                           Edit
+//                         </DropdownMenuItem>
+//                         <DropdownMenuItem className="text-red-600">
+//                           <Trash2 className="mr-2 h-4 w-4" />
+//                           Delete
+//                         </DropdownMenuItem>
+//                       </DropdownMenuContent>
+//                     </DropdownMenu>
+//                   </div>
+               
+//                   <div className="flex justify-between items-center">
+//                     <span className="font-medium">${product.price.toFixed(2)}</span>
+//                     <Badge className={getStatusColor(getStockStatus(product.stock))}>
+//                       {product.stock === 0 ? "Out of Stock" : 
+//                        product.stock < 15 ? "Low Stock" : "In Stock"}
+//                     </Badge>
+//                   </div>
+               
+//                   <div className="flex justify-between text-sm text-muted-foreground">
+//                     <span>Stock: {product.stock}</span>
+//                     <span>Sales: {product.sales}</span>
+//                   </div>
+               
+//                   <div className="flex gap-2">
+//                     <Button variant="outline" size="sm" className="flex-1">
+//                       <Edit className="mr-2 h-4 w-4" />
+//                       Edit
+//                     </Button>
+//                     <Button variant="outline" size="sm" className="flex-1">
+//                       <Eye className="mr-2 h-4 w-4" />
+//                       View
+//                     </Button>
+//                   </div>
+//                 </div>
+//               </div>
+//             ))}
+//           </div>
+//         </CardContent>
+//       </Card>
+//     </div>
+//   );
+// }
+
+
+///////////////////////////////////////////////////////////
+//reviews
+"use client";
+import { useState } from "react";
+import { Search, Filter, Star, MoreHorizontal, Eye, Trash2, CheckCircle, XCircle } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+// Sample reviews data
+const reviews = [
+  {
+    id: 1,
+    customer: "Sarah Johnson",
+    email: "sarah@gmail.com",
+    avatar: "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg",
+    product: "Tailored Cotton Overshirt",
+    rating: 5,
+    title: "Perfect fit and quality!",
+    comment: "This overshirt is exactly what I was looking for. The quality is excellent and the fit is perfect. I'm usually between sizes and went with the larger one, which gives me the relaxed look I wanted. Highly recommended!",
+    date: "2025-01-15",
+    status: "approved",
+    helpful: 12
+  },
+  {
+    id: 2,
+    customer: "Michael Chen",
+    email: "michael@gmail.com",
+    avatar: "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg",
+    product: "Structured Wool Blazer",
+    rating: 4,
+    title: "Great quality, color slightly different",
+    comment: "Great blazer with excellent quality fabric. The only reason I'm giving it 4 stars instead of 5 is that the color is slightly different than shown in the photos. Still very happy with my purchase.",
+    date: "2025-01-14",
+    status: "pending",
+    helpful: 8
+  },
+  {
+    id: 3,
+    customer: "Emma Wilson",
+    email: "emma@gmail.com",
+    avatar: "https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg",
+    product: "Relaxed Linen Shirt",
+    rating: 5,
+    title: "Incredible quality and attention to detail",
+    comment: "Incredible quality and attention to detail. This is my third purchase from Vanguard and they never disappoint. The linen is so soft and the stitching is impeccable. Worth every penny.",
+    date: "2025-01-13",
+    status: "approved",
+    helpful: 15
+  },
+  {
+    id: 4,
+    customer: "David Rodriguez",
+    email: "david@gmail.com",
+    avatar: "https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg",
+    product: "High-Waist Tapered Pants",
+    rating: 2,
+    title: "Sizing runs small",
+    comment: "The pants look great but the sizing runs very small. I ordered my usual size but they were too tight. The return process was smooth though.",
+    date: "2025-01-12",
+    status: "flagged",
+    helpful: 3
+  },
+  {
+    id: 5,
+    customer: "Lisa Thompson",
+    email: "lisa@gmail.com",
+    avatar: "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg",
+    product: "Oversized Merino Sweater",
+    rating: 5,
+    title: "Cozy and stylish",
+    comment: "Love this sweater! It's so cozy and the oversized fit is perfect for layering. The merino wool is incredibly soft and doesn't itch at all.",
+    date: "2025-01-11",
+    status: "approved",
+    helpful: 9
+  },
+];
+const getStatusColor = (status: string) => {
+  switch (status) {
+    case "approved":
+      return "bg-green-100 text-green-800";
+    case "pending":
+      return "bg-yellow-100 text-yellow-800";
+    case "flagged":
+      return "bg-red-100 text-red-800";
+    case "rejected":
+      return "bg-gray-100 text-gray-800";
+    default:
+      return "bg-gray-100 text-gray-800";
+  }
 };
-
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+const renderStars = (rating: number) => {
+  return Array.from({ length: 5 }, (_, i) => (
+    <Star
+      key={i}
+      className={`h-4 w-4 ${
+        i < rating ? "fill-yellow-400 text-yellow-400" : "text-gray-300"
+      }`}
+    />
+  ));
+};
+export default function ReviewsPage() {
+  const [searchTerm, setSearchTerm] = useState("");
+  const [statusFilter, setStatusFilter] = useState("all");
+  const [ratingFilter, setRatingFilter] = useState("all");
+  const filteredReviews = reviews.filter(review => {
+    const matchesSearch = review.customer.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         review.product.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         review.comment.toLowerCase().includes(searchTerm.toLowerCase());
+ 
+    const matchesStatus = statusFilter === "all" || review.status === statusFilter;
+    const matchesRating = ratingFilter === "all" || review.rating.toString() === ratingFilter;
+ 
+    return matchesSearch && matchesStatus && matchesRating;
+  });
+  const reviewStats = {
+    total: reviews.length,
+    approved: reviews.filter(r => r.status === "approved").length,
+    pending: reviews.filter(r => r.status === "pending").length,
+    flagged: reviews.filter(r => r.status === "flagged").length,
+    averageRating: reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length,
+  };
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.variable} ${playfair.variable} font-sans`}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="light"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <WishlistProvider>
-            <CartProvider>
-              <LayoutClientWrapper>
-                {children}
-              </LayoutClientWrapper>
-            </CartProvider>
-          </WishlistProvider>
-        </ThemeProvider>
-      </body>
-    </html>
+    <div className="p-6">
+      <div className="mb-6">
+        <h1 className="font-serif text-3xl font-light mb-2">Reviews</h1>
+        <p className="text-muted-foreground">
+          Manage customer reviews and feedback
+        </p>
+      </div>
+      {/* Stats Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-6">
+        <Card>
+          <CardHeader className="pb-2">
+            <CardTitle className="text-sm font-medium">Total Reviews</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">{reviewStats.total}</div>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardHeader className="pb-2">
+            <CardTitle className="text-sm font-medium">Approved</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold text-green-600">{reviewStats.approved}</div>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardHeader className="pb-2">
+            <CardTitle className="text-sm font-medium">Pending</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold text-yellow-600">{reviewStats.pending}</div>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardHeader className="pb-2">
+            <CardTitle className="text-sm font-medium">Flagged</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold text-red-600">{reviewStats.flagged}</div>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardHeader className="pb-2">
+            <CardTitle className="text-sm font-medium">Avg Rating</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">{reviewStats.averageRating.toFixed(1)}</div>
+          </CardContent>
+        </Card>
+      </div>
+      {/* Filters and Search */}
+      <div className="flex flex-col sm:flex-row gap-4 mb-6">
+        <div className="relative flex-1">
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+          <Input
+            placeholder="Search reviews..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="pl-10"
+          />
+        </div>
+        <Select value={statusFilter} onValueChange={setStatusFilter}>
+          <SelectTrigger className="w-full sm:w-48">
+            <SelectValue placeholder="Filter by status" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="all">All Status</SelectItem>
+            <SelectItem value="approved">Approved</SelectItem>
+            <SelectItem value="pending">Pending</SelectItem>
+            <SelectItem value="flagged">Flagged</SelectItem>
+            <SelectItem value="rejected">Rejected</SelectItem>
+          </SelectContent>
+        </Select>
+        <Select value={ratingFilter} onValueChange={setRatingFilter}>
+          <SelectTrigger className="w-full sm:w-48">
+            <SelectValue placeholder="Filter by rating" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="all">All Ratings</SelectItem>
+            <SelectItem value="5">5 Stars</SelectItem>
+            <SelectItem value="4">4 Stars</SelectItem>
+            <SelectItem value="3">3 Stars</SelectItem>
+            <SelectItem value="2">2 Stars</SelectItem>
+            <SelectItem value="1">1 Star</SelectItem>
+          </SelectContent>
+        </Select>
+      </div>
+      {/* Reviews List */}
+      <Card>
+        <CardHeader>
+          <CardTitle>Reviews ({filteredReviews.length})</CardTitle>
+          <CardDescription>
+            Manage customer reviews and moderate content
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-6">
+            {filteredReviews.map((review) => (
+              <div key={review.id} className="border rounded-lg p-6">
+                <div className="flex items-start justify-between mb-4">
+                  <div className="flex items-start space-x-4">
+                    <Avatar className="h-12 w-12">
+                      <AvatarImage src={review.avatar} alt={review.customer} />
+                      <AvatarFallback>
+                        {review.customer.split(' ').map(n => n[0]).join('')}
+                      </AvatarFallback>
+                    </Avatar>
+                 
+                    <div>
+                      <div className="flex items-center space-x-2 mb-1">
+                        <h3 className="font-medium">{review.customer}</h3>
+                        <Badge className={getStatusColor(review.status)}>
+                          {review.status}
+                        </Badge>
+                      </div>
+                      <div className="flex items-center space-x-2 mb-2">
+                        <div className="flex">{renderStars(review.rating)}</div>
+                        <span className="text-sm text-muted-foreground">•</span>
+                        <span className="text-sm text-muted-foreground">{review.date}</span>
+                      </div>
+                      <p className="text-sm text-muted-foreground">
+                        Product: {review.product}
+                      </p>
+                    </div>
+                  </div>
+               
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <Button variant="ghost" size="icon">
+                        <MoreHorizontal className="h-4 w-4" />
+                      </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end">
+                      <DropdownMenuItem>
+                        <CheckCircle className="mr-2 h-4 w-4" />
+                        Approve
+                      </DropdownMenuItem>
+                      <DropdownMenuItem>
+                        <XCircle className="mr-2 h-4 w-4" />
+                        Reject
+                      </DropdownMenuItem>
+                      <DropdownMenuItem>
+                        <Eye className="mr-2 h-4 w-4" />
+                        View Details
+                      </DropdownMenuItem>
+                      <DropdownMenuItem className="text-red-600">
+                        <Trash2 className="mr-2 h-4 w-4" />
+                        Delete
+                      </DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                </div>
+             
+                <div className="mb-4">
+                  <h4 className="font-medium mb-2">{review.title}</h4>
+                  <p className="text-muted-foreground">{review.comment}</p>
+                </div>
+             
+                <div className="flex items-center justify-between text-sm text-muted-foreground">
+                  <span>{review.helpful} people found this helpful</span>
+                  <div className="flex space-x-2">
+                    <Button variant="outline" size="sm">
+                      <CheckCircle className="mr-2 h-4 w-4" />
+                      Approve
+                    </Button>
+                    <Button variant="outline" size="sm">
+                      <XCircle className="mr-2 h-4 w-4" />
+                      Reject
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </CardContent>
+      </Card>
+    </div>
   );
 }
+////////////////////////////////////////////////////////////
+//settings
+// "use client";
+
+// import { useState } from "react";
+// import { Save, Upload, Globe, Mail, Shield, CreditCard, Truck, Bell } from "lucide-react";
+
+// import { Button } from "@/components/ui/button";
+// import { Input } from "@/components/ui/input";
+// import { Label } from "@/components/ui/label";
+// import { Textarea } from "@/components/ui/textarea";
+// import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+// import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+// import { Switch } from "@/components/ui/switch";
+// import { Separator } from "@/components/ui/separator";
+// import {
+//   Select,
+//   SelectContent,
+//   SelectItem,
+//   SelectTrigger,
+//   SelectValue,
+// } from "@/components/ui/select";
+
+// export default function SettingsPage() {
+//   const [isLoading, setIsLoading] = useState(false);
+
+//   const handleSave = async () => {
+//     setIsLoading(true);
+//     // Simulate save operation
+//     await new Promise(resolve => setTimeout(resolve, 1000));
+//     setIsLoading(false);
+//   };
+
+//   return (
+//     <div className="p-6">
+//       <div className="flex justify-between items-start mb-6">
+//         <div>
+//           <h1 className="font-serif text-3xl font-light mb-2">Settings</h1>
+//           <p className="text-muted-foreground">
+//             Configure your store settings and preferences
+//           </p>
+//         </div>
+//         <Button onClick={handleSave} disabled={isLoading}>
+//           <Save className="mr-2 h-4 w-4" />
+//           {isLoading ? "Saving..." : "Save Changes"}
+//         </Button>
+//       </div>
+
+//       <Tabs defaultValue="general" className="space-y-4">
+//         <TabsList>
+//           <TabsTrigger value="general">General</TabsTrigger>
+//           <TabsTrigger value="store">Store</TabsTrigger>
+//           <TabsTrigger value="payments">Payments</TabsTrigger>
+//           <TabsTrigger value="shipping">Shipping</TabsTrigger>
+//           <TabsTrigger value="notifications">Notifications</TabsTrigger>
+//           <TabsTrigger value="security">Security</TabsTrigger>
+//         </TabsList>
+
+//         <TabsContent value="general">
+//           <div className="space-y-6">
+//             <Card>
+//               <CardHeader>
+//                 <CardTitle className="flex items-center">
+//                   <Globe className="mr-2 h-5 w-5" />
+//                   General Settings
+//                 </CardTitle>
+//                 <CardDescription>
+//                   Basic configuration for your store
+//                 </CardDescription>
+//               </CardHeader>
+//               <CardContent className="space-y-4">
+//                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+//                   <div className="space-y-2">
+//                     <Label htmlFor="storeName">Store Name</Label>
+//                     <Input id="storeName" defaultValue="Vanguard Apparel" />
+//                   </div>
+//                   <div className="space-y-2">
+//                     <Label htmlFor="storeUrl">Store URL</Label>
+//                     <Input id="storeUrl" defaultValue="vanguardapparel.com" />
+//                   </div>
+//                 </div>
+                
+//                 <div className="space-y-2">
+//                   <Label htmlFor="storeDescription">Store Description</Label>
+//                   <Textarea
+//                     id="storeDescription"
+//                     defaultValue="Redefining contemporary fashion with timeless elegance and bold innovation."
+//                     rows={3}
+//                   />
+//                 </div>
+                
+//                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+//                   <div className="space-y-2">
+//                     <Label htmlFor="timezone">Timezone</Label>
+//                     <Select defaultValue="america/new_york">
+//                       <SelectTrigger>
+//                         <SelectValue />
+//                       </SelectTrigger>
+//                       <SelectContent>
+//                         <SelectItem value="america/new_york">Eastern Time (ET)</SelectItem>
+//                         <SelectItem value="america/chicago">Central Time (CT)</SelectItem>
+//                         <SelectItem value="america/denver">Mountain Time (MT)</SelectItem>
+//                         <SelectItem value="america/los_angeles">Pacific Time (PT)</SelectItem>
+//                       </SelectContent>
+//                     </Select>
+//                   </div>
+//                   <div className="space-y-2">
+//                     <Label htmlFor="currency">Currency</Label>
+//                     <Select defaultValue="usd">
+//                       <SelectTrigger>
+//                         <SelectValue />
+//                       </SelectTrigger>
+//                       <SelectContent>
+//                         <SelectItem value="usd">USD - US Dollar</SelectItem>
+//                         <SelectItem value="eur">EUR - Euro</SelectItem>
+//                         <SelectItem value="gbp">GBP - British Pound</SelectItem>
+//                         <SelectItem value="cad">CAD - Canadian Dollar</SelectItem>
+//                       </SelectContent>
+//                     </Select>
+//                   </div>
+//                 </div>
+//               </CardContent>
+//             </Card>
+
+//             <Card>
+//               <CardHeader>
+//                 <CardTitle>Logo & Branding</CardTitle>
+//                 <CardDescription>
+//                   Upload your store logo and customize branding
+//                 </CardDescription>
+//               </CardHeader>
+//               <CardContent className="space-y-4">
+//                 <div className="space-y-2">
+//                   <Label>Store Logo</Label>
+//                   <div className="flex items-center space-x-4">
+//                     <div className="w-16 h-16 bg-muted rounded-lg flex items-center justify-center">
+//                       <span className="text-xs text-muted-foreground">Logo</span>
+//                     </div>
+//                     <Button variant="outline">
+//                       <Upload className="mr-2 h-4 w-4" />
+//                       Upload Logo
+//                     </Button>
+//                   </div>
+//                 </div>
+                
+//                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+//                   <div className="space-y-2">
+//                     <Label htmlFor="primaryColor">Primary Color</Label>
+//                     <Input id="primaryColor" type="color" defaultValue="#000000" />
+//                   </div>
+//                   <div className="space-y-2">
+//                     <Label htmlFor="secondaryColor">Secondary Color</Label>
+//                     <Input id="secondaryColor" type="color" defaultValue="#6b7280" />
+//                   </div>
+//                 </div>
+//               </CardContent>
+//             </Card>
+//           </div>
+//         </TabsContent>
+
+//         <TabsContent value="store">
+//           <Card>
+//             <CardHeader>
+//               <CardTitle>Store Information</CardTitle>
+//               <CardDescription>
+//                 Contact information and business details
+//               </CardDescription>
+//             </CardHeader>
+//             <CardContent className="space-y-4">
+//               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+//                 <div className="space-y-2">
+//                   <Label htmlFor="contactEmail">Contact Email</Label>
+//                   <Input id="contactEmail" type="email" defaultValue="info@vanguardapparel.com" />
+//                 </div>
+//                 <div className="space-y-2">
+//                   <Label htmlFor="supportEmail">Support Email</Label>
+//                   <Input id="supportEmail" type="email" defaultValue="support@vanguardapparel.com" />
+//                 </div>
+//               </div>
+              
+//               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+//                 <div className="space-y-2">
+//                   <Label htmlFor="phone">Phone Number</Label>
+//                   <Input id="phone" defaultValue="+1 (212) 555-0123" />
+//                 </div>
+//                 <div className="space-y-2">
+//                   <Label htmlFor="fax">Fax Number</Label>
+//                   <Input id="fax" defaultValue="+1 (212) 555-0124" />
+//                 </div>
+//               </div>
+              
+//               <div className="space-y-2">
+//                 <Label htmlFor="address">Business Address</Label>
+//                 <Textarea
+//                   id="address"
+//                   defaultValue="123 Fashion Avenue, SoHo, New York, NY 10012, United States"
+//                   rows={3}
+//                 />
+//               </div>
+              
+//               <Separator />
+              
+//               <div className="space-y-4">
+//                 <h3 className="text-lg font-medium">Store Hours</h3>
+//                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+//                   <div className="space-y-2">
+//                     <Label>Monday - Friday</Label>
+//                     <Input defaultValue="10:00 AM - 7:00 PM" />
+//                   </div>
+//                   <div className="space-y-2">
+//                     <Label>Saturday</Label>
+//                     <Input defaultValue="11:00 AM - 8:00 PM" />
+//                   </div>
+//                   <div className="space-y-2">
+//                     <Label>Sunday</Label>
+//                     <Input defaultValue="12:00 PM - 6:00 PM" />
+//                   </div>
+//                 </div>
+//               </div>
+//             </CardContent>
+//           </Card>
+//         </TabsContent>
+
+//         <TabsContent value="payments">
+//           <Card>
+//             <CardHeader>
+//               <CardTitle className="flex items-center">
+//                 <CreditCard className="mr-2 h-5 w-5" />
+//                 Payment Settings
+//               </CardTitle>
+//               <CardDescription>
+//                 Configure payment methods and processing
+//               </CardDescription>
+//             </CardHeader>
+//             <CardContent className="space-y-6">
+//               <div className="space-y-4">
+//                 <div className="flex items-center justify-between">
+//                   <div>
+//                     <h4 className="font-medium">Credit Cards</h4>
+//                     <p className="text-sm text-muted-foreground">Accept Visa, Mastercard, American Express</p>
+//                   </div>
+//                   <Switch defaultChecked />
+//                 </div>
+                
+//                 <div className="flex items-center justify-between">
+//                   <div>
+//                     <h4 className="font-medium">PayPal</h4>
+//                     <p className="text-sm text-muted-foreground">Accept PayPal payments</p>
+//                   </div>
+//                   <Switch defaultChecked />
+//                 </div>
+                
+//                 <div className="flex items-center justify-between">
+//                   <div>
+//                     <h4 className="font-medium">Apple Pay</h4>
+//                     <p className="text-sm text-muted-foreground">Accept Apple Pay payments</p>
+//                   </div>
+//                   <Switch />
+//                 </div>
+                
+//                 <div className="flex items-center justify-between">
+//                   <div>
+//                     <h4 className="font-medium">Google Pay</h4>
+//                     <p className="text-sm text-muted-foreground">Accept Google Pay payments</p>
+//                   </div>
+//                   <Switch />
+//                 </div>
+//               </div>
+              
+//               <Separator />
+              
+//               <div className="space-y-4">
+//                 <h4 className="font-medium">Payment Processing</h4>
+//                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+//                   <div className="space-y-2">
+//                     <Label htmlFor="taxRate">Tax Rate (%)</Label>
+//                     <Input id="taxRate" type="number" defaultValue="8.25" step="0.01" />
+//                   </div>
+//                   <div className="space-y-2">
+//                     <Label htmlFor="processingFee">Processing Fee (%)</Label>
+//                     <Input id="processingFee" type="number" defaultValue="2.9" step="0.1" />
+//                   </div>
+//                 </div>
+//               </div>
+//             </CardContent>
+//           </Card>
+//         </TabsContent>
+
+//         <TabsContent value="shipping">
+//           <Card>
+//             <CardHeader>
+//               <CardTitle className="flex items-center">
+//                 <Truck className="mr-2 h-5 w-5" />
+//                 Shipping Settings
+//               </CardTitle>
+//               <CardDescription>
+//                 Configure shipping options and rates
+//               </CardDescription>
+//             </CardHeader>
+//             <CardContent className="space-y-6">
+//               <div className="space-y-4">
+//                 <div className="flex items-center justify-between">
+//                   <div>
+//                     <h4 className="font-medium">Free Shipping</h4>
+//                     <p className="text-sm text-muted-foreground">Offer free shipping on orders over threshold</p>
+//                   </div>
+//                   <Switch defaultChecked />
+//                 </div>
+                
+//                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+//                   <div className="space-y-2">
+//                     <Label htmlFor="freeShippingThreshold">Free Shipping Threshold</Label>
+//                     <Input id="freeShippingThreshold" type="number" defaultValue="100" />
+//                   </div>
+//                   <div className="space-y-2">
+//                     <Label htmlFor="standardShippingRate">Standard Shipping Rate</Label>
+//                     <Input id="standardShippingRate" type="number" defaultValue="15" />
+//                   </div>
+//                 </div>
+//               </div>
+              
+//               <Separator />
+              
+//               <div className="space-y-4">
+//                 <h4 className="font-medium">Shipping Zones</h4>
+//                 <div className="space-y-2">
+//                   <div className="flex items-center justify-between p-3 border rounded-lg">
+//                     <div>
+//                       <span className="font-medium">Domestic (United States)</span>
+//                       <p className="text-sm text-muted-foreground">Standard: $15, Express: $25</p>
+//                     </div>
+//                     <Button variant="outline" size="sm">Edit</Button>
+//                   </div>
+//                   <div className="flex items-center justify-between p-3 border rounded-lg">
+//                     <div>
+//                       <span className="font-medium">International</span>
+//                       <p className="text-sm text-muted-foreground">Standard: $35, Express: $65</p>
+//                     </div>
+//                     <Button variant="outline" size="sm">Edit</Button>
+//                   </div>
+//                 </div>
+//               </div>
+//             </CardContent>
+//           </Card>
+//         </TabsContent>
+
+//         <TabsContent value="notifications">
+//           <Card>
+//             <CardHeader>
+//               <CardTitle className="flex items-center">
+//                 <Bell className="mr-2 h-5 w-5" />
+//                 Notification Settings
+//               </CardTitle>
+//               <CardDescription>
+//                 Configure email notifications and alerts
+//               </CardDescription>
+//             </CardHeader>
+//             <CardContent className="space-y-6">
+//               <div className="space-y-4">
+//                 <h4 className="font-medium">Order Notifications</h4>
+//                 <div className="space-y-3">
+//                   <div className="flex items-center justify-between">
+//                     <div>
+//                       <span className="font-medium">New Order</span>
+//                       <p className="text-sm text-muted-foreground">Notify when new orders are placed</p>
+//                     </div>
+//                     <Switch defaultChecked />
+//                   </div>
+                  
+//                   <div className="flex items-center justify-between">
+//                     <div>
+//                       <span className="font-medium">Order Shipped</span>
+//                       <p className="text-sm text-muted-foreground">Notify when orders are shipped</p>
+//                     </div>
+//                     <Switch defaultChecked />
+//                   </div>
+                  
+//                   <div className="flex items-center justify-between">
+//                     <div>
+//                       <span className="font-medium">Order Delivered</span>
+//                       <p className="text-sm text-muted-foreground">Notify when orders are delivered</p>
+//                     </div>
+//                     <Switch />
+//                   </div>
+//                 </div>
+//               </div>
+              
+//               <Separator />
+              
+//               <div className="space-y-4">
+//                 <h4 className="font-medium">Inventory Notifications</h4>
+//                 <div className="space-y-3">
+//                   <div className="flex items-center justify-between">
+//                     <div>
+//                       <span className="font-medium">Low Stock Alert</span>
+//                       <p className="text-sm text-muted-foreground">Notify when products are low in stock</p>
+//                     </div>
+//                     <Switch defaultChecked />
+//                   </div>
+                  
+//                   <div className="flex items-center justify-between">
+//                     <div>
+//                       <span className="font-medium">Out of Stock Alert</span>
+//                       <p className="text-sm text-muted-foreground">Notify when products are out of stock</p>
+//                     </div>
+//                     <Switch defaultChecked />
+//                   </div>
+//                 </div>
+                
+//                 <div className="space-y-2">
+//                   <Label htmlFor="lowStockThreshold">Low Stock Threshold</Label>
+//                   <Input id="lowStockThreshold" type="number" defaultValue="10" />
+//                 </div>
+//               </div>
+//             </CardContent>
+//           </Card>
+//         </TabsContent>
+
+//         <TabsContent value="security">
+//           <Card>
+//             <CardHeader>
+//               <CardTitle className="flex items-center">
+//                 <Shield className="mr-2 h-5 w-5" />
+//                 Security Settings
+//               </CardTitle>
+//               <CardDescription>
+//                 Manage security and access controls
+//               </CardDescription>
+//             </CardHeader>
+//             <CardContent className="space-y-6">
+//               <div className="space-y-4">
+//                 <h4 className="font-medium">Authentication</h4>
+//                 <div className="space-y-3">
+//                   <div className="flex items-center justify-between">
+//                     <div>
+//                       <span className="font-medium">Two-Factor Authentication</span>
+//                       <p className="text-sm text-muted-foreground">Require 2FA for admin access</p>
+//                     </div>
+//                     <Switch />
+//                   </div>
+                  
+//                   <div className="flex items-center justify-between">
+//                     <div>
+//                       <span className="font-medium">Session Timeout</span>
+//                       <p className="text-sm text-muted-foreground">Auto-logout after inactivity</p>
+//                     </div>
+//                     <Switch defaultChecked />
+//                   </div>
+//                 </div>
+                
+//                 <div className="space-y-2">
+//                   <Label htmlFor="sessionTimeout">Session Timeout (minutes)</Label>
+//                   <Input id="sessionTimeout" type="number" defaultValue="30" />
+//                 </div>
+//               </div>
+              
+//               <Separator />
+              
+//               <div className="space-y-4">
+//                 <h4 className="font-medium">Data Protection</h4>
+//                 <div className="space-y-3">
+//                   <div className="flex items-center justify-between">
+//                     <div>
+//                       <span className="font-medium">Data Encryption</span>
+//                       <p className="text-sm text-muted-foreground">Encrypt sensitive customer data</p>
+//                     </div>
+//                     <Switch defaultChecked />
+//                   </div>
+                  
+//                   <div className="flex items-center justify-between">
+//                     <div>
+//                       <span className="font-medium">Audit Logging</span>
+//                       <p className="text-sm text-muted-foreground">Log all admin actions</p>
+//                     </div>
+//                     <Switch defaultChecked />
+//                   </div>
+//                 </div>
+//               </div>
+//             </CardContent>
+//           </Card>
+//         </TabsContent>
+//       </Tabs>
+//     </div>
+//   );
+// }
+
+
+///////////////////////////////////////////////////////////
+//shipping
+// "use client";
+
+// import { useState } from "react";
+// import { Search, Plus, Edit, Trash2, MoreHorizontal, Truck, Package } from "lucide-react";
+
+// import { Button } from "@/components/ui/button";
+// import { Input } from "@/components/ui/input";
+// import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+// import { Badge } from "@/components/ui/badge";
+// import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+// import {
+//   DropdownMenu,
+//   DropdownMenuContent,
+//   DropdownMenuItem,
+//   DropdownMenuTrigger,
+// } from "@/components/ui/dropdown-menu";
+
+// // Sample shipping data
+// const shippingMethods = [
+//   {
+//     id: 1,
+//     name: "Standard Shipping",
+//     description: "5-7 business days",
+//     price: 15.00,
+//     freeThreshold: 100.00,
+//     status: "active",
+//     zones: ["Domestic"]
+//   },
+//   {
+//     id: 2,
+//     name: "Express Shipping",
+//     description: "2-3 business days",
+//     price: 25.00,
+//     freeThreshold: 200.00,
+//     status: "active",
+//     zones: ["Domestic"]
+//   },
+//   {
+//     id: 3,
+//     name: "Overnight Shipping",
+//     description: "Next business day",
+//     price: 45.00,
+//     freeThreshold: null,
+//     status: "active",
+//     zones: ["Domestic"]
+//   },
+//   {
+//     id: 4,
+//     name: "International Standard",
+//     description: "10-15 business days",
+//     price: 35.00,
+//     freeThreshold: 250.00,
+//     status: "active",
+//     zones: ["International"]
+//   },
+//   {
+//     id: 5,
+//     name: "International Express",
+//     description: "5-7 business days",
+//     price: 65.00,
+//     freeThreshold: null,
+//     status: "active",
+//     zones: ["International"]
+//   },
+// ];
+
+// const shippingZones = [
+//   {
+//     id: 1,
+//     name: "Domestic",
+//     description: "United States",
+//     countries: ["United States"],
+//     status: "active"
+//   },
+//   {
+//     id: 2,
+//     name: "International",
+//     description: "All other countries",
+//     countries: ["Canada", "United Kingdom", "Australia", "Germany", "France"],
+//     status: "active"
+//   },
+// ];
+
+// const recentShipments = [
+//   {
+//     id: "SHIP-001",
+//     orderId: "ORD-001",
+//     customer: "Sarah Johnson",
+//     method: "Standard Shipping",
+//     status: "delivered",
+//     trackingNumber: "1Z999AA1234567890",
+//     date: "2025-01-15"
+//   },
+//   {
+//     id: "SHIP-002",
+//     orderId: "ORD-002",
+//     customer: "Michael Chen",
+//     method: "Express Shipping",
+//     status: "in_transit",
+//     trackingNumber: "1Z999AA1234567891",
+//     date: "2025-01-14"
+//   },
+//   {
+//     id: "SHIP-003",
+//     orderId: "ORD-003",
+//     customer: "Emma Wilson",
+//     method: "Standard Shipping",
+//     status: "shipped",
+//     trackingNumber: "1Z999AA1234567892",
+//     date: "2025-01-13"
+//   },
+// ];
+
+// const getStatusColor = (status: string) => {
+//   switch (status) {
+//     case "active":
+//       return "bg-green-100 text-green-800";
+//     case "inactive":
+//       return "bg-gray-100 text-gray-800";
+//     case "delivered":
+//       return "bg-green-100 text-green-800";
+//     case "in_transit":
+//       return "bg-blue-100 text-blue-800";
+//     case "shipped":
+//       return "bg-purple-100 text-purple-800";
+//     case "pending":
+//       return "bg-yellow-100 text-yellow-800";
+//     default:
+//       return "bg-gray-100 text-gray-800";
+//   }
+// };
+
+// export default function ShippingPage() {
+//   const [searchTerm, setSearchTerm] = useState("");
+
+//   const filteredMethods = shippingMethods.filter(method =>
+//     method.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+//     method.description.toLowerCase().includes(searchTerm.toLowerCase())
+//   );
+
+//   return (
+//     <div className="p-6">
+//       <div className="flex justify-between items-start mb-6">
+//         <div>
+//           <h1 className="font-serif text-3xl font-light mb-2">Shipping</h1>
+//           <p className="text-muted-foreground">
+//             Manage shipping methods, zones, and track shipments
+//           </p>
+//         </div>
+//         <Button>
+//           <Plus className="mr-2 h-4 w-4" />
+//           Add Shipping Method
+//         </Button>
+//       </div>
+
+//       {/* Stats Cards */}
+//       <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+//         <Card>
+//           <CardHeader className="pb-2">
+//             <CardTitle className="text-sm font-medium">Shipping Methods</CardTitle>
+//           </CardHeader>
+//           <CardContent>
+//             <div className="text-2xl font-bold">{shippingMethods.length}</div>
+//           </CardContent>
+//         </Card>
+//         <Card>
+//           <CardHeader className="pb-2">
+//             <CardTitle className="text-sm font-medium">Shipping Zones</CardTitle>
+//           </CardHeader>
+//           <CardContent>
+//             <div className="text-2xl font-bold">{shippingZones.length}</div>
+//           </CardContent>
+//         </Card>
+//         <Card>
+//           <CardHeader className="pb-2">
+//             <CardTitle className="text-sm font-medium">Recent Shipments</CardTitle>
+//           </CardHeader>
+//           <CardContent>
+//             <div className="text-2xl font-bold">{recentShipments.length}</div>
+//           </CardContent>
+//         </Card>
+//         <Card>
+//           <CardHeader className="pb-2">
+//             <CardTitle className="text-sm font-medium">In Transit</CardTitle>
+//           </CardHeader>
+//           <CardContent>
+//             <div className="text-2xl font-bold text-blue-600">
+//               {recentShipments.filter(s => s.status === "in_transit").length}
+//             </div>
+//           </CardContent>
+//         </Card>
+//       </div>
+
+//       {/* Shipping Tabs */}
+//       <Tabs defaultValue="methods" className="space-y-4">
+//         <TabsList>
+//           <TabsTrigger value="methods">Shipping Methods</TabsTrigger>
+//           <TabsTrigger value="zones">Shipping Zones</TabsTrigger>
+//           <TabsTrigger value="shipments">Recent Shipments</TabsTrigger>
+//         </TabsList>
+
+//         <TabsContent value="methods">
+//           {/* Search */}
+//           <div className="flex gap-4 mb-6">
+//             <div className="relative flex-1">
+//               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+//               <Input
+//                 placeholder="Search shipping methods..."
+//                 value={searchTerm}
+//                 onChange={(e) => setSearchTerm(e.target.value)}
+//                 className="pl-10"
+//               />
+//             </div>
+//           </div>
+
+//           <Card>
+//             <CardHeader>
+//               <CardTitle>Shipping Methods ({filteredMethods.length})</CardTitle>
+//               <CardDescription>
+//                 Configure shipping options and pricing
+//               </CardDescription>
+//             </CardHeader>
+//             <CardContent>
+//               <div className="space-y-4">
+//                 {filteredMethods.map((method) => (
+//                   <div key={method.id} className="flex items-center justify-between p-4 border rounded-lg">
+//                     <div className="flex items-center space-x-4">
+//                       <div className="flex items-center justify-center w-12 h-12 bg-muted rounded-lg">
+//                         <Truck className="h-6 w-6 text-muted-foreground" />
+//                       </div>
+                      
+//                       <div>
+//                         <div className="flex items-center space-x-2">
+//                           <h3 className="font-medium">{method.name}</h3>
+//                           <Badge className={getStatusColor(method.status)}>
+//                             {method.status}
+//                           </Badge>
+//                         </div>
+//                         <p className="text-sm text-muted-foreground">{method.description}</p>
+//                         <p className="text-xs text-muted-foreground">
+//                           Zones: {method.zones.join(", ")}
+//                         </p>
+//                       </div>
+//                     </div>
+                    
+//                     <div className="flex items-center space-x-4">
+//                       <div className="text-right">
+//                         <div className="font-medium">${method.price.toFixed(2)}</div>
+//                         <div className="text-sm text-muted-foreground">
+//                           {method.freeThreshold ? `Free over $${method.freeThreshold}` : "No free shipping"}
+//                         </div>
+//                       </div>
+                      
+//                       <DropdownMenu>
+//                         <DropdownMenuTrigger asChild>
+//                           <Button variant="ghost" size="icon">
+//                             <MoreHorizontal className="h-4 w-4" />
+//                           </Button>
+//                         </DropdownMenuTrigger>
+//                         <DropdownMenuContent align="end">
+//                           <DropdownMenuItem>
+//                             <Edit className="mr-2 h-4 w-4" />
+//                             Edit Method
+//                           </DropdownMenuItem>
+//                           <DropdownMenuItem>
+//                             Configure Zones
+//                           </DropdownMenuItem>
+//                           <DropdownMenuItem className="text-red-600">
+//                             <Trash2 className="mr-2 h-4 w-4" />
+//                             Delete Method
+//                           </DropdownMenuItem>
+//                         </DropdownMenuContent>
+//                       </DropdownMenu>
+//                     </div>
+//                   </div>
+//                 ))}
+//               </div>
+//             </CardContent>
+//           </Card>
+//         </TabsContent>
+
+//         <TabsContent value="zones">
+//           <Card>
+//             <CardHeader>
+//               <CardTitle>Shipping Zones ({shippingZones.length})</CardTitle>
+//               <CardDescription>
+//                 Define geographical areas for shipping
+//               </CardDescription>
+//             </CardHeader>
+//             <CardContent>
+//               <div className="space-y-4">
+//                 {shippingZones.map((zone) => (
+//                   <div key={zone.id} className="flex items-center justify-between p-4 border rounded-lg">
+//                     <div className="flex items-center space-x-4">
+//                       <div className="flex items-center justify-center w-12 h-12 bg-muted rounded-lg">
+//                         <Package className="h-6 w-6 text-muted-foreground" />
+//                       </div>
+                      
+//                       <div>
+//                         <div className="flex items-center space-x-2">
+//                           <h3 className="font-medium">{zone.name}</h3>
+//                           <Badge className={getStatusColor(zone.status)}>
+//                             {zone.status}
+//                           </Badge>
+//                         </div>
+//                         <p className="text-sm text-muted-foreground">{zone.description}</p>
+//                         <p className="text-xs text-muted-foreground">
+//                           Countries: {zone.countries.slice(0, 3).join(", ")}
+//                           {zone.countries.length > 3 && ` +${zone.countries.length - 3} more`}
+//                         </p>
+//                       </div>
+//                     </div>
+                    
+//                     <DropdownMenu>
+//                       <DropdownMenuTrigger asChild>
+//                         <Button variant="ghost" size="icon">
+//                           <MoreHorizontal className="h-4 w-4" />
+//                         </Button>
+//                       </DropdownMenuTrigger>
+//                       <DropdownMenuContent align="end">
+//                         <DropdownMenuItem>
+//                           <Edit className="mr-2 h-4 w-4" />
+//                           Edit Zone
+//                         </DropdownMenuItem>
+//                         <DropdownMenuItem>
+//                           Manage Countries
+//                         </DropdownMenuItem>
+//                         <DropdownMenuItem className="text-red-600">
+//                           <Trash2 className="mr-2 h-4 w-4" />
+//                           Delete Zone
+//                         </DropdownMenuItem>
+//                       </DropdownMenuContent>
+//                     </DropdownMenu>
+//                   </div>
+//                 ))}
+//               </div>
+//             </CardContent>
+//           </Card>
+//         </TabsContent>
+
+//         <TabsContent value="shipments">
+//           <Card>
+//             <CardHeader>
+//               <CardTitle>Recent Shipments ({recentShipments.length})</CardTitle>
+//               <CardDescription>
+//                 Track and manage recent shipments
+//               </CardDescription>
+//             </CardHeader>
+//             <CardContent>
+//               <div className="space-y-4">
+//                 {recentShipments.map((shipment) => (
+//                   <div key={shipment.id} className="flex items-center justify-between p-4 border rounded-lg">
+//                     <div className="flex items-center space-x-4">
+//                       <div className="flex items-center justify-center w-12 h-12 bg-muted rounded-lg">
+//                         <Package className="h-6 w-6 text-muted-foreground" />
+//                       </div>
+                      
+//                       <div>
+//                         <div className="flex items-center space-x-2">
+//                           <h3 className="font-medium">{shipment.id}</h3>
+//                           <Badge className={getStatusColor(shipment.status)}>
+//                             {shipment.status.replace("_", " ")}
+//                           </Badge>
+//                         </div>
+//                         <p className="text-sm text-muted-foreground">
+//                           Order: {shipment.orderId} • Customer: {shipment.customer}
+//                         </p>
+//                         <p className="text-xs text-muted-foreground">
+//                           Tracking: {shipment.trackingNumber}
+//                         </p>
+//                       </div>
+//                     </div>
+                    
+//                     <div className="flex items-center space-x-4">
+//                       <div className="text-right">
+//                         <div className="font-medium">{shipment.method}</div>
+//                         <div className="text-sm text-muted-foreground">{shipment.date}</div>
+//                       </div>
+                      
+//                       <DropdownMenu>
+//                         <DropdownMenuTrigger asChild>
+//                           <Button variant="ghost" size="icon">
+//                             <MoreHorizontal className="h-4 w-4" />
+//                           </Button>
+//                         </DropdownMenuTrigger>
+//                         <DropdownMenuContent align="end">
+//                           <DropdownMenuItem>
+//                             Track Shipment
+//                           </DropdownMenuItem>
+//                           <DropdownMenuItem>
+//                             Update Status
+//                           </DropdownMenuItem>
+//                           <DropdownMenuItem>
+//                             Print Label
+//                           </DropdownMenuItem>
+//                         </DropdownMenuContent>
+//                       </DropdownMenu>
+//                     </div>
+//                   </div>
+//                 ))}
+//               </div>
+//             </CardContent>
+//           </Card>
+//         </TabsContent>
+//       </Tabs>
+//     </div>
+//   );
+// }
+
+
