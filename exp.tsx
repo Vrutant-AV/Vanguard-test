@@ -6105,336 +6105,21 @@ export default function AdminLayout({
 
 ///////////////////////////////////////////////////////////
 //reviews
-"use client";
-import { useState } from "react";
-import { Search, Filter, Star, MoreHorizontal, Eye, Trash2, CheckCircle, XCircle } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-// Sample reviews data
-const reviews = [
-  {
-    id: 1,
-    customer: "Sarah Johnson",
-    email: "sarah@gmail.com",
-    avatar: "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg",
-    product: "Tailored Cotton Overshirt",
-    rating: 5,
-    title: "Perfect fit and quality!",
-    comment: "This overshirt is exactly what I was looking for. The quality is excellent and the fit is perfect. I'm usually between sizes and went with the larger one, which gives me the relaxed look I wanted. Highly recommended!",
-    date: "2025-01-15",
-    status: "approved",
-    helpful: 12
-  },
-  {
-    id: 2,
-    customer: "Michael Chen",
-    email: "michael@gmail.com",
-    avatar: "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg",
-    product: "Structured Wool Blazer",
-    rating: 4,
-    title: "Great quality, color slightly different",
-    comment: "Great blazer with excellent quality fabric. The only reason I'm giving it 4 stars instead of 5 is that the color is slightly different than shown in the photos. Still very happy with my purchase.",
-    date: "2025-01-14",
-    status: "pending",
-    helpful: 8
-  },
-  {
-    id: 3,
-    customer: "Emma Wilson",
-    email: "emma@gmail.com",
-    avatar: "https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg",
-    product: "Relaxed Linen Shirt",
-    rating: 5,
-    title: "Incredible quality and attention to detail",
-    comment: "Incredible quality and attention to detail. This is my third purchase from Vanguard and they never disappoint. The linen is so soft and the stitching is impeccable. Worth every penny.",
-    date: "2025-01-13",
-    status: "approved",
-    helpful: 15
-  },
-  {
-    id: 4,
-    customer: "David Rodriguez",
-    email: "david@gmail.com",
-    avatar: "https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg",
-    product: "High-Waist Tapered Pants",
-    rating: 2,
-    title: "Sizing runs small",
-    comment: "The pants look great but the sizing runs very small. I ordered my usual size but they were too tight. The return process was smooth though.",
-    date: "2025-01-12",
-    status: "flagged",
-    helpful: 3
-  },
-  {
-    id: 5,
-    customer: "Lisa Thompson",
-    email: "lisa@gmail.com",
-    avatar: "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg",
-    product: "Oversized Merino Sweater",
-    rating: 5,
-    title: "Cozy and stylish",
-    comment: "Love this sweater! It's so cozy and the oversized fit is perfect for layering. The merino wool is incredibly soft and doesn't itch at all.",
-    date: "2025-01-11",
-    status: "approved",
-    helpful: 9
-  },
-];
-const getStatusColor = (status: string) => {
-  switch (status) {
-    case "approved":
-      return "bg-green-100 text-green-800";
-    case "pending":
-      return "bg-yellow-100 text-yellow-800";
-    case "flagged":
-      return "bg-red-100 text-red-800";
-    case "rejected":
-      return "bg-gray-100 text-gray-800";
-    default:
-      return "bg-gray-100 text-gray-800";
-  }
-};
-const renderStars = (rating: number) => {
-  return Array.from({ length: 5 }, (_, i) => (
-    <Star
-      key={i}
-      className={`h-4 w-4 ${
-        i < rating ? "fill-yellow-400 text-yellow-400" : "text-gray-300"
-      }`}
-    />
-  ));
-};
-export default function ReviewsPage() {
-  const [searchTerm, setSearchTerm] = useState("");
-  const [statusFilter, setStatusFilter] = useState("all");
-  const [ratingFilter, setRatingFilter] = useState("all");
-  const filteredReviews = reviews.filter(review => {
-    const matchesSearch = review.customer.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         review.product.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         review.comment.toLowerCase().includes(searchTerm.toLowerCase());
- 
-    const matchesStatus = statusFilter === "all" || review.status === statusFilter;
-    const matchesRating = ratingFilter === "all" || review.rating.toString() === ratingFilter;
- 
-    return matchesSearch && matchesStatus && matchesRating;
-  });
-  const reviewStats = {
-    total: reviews.length,
-    approved: reviews.filter(r => r.status === "approved").length,
-    pending: reviews.filter(r => r.status === "pending").length,
-    flagged: reviews.filter(r => r.status === "flagged").length,
-    averageRating: reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length,
-  };
-  return (
-    <div className="p-6">
-      <div className="mb-6">
-        <h1 className="font-serif text-3xl font-light mb-2">Reviews</h1>
-        <p className="text-muted-foreground">
-          Manage customer reviews and feedback
-        </p>
-      </div>
-      {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-6">
-        <Card>
-          <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium">Total Reviews</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">{reviewStats.total}</div>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium">Approved</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold text-green-600">{reviewStats.approved}</div>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium">Pending</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold text-yellow-600">{reviewStats.pending}</div>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium">Flagged</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold text-red-600">{reviewStats.flagged}</div>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium">Avg Rating</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">{reviewStats.averageRating.toFixed(1)}</div>
-          </CardContent>
-        </Card>
-      </div>
-      {/* Filters and Search */}
-      <div className="flex flex-col sm:flex-row gap-4 mb-6">
-        <div className="relative flex-1">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-          <Input
-            placeholder="Search reviews..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="pl-10"
-          />
-        </div>
-        <Select value={statusFilter} onValueChange={setStatusFilter}>
-          <SelectTrigger className="w-full sm:w-48">
-            <SelectValue placeholder="Filter by status" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="all">All Status</SelectItem>
-            <SelectItem value="approved">Approved</SelectItem>
-            <SelectItem value="pending">Pending</SelectItem>
-            <SelectItem value="flagged">Flagged</SelectItem>
-            <SelectItem value="rejected">Rejected</SelectItem>
-          </SelectContent>
-        </Select>
-        <Select value={ratingFilter} onValueChange={setRatingFilter}>
-          <SelectTrigger className="w-full sm:w-48">
-            <SelectValue placeholder="Filter by rating" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="all">All Ratings</SelectItem>
-            <SelectItem value="5">5 Stars</SelectItem>
-            <SelectItem value="4">4 Stars</SelectItem>
-            <SelectItem value="3">3 Stars</SelectItem>
-            <SelectItem value="2">2 Stars</SelectItem>
-            <SelectItem value="1">1 Star</SelectItem>
-          </SelectContent>
-        </Select>
-      </div>
-      {/* Reviews List */}
-      <Card>
-        <CardHeader>
-          <CardTitle>Reviews ({filteredReviews.length})</CardTitle>
-          <CardDescription>
-            Manage customer reviews and moderate content
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="space-y-6">
-            {filteredReviews.map((review) => (
-              <div key={review.id} className="border rounded-lg p-6">
-                <div className="flex items-start justify-between mb-4">
-                  <div className="flex items-start space-x-4">
-                    <Avatar className="h-12 w-12">
-                      <AvatarImage src={review.avatar} alt={review.customer} />
-                      <AvatarFallback>
-                        {review.customer.split(' ').map(n => n[0]).join('')}
-                      </AvatarFallback>
-                    </Avatar>
-                 
-                    <div>
-                      <div className="flex items-center space-x-2 mb-1">
-                        <h3 className="font-medium">{review.customer}</h3>
-                        <Badge className={getStatusColor(review.status)}>
-                          {review.status}
-                        </Badge>
-                      </div>
-                      <div className="flex items-center space-x-2 mb-2">
-                        <div className="flex">{renderStars(review.rating)}</div>
-                        <span className="text-sm text-muted-foreground">•</span>
-                        <span className="text-sm text-muted-foreground">{review.date}</span>
-                      </div>
-                      <p className="text-sm text-muted-foreground">
-                        Product: {review.product}
-                      </p>
-                    </div>
-                  </div>
-               
-                  <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                      <Button variant="ghost" size="icon">
-                        <MoreHorizontal className="h-4 w-4" />
-                      </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end">
-                      <DropdownMenuItem>
-                        <CheckCircle className="mr-2 h-4 w-4" />
-                        Approve
-                      </DropdownMenuItem>
-                      <DropdownMenuItem>
-                        <XCircle className="mr-2 h-4 w-4" />
-                        Reject
-                      </DropdownMenuItem>
-                      <DropdownMenuItem>
-                        <Eye className="mr-2 h-4 w-4" />
-                        View Details
-                      </DropdownMenuItem>
-                      <DropdownMenuItem className="text-red-600">
-                        <Trash2 className="mr-2 h-4 w-4" />
-                        Delete
-                      </DropdownMenuItem>
-                    </DropdownMenuContent>
-                  </DropdownMenu>
-                </div>
-             
-                <div className="mb-4">
-                  <h4 className="font-medium mb-2">{review.title}</h4>
-                  <p className="text-muted-foreground">{review.comment}</p>
-                </div>
-             
-                <div className="flex items-center justify-between text-sm text-muted-foreground">
-                  <span>{review.helpful} people found this helpful</span>
-                  <div className="flex space-x-2">
-                    <Button variant="outline" size="sm">
-                      <CheckCircle className="mr-2 h-4 w-4" />
-                      Approve
-                    </Button>
-                    <Button variant="outline" size="sm">
-                      <XCircle className="mr-2 h-4 w-4" />
-                      Reject
-                    </Button>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </CardContent>
-      </Card>
-    </div>
-  );
-}
-////////////////////////////////////////////////////////////
-//settings
 // "use client";
-
 // import { useState } from "react";
-// import { Save, Upload, Globe, Mail, Shield, CreditCard, Truck, Bell } from "lucide-react";
-
+// import { Search, Filter, Star, MoreHorizontal, Eye, Trash2, CheckCircle, XCircle } from "lucide-react";
 // import { Button } from "@/components/ui/button";
 // import { Input } from "@/components/ui/input";
-// import { Label } from "@/components/ui/label";
-// import { Textarea } from "@/components/ui/textarea";
 // import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+// import { Badge } from "@/components/ui/badge";
+// import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 // import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-// import { Switch } from "@/components/ui/switch";
-// import { Separator } from "@/components/ui/separator";
+// import {
+//   DropdownMenu,
+//   DropdownMenuContent,
+//   DropdownMenuItem,
+//   DropdownMenuTrigger,
+// } from "@/components/ui/dropdown-menu";
 // import {
 //   Select,
 //   SelectContent,
@@ -6442,472 +6127,772 @@ export default function ReviewsPage() {
 //   SelectTrigger,
 //   SelectValue,
 // } from "@/components/ui/select";
-
-// export default function SettingsPage() {
-//   const [isLoading, setIsLoading] = useState(false);
-
-//   const handleSave = async () => {
-//     setIsLoading(true);
-//     // Simulate save operation
-//     await new Promise(resolve => setTimeout(resolve, 1000));
-//     setIsLoading(false);
+// // Sample reviews data
+// const reviews = [
+//   {
+//     id: 1,
+//     customer: "Sarah Johnson",
+//     email: "sarah@gmail.com",
+//     avatar: "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg",
+//     product: "Tailored Cotton Overshirt",
+//     rating: 5,
+//     title: "Perfect fit and quality!",
+//     comment: "This overshirt is exactly what I was looking for. The quality is excellent and the fit is perfect. I'm usually between sizes and went with the larger one, which gives me the relaxed look I wanted. Highly recommended!",
+//     date: "2025-01-15",
+//     status: "approved",
+//     helpful: 12
+//   },
+//   {
+//     id: 2,
+//     customer: "Michael Chen",
+//     email: "michael@gmail.com",
+//     avatar: "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg",
+//     product: "Structured Wool Blazer",
+//     rating: 4,
+//     title: "Great quality, color slightly different",
+//     comment: "Great blazer with excellent quality fabric. The only reason I'm giving it 4 stars instead of 5 is that the color is slightly different than shown in the photos. Still very happy with my purchase.",
+//     date: "2025-01-14",
+//     status: "pending",
+//     helpful: 8
+//   },
+//   {
+//     id: 3,
+//     customer: "Emma Wilson",
+//     email: "emma@gmail.com",
+//     avatar: "https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg",
+//     product: "Relaxed Linen Shirt",
+//     rating: 5,
+//     title: "Incredible quality and attention to detail",
+//     comment: "Incredible quality and attention to detail. This is my third purchase from Vanguard and they never disappoint. The linen is so soft and the stitching is impeccable. Worth every penny.",
+//     date: "2025-01-13",
+//     status: "approved",
+//     helpful: 15
+//   },
+//   {
+//     id: 4,
+//     customer: "David Rodriguez",
+//     email: "david@gmail.com",
+//     avatar: "https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg",
+//     product: "High-Waist Tapered Pants",
+//     rating: 2,
+//     title: "Sizing runs small",
+//     comment: "The pants look great but the sizing runs very small. I ordered my usual size but they were too tight. The return process was smooth though.",
+//     date: "2025-01-12",
+//     status: "flagged",
+//     helpful: 3
+//   },
+//   {
+//     id: 5,
+//     customer: "Lisa Thompson",
+//     email: "lisa@gmail.com",
+//     avatar: "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg",
+//     product: "Oversized Merino Sweater",
+//     rating: 5,
+//     title: "Cozy and stylish",
+//     comment: "Love this sweater! It's so cozy and the oversized fit is perfect for layering. The merino wool is incredibly soft and doesn't itch at all.",
+//     date: "2025-01-11",
+//     status: "approved",
+//     helpful: 9
+//   },
+// ];
+// const getStatusColor = (status: string) => {
+//   switch (status) {
+//     case "approved":
+//       return "bg-green-100 text-green-800";
+//     case "pending":
+//       return "bg-yellow-100 text-yellow-800";
+//     case "flagged":
+//       return "bg-red-100 text-red-800";
+//     case "rejected":
+//       return "bg-gray-100 text-gray-800";
+//     default:
+//       return "bg-gray-100 text-gray-800";
+//   }
+// };
+// const renderStars = (rating: number) => {
+//   return Array.from({ length: 5 }, (_, i) => (
+//     <Star
+//       key={i}
+//       className={`h-4 w-4 ${
+//         i < rating ? "fill-yellow-400 text-yellow-400" : "text-gray-300"
+//       }`}
+//     />
+//   ));
+// };
+// export default function ReviewsPage() {
+//   const [searchTerm, setSearchTerm] = useState("");
+//   const [statusFilter, setStatusFilter] = useState("all");
+//   const [ratingFilter, setRatingFilter] = useState("all");
+//   const filteredReviews = reviews.filter(review => {
+//     const matchesSearch = review.customer.toLowerCase().includes(searchTerm.toLowerCase()) ||
+//                          review.product.toLowerCase().includes(searchTerm.toLowerCase()) ||
+//                          review.comment.toLowerCase().includes(searchTerm.toLowerCase());
+ 
+//     const matchesStatus = statusFilter === "all" || review.status === statusFilter;
+//     const matchesRating = ratingFilter === "all" || review.rating.toString() === ratingFilter;
+ 
+//     return matchesSearch && matchesStatus && matchesRating;
+//   });
+//   const reviewStats = {
+//     total: reviews.length,
+//     approved: reviews.filter(r => r.status === "approved").length,
+//     pending: reviews.filter(r => r.status === "pending").length,
+//     flagged: reviews.filter(r => r.status === "flagged").length,
+//     averageRating: reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length,
 //   };
-
 //   return (
 //     <div className="p-6">
-//       <div className="flex justify-between items-start mb-6">
-//         <div>
-//           <h1 className="font-serif text-3xl font-light mb-2">Settings</h1>
-//           <p className="text-muted-foreground">
-//             Configure your store settings and preferences
-//           </p>
-//         </div>
-//         <Button onClick={handleSave} disabled={isLoading}>
-//           <Save className="mr-2 h-4 w-4" />
-//           {isLoading ? "Saving..." : "Save Changes"}
-//         </Button>
+//       <div className="mb-6">
+//         <h1 className="font-serif text-3xl font-light mb-2">Reviews</h1>
+//         <p className="text-muted-foreground">
+//           Manage customer reviews and feedback
+//         </p>
 //       </div>
-
-//       <Tabs defaultValue="general" className="space-y-4">
-//         <TabsList>
-//           <TabsTrigger value="general">General</TabsTrigger>
-//           <TabsTrigger value="store">Store</TabsTrigger>
-//           <TabsTrigger value="payments">Payments</TabsTrigger>
-//           <TabsTrigger value="shipping">Shipping</TabsTrigger>
-//           <TabsTrigger value="notifications">Notifications</TabsTrigger>
-//           <TabsTrigger value="security">Security</TabsTrigger>
-//         </TabsList>
-
-//         <TabsContent value="general">
+//       {/* Stats Cards */}
+//       <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-6">
+//         <Card>
+//           <CardHeader className="pb-2">
+//             <CardTitle className="text-sm font-medium">Total Reviews</CardTitle>
+//           </CardHeader>
+//           <CardContent>
+//             <div className="text-2xl font-bold">{reviewStats.total}</div>
+//           </CardContent>
+//         </Card>
+//         <Card>
+//           <CardHeader className="pb-2">
+//             <CardTitle className="text-sm font-medium">Approved</CardTitle>
+//           </CardHeader>
+//           <CardContent>
+//             <div className="text-2xl font-bold text-green-600">{reviewStats.approved}</div>
+//           </CardContent>
+//         </Card>
+//         <Card>
+//           <CardHeader className="pb-2">
+//             <CardTitle className="text-sm font-medium">Pending</CardTitle>
+//           </CardHeader>
+//           <CardContent>
+//             <div className="text-2xl font-bold text-yellow-600">{reviewStats.pending}</div>
+//           </CardContent>
+//         </Card>
+//         <Card>
+//           <CardHeader className="pb-2">
+//             <CardTitle className="text-sm font-medium">Flagged</CardTitle>
+//           </CardHeader>
+//           <CardContent>
+//             <div className="text-2xl font-bold text-red-600">{reviewStats.flagged}</div>
+//           </CardContent>
+//         </Card>
+//         <Card>
+//           <CardHeader className="pb-2">
+//             <CardTitle className="text-sm font-medium">Avg Rating</CardTitle>
+//           </CardHeader>
+//           <CardContent>
+//             <div className="text-2xl font-bold">{reviewStats.averageRating.toFixed(1)}</div>
+//           </CardContent>
+//         </Card>
+//       </div>
+//       {/* Filters and Search */}
+//       <div className="flex flex-col sm:flex-row gap-4 mb-6">
+//         <div className="relative flex-1">
+//           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+//           <Input
+//             placeholder="Search reviews..."
+//             value={searchTerm}
+//             onChange={(e) => setSearchTerm(e.target.value)}
+//             className="pl-10"
+//           />
+//         </div>
+//         <Select value={statusFilter} onValueChange={setStatusFilter}>
+//           <SelectTrigger className="w-full sm:w-48">
+//             <SelectValue placeholder="Filter by status" />
+//           </SelectTrigger>
+//           <SelectContent>
+//             <SelectItem value="all">All Status</SelectItem>
+//             <SelectItem value="approved">Approved</SelectItem>
+//             <SelectItem value="pending">Pending</SelectItem>
+//             <SelectItem value="flagged">Flagged</SelectItem>
+//             <SelectItem value="rejected">Rejected</SelectItem>
+//           </SelectContent>
+//         </Select>
+//         <Select value={ratingFilter} onValueChange={setRatingFilter}>
+//           <SelectTrigger className="w-full sm:w-48">
+//             <SelectValue placeholder="Filter by rating" />
+//           </SelectTrigger>
+//           <SelectContent>
+//             <SelectItem value="all">All Ratings</SelectItem>
+//             <SelectItem value="5">5 Stars</SelectItem>
+//             <SelectItem value="4">4 Stars</SelectItem>
+//             <SelectItem value="3">3 Stars</SelectItem>
+//             <SelectItem value="2">2 Stars</SelectItem>
+//             <SelectItem value="1">1 Star</SelectItem>
+//           </SelectContent>
+//         </Select>
+//       </div>
+//       {/* Reviews List */}
+//       <Card>
+//         <CardHeader>
+//           <CardTitle>Reviews ({filteredReviews.length})</CardTitle>
+//           <CardDescription>
+//             Manage customer reviews and moderate content
+//           </CardDescription>
+//         </CardHeader>
+//         <CardContent>
 //           <div className="space-y-6">
-//             <Card>
-//               <CardHeader>
-//                 <CardTitle className="flex items-center">
-//                   <Globe className="mr-2 h-5 w-5" />
-//                   General Settings
-//                 </CardTitle>
-//                 <CardDescription>
-//                   Basic configuration for your store
-//                 </CardDescription>
-//               </CardHeader>
-//               <CardContent className="space-y-4">
-//                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-//                   <div className="space-y-2">
-//                     <Label htmlFor="storeName">Store Name</Label>
-//                     <Input id="storeName" defaultValue="Vanguard Apparel" />
-//                   </div>
-//                   <div className="space-y-2">
-//                     <Label htmlFor="storeUrl">Store URL</Label>
-//                     <Input id="storeUrl" defaultValue="vanguardapparel.com" />
-//                   </div>
-//                 </div>
-                
-//                 <div className="space-y-2">
-//                   <Label htmlFor="storeDescription">Store Description</Label>
-//                   <Textarea
-//                     id="storeDescription"
-//                     defaultValue="Redefining contemporary fashion with timeless elegance and bold innovation."
-//                     rows={3}
-//                   />
-//                 </div>
-                
-//                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-//                   <div className="space-y-2">
-//                     <Label htmlFor="timezone">Timezone</Label>
-//                     <Select defaultValue="america/new_york">
-//                       <SelectTrigger>
-//                         <SelectValue />
-//                       </SelectTrigger>
-//                       <SelectContent>
-//                         <SelectItem value="america/new_york">Eastern Time (ET)</SelectItem>
-//                         <SelectItem value="america/chicago">Central Time (CT)</SelectItem>
-//                         <SelectItem value="america/denver">Mountain Time (MT)</SelectItem>
-//                         <SelectItem value="america/los_angeles">Pacific Time (PT)</SelectItem>
-//                       </SelectContent>
-//                     </Select>
-//                   </div>
-//                   <div className="space-y-2">
-//                     <Label htmlFor="currency">Currency</Label>
-//                     <Select defaultValue="usd">
-//                       <SelectTrigger>
-//                         <SelectValue />
-//                       </SelectTrigger>
-//                       <SelectContent>
-//                         <SelectItem value="usd">USD - US Dollar</SelectItem>
-//                         <SelectItem value="eur">EUR - Euro</SelectItem>
-//                         <SelectItem value="gbp">GBP - British Pound</SelectItem>
-//                         <SelectItem value="cad">CAD - Canadian Dollar</SelectItem>
-//                       </SelectContent>
-//                     </Select>
-//                   </div>
-//                 </div>
-//               </CardContent>
-//             </Card>
-
-//             <Card>
-//               <CardHeader>
-//                 <CardTitle>Logo & Branding</CardTitle>
-//                 <CardDescription>
-//                   Upload your store logo and customize branding
-//                 </CardDescription>
-//               </CardHeader>
-//               <CardContent className="space-y-4">
-//                 <div className="space-y-2">
-//                   <Label>Store Logo</Label>
-//                   <div className="flex items-center space-x-4">
-//                     <div className="w-16 h-16 bg-muted rounded-lg flex items-center justify-center">
-//                       <span className="text-xs text-muted-foreground">Logo</span>
+//             {filteredReviews.map((review) => (
+//               <div key={review.id} className="border rounded-lg p-6">
+//                 <div className="flex items-start justify-between mb-4">
+//                   <div className="flex items-start space-x-4">
+//                     <Avatar className="h-12 w-12">
+//                       <AvatarImage src={review.avatar} alt={review.customer} />
+//                       <AvatarFallback>
+//                         {review.customer.split(' ').map(n => n[0]).join('')}
+//                       </AvatarFallback>
+//                     </Avatar>
+                 
+//                     <div>
+//                       <div className="flex items-center space-x-2 mb-1">
+//                         <h3 className="font-medium">{review.customer}</h3>
+//                         <Badge className={getStatusColor(review.status)}>
+//                           {review.status}
+//                         </Badge>
+//                       </div>
+//                       <div className="flex items-center space-x-2 mb-2">
+//                         <div className="flex">{renderStars(review.rating)}</div>
+//                         <span className="text-sm text-muted-foreground">•</span>
+//                         <span className="text-sm text-muted-foreground">{review.date}</span>
+//                       </div>
+//                       <p className="text-sm text-muted-foreground">
+//                         Product: {review.product}
+//                       </p>
 //                     </div>
-//                     <Button variant="outline">
-//                       <Upload className="mr-2 h-4 w-4" />
-//                       Upload Logo
+//                   </div>
+               
+//                   <DropdownMenu>
+//                     <DropdownMenuTrigger asChild>
+//                       <Button variant="ghost" size="icon">
+//                         <MoreHorizontal className="h-4 w-4" />
+//                       </Button>
+//                     </DropdownMenuTrigger>
+//                     <DropdownMenuContent align="end">
+//                       <DropdownMenuItem>
+//                         <CheckCircle className="mr-2 h-4 w-4" />
+//                         Approve
+//                       </DropdownMenuItem>
+//                       <DropdownMenuItem>
+//                         <XCircle className="mr-2 h-4 w-4" />
+//                         Reject
+//                       </DropdownMenuItem>
+//                       <DropdownMenuItem>
+//                         <Eye className="mr-2 h-4 w-4" />
+//                         View Details
+//                       </DropdownMenuItem>
+//                       <DropdownMenuItem className="text-red-600">
+//                         <Trash2 className="mr-2 h-4 w-4" />
+//                         Delete
+//                       </DropdownMenuItem>
+//                     </DropdownMenuContent>
+//                   </DropdownMenu>
+//                 </div>
+             
+//                 <div className="mb-4">
+//                   <h4 className="font-medium mb-2">{review.title}</h4>
+//                   <p className="text-muted-foreground">{review.comment}</p>
+//                 </div>
+             
+//                 <div className="flex items-center justify-between text-sm text-muted-foreground">
+//                   <span>{review.helpful} people found this helpful</span>
+//                   <div className="flex space-x-2">
+//                     <Button variant="outline" size="sm">
+//                       <CheckCircle className="mr-2 h-4 w-4" />
+//                       Approve
+//                     </Button>
+//                     <Button variant="outline" size="sm">
+//                       <XCircle className="mr-2 h-4 w-4" />
+//                       Reject
 //                     </Button>
 //                   </div>
 //                 </div>
-                
-//                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-//                   <div className="space-y-2">
-//                     <Label htmlFor="primaryColor">Primary Color</Label>
-//                     <Input id="primaryColor" type="color" defaultValue="#000000" />
-//                   </div>
-//                   <div className="space-y-2">
-//                     <Label htmlFor="secondaryColor">Secondary Color</Label>
-//                     <Input id="secondaryColor" type="color" defaultValue="#6b7280" />
-//                   </div>
-//                 </div>
-//               </CardContent>
-//             </Card>
+//               </div>
+//             ))}
 //           </div>
-//         </TabsContent>
-
-//         <TabsContent value="store">
-//           <Card>
-//             <CardHeader>
-//               <CardTitle>Store Information</CardTitle>
-//               <CardDescription>
-//                 Contact information and business details
-//               </CardDescription>
-//             </CardHeader>
-//             <CardContent className="space-y-4">
-//               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-//                 <div className="space-y-2">
-//                   <Label htmlFor="contactEmail">Contact Email</Label>
-//                   <Input id="contactEmail" type="email" defaultValue="info@vanguardapparel.com" />
-//                 </div>
-//                 <div className="space-y-2">
-//                   <Label htmlFor="supportEmail">Support Email</Label>
-//                   <Input id="supportEmail" type="email" defaultValue="support@vanguardapparel.com" />
-//                 </div>
-//               </div>
-              
-//               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-//                 <div className="space-y-2">
-//                   <Label htmlFor="phone">Phone Number</Label>
-//                   <Input id="phone" defaultValue="+1 (212) 555-0123" />
-//                 </div>
-//                 <div className="space-y-2">
-//                   <Label htmlFor="fax">Fax Number</Label>
-//                   <Input id="fax" defaultValue="+1 (212) 555-0124" />
-//                 </div>
-//               </div>
-              
-//               <div className="space-y-2">
-//                 <Label htmlFor="address">Business Address</Label>
-//                 <Textarea
-//                   id="address"
-//                   defaultValue="123 Fashion Avenue, SoHo, New York, NY 10012, United States"
-//                   rows={3}
-//                 />
-//               </div>
-              
-//               <Separator />
-              
-//               <div className="space-y-4">
-//                 <h3 className="text-lg font-medium">Store Hours</h3>
-//                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-//                   <div className="space-y-2">
-//                     <Label>Monday - Friday</Label>
-//                     <Input defaultValue="10:00 AM - 7:00 PM" />
-//                   </div>
-//                   <div className="space-y-2">
-//                     <Label>Saturday</Label>
-//                     <Input defaultValue="11:00 AM - 8:00 PM" />
-//                   </div>
-//                   <div className="space-y-2">
-//                     <Label>Sunday</Label>
-//                     <Input defaultValue="12:00 PM - 6:00 PM" />
-//                   </div>
-//                 </div>
-//               </div>
-//             </CardContent>
-//           </Card>
-//         </TabsContent>
-
-//         <TabsContent value="payments">
-//           <Card>
-//             <CardHeader>
-//               <CardTitle className="flex items-center">
-//                 <CreditCard className="mr-2 h-5 w-5" />
-//                 Payment Settings
-//               </CardTitle>
-//               <CardDescription>
-//                 Configure payment methods and processing
-//               </CardDescription>
-//             </CardHeader>
-//             <CardContent className="space-y-6">
-//               <div className="space-y-4">
-//                 <div className="flex items-center justify-between">
-//                   <div>
-//                     <h4 className="font-medium">Credit Cards</h4>
-//                     <p className="text-sm text-muted-foreground">Accept Visa, Mastercard, American Express</p>
-//                   </div>
-//                   <Switch defaultChecked />
-//                 </div>
-                
-//                 <div className="flex items-center justify-between">
-//                   <div>
-//                     <h4 className="font-medium">PayPal</h4>
-//                     <p className="text-sm text-muted-foreground">Accept PayPal payments</p>
-//                   </div>
-//                   <Switch defaultChecked />
-//                 </div>
-                
-//                 <div className="flex items-center justify-between">
-//                   <div>
-//                     <h4 className="font-medium">Apple Pay</h4>
-//                     <p className="text-sm text-muted-foreground">Accept Apple Pay payments</p>
-//                   </div>
-//                   <Switch />
-//                 </div>
-                
-//                 <div className="flex items-center justify-between">
-//                   <div>
-//                     <h4 className="font-medium">Google Pay</h4>
-//                     <p className="text-sm text-muted-foreground">Accept Google Pay payments</p>
-//                   </div>
-//                   <Switch />
-//                 </div>
-//               </div>
-              
-//               <Separator />
-              
-//               <div className="space-y-4">
-//                 <h4 className="font-medium">Payment Processing</h4>
-//                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-//                   <div className="space-y-2">
-//                     <Label htmlFor="taxRate">Tax Rate (%)</Label>
-//                     <Input id="taxRate" type="number" defaultValue="8.25" step="0.01" />
-//                   </div>
-//                   <div className="space-y-2">
-//                     <Label htmlFor="processingFee">Processing Fee (%)</Label>
-//                     <Input id="processingFee" type="number" defaultValue="2.9" step="0.1" />
-//                   </div>
-//                 </div>
-//               </div>
-//             </CardContent>
-//           </Card>
-//         </TabsContent>
-
-//         <TabsContent value="shipping">
-//           <Card>
-//             <CardHeader>
-//               <CardTitle className="flex items-center">
-//                 <Truck className="mr-2 h-5 w-5" />
-//                 Shipping Settings
-//               </CardTitle>
-//               <CardDescription>
-//                 Configure shipping options and rates
-//               </CardDescription>
-//             </CardHeader>
-//             <CardContent className="space-y-6">
-//               <div className="space-y-4">
-//                 <div className="flex items-center justify-between">
-//                   <div>
-//                     <h4 className="font-medium">Free Shipping</h4>
-//                     <p className="text-sm text-muted-foreground">Offer free shipping on orders over threshold</p>
-//                   </div>
-//                   <Switch defaultChecked />
-//                 </div>
-                
-//                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-//                   <div className="space-y-2">
-//                     <Label htmlFor="freeShippingThreshold">Free Shipping Threshold</Label>
-//                     <Input id="freeShippingThreshold" type="number" defaultValue="100" />
-//                   </div>
-//                   <div className="space-y-2">
-//                     <Label htmlFor="standardShippingRate">Standard Shipping Rate</Label>
-//                     <Input id="standardShippingRate" type="number" defaultValue="15" />
-//                   </div>
-//                 </div>
-//               </div>
-              
-//               <Separator />
-              
-//               <div className="space-y-4">
-//                 <h4 className="font-medium">Shipping Zones</h4>
-//                 <div className="space-y-2">
-//                   <div className="flex items-center justify-between p-3 border rounded-lg">
-//                     <div>
-//                       <span className="font-medium">Domestic (United States)</span>
-//                       <p className="text-sm text-muted-foreground">Standard: $15, Express: $25</p>
-//                     </div>
-//                     <Button variant="outline" size="sm">Edit</Button>
-//                   </div>
-//                   <div className="flex items-center justify-between p-3 border rounded-lg">
-//                     <div>
-//                       <span className="font-medium">International</span>
-//                       <p className="text-sm text-muted-foreground">Standard: $35, Express: $65</p>
-//                     </div>
-//                     <Button variant="outline" size="sm">Edit</Button>
-//                   </div>
-//                 </div>
-//               </div>
-//             </CardContent>
-//           </Card>
-//         </TabsContent>
-
-//         <TabsContent value="notifications">
-//           <Card>
-//             <CardHeader>
-//               <CardTitle className="flex items-center">
-//                 <Bell className="mr-2 h-5 w-5" />
-//                 Notification Settings
-//               </CardTitle>
-//               <CardDescription>
-//                 Configure email notifications and alerts
-//               </CardDescription>
-//             </CardHeader>
-//             <CardContent className="space-y-6">
-//               <div className="space-y-4">
-//                 <h4 className="font-medium">Order Notifications</h4>
-//                 <div className="space-y-3">
-//                   <div className="flex items-center justify-between">
-//                     <div>
-//                       <span className="font-medium">New Order</span>
-//                       <p className="text-sm text-muted-foreground">Notify when new orders are placed</p>
-//                     </div>
-//                     <Switch defaultChecked />
-//                   </div>
-                  
-//                   <div className="flex items-center justify-between">
-//                     <div>
-//                       <span className="font-medium">Order Shipped</span>
-//                       <p className="text-sm text-muted-foreground">Notify when orders are shipped</p>
-//                     </div>
-//                     <Switch defaultChecked />
-//                   </div>
-                  
-//                   <div className="flex items-center justify-between">
-//                     <div>
-//                       <span className="font-medium">Order Delivered</span>
-//                       <p className="text-sm text-muted-foreground">Notify when orders are delivered</p>
-//                     </div>
-//                     <Switch />
-//                   </div>
-//                 </div>
-//               </div>
-              
-//               <Separator />
-              
-//               <div className="space-y-4">
-//                 <h4 className="font-medium">Inventory Notifications</h4>
-//                 <div className="space-y-3">
-//                   <div className="flex items-center justify-between">
-//                     <div>
-//                       <span className="font-medium">Low Stock Alert</span>
-//                       <p className="text-sm text-muted-foreground">Notify when products are low in stock</p>
-//                     </div>
-//                     <Switch defaultChecked />
-//                   </div>
-                  
-//                   <div className="flex items-center justify-between">
-//                     <div>
-//                       <span className="font-medium">Out of Stock Alert</span>
-//                       <p className="text-sm text-muted-foreground">Notify when products are out of stock</p>
-//                     </div>
-//                     <Switch defaultChecked />
-//                   </div>
-//                 </div>
-                
-//                 <div className="space-y-2">
-//                   <Label htmlFor="lowStockThreshold">Low Stock Threshold</Label>
-//                   <Input id="lowStockThreshold" type="number" defaultValue="10" />
-//                 </div>
-//               </div>
-//             </CardContent>
-//           </Card>
-//         </TabsContent>
-
-//         <TabsContent value="security">
-//           <Card>
-//             <CardHeader>
-//               <CardTitle className="flex items-center">
-//                 <Shield className="mr-2 h-5 w-5" />
-//                 Security Settings
-//               </CardTitle>
-//               <CardDescription>
-//                 Manage security and access controls
-//               </CardDescription>
-//             </CardHeader>
-//             <CardContent className="space-y-6">
-//               <div className="space-y-4">
-//                 <h4 className="font-medium">Authentication</h4>
-//                 <div className="space-y-3">
-//                   <div className="flex items-center justify-between">
-//                     <div>
-//                       <span className="font-medium">Two-Factor Authentication</span>
-//                       <p className="text-sm text-muted-foreground">Require 2FA for admin access</p>
-//                     </div>
-//                     <Switch />
-//                   </div>
-                  
-//                   <div className="flex items-center justify-between">
-//                     <div>
-//                       <span className="font-medium">Session Timeout</span>
-//                       <p className="text-sm text-muted-foreground">Auto-logout after inactivity</p>
-//                     </div>
-//                     <Switch defaultChecked />
-//                   </div>
-//                 </div>
-                
-//                 <div className="space-y-2">
-//                   <Label htmlFor="sessionTimeout">Session Timeout (minutes)</Label>
-//                   <Input id="sessionTimeout" type="number" defaultValue="30" />
-//                 </div>
-//               </div>
-              
-//               <Separator />
-              
-//               <div className="space-y-4">
-//                 <h4 className="font-medium">Data Protection</h4>
-//                 <div className="space-y-3">
-//                   <div className="flex items-center justify-between">
-//                     <div>
-//                       <span className="font-medium">Data Encryption</span>
-//                       <p className="text-sm text-muted-foreground">Encrypt sensitive customer data</p>
-//                     </div>
-//                     <Switch defaultChecked />
-//                   </div>
-                  
-//                   <div className="flex items-center justify-between">
-//                     <div>
-//                       <span className="font-medium">Audit Logging</span>
-//                       <p className="text-sm text-muted-foreground">Log all admin actions</p>
-//                     </div>
-//                     <Switch defaultChecked />
-//                   </div>
-//                 </div>
-//               </div>
-//             </CardContent>
-//           </Card>
-//         </TabsContent>
-//       </Tabs>
+//         </CardContent>
+//       </Card>
 //     </div>
 //   );
 // }
-
-
-///////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////
+//settings
+"use client";
+import { useState } from "react";
+import { Save, Upload, Globe, Mail, Shield, CreditCard, Truck, Bell } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Switch } from "@/components/ui/switch";
+import { Separator } from "@/components/ui/separator";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+export default function SettingsPage() {
+  const [isLoading, setIsLoading] = useState(false);
+  const handleSave = async () => {
+    setIsLoading(true);
+    // Simulate save operation
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    setIsLoading(false);
+  };
+  return (
+    <div className="p-6">
+      <div className="flex justify-between items-start mb-6">
+        <div>
+          <h1 className="font-serif text-3xl font-light mb-2">Settings</h1>
+          <p className="text-muted-foreground">
+            Configure your store settings and preferences
+          </p>
+        </div>
+        <Button onClick={handleSave} disabled={isLoading}>
+          <Save className="mr-2 h-4 w-4" />
+          {isLoading ? "Saving..." : "Save Changes"}
+        </Button>
+      </div>
+      <Tabs defaultValue="general" className="space-y-4">
+        <TabsList>
+          <TabsTrigger value="general">General</TabsTrigger>
+          <TabsTrigger value="store">Store</TabsTrigger>
+          <TabsTrigger value="payments">Payments</TabsTrigger>
+          <TabsTrigger value="shipping">Shipping</TabsTrigger>
+          <TabsTrigger value="notifications">Notifications</TabsTrigger>
+          <TabsTrigger value="security">Security</TabsTrigger>
+        </TabsList>
+        <TabsContent value="general">
+          <div className="space-y-6">
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center">
+                  <Globe className="mr-2 h-5 w-5" />
+                  General Settings
+                </CardTitle>
+                <CardDescription>
+                  Basic configuration for your store
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="storeName">Store Name</Label>
+                    <Input id="storeName" defaultValue="Vanguard Apparel" />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="storeUrl">Store URL</Label>
+                    <Input id="storeUrl" defaultValue="vanguardapparel.com" />
+                  </div>
+                </div>
+             
+                <div className="space-y-2">
+                  <Label htmlFor="storeDescription">Store Description</Label>
+                  <Textarea
+                    id="storeDescription"
+                    defaultValue="Redefining contemporary fashion with timeless elegance and bold innovation."
+                    rows={3}
+                  />
+                </div>
+             
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="timezone">Timezone</Label>
+                    <Select defaultValue="america/new_york">
+                      <SelectTrigger>
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="america/new_york">Eastern Time (ET)</SelectItem>
+                        <SelectItem value="america/chicago">Central Time (CT)</SelectItem>
+                        <SelectItem value="america/denver">Mountain Time (MT)</SelectItem>
+                        <SelectItem value="america/los_angeles">Pacific Time (PT)</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="currency">Currency</Label>
+                    <Select defaultValue="usd">
+                      <SelectTrigger>
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="usd">USD - US Dollar</SelectItem>
+                        <SelectItem value="eur">EUR - Euro</SelectItem>
+                        <SelectItem value="gbp">GBP - British Pound</SelectItem>
+                        <SelectItem value="cad">CAD - Canadian Dollar</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardHeader>
+                <CardTitle>Logo & Branding</CardTitle>
+                <CardDescription>
+                  Upload your store logo and customize branding
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="space-y-2">
+                  <Label>Store Logo</Label>
+                  <div className="flex items-center space-x-4">
+                    <div className="w-16 h-16 bg-muted rounded-lg flex items-center justify-center">
+                      <span className="text-xs text-muted-foreground">Logo</span>
+                    </div>
+                    <Button variant="outline">
+                      <Upload className="mr-2 h-4 w-4" />
+                      Upload Logo
+                    </Button>
+                  </div>
+                </div>
+             
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="primaryColor">Primary Color</Label>
+                    <Input id="primaryColor" type="color" defaultValue="#000000" />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="secondaryColor">Secondary Color</Label>
+                    <Input id="secondaryColor" type="color" defaultValue="#6b7280" />
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </TabsContent>
+        <TabsContent value="store">
+          <Card>
+            <CardHeader>
+              <CardTitle>Store Information</CardTitle>
+              <CardDescription>
+                Contact information and business details
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <Label htmlFor="contactEmail">Contact Email</Label>
+                  <Input id="contactEmail" type="email" defaultValue="info@vanguardapparel.com" />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="supportEmail">Support Email</Label>
+                  <Input id="supportEmail" type="email" defaultValue="support@vanguardapparel.com" />
+                </div>
+              </div>
+           
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <Label htmlFor="phone">Phone Number</Label>
+                  <Input id="phone" defaultValue="+1 (212) 555-0123" />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="fax">Fax Number</Label>
+                  <Input id="fax" defaultValue="+1 (212) 555-0124" />
+                </div>
+              </div>
+           
+              <div className="space-y-2">
+                <Label htmlFor="address">Business Address</Label>
+                <Textarea
+                  id="address"
+                  defaultValue="123 Fashion Avenue, SoHo, New York, NY 10012, United States"
+                  rows={3}
+                />
+              </div>
+           
+              <Separator />
+           
+              <div className="space-y-4">
+                <h3 className="text-lg font-medium">Store Hours</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <Label>Monday - Friday</Label>
+                    <Input defaultValue="10:00 AM - 7:00 PM" />
+                  </div>
+                  <div className="space-y-2">
+                    <Label>Saturday</Label>
+                    <Input defaultValue="11:00 AM - 8:00 PM" />
+                  </div>
+                  <div className="space-y-2">
+                    <Label>Sunday</Label>
+                    <Input defaultValue="12:00 PM - 6:00 PM" />
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </TabsContent>
+        <TabsContent value="payments">
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center">
+                <CreditCard className="mr-2 h-5 w-5" />
+                Payment Settings
+              </CardTitle>
+              <CardDescription>
+                Configure payment methods and processing
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              <div className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h4 className="font-medium">Credit Cards</h4>
+                    <p className="text-sm text-muted-foreground">Accept Visa, Mastercard, American Express</p>
+                  </div>
+                  <Switch defaultChecked />
+                </div>
+             
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h4 className="font-medium">PayPal</h4>
+                    <p className="text-sm text-muted-foreground">Accept PayPal payments</p>
+                  </div>
+                  <Switch defaultChecked />
+                </div>
+             
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h4 className="font-medium">Apple Pay</h4>
+                    <p className="text-sm text-muted-foreground">Accept Apple Pay payments</p>
+                  </div>
+                  <Switch />
+                </div>
+             
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h4 className="font-medium">Google Pay</h4>
+                    <p className="text-sm text-muted-foreground">Accept Google Pay payments</p>
+                  </div>
+                  <Switch />
+                </div>
+              </div>
+           
+              <Separator />
+           
+              <div className="space-y-4">
+                <h4 className="font-medium">Payment Processing</h4>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="taxRate">Tax Rate (%)</Label>
+                    <Input id="taxRate" type="number" defaultValue="8.25" step="0.01" />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="processingFee">Processing Fee (%)</Label>
+                    <Input id="processingFee" type="number" defaultValue="2.9" step="0.1" />
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </TabsContent>
+        <TabsContent value="shipping">
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center">
+                <Truck className="mr-2 h-5 w-5" />
+                Shipping Settings
+              </CardTitle>
+              <CardDescription>
+                Configure shipping options and rates
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              <div className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h4 className="font-medium">Free Shipping</h4>
+                    <p className="text-sm text-muted-foreground">Offer free shipping on orders over threshold</p>
+                  </div>
+                  <Switch defaultChecked />
+                </div>
+             
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="freeShippingThreshold">Free Shipping Threshold</Label>
+                    <Input id="freeShippingThreshold" type="number" defaultValue="100" />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="standardShippingRate">Standard Shipping Rate</Label>
+                    <Input id="standardShippingRate" type="number" defaultValue="15" />
+                  </div>
+                </div>
+              </div>
+           
+              <Separator />
+           
+              <div className="space-y-4">
+                <h4 className="font-medium">Shipping Zones</h4>
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between p-3 border rounded-lg">
+                    <div>
+                      <span className="font-medium">Domestic (United States)</span>
+                      <p className="text-sm text-muted-foreground">Standard: $15, Express: $25</p>
+                    </div>
+                    <Button variant="outline" size="sm">Edit</Button>
+                  </div>
+                  <div className="flex items-center justify-between p-3 border rounded-lg">
+                    <div>
+                      <span className="font-medium">International</span>
+                      <p className="text-sm text-muted-foreground">Standard: $35, Express: $65</p>
+                    </div>
+                    <Button variant="outline" size="sm">Edit</Button>
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </TabsContent>
+        <TabsContent value="notifications">
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center">
+                <Bell className="mr-2 h-5 w-5" />
+                Notification Settings
+              </CardTitle>
+              <CardDescription>
+                Configure email notifications and alerts
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              <div className="space-y-4">
+                <h4 className="font-medium">Order Notifications</h4>
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <span className="font-medium">New Order</span>
+                      <p className="text-sm text-muted-foreground">Notify when new orders are placed</p>
+                    </div>
+                    <Switch defaultChecked />
+                  </div>
+               
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <span className="font-medium">Order Shipped</span>
+                      <p className="text-sm text-muted-foreground">Notify when orders are shipped</p>
+                    </div>
+                    <Switch defaultChecked />
+                  </div>
+               
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <span className="font-medium">Order Delivered</span>
+                      <p className="text-sm text-muted-foreground">Notify when orders are delivered</p>
+                    </div>
+                    <Switch />
+                  </div>
+                </div>
+              </div>
+           
+              <Separator />
+           
+              <div className="space-y-4">
+                <h4 className="font-medium">Inventory Notifications</h4>
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <span className="font-medium">Low Stock Alert</span>
+                      <p className="text-sm text-muted-foreground">Notify when products are low in stock</p>
+                    </div>
+                    <Switch defaultChecked />
+                  </div>
+               
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <span className="font-medium">Out of Stock Alert</span>
+                      <p className="text-sm text-muted-foreground">Notify when products are out of stock</p>
+                    </div>
+                    <Switch defaultChecked />
+                  </div>
+                </div>
+             
+                <div className="space-y-2">
+                  <Label htmlFor="lowStockThreshold">Low Stock Threshold</Label>
+                  <Input id="lowStockThreshold" type="number" defaultValue="10" />
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </TabsContent>
+        <TabsContent value="security">
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center">
+                <Shield className="mr-2 h-5 w-5" />
+                Security Settings
+              </CardTitle>
+              <CardDescription>
+                Manage security and access controls
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              <div className="space-y-4">
+                <h4 className="font-medium">Authentication</h4>
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <span className="font-medium">Two-Factor Authentication</span>
+                      <p className="text-sm text-muted-foreground">Require 2FA for admin access</p>
+                    </div>
+                    <Switch />
+                  </div>
+               
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <span className="font-medium">Session Timeout</span>
+                      <p className="text-sm text-muted-foreground">Auto-logout after inactivity</p>
+                    </div>
+                    <Switch defaultChecked />
+                  </div>
+                </div>
+             
+                <div className="space-y-2">
+                  <Label htmlFor="sessionTimeout">Session Timeout (minutes)</Label>
+                  <Input id="sessionTimeout" type="number" defaultValue="30" />
+                </div>
+              </div>
+           
+              <Separator />
+           
+              <div className="space-y-4">
+                <h4 className="font-medium">Data Protection</h4>
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <span className="font-medium">Data Encryption</span>
+                      <p className="text-sm text-muted-foreground">Encrypt sensitive customer data</p>
+                    </div>
+                    <Switch defaultChecked />
+                  </div>
+               
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <span className="font-medium">Audit Logging</span>
+                      <p className="text-sm text-muted-foreground">Log all admin actions</p>
+                    </div>
+                    <Switch defaultChecked />
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </TabsContent>
+      </Tabs>
+    </div>
+  );
+}
+//////////////////////////////////////////////////////////
 //shipping
 // "use client";
 
