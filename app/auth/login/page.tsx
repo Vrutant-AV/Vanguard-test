@@ -10,48 +10,58 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
+import GoogleAuthButton from "@/components/google-auth-button";
 import styles from "./page.module.css";
 
 export default function LoginPage() {
   const [loading, setLoading] = useState(false);
-    const [error, setError] = useState('');
-    const [formData, setFormData] = useState({ email: '', password: '' });
-    const router = useRouter();
-  
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      const { name, value } = e.target;
-      setFormData(prev => ({ ...prev, [name]: value }));
-    };
-  
-    const handleSubmit = async (e: React.FormEvent) => {
-      e.preventDefault();
-      setLoading(true);
-      setError('');
-  
-      try {
-        const res = await fetch('http://localhost:5000/api/auth/login', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(formData),
-        });
+  const [error, setError] = useState('');
+  const [formData, setFormData] = useState({ email: '', password: '' });
+  const router = useRouter();
 
-        const data = await res.json();
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
 
-        if (!res.ok) {
-          console.log('Login failed:', data.message || 'Login failed');
-          throw new Error(data.message || 'Login failed');
-        }
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setError('');
 
-        localStorage.setItem('token', data.token);
-        console.log('Login successful:', data);
-        router.push('/');
-      } catch (err: any) {
-          console.log('Error during login:', 'mail or password is wrong');
-          setError('e-mail or password is wrong');
-      } finally {
-          setLoading(false);
+    try {
+      const res = await fetch('http://localhost:5000/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await res.json();
+      
+      if (!res.ok) {
+        console.log('Login failed:', data.message || 'Login failed');
+        throw new Error(data.message || 'Login failed');
       }
-    };
+      
+      localStorage.setItem('token', data.token);
+      console.log('Login successful:', data);
+      router.push('/');
+    } catch (err: any){
+        console.log('Error during login:', 'Email or password is wrong');
+        setError('Email or password is wrong');
+    } finally {
+        setLoading(false);
+    }
+  };
+  
+  const handleGoogleSuccess = (token: string, user: any) => {
+    localStorage.setItem('token', token);
+    router.push('/');
+  };
+
+  const handleGoogleError = (error: string) => {
+    setError(error);
+  };
 
   return (
     <main className="min-h-screen bg-background pt-24">
@@ -129,10 +139,12 @@ export default function LoginPage() {
               </div>
             </div>
 
-            <div className={styles.socialButtons}>
-              <Button variant="outline" className="w-full">Google</Button>
-              <Button variant="outline" className="w-full">Apple</Button>
-            </div>
+            <GoogleAuthButton
+              mode="login"
+              onSuccess={handleGoogleSuccess}
+              onError={handleGoogleError}
+              disabled={loading}
+            />
           </div>
 
           <p className={styles.footer}>

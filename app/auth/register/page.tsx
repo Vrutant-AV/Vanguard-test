@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
+import GoogleAuthButton from "@/components/google-auth-button";
 import styles from "./page.module.css";
 
 export default function RegisterPage() {
@@ -57,6 +58,9 @@ export default function RegisterPage() {
       }
 
       console.log('Register successful:', data);
+      
+      //stores token and redirects to home
+      localStorage.setItem('token', data.token);
       router.push("/auth/login");
     } catch (err: any) {
       console.log('Error during register:', 'something went wrong');
@@ -64,6 +68,15 @@ export default function RegisterPage() {
     } finally {
       setIsLoading(false);
     }
+  };
+
+  const handleGoogleSuccess = (token: string, user: any) => {
+    localStorage.setItem('token', token);
+    router.push('/');
+  };
+
+  const handleGoogleError = (error: string) => {
+    setErrorMsg(error);
   };
 
   return (
@@ -155,10 +168,12 @@ export default function RegisterPage() {
               </div>
             </div>
 
-            <div className={styles.socialButtons}>
-              <Button variant="outline" className="w-full">Google</Button>
-              <Button variant="outline" className="w-full">Apple</Button>
-            </div>
+            <GoogleAuthButton 
+              mode="register"
+              onSuccess={handleGoogleSuccess}
+              onError={handleGoogleError}
+              disabled={isLoading}
+            />
           </div>
 
           <p className={styles.footer}>
