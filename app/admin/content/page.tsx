@@ -1,23 +1,36 @@
+<<<<<<< HEAD
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable @next/next/no-img-element */
 
+=======
+>>>>>>> 1c420b6c49c974881a23ac0add3a1419be2bcbf9
 "use client";
 
 import { useState } from "react";
 import { Search, Plus, Edit, Trash2, MoreHorizontal, FileText, Image, Video } from "lucide-react";
+<<<<<<< HEAD
+=======
+
+>>>>>>> 1c420b6c49c974881a23ac0add3a1419be2bcbf9
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+<<<<<<< HEAD
 
+=======
+>>>>>>> 1c420b6c49c974881a23ac0add3a1419be2bcbf9
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+<<<<<<< HEAD
 
+=======
+>>>>>>> 1c420b6c49c974881a23ac0add3a1419be2bcbf9
 import {
   Select,
   SelectContent,
@@ -156,20 +169,39 @@ const getTypeIcon = (type: string) => {
 export default function ContentPage() {
   const [searchTerm, setSearchTerm] = useState("");
   const [statusFilter, setStatusFilter] = useState("all");
+<<<<<<< HEAD
   const filteredPages = pages.filter(page => {
     const matchesSearch = page.title.toLowerCase().includes(searchTerm.toLowerCase()) || page.slug.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesStatus = statusFilter === "all" || page.status === statusFilter;
     return matchesSearch && matchesStatus;
   });
+=======
+
+  const filteredPages = pages.filter(page => {
+    const matchesSearch = page.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         page.slug.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesStatus = statusFilter === "all" || page.status === statusFilter;
+    return matchesSearch && matchesStatus;
+  });
+
+>>>>>>> 1c420b6c49c974881a23ac0add3a1419be2bcbf9
   const filteredPosts = blogPosts.filter(post => {
     const matchesSearch = post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          post.slug.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesStatus = statusFilter === "all" || post.status === statusFilter;
     return matchesSearch && matchesStatus;
   });
+<<<<<<< HEAD
   const filteredMedia = media.filter(item =>
     item.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
+=======
+
+  const filteredMedia = media.filter(item =>
+    item.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+>>>>>>> 1c420b6c49c974881a23ac0add3a1419be2bcbf9
   const contentStats = {
     totalPages: pages.length,
     totalPosts: blogPosts.length,
@@ -196,6 +228,7 @@ export default function ContentPage() {
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
         <Card>
           <CardHeader className="pb-2">
+<<<<<<< HEAD
             <CardTitle className="text-sm font-medium">
                 Pages
             </CardTitle>
@@ -247,6 +280,40 @@ export default function ContentPage() {
         </Card>
       </div>
       
+=======
+            <CardTitle className="text-sm font-medium">Pages</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">{contentStats.totalPages}</div>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardHeader className="pb-2">
+            <CardTitle className="text-sm font-medium">Blog Posts</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">{contentStats.totalPosts}</div>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardHeader className="pb-2">
+            <CardTitle className="text-sm font-medium">Media Files</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">{contentStats.totalMedia}</div>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardHeader className="pb-2">
+            <CardTitle className="text-sm font-medium">Published</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold text-green-600">{contentStats.published}</div>
+          </CardContent>
+        </Card>
+      </div>
+
+>>>>>>> 1c420b6c49c974881a23ac0add3a1419be2bcbf9
       {/* Filters and Search */}
       <div className="flex flex-col sm:flex-row gap-4 mb-6">
         <div className="relative flex-1">
@@ -258,12 +325,16 @@ export default function ContentPage() {
             className="pl-10"
           />
         </div>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 1c420b6c49c974881a23ac0add3a1419be2bcbf9
         <Select value={statusFilter} onValueChange={setStatusFilter}>
           <SelectTrigger className="w-full sm:w-48">
             <SelectValue placeholder="Filter by status" />
           </SelectTrigger>
           <SelectContent>
+<<<<<<< HEAD
             <SelectItem value="all">
                 All Status
             </SelectItem>
@@ -276,6 +347,12 @@ export default function ContentPage() {
             <SelectItem value="archived">
                 Archived
             </SelectItem>
+=======
+            <SelectItem value="all">All Status</SelectItem>
+            <SelectItem value="published">Published</SelectItem>
+            <SelectItem value="draft">Draft</SelectItem>
+            <SelectItem value="archived">Archived</SelectItem>
+>>>>>>> 1c420b6c49c974881a23ac0add3a1419be2bcbf9
           </SelectContent>
         </Select>
       </div>
@@ -283,6 +360,7 @@ export default function ContentPage() {
       {/* Content Tabs */}
       <Tabs defaultValue="pages" className="space-y-4">
         <TabsList>
+<<<<<<< HEAD
           <TabsTrigger value="pages">
             Pages
           </TabsTrigger>
@@ -294,6 +372,13 @@ export default function ContentPage() {
           </TabsTrigger>
         </TabsList>
         
+=======
+          <TabsTrigger value="pages">Pages</TabsTrigger>
+          <TabsTrigger value="blog">Blog Posts</TabsTrigger>
+          <TabsTrigger value="media">Media</TabsTrigger>
+        </TabsList>
+
+>>>>>>> 1c420b6c49c974881a23ac0add3a1419be2bcbf9
         <TabsContent value="pages">
           <Card>
             <CardHeader>
@@ -302,7 +387,10 @@ export default function ContentPage() {
                 Manage static pages and content
               </CardDescription>
             </CardHeader>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 1c420b6c49c974881a23ac0add3a1419be2bcbf9
             <CardContent>
               <div className="space-y-4">
                 {filteredPages.map((page) => (
@@ -311,7 +399,11 @@ export default function ContentPage() {
                       <div className="flex items-center justify-center w-12 h-12 bg-muted rounded-lg">
                         <FileText className="h-6 w-6 text-muted-foreground" />
                       </div>
+<<<<<<< HEAD
                    
+=======
+                      
+>>>>>>> 1c420b6c49c974881a23ac0add3a1419be2bcbf9
                       <div>
                         <div className="flex items-center space-x-2">
                           <h3 className="font-medium">{page.title}</h3>
@@ -325,19 +417,27 @@ export default function ContentPage() {
                         </p>
                       </div>
                     </div>
+<<<<<<< HEAD
                  
+=======
+                    
+>>>>>>> 1c420b6c49c974881a23ac0add3a1419be2bcbf9
                     <DropdownMenu>
                       <DropdownMenuTrigger asChild>
                         <Button variant="ghost" size="icon">
                           <MoreHorizontal className="h-4 w-4" />
                         </Button>
                       </DropdownMenuTrigger>
+<<<<<<< HEAD
                       
+=======
+>>>>>>> 1c420b6c49c974881a23ac0add3a1419be2bcbf9
                       <DropdownMenuContent align="end">
                         <DropdownMenuItem>
                           <Edit className="mr-2 h-4 w-4" />
                           Edit Page
                         </DropdownMenuItem>
+<<<<<<< HEAD
                         
                         <DropdownMenuItem>
                           View Page
@@ -347,6 +447,14 @@ export default function ContentPage() {
                           Duplicate
                         </DropdownMenuItem>
                         
+=======
+                        <DropdownMenuItem>
+                          View Page
+                        </DropdownMenuItem>
+                        <DropdownMenuItem>
+                          Duplicate
+                        </DropdownMenuItem>
+>>>>>>> 1c420b6c49c974881a23ac0add3a1419be2bcbf9
                         <DropdownMenuItem className="text-red-600">
                           <Trash2 className="mr-2 h-4 w-4" />
                           Delete Page
@@ -368,7 +476,10 @@ export default function ContentPage() {
                 Manage blog content and articles
               </CardDescription>
             </CardHeader>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 1c420b6c49c974881a23ac0add3a1419be2bcbf9
             <CardContent>
               <div className="space-y-4">
                 {filteredPosts.map((post) => (
@@ -377,7 +488,11 @@ export default function ContentPage() {
                       <div className="flex items-center justify-center w-12 h-12 bg-muted rounded-lg">
                         <FileText className="h-6 w-6 text-muted-foreground" />
                       </div>
+<<<<<<< HEAD
                    
+=======
+                      
+>>>>>>> 1c420b6c49c974881a23ac0add3a1419be2bcbf9
                       <div>
                         <div className="flex items-center space-x-2">
                           <h3 className="font-medium">{post.title}</h3>
@@ -393,19 +508,27 @@ export default function ContentPage() {
                         </p>
                       </div>
                     </div>
+<<<<<<< HEAD
                  
+=======
+                    
+>>>>>>> 1c420b6c49c974881a23ac0add3a1419be2bcbf9
                     <DropdownMenu>
                       <DropdownMenuTrigger asChild>
                         <Button variant="ghost" size="icon">
                           <MoreHorizontal className="h-4 w-4" />
                         </Button>
                       </DropdownMenuTrigger>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 1c420b6c49c974881a23ac0add3a1419be2bcbf9
                       <DropdownMenuContent align="end">
                         <DropdownMenuItem>
                           <Edit className="mr-2 h-4 w-4" />
                           Edit Post
                         </DropdownMenuItem>
+<<<<<<< HEAD
                         
                         <DropdownMenuItem>
                           View Post
@@ -415,6 +538,14 @@ export default function ContentPage() {
                           Duplicate
                         </DropdownMenuItem>
                         
+=======
+                        <DropdownMenuItem>
+                          View Post
+                        </DropdownMenuItem>
+                        <DropdownMenuItem>
+                          Duplicate
+                        </DropdownMenuItem>
+>>>>>>> 1c420b6c49c974881a23ac0add3a1419be2bcbf9
                         <DropdownMenuItem className="text-red-600">
                           <Trash2 className="mr-2 h-4 w-4" />
                           Delete Post
@@ -436,7 +567,10 @@ export default function ContentPage() {
                 Manage images, videos, and other media files
               </CardDescription>
             </CardHeader>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 1c420b6c49c974881a23ac0add3a1419be2bcbf9
             <CardContent>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {filteredMedia.map((item) => (
@@ -459,6 +593,7 @@ export default function ContentPage() {
                           <DropdownMenuItem>
                             View
                           </DropdownMenuItem>
+<<<<<<< HEAD
 
                           <DropdownMenuItem>
                             Download
@@ -468,6 +603,14 @@ export default function ContentPage() {
                             Copy URL
                           </DropdownMenuItem>
                           
+=======
+                          <DropdownMenuItem>
+                            Download
+                          </DropdownMenuItem>
+                          <DropdownMenuItem>
+                            Copy URL
+                          </DropdownMenuItem>
+>>>>>>> 1c420b6c49c974881a23ac0add3a1419be2bcbf9
                           <DropdownMenuItem className="text-red-600">
                             <Trash2 className="mr-2 h-4 w-4" />
                             Delete
@@ -475,7 +618,11 @@ export default function ContentPage() {
                         </DropdownMenuContent>
                       </DropdownMenu>
                     </div>
+<<<<<<< HEAD
                  
+=======
+                    
+>>>>>>> 1c420b6c49c974881a23ac0add3a1419be2bcbf9
                     {item.type === "image" && (
                       <div className="aspect-video bg-muted rounded-md mb-3 overflow-hidden">
                         <img
@@ -485,7 +632,11 @@ export default function ContentPage() {
                         />
                       </div>
                     )}
+<<<<<<< HEAD
                  
+=======
+                    
+>>>>>>> 1c420b6c49c974881a23ac0add3a1419be2bcbf9
                     <p className="text-xs text-muted-foreground">
                       Uploaded: {item.uploadDate}
                     </p>

@@ -4,7 +4,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Mail, Lock, Target} from "lucide-react";
+import { Mail, Lock } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -37,11 +37,16 @@ export default function LoginPage() {
       });
 
       const data = await res.json();
+<<<<<<< HEAD
       
+=======
+
+>>>>>>> 1c420b6c49c974881a23ac0add3a1419be2bcbf9
       if (!res.ok) {
         console.log('Login failed:', data.message || 'Login failed');
         throw new Error(data.message || 'Login failed');
       }
+<<<<<<< HEAD
       
       localStorage.setItem('token', data.token);
       console.log('Login successful:', data);
@@ -54,6 +59,20 @@ export default function LoginPage() {
     }
   };
   
+=======
+
+      localStorage.setItem('token', data.token);
+      console.log('Login successful:', data);
+      router.push('/');
+    } catch (err: any) {
+      console.log('Error during login:', 'Email or password is wrong');
+      setError('Email or password is wrong');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+>>>>>>> 1c420b6c49c974881a23ac0add3a1419be2bcbf9
   const handleGoogleSuccess = (token: string, user: any) => {
     localStorage.setItem('token', token);
     router.push('/');

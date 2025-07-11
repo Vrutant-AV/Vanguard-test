@@ -1,6 +1,13 @@
 "use client";
+<<<<<<< HEAD
 import { useState } from "react";
 import { Search, Plus, Edit, Trash2, MoreHorizontal, Tag } from "lucide-react";
+=======
+
+import { useState } from "react";
+import { Search, Plus, Edit, Trash2, MoreHorizontal, Tag } from "lucide-react";
+
+>>>>>>> 1c420b6c49c974881a23ac0add3a1419be2bcbf9
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -11,6 +18,10 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+<<<<<<< HEAD
+=======
+
+>>>>>>> 1c420b6c49c974881a23ac0add3a1419be2bcbf9
 // Sample categories data
 const categories = [
   {
@@ -70,18 +81,30 @@ const getStatusColor = (status: string) => {
 
 export default function CategoriesPage() {
   const [searchTerm, setSearchTerm] = useState("");
+<<<<<<< HEAD
+=======
+
+>>>>>>> 1c420b6c49c974881a23ac0add3a1419be2bcbf9
   const filteredCategories = categories.filter(category =>
     category.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     category.description.toLowerCase().includes(searchTerm.toLowerCase())
   );
+<<<<<<< HEAD
   
+=======
+
+>>>>>>> 1c420b6c49c974881a23ac0add3a1419be2bcbf9
   const categoryStats = {
     total: categories.length,
     active: categories.filter(c => c.status === "active").length,
     draft: categories.filter(c => c.status === "draft").length,
     totalProducts: categories.reduce((sum, c) => sum + c.productCount, 0),
   };
+<<<<<<< HEAD
   
+=======
+
+>>>>>>> 1c420b6c49c974881a23ac0add3a1419be2bcbf9
   return (
     <div className="p-6">
       <div className="flex justify-between items-start mb-6">
@@ -97,6 +120,7 @@ export default function CategoriesPage() {
         </Button>
       </div>
 
+<<<<<<< HEAD
       {/* statss cards */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
         <Card>
@@ -104,11 +128,19 @@ export default function CategoriesPage() {
             <CardTitle className="text-sm font-medium">
               Total Categories
             </CardTitle>
+=======
+      {/* Stats Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+        <Card>
+          <CardHeader className="pb-2">
+            <CardTitle className="text-sm font-medium">Total Categories</CardTitle>
+>>>>>>> 1c420b6c49c974881a23ac0add3a1419be2bcbf9
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{categoryStats.total}</div>
           </CardContent>
         </Card>
+<<<<<<< HEAD
 
         <Card>
           <CardHeader className="pb-2">
@@ -136,6 +168,24 @@ export default function CategoriesPage() {
           </CardContent>
         </Card>
 
+=======
+        <Card>
+          <CardHeader className="pb-2">
+            <CardTitle className="text-sm font-medium">Active</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold text-green-600">{categoryStats.active}</div>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardHeader className="pb-2">
+            <CardTitle className="text-sm font-medium">Draft</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold text-gray-600">{categoryStats.draft}</div>
+          </CardContent>
+        </Card>
+>>>>>>> 1c420b6c49c974881a23ac0add3a1419be2bcbf9
         <Card>
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-medium">Total Products</CardTitle>
@@ -146,11 +196,19 @@ export default function CategoriesPage() {
         </Card>
       </div>
 
+<<<<<<< HEAD
       {/* search */}
       <div className="flex gap-4 mb-6">
         <div className="relative flex-1">
           <Search className="absolute left-3 top-1/2 transform-translate-y-1/2 h-4 w-4 text-muted-foreground" />
           <Input 
+=======
+      {/* Search */}
+      <div className="flex gap-4 mb-6">
+        <div className="relative flex-1">
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+          <Input
+>>>>>>> 1c420b6c49c974881a23ac0add3a1419be2bcbf9
             placeholder="Search categories..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
@@ -158,6 +216,7 @@ export default function CategoriesPage() {
           />
         </div>
       </div>
+<<<<<<< HEAD
       {/* categories list */}
       <Card>
         <CardHeader>
@@ -166,6 +225,15 @@ export default function CategoriesPage() {
           </CardTitle>
           <CardDescription>
             Manage product sacegories and their organization
+=======
+
+      {/* Categories List */}
+      <Card>
+        <CardHeader>
+          <CardTitle>Categories ({filteredCategories.length})</CardTitle>
+          <CardDescription>
+            Manage product categories and their organization
+>>>>>>> 1c420b6c49c974881a23ac0add3a1419be2bcbf9
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -176,12 +244,19 @@ export default function CategoriesPage() {
                   <div className="flex items-center justify-center w-12 h-12 bg-muted rounded-lg">
                     <Tag className="h-6 w-6 text-muted-foreground" />
                   </div>
+<<<<<<< HEAD
 
                   <div>
                     <div className="flex items-center space-x-2">
                       <h3 className="font-medium">
                         {category.name}
                       </h3>
+=======
+                  
+                  <div>
+                    <div className="flex items-center space-x-2">
+                      <h3 className="font-medium">{category.name}</h3>
+>>>>>>> 1c420b6c49c974881a23ac0add3a1419be2bcbf9
                       <Badge className={getStatusColor(category.status)}>
                         {category.status}
                       </Badge>
@@ -190,13 +265,21 @@ export default function CategoriesPage() {
                     <p className="text-xs text-muted-foreground">Created: {category.createdDate}</p>
                   </div>
                 </div>
+<<<<<<< HEAD
 
+=======
+                
+>>>>>>> 1c420b6c49c974881a23ac0add3a1419be2bcbf9
                 <div className="flex items-center space-x-4">
                   <div className="text-right">
                     <div className="font-medium">{category.productCount}</div>
                     <div className="text-sm text-muted-foreground">products</div>
                   </div>
+<<<<<<< HEAD
 
+=======
+                  
+>>>>>>> 1c420b6c49c974881a23ac0add3a1419be2bcbf9
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
                       <Button variant="ghost" size="icon">

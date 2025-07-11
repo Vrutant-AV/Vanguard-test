@@ -1,20 +1,34 @@
 "use client";
+<<<<<<< HEAD
 import { useState } from "react";
 import Image from "next/image";
 import { Search, Filter, Download, Plus, Eye, Edit, Trash2, MoreHorizontal } from "lucide-react";
+=======
+
+import { useState } from "react";
+import Image from "next/image";
+import { Search, Filter, Download, Plus, Eye, Edit, Trash2, MoreHorizontal } from "lucide-react";
+
+>>>>>>> 1c420b6c49c974881a23ac0add3a1419be2bcbf9
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+<<<<<<< HEAD
 
+=======
+>>>>>>> 1c420b6c49c974881a23ac0add3a1419be2bcbf9
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+<<<<<<< HEAD
 
+=======
+>>>>>>> 1c420b6c49c974881a23ac0add3a1419be2bcbf9
 import {
   Select,
   SelectContent,
@@ -112,6 +126,7 @@ export default function ProductsPage() {
   const [searchTerm, setSearchTerm] = useState("");
   const [categoryFilter, setCategoryFilter] = useState("all");
   const [statusFilter, setStatusFilter] = useState("all");
+<<<<<<< HEAD
   const filteredProducts = products.filter(product => {
     const matchesSearch = product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          product.sku.toLowerCase().includes(searchTerm.toLowerCase());
@@ -121,12 +136,29 @@ export default function ProductsPage() {
  
     return matchesSearch && matchesCategory && matchesStatus;
   });
+=======
+
+  const filteredProducts = products.filter(product => {
+    const matchesSearch = product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         product.sku.toLowerCase().includes(searchTerm.toLowerCase());
+    
+    const matchesCategory = categoryFilter === "all" || product.category.toLowerCase() === categoryFilter;
+    const matchesStatus = statusFilter === "all" || getStockStatus(product.stock) === statusFilter;
+    
+    return matchesSearch && matchesCategory && matchesStatus;
+  });
+
+>>>>>>> 1c420b6c49c974881a23ac0add3a1419be2bcbf9
   const productStats = {
     total: products.length,
     active: products.filter(p => getStockStatus(p.stock) === "active").length,
     lowStock: products.filter(p => getStockStatus(p.stock) === "low_stock").length,
     outOfStock: products.filter(p => getStockStatus(p.stock) === "out_of_stock").length,
   };
+<<<<<<< HEAD
+=======
+
+>>>>>>> 1c420b6c49c974881a23ac0add3a1419be2bcbf9
   return (
     <div className="p-6">
       <div className="flex justify-between items-start mb-6">
@@ -141,6 +173,10 @@ export default function ProductsPage() {
           Add Product
         </Button>
       </div>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 1c420b6c49c974881a23ac0add3a1419be2bcbf9
       {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
         <Card>
@@ -176,6 +212,10 @@ export default function ProductsPage() {
           </CardContent>
         </Card>
       </div>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 1c420b6c49c974881a23ac0add3a1419be2bcbf9
       {/* Filters and Search */}
       <div className="flex flex-col sm:flex-row gap-4 mb-6">
         <div className="relative flex-1">
@@ -214,6 +254,10 @@ export default function ProductsPage() {
           Export
         </Button>
       </div>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 1c420b6c49c974881a23ac0add3a1419be2bcbf9
       {/* Products Grid */}
       <Card>
         <CardHeader>
@@ -234,7 +278,11 @@ export default function ProductsPage() {
                     className="object-cover object-center"
                   />
                 </div>
+<<<<<<< HEAD
              
+=======
+                
+>>>>>>> 1c420b6c49c974881a23ac0add3a1419be2bcbf9
                 <div className="space-y-2">
                   <div className="flex justify-between items-start">
                     <div>
@@ -263,7 +311,11 @@ export default function ProductsPage() {
                       </DropdownMenuContent>
                     </DropdownMenu>
                   </div>
+<<<<<<< HEAD
                
+=======
+                  
+>>>>>>> 1c420b6c49c974881a23ac0add3a1419be2bcbf9
                   <div className="flex justify-between items-center">
                     <span className="font-medium">${product.price.toFixed(2)}</span>
                     <Badge className={getStatusColor(getStockStatus(product.stock))}>
@@ -271,12 +323,20 @@ export default function ProductsPage() {
                        product.stock < 15 ? "Low Stock" : "In Stock"}
                     </Badge>
                   </div>
+<<<<<<< HEAD
                
+=======
+                  
+>>>>>>> 1c420b6c49c974881a23ac0add3a1419be2bcbf9
                   <div className="flex justify-between text-sm text-muted-foreground">
                     <span>Stock: {product.stock}</span>
                     <span>Sales: {product.sales}</span>
                   </div>
+<<<<<<< HEAD
                
+=======
+                  
+>>>>>>> 1c420b6c49c974881a23ac0add3a1419be2bcbf9
                   <div className="flex gap-2">
                     <Button variant="outline" size="sm" className="flex-1">
                       <Edit className="mr-2 h-4 w-4" />

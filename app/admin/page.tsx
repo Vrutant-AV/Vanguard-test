@@ -100,7 +100,7 @@ const topProducts = [
         sales: 156,
         revenue: 29484,
         stock: 23,
-        image: "https://images.pexels.com/photos/5384428/   pexels-photo-5384428.jpeg",
+        image: "https://images.pexels.com/photos/5384428/pexels-photo-5384428.jpeg",
     },
     {
         id: 2,
@@ -108,7 +108,7 @@ const topProducts = [
         sales: 89,
         revenue: 25810,
         stock: 12,
-        image: "https://images.pexels.com/photos/5384425/   pexels-photo-5384425.jpeg",
+        image: "https://images.pexels.com/photos/5384425/pexels-photo-5384425.jpeg",
     },
     {
         id: 3,
@@ -116,7 +116,7 @@ const topProducts = [
         sales: 134,
         revenue: 16080,
         stock: 45,
-        image: "https://images.pexels.com/photos/5384429/   pexels-photo-5384429.jpeg",
+        image: "https://images.pexels.com/photos/5384429/pexels-photo-5384429.jpeg",
     },
     {
         id: 4,
@@ -124,7 +124,7 @@ const topProducts = [
         sales: 78,
         revenue: 13650,
         stock: 8,
-        image: "https://images.pexels.com/photos/5384424/   pexels-photo-5384424.jpeg",
+        image: "https://images.pexels.com/photos/5384424/pexels-photo-5384424.jpeg",
     },
 ];
 

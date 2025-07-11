@@ -1,7 +1,15 @@
 "use client";
+<<<<<<< HEAD
 import { useState } from "react";
 import Image from "next/image";
 import { Search, Filter, Download, Eye, MoreHorizontal, Mail, Phone, MapPin } from "lucide-react";
+=======
+
+import { useState } from "react";
+import Image from "next/image";
+import { Search, Filter, Download, Eye, MoreHorizontal, Mail, Phone, MapPin } from "lucide-react";
+
+>>>>>>> 1c420b6c49c974881a23ac0add3a1419be2bcbf9
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -20,6 +28,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+<<<<<<< HEAD
+=======
+
+>>>>>>> 1c420b6c49c974881a23ac0add3a1419be2bcbf9
 // Sample customers data
 const customers = [
   {
@@ -88,6 +100,10 @@ const customers = [
     joinDate: "2024-11-12"
   },
 ];
+<<<<<<< HEAD
+=======
+
+>>>>>>> 1c420b6c49c974881a23ac0add3a1419be2bcbf9
 const getStatusColor = (status: string) => {
   switch (status) {
     case "vip":
@@ -102,6 +118,7 @@ const getStatusColor = (status: string) => {
 };
 
 export default function CustomersPage() {
+<<<<<<< HEAD
     const [searchTerm, setSearchTerm] = useState("");
     const [statusFilter, setStatusFilter] = useState("all");
     const filteredCustomers = customers.filter(customer => {
@@ -329,4 +346,193 @@ export default function CustomersPage() {
             </Card>
         </div>
     );
+=======
+  const [searchTerm, setSearchTerm] = useState("");
+  const [statusFilter, setStatusFilter] = useState("all");
+
+  const filteredCustomers = customers.filter(customer => {
+    const matchesSearch = customer.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         customer.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         customer.phone.includes(searchTerm);
+    
+    const matchesStatus = statusFilter === "all" || customer.status === statusFilter;
+    
+    return matchesSearch && matchesStatus;
+  });
+
+  const customerStats = {
+    total: customers.length,
+    active: customers.filter(c => c.status === "active").length,
+    vip: customers.filter(c => c.status === "vip").length,
+    inactive: customers.filter(c => c.status === "inactive").length,
+    totalRevenue: customers.reduce((sum, c) => sum + c.totalSpent, 0),
+  };
+
+  return (
+    <div className="p-6">
+      <div className="mb-6">
+        <h1 className="font-serif text-3xl font-light mb-2">Customers</h1>
+        <p className="text-muted-foreground">
+          Manage customer relationships and track their activity
+        </p>
+      </div>
+
+      {/* Stats Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-6">
+        <Card>
+          <CardHeader className="pb-2">
+            <CardTitle className="text-sm font-medium">Total Customers</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">{customerStats.total}</div>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardHeader className="pb-2">
+            <CardTitle className="text-sm font-medium">Active</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold text-green-600">{customerStats.active}</div>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardHeader className="pb-2">
+            <CardTitle className="text-sm font-medium">VIP</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold text-purple-600">{customerStats.vip}</div>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardHeader className="pb-2">
+            <CardTitle className="text-sm font-medium">Inactive</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold text-gray-600">{customerStats.inactive}</div>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardHeader className="pb-2">
+            <CardTitle className="text-sm font-medium">Total Revenue</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">${customerStats.totalRevenue.toFixed(0)}</div>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Filters and Search */}
+      <div className="flex flex-col sm:flex-row gap-4 mb-6">
+        <div className="relative flex-1">
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+          <Input
+            placeholder="Search customers..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="pl-10"
+          />
+        </div>
+        <Select value={statusFilter} onValueChange={setStatusFilter}>
+          <SelectTrigger className="w-full sm:w-48">
+            <SelectValue placeholder="Filter by status" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="all">All Status</SelectItem>
+            <SelectItem value="active">Active</SelectItem>
+            <SelectItem value="vip">VIP</SelectItem>
+            <SelectItem value="inactive">Inactive</SelectItem>
+          </SelectContent>
+        </Select>
+        <Button variant="outline">
+          <Filter className="mr-2 h-4 w-4" />
+          More Filters
+        </Button>
+        <Button variant="outline">
+          <Download className="mr-2 h-4 w-4" />
+          Export
+        </Button>
+      </div>
+
+      {/* Customers List */}
+      <Card>
+        <CardHeader>
+          <CardTitle>Customers ({filteredCustomers.length})</CardTitle>
+          <CardDescription>
+            Manage customer information and track their activity
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-4">
+            {filteredCustomers.map((customer) => (
+              <div key={customer.id} className="flex items-center justify-between p-4 border rounded-lg">
+                <div className="flex items-center space-x-4">
+                  <Avatar className="h-12 w-12">
+                    <AvatarImage src={customer.avatar} alt={customer.name} />
+                    <AvatarFallback>
+                      {customer.name.split(' ').map(n => n[0]).join('')}
+                    </AvatarFallback>
+                  </Avatar>
+                  
+                  <div>
+                    <div className="flex items-center space-x-2">
+                      <h3 className="font-medium">{customer.name}</h3>
+                      <Badge className={getStatusColor(customer.status)}>
+                        {customer.status.toUpperCase()}
+                      </Badge>
+                    </div>
+                    <div className="flex items-center space-x-4 text-sm text-muted-foreground">
+                      <div className="flex items-center">
+                        <Mail className="mr-1 h-3 w-3" />
+                        {customer.email}
+                      </div>
+                      <div className="flex items-center">
+                        <Phone className="mr-1 h-3 w-3" />
+                        {customer.phone}
+                      </div>
+                      <div className="flex items-center">
+                        <MapPin className="mr-1 h-3 w-3" />
+                        {customer.location}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="flex items-center space-x-6">
+                  <div className="text-right">
+                    <div className="font-medium">${customer.totalSpent.toFixed(2)}</div>
+                    <div className="text-sm text-muted-foreground">{customer.orders} orders</div>
+                  </div>
+                  <div className="text-right">
+                    <div className="text-sm font-medium">Last Order</div>
+                    <div className="text-sm text-muted-foreground">{customer.lastOrder}</div>
+                  </div>
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <Button variant="ghost" size="icon">
+                        <MoreHorizontal className="h-4 w-4" />
+                      </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end">
+                      <DropdownMenuItem>
+                        <Eye className="mr-2 h-4 w-4" />
+                        View Profile
+                      </DropdownMenuItem>
+                      <DropdownMenuItem>
+                        <Mail className="mr-2 h-4 w-4" />
+                        Send Email
+                      </DropdownMenuItem>
+                      <DropdownMenuItem>
+                        View Orders
+                      </DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                </div>
+              </div>
+            ))}
+          </div>
+        </CardContent>
+      </Card>
+    </div>
+  );
+>>>>>>> 1c420b6c49c974881a23ac0add3a1419be2bcbf9
 }

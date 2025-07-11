@@ -59,9 +59,15 @@ export default function RegisterPage() {
 
       console.log('Register successful:', data);
       
+<<<<<<< HEAD
       //stores token and redirects to home
       localStorage.setItem('token', data.token);
       router.push("/auth/login");
+=======
+      // Store token and redirect to home
+      localStorage.setItem('token', data.token);
+      router.push("/");
+>>>>>>> 1c420b6c49c974881a23ac0add3a1419be2bcbf9
     } catch (err: any) {
       console.log('Error during register:', 'something went wrong');
       setErrorMsg(err.message || "Something went wrong.");
@@ -168,7 +174,11 @@ export default function RegisterPage() {
               </div>
             </div>
 
+<<<<<<< HEAD
             <GoogleAuthButton 
+=======
+            <GoogleAuthButton
+>>>>>>> 1c420b6c49c974881a23ac0add3a1419be2bcbf9
               mode="register"
               onSuccess={handleGoogleSuccess}
               onError={handleGoogleError}
